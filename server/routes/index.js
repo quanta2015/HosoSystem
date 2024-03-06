@@ -23,11 +23,13 @@ const root = path.resolve(__dirname, '../')
 const auth =(req, res, next)=> {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) return res.sendStatus(401)
+
+  // console.log(token)
+  if (isN(token)) return res.sendStatus(401)
   jwt.verify(token, SECRET_KEY, (err, usr) => {
     if (err) return res.sendStatus(403)
     req.usr = usr
-    console.log('usr',usr)
+    // console.log('usr',usr)
     next()
   })
 }

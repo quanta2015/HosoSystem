@@ -5,6 +5,7 @@ import {saveUser} from '@/util/token'
 import { UserOutlined,LockOutlined } from '@ant-design/icons';
 import * as urls from '@/constant/urls'
 import { useNavigate } from 'react-router-dom'
+import { saveLocalUser } from '@/util/token'
 
 import style from './index.module.less'
 
@@ -21,13 +22,15 @@ const Login = () => {
     try {
       const params = await form.validateFields();
       const r = await store.login(params)
-
-      console.log(r)
-      window.token = r.token
+      // console.log(r)
+      
       message.info(r.msg)
       if (r.code===0) {
-        saveUser(r.data)
+        saveLocalUser(r.data)
         store.saveUser(r.data)
+        // saveLocalUser(r.data)
+        // saveToken(r.token)
+        window.token = r.token
         navigate('/')
       }
     } catch (errorInfo) {

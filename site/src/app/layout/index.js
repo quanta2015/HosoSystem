@@ -2,7 +2,7 @@ import React,{useEffect,useState,useRef} from 'react';
 import { Outlet } from 'react-router-dom'
 import { inject,observer,MobXProviderContext } from 'mobx-react'
 import { useNavigate } from 'react-router-dom'
-
+import { loadLocalUser } from '@/util/token'
 
 import Menu from '@/component/Menu'
 import Nav from '@/component/Nav'
@@ -25,6 +25,8 @@ const Layout = () => {
 
 
   useEffect(() => {
+
+    let localUser = loadLocalUser()
     if (!window.token) {
       navigate("/login");
     } 

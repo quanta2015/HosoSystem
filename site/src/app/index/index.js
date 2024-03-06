@@ -3,7 +3,7 @@ import { inject, observer, MobXProviderContext } from 'mobx-react'
 import { Form, Input, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import * as urls from '@/constant/urls'
-import {loadUser} from '@/util/token'
+import {loadLocalUser} from '@/util/token'
 import { useNavigate } from 'react-router-dom'
 
 import s from './index.module.less'
@@ -16,15 +16,15 @@ const Nav = () => {
   const { store } = React.useContext(MobXProviderContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // console.log(store.user,'user')
+  // useEffect(() => {
+  //   // console.log(store.user,'user')
 
-    let user = loadUser()
-    if (!user) {
-      navigate('/login')
-      store.saveUser(user)
-    }
-  }, []);
+  //   let user = loadLocalUser()
+  //   if (!user) {
+  //     navigate('/login')
+  //     store.saveUser(user)
+  //   }
+  // }, []);
 
 
 
