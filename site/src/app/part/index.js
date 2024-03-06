@@ -35,7 +35,7 @@ const Part = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const inputRef = useRef(null);
 
-
+  const [refresh,setRefresh] = useState(false)
   const [showForm,setShowForm] = useState(false)
   const [method, setMethod] = useState('Insert')
   const [loading, setLoading] = useState(false);
@@ -90,7 +90,7 @@ const Part = () => {
 
   // 刪除數據
   const doDel = (e)=>{
-    console.log(e)
+    // console.log(e)
     let params = { 
       id: e.id,
       tab: 'tab_part',
@@ -119,14 +119,25 @@ const Part = () => {
       setLoading(false)
       r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
-      console.log(r.data)
+      setRefresh(false)
+      // console.log(r.data)
     })
-  }, []);
+  }, [refresh]);
 
 
   const doAdd =()=>{
     setMethod('insert')
     setShowForm(true)
+  }
+
+
+  const doExport =()=>{
+    setLoading(true)
+    store.exportPart().then(r => {
+      setLoading(false)
+      window.open(`${API_SERVER}/${r.file}`, '_blank');
+      message.info("导出成功！")
+    })
   }
 
   return (
@@ -136,7 +147,7 @@ const Part = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doAdd()}>情報ダウンロード</Button>
+              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
               <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
             </Space>
           </div>
@@ -144,7 +155,7 @@ const Part = () => {
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>

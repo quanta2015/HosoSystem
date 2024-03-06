@@ -72,7 +72,9 @@ class Store {
     return await this.post(urls.API_SAVE_PART, params)
   }
 
-
+  async exportPart(params) {
+    return await this.post(urls.API_EXPORT_PART, params)
+  }
 
 
 

@@ -26,12 +26,15 @@ const toList=(obj)=> {
 }
 
 
-const FormMain = ({col, item, method, setShowForm,setLoading}) => {
+const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
+
+  let url = item.img
+  url = !url.startsWith('http')?`${API_SERVER}/${url}`:url
 
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
-  const initImgs = method==='insert'?[]:[{ url: item.img }]
+  const initImgs = method==='insert'?[]:[{url}]
   const initImg  = method==='insert'?null:item.img
 
   const [img, setImg] = useState(initImg)
@@ -40,14 +43,11 @@ const FormMain = ({col, item, method, setShowForm,setLoading}) => {
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [info, setInfo] = useState(initJson);
-
-
-  console.log(info,'infp')
-
   const [optModel, setOptModel] = useState([]);
   const [optSupply, setOptSupply] = useState([]);
 
 
+  // 打開預覽窗口
   const doOpenPrev = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -56,19 +56,20 @@ const FormMain = ({col, item, method, setShowForm,setLoading}) => {
     setPreviewOpen(true);
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   }
-
+  // 關閉預覽窗口
   const doClosePrev = () => setPreviewOpen(false);
 
+  // 修改圖片邏輯
   const doChangeImg = ({ fileList: newFileList }) => {
+    console.log(newFileList)
 
-    if ((newFileList)&&(newFileList[0].status ==='done')) {
-      setImg(newFileList[0].response?.data)
-      
+    if (newFileList.length>0) {
+      if ((newFileList)&&(newFileList[0].status ==='done')) {
+        setImg(newFileList[0].response?.data)
+      }
     }
     setImgs(newFileList);
   }
-
-  // console.log(item,'item')
 
 
   // 加載選擇數據
@@ -84,49 +85,41 @@ const FormMain = ({col, item, method, setShowForm,setLoading}) => {
     })
   }, []);
 
+  // 保存修改數據
   const onFinish = (values) => {
-
     values.img = img
     values.info = JSON.stringify(info)
-
     const params = {
       id: item.id,
       method,
       ...values
     }
-    // console.log(params,'params')
 
     setLoading(true)
     store.savePart(params).then(r=>{
       setLoading(false)
       setShowForm(false)
+      setRefresh(true)
       message.info('保存成功')
-      // console.log(r)
     })
   };
 
-
+  // 添加json數據
   const doAddItem =()=>{
     info.push({key:'',val:''})
     setInfo([...info])
   }
 
-
+  // 刪除json數據
   const doDelItem=(id)=>{
     info.splice(id,1)
     setInfo([...info])
   }
 
-  const chgKey =(id,e)=>{
-    console.log(e)
+  // 修改數據
+  const chgVal =(id,e,key)=>{
     const val = e.currentTarget.value
-    info[id].key= val
-    setInfo([...info])
-  }
-  const chgVal =(id,e)=>{
-    console.log(e)
-    const val = e.currentTarget.value
-    info[id].val= val
+    info[id][key]= val
     setInfo([...info])
   }
 
@@ -221,8 +214,8 @@ const FormMain = ({col, item, method, setShowForm,setLoading}) => {
           <div className={s.info}>
             {info.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgKey(i,e)}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e)}/>
+                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
+                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
                   <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
                 </div>
               )}

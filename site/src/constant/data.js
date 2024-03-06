@@ -3,7 +3,7 @@ import ware from '@/img/menu/ware.svg'
 import rcamera from '@/img/menu/rcamera.svg'
 import person from '@/img/menu/person.svg'
 // import config   from '@/img/menu/config.svg'
-
+import {API_SERVER} from '@/constant/apis'
 
 
 export const json_part = [{
@@ -21,7 +21,7 @@ export const json_part = [{
       width: 100,
       req: true,
       fixed: 'left',
-      render: (text, r) => <img src={text} alt={r.name}/> 
+      render: (url, r) => <img src={!url.startsWith('http')?`${API_SERVER}/${url}`:url} alt={r.name}/> 
     },{
       dataIndex: 'code',
       type: 'string',

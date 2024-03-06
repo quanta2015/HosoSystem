@@ -6,10 +6,10 @@ var dotenv = require('dotenv')
 var express = require('express')
 var jwt = require('jsonwebtoken')
 var formidable = require('formidable')
-var Excel = require('exceljs');
+
 var router = express.Router()
 var {callP} = require("../db/db")
-
+var {clone,isN,formatJSON,arrayToExcel} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
@@ -18,23 +18,6 @@ const UPLOAD_DIR = `${__dirname}/../upload`
 dotenv.config()
 
 const root = path.resolve(__dirname, '../')
-const clone = (e) => {
-  return JSON.parse(JSON.stringify(e))
-}
-const isN = (e) => {
-  return ((e === null) || (e === '') || (e === undefined)) ? true : false
-}
-const formatJSON = (list,key) => {
-  return list.map(o => {
-    let json = JSON.parse(o[key]);
-    // Object.keys(json).forEach(item => {
-    //   o[item] = json[item];
-    // });
-    // delete o[key]; 
-    o[key]=json
-    return o; 
-  });
-}
 
 
 const auth =(req, res, next)=> {
@@ -119,16 +102,26 @@ router.post('/savePart', auth, async (req, res, next) => {
   let {usr} = req.usr
   params.create_name = usr
 
-  console.log(params)
+  // console.log(params)
   let sql = `CALL PROC_SAVE_PART(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data:r })
 })
 
 
+router.post('/exportPart', auth, async (req, res, next) => {
+  let sql = `CALL PROC_QUERY_PART(?)`
+  let data = await callP(sql, null, res)
+
+  let file = `export/${dayjs().format('YYYYMMDDhhmmss')}.xlsx`
+  await arrayToExcel(data,file)
+  res.status(200).json({ code: 0, file  })
+})
+
+
 router.post('/delById', async (req, res, next) => {
   let params = req.body
-  console.log(params)
+  // console.log(params)
   let sql = `CALL PROC_DEL_BY_ID(?)`
   let r = await callP(sql, params, res)
 
