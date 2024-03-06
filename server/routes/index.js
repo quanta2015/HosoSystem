@@ -151,4 +151,13 @@ router.post('/delModel', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
+router.post('/saveModel', async (req, res, next) => {
+  let params = req.body
+  let sql = `CALL PROC_SAVE_MODEL(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
 module.exports = router

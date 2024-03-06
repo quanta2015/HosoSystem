@@ -98,12 +98,15 @@ class Store {
   }
 
 
-   // 刪除總量
+  // 刪除總量
   async delModel(params) {
     return await this.post(urls.API_DEL_MODEL, params)
   }
 
-
+  // 刪除總量
+  async saveModel(params) {
+    return await this.post(urls.API_SAVE_MODEL, params)
+  }
 
 
 

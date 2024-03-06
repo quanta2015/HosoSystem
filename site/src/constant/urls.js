@@ -10,5 +10,6 @@ export const API_SAVE_PART = API_SERVER + '/savePart'
 export const API_EXPORT_PART = API_SERVER + '/exportPart'
 export const API_QUERY_MODEL = API_SERVER + '/queryModel'
 export const API_DEL_MODEL = API_SERVER + '/delModel'
+export const API_SAVE_MODEL = API_SERVER + '/saveModel'
 
 
