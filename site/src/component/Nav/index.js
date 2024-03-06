@@ -20,7 +20,7 @@ const getItem =(label, key, icon, children, type)=> {
 const items = [
   getItem('基本信息管理', '1', <MailOutlined />, [
     getItem('製品管理', '/part'), 
-    getItem('種類設定', '12'),
+    getItem('種類設定', '/model'),
     getItem('サプライヤー管理', '13'),
     getItem('倉庫管理', '14'),
   ]),
@@ -63,6 +63,7 @@ const Nav = () => {
         mode="inline"
         items={items}
         style={{height:'100%'}}
+        defaultSelectedKeys={['/part']} 
         onClick={onClick}
         onOpenChange={onOpenChange}
       />

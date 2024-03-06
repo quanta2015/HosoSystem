@@ -29,14 +29,14 @@ const toList=(obj)=> {
 const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
+  let url = item.img
+  url = !url.startsWith('http')?`${API_SERVER}/${url}`:url
 
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
-  const initImgs = method==='insert'?[]:[{url:`${API_SERVER}/${item?.img}`}]
-  const initImg  = method==='insert'?null:item?.img
+  const initImgs = method==='insert'?[]:[{url}]
+  const initImg  = method==='insert'?null:item.img
 
-
-console.log(initImgs)
   const [img, setImg] = useState(initImg)
   const [imgs, setImgs] = useState(initImgs)
   const [previewOpen, setPreviewOpen] = useState(false);

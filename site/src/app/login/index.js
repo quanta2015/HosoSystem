@@ -10,7 +10,7 @@ import { saveLocalUser } from '@/util/token'
 import style from './index.module.less'
 
 import logo from '@/img/hoso.webp'
-import bg from '@/img/bg1.png'
+
 
 
 const Login = () => {
@@ -46,7 +46,7 @@ const Login = () => {
         
 
         <div className={style.logo}>
-          <img src={bg} />
+          
         </div>
 
         <div className={style.main}>

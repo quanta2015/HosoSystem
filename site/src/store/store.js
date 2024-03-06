@@ -51,33 +51,7 @@ class Store {
     }
   }
 
-
-
-  async queryTable(params) {
-    return await this.post(urls.API_QUERY_TABLE, params)
-  }
-
-
-  async delById(params) {
-    return await this.post(urls.API_DEL_BY_ID, params)
-  }
-
-
-  async querySelInfo(params) {
-    return await this.post(urls.API_QRY_SEL_INFO, params)
-  }
-
-
-  async savePart(params) {
-    return await this.post(urls.API_SAVE_PART, params)
-  }
-
-  async exportPart(params) {
-    return await this.post(urls.API_EXPORT_PART, params)
-  }
-
-
-
+  // 上傳圖片
   async upload(params) {
     try {
       const r = await this.post(urls.API_UPLOAD, params);
@@ -90,6 +64,45 @@ class Store {
       console.error('File upload error: ', error);
     }
   }
+
+
+  // 查詢表
+  async queryTable(params) {
+    return await this.post(urls.API_QUERY_TABLE, params)
+  }
+
+  // 根據id刪除記錄
+  async delById(params) {
+    return await this.post(urls.API_DEL_BY_ID, params)
+  }
+
+  // 查詢選擇數據
+  async querySelInfo(params) {
+    return await this.post(urls.API_QRY_SEL_INFO, params)
+  }
+
+  // 保存零件數據
+  async savePart(params) {
+    return await this.post(urls.API_SAVE_PART, params)
+  }
+
+  // 導出excel
+  async exportPart(params) {
+    return await this.post(urls.API_EXPORT_PART, params)
+  }
+
+
+  // 查詢總類
+  async queryModel(params) {
+    return await this.post(urls.API_QUERY_MODEL, params)
+  }
+
+
+   // 刪除總量
+  async delModel(params) {
+    return await this.post(urls.API_DEL_MODEL, params)
+  }
+
 
 
 

@@ -86,3 +86,25 @@ export const json_part = [{
       req: true,
     }, 
   ]
+
+
+
+
+export const json_model = [{
+      dataIndex: 'id',
+      type: 'string',
+      title: '編號',
+      width: 100,
+      req: true,
+      fixed: 'left',
+    },{
+      dataIndex: 'name',
+      type: 'string',
+      title: '類型',
+      key: true,
+      width: 200,
+      align: 'center',
+      fixed: 'left',
+      req: false,
+    }
+  ]

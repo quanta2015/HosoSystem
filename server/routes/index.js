@@ -135,4 +135,20 @@ router.post('/delById', async (req, res, next) => {
 
 
 
+router.post('/queryModel', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_MODEL(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+router.post('/delModel', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_MODEL(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
 module.exports = router
