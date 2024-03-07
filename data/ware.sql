@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 06/03/2024 17:13:50
+ Date: 07/03/2024 15:04:01
 */
 
 SET NAMES utf8mb4;
@@ -28,15 +28,17 @@ CREATE TABLE `tab_model` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_model
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (1, '發動機', 0, 'tom', '2024-03-05 00:00:00');
-INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (2, '電池', 0, 'tom', '2024-03-05 00:00:00');
-INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (3, '吊車', 0, 'tom', '2024-03-05 00:00:00');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (1, '發動機aa', 0, 'admin', '2024-03-07 12:03:06');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (2, '電池', 0, 'admin', '2024-03-07 12:03:09');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (3, '吊車', 0, 'admin', '2024-03-07 12:03:10');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (4, 'ewefaf', 0, 'admin', '2024-03-07 12:03:12');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (5, '哦哦哦哦哦', 0, 'admin', '2024-03-07 12:03:13');
 COMMIT;
 
 -- ----------------------------
@@ -55,16 +57,16 @@ CREATE TABLE `tab_part` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2003 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2004 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_part
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1001, 'CODE-123456', 'Rhyzio', 'upload/20240306024835.png', 2, 1, '[{\"key\":\"總量\",\"val\":\"677\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"廠商\",\"val\":\"特斯拉\"}]', 0, 'admin', '2024-03-06 16:19:58');
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1001, 'CODE-1ppppp', 'Rhyzio', 'upload/20240307123531.png', 1, 3, '[{\"key\":\"總量\",\"val\":\"677\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"廠商\",\"val\":\"特斯拉\"},{\"key\":\"erer\",\"val\":\"erer\"},{\"key\":\"erer\",\"val\":\"erwwww\"},{\"key\":\"玩法\",\"val\":\"萬豐奧威分\"},{\"key\":\"\",\"val\":\"\"}]', 0, 'admin', '2024-03-07 12:35:41');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1002, 'CODE-973532', 'Avamm', 'upload/20240306024835.png', 1, 2, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"number\",\"val\":20}]', 1, 'Dell', '2024-03-06 14:51:20');
-INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1003, 'CODE-940823', 'Zoonoodle', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Aggy', NULL);
-INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1004, 'CODE-783519', 'Tavu', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Karolina', NULL);
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1003, 'CODE-940823', 'Zoonoodle', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 1, 'Aggy', NULL);
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1004, 'CODE-783519', 'Tavu', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 1, 'Karolina', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1005, 'CODE-095129', 'Gigashots', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Avril', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1006, 'CODE-125088', 'Oyoyo', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Gleda', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1007, 'CODE-340052', 'Roodel', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Joyan', NULL);
@@ -1060,9 +1062,10 @@ INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `stat
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1997, 'CODE-156606', 'Quimm', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Tate', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1998, 'CODE-039556', 'Digitube', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Athene', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1999, 'CODE-727964', 'Babbleopia', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Raychel', NULL);
-INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (2000, 'CODE-521152', 'Bubbletube', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'Cliff', NULL);
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (2000, 'CODE-521152', 'Bubbletube', 'upload/20240306024835.png', 1, 2, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 0, 'admin', '2024-03-06 18:04:40');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (2001, 'code-00000', '內務府', 'upload/20240306024835.png', 2, 3, '[{\"key\":\"總量\",\"val\":\"3293\"},{\"key\":\"大小\",\"val\":\"232323\"}]', 0, NULL, '2024-03-06 14:40:25');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (2002, 'F92X', 'sop', 'upload/20240306050925.png', 1, 2, '[{\"key\":\"AAA\",\"val\":\"556\"}]', 0, 'admin', '2024-03-06 17:13:24');
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (2003, 'code-2939283', 'jawiefj', 'upload/20240307123604.png', 4, 2, '[{\"key\":\"wfea\",\"val\":\"jeijaf\"},{\"key\":\"wfaf\",\"val\":\"ijii2323\"}]', 0, 'admin', '2024-03-07 12:36:27');
 COMMIT;
 
 -- ----------------------------
@@ -1092,6 +1095,7 @@ DROP TABLE IF EXISTS `tab_supply`;
 CREATE TABLE `tab_supply` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
+  `img` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
   `info` text,
@@ -1099,14 +1103,17 @@ CREATE TABLE `tab_supply` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_supply
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_supply` (`id`, `name`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '本田', '080928183', '東京星宿', '{\"phone\":\"178347344\"}', 0, 'tom', '2024-01-01 00:00:00');
-INSERT INTO `tab_supply` (`id`, `name`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '松下', '2932838238', '大阪', '{\"phone\":\"23221123\"}', 0, 'tom', '2024-03-05 00:00:00');
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '本田', 'upload/20240306024835.png', '080928183', '東京星宿', '[{\"key\":\"負責人\",\"val\":\"3293\"}]', 0, 'admin', '2024-03-07 12:02:49');
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '松下', 'upload/20240307115718.svg', '2932838238', '大阪', '[{\"key\":\"負責人\",\"val\":\"3293\"}]', 0, NULL, '2024-03-07 11:57:19');
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 'aa', NULL, 'aa', 'aa', NULL, 1, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (4, '本田001', 'upload/20240307114912.png', '123456', '經緯紡機傲嬌發違法', '[{\"key\":\"芙蓉鎮\",\"val\":\"濰坊\"},{\"key\":\"負責人\",\"val\":\"你問問\"}]', 0, NULL, '2024-03-07 11:56:59');
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (5, '特斯拉', 'upload/20240307115817.png', '2322232323', '富久町1番5号富久町第5服部', '[{\"key\":\"零件\",\"val\":\"忘記忘記發\"},{\"key\":\"測試\",\"val\":\"wjeiawe\"}]', 0, NULL, '2024-03-07 11:58:35');
 COMMIT;
 
 -- ----------------------------
@@ -1140,18 +1147,24 @@ COMMIT;
 DROP TABLE IF EXISTS `tab_ware`;
 CREATE TABLE `tab_ware` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
+  `manager` varchar(50) DEFAULT NULL,
   `info` text,
+  `status` int DEFAULT '0',
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_ware
 -- ----------------------------
 BEGIN;
+INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 'code-001', '新宿倉庫1', '新宿', '織田信長', NULL, 0, 'tom', NULL);
+INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 'code-002', '新宿倉庫2', '新宿', '福田艾', NULL, 0, NULL, NULL);
+INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'admin', '2024-03-07 13:51:08');
 COMMIT;
 
 -- ----------------------------
@@ -1191,6 +1204,12 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part` AS select `w`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_part_export`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part_export` AS select `w`.`id` AS `id`,`w`.`code` AS `code`,`w`.`name` AS `name`,`w`.`img` AS `img`,`w`.`info` AS `info`,`s`.`name` AS `sup_name`,`s`.`phone` AS `sup_phone`,`s`.`addr` AS `sup_addr`,`s`.`info` AS `sup_info`,`m`.`name` AS `mod_name`,`w`.`create_name` AS `create_name`,date_format(`w`.`create_time`,'%Y-%m-%d %H:%i:%s') AS `create_time`,(case `w`.`status` when 0 then '正常' when 1 then '刪除' else '未知' end) AS `status_text` from ((`tab_part` `w` join `tab_supply` `s`) join `tab_model` `m`) where ((`w`.`sid` = `s`.`id`) and (`w`.`mid` = `m`.`id`) and (`w`.`status` = 0));
+
+-- ----------------------------
+-- View structure for view_supply
+-- ----------------------------
+DROP VIEW IF EXISTS `view_supply`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_supply` AS select `tab_supply`.`id` AS `id`,`tab_supply`.`name` AS `name`,`tab_supply`.`img` AS `img`,`tab_supply`.`phone` AS `phone`,`tab_supply`.`addr` AS `addr`,`tab_supply`.`info` AS `info`,`tab_supply`.`status` AS `status`,`tab_supply`.`create_name` AS `create_name`,`tab_supply`.`create_time` AS `create_time` from `tab_supply` where (`tab_supply`.`status` = 0);
 
 -- ----------------------------
 -- Procedure structure for DEBUG_MSG
@@ -1262,6 +1281,37 @@ BEGIN
 	PREPARE stmt FROM @query2;
 	EXECUTE stmt;
 	DEALLOCATE PREPARE stmt;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_DEL_SUPPLY
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_DEL_SUPPLY`;
+delimiter ;;
+CREATE PROCEDURE `PROC_DEL_SUPPLY`(IN `data` varchar(20000))
+BEGIN
+	
+	SET @id = JSON_UNQUOTE(JSON_EXTRACT(data, '$.id'));
+	
+	UPDATE tab_supply set status = 1 where id = @id;
+	SELECT id as `key`,t.* FROM view_supply t;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_DEL_WARE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_DEL_WARE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_DEL_WARE`(IN `data` varchar(20000))
+BEGIN
+	SET @id = JSON_UNQUOTE(JSON_EXTRACT(data, '$.id'));
+	
+	UPDATE tab_ware set status = 1 where id = @id;
+	SELECT id as `key`,t.* FROM tab_ware t where status = 0;
 END
 ;;
 delimiter ;
@@ -1342,6 +1392,56 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_QUERY_WARE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_WARE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_WARE`(IN `data` varchar(20000))
+BEGIN
+	
+	select * from tab_ware where status = 0;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_MODEL
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_MODEL`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_MODEL`(IN jsonData TEXT)
+BEGIN
+    -- 定义变量
+    DECLARE v_method VARCHAR(10);
+    DECLARE v_name VARCHAR(200);
+		DECLARE v_create_name VARCHAR(50);
+		DECLARE v_id INT;
+    
+    -- 解析JSON数据
+    SET v_method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+    SET v_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+		SET v_id = JSON_EXTRACT(jsonData, '$.id');
+		SET v_create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+    
+    -- 判断是更新还是插入
+    IF v_method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_model
+        SET
+            name = v_name,
+						create_name = v_create_name,
+            create_time = NOW()
+        WHERE id = v_id;
+    ELSEIF v_method = 'insert' THEN
+        INSERT INTO tab_model (name, status, create_name, create_time)
+        VALUES (v_name,  0, v_create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_SAVE_PART
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_SAVE_PART`;
@@ -1387,6 +1487,94 @@ BEGIN
     ELSEIF v_method = 'insert' THEN
         INSERT INTO tab_part (code, name, img, sid, mid, info, status, create_name, create_time)
         VALUES (v_code, v_name, v_img, v_sid, v_mid, v_info, 0, v_create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_SUPPLY
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_SUPPLY`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_SUPPLY`(IN jsonData TEXT)
+BEGIN
+    -- 定义变量
+		DECLARE v_id INT;
+    DECLARE v_method VARCHAR(10);
+    DECLARE v_name VARCHAR(200);
+    DECLARE v_img VARCHAR(100);
+		DECLARE v_phone VARCHAR(50);
+		DECLARE v_addr VARCHAR(50);
+		DECLARE v_create_name VARCHAR(50);
+    DECLARE v_info TEXT;
+    
+    -- 解析JSON数据
+		SET v_id = JSON_EXTRACT(jsonData, '$.id');
+    SET v_method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+    SET v_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+    SET v_img = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.img'));
+		SET v_phone = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.phone'));
+		SET v_addr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.addr'));
+		SET v_create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+		SET v_info = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.info'));
+    
+    -- 判断是更新还是插入
+    IF v_method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_supply
+        SET
+            name = v_name,
+            img = v_img,
+            phone = v_phone,
+            addr = v_addr,
+            info = v_info,
+						create_name = v_create_name,
+            create_time = NOW()
+        WHERE id = v_id;
+    ELSEIF v_method = 'insert' THEN
+        INSERT INTO tab_supply (name, img, phone, addr, info, status, create_name, create_time)
+        VALUES (v_name, v_img, v_phone, v_addr, v_info, 0, v_create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_WARE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_WARE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_WARE`(IN jsonData TEXT)
+BEGIN
+    -- 解析JSON数据
+		SET @id = JSON_EXTRACT(jsonData, '$.id');
+    SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+		SET @code = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.code'));
+    SET @name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+		SET @addr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.addr'));
+		SET @manager = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.manager'));
+		SET @create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+		SET @info = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.info'));
+    
+    -- 判断是更新还是插入
+    IF @method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_ware
+        SET
+            name = @name,
+            code = @code,
+            manager = @manager,
+            addr = @addr,
+            info = @info,
+						create_name = @create_name,
+            create_time = NOW()
+        WHERE id = @id;
+    ELSEIF @method = 'insert' THEN
+        INSERT INTO tab_ware (code, name, addr, manager, info, status, create_name, create_time)
+        VALUES (@code, @name,@addr, @manager, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
     END IF;
     
 END
