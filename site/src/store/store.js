@@ -122,6 +122,20 @@ class Store {
   }
 
 
+  // 查詢倉庫
+  async queryWare(params) {
+    return await this.post(urls.API_QUERY_WARE, params)
+  }
+  // 刪除倉庫
+  async delWare(params) {
+    return await this.post(urls.API_DEL_WARE, params)
+  }
+  // 保存倉庫
+  async saveWare(params) {
+    return await this.post(urls.API_SAVE_WARE, params)
+  }
+
+
 
 }
 

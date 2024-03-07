@@ -55,9 +55,11 @@ create_time 作成時間
 
 # 倉庫表 【WARE_TABLE】
 ```
-id 倉庫id
+id 序號
+code 倉庫編碼
 name 倉庫名稱
 addr 倉庫地址
+manager 負責人
 info 信息（JSON）
 status 狀態（0：正常 1：刪除）
 create_name 作成者
@@ -71,8 +73,8 @@ create_time 作成時間
 # 库存表【STOCK_TABLE】
 ```
 id  庫存ID
-pid 製品id
 wid  倉庫id (【WARE_TABLE】)
+pid 製品id (【PART_TABLE】)
 ware_num 零件數量
 create_name 作成者
 create_time 作成時間

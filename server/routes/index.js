@@ -148,7 +148,7 @@ router.post('/delById', async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ---------------  總類模塊API ----------------- //
+// ---------------  總類API ----------------- //
 ///////////////////////////////////////////////////
 
 
@@ -184,7 +184,7 @@ router.post('/saveModel', auth, async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ---------------  總類供應商API --------------- //
+// ---------------  供應商API --------------- //
 ///////////////////////////////////////////////////
 
 // 查詢供應商
@@ -222,6 +222,39 @@ router.post('/saveSupply',auth, async (req, res, next) => {
 
 
 
+///////////////////////////////////////////////////
+// ---------------  倉庫API --------------- //
+///////////////////////////////////////////////////
+
+// 查詢供應商
+router.post('/queryWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_WARE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除供應商
+router.post('/delWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_WARE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存供應商
+router.post('/saveWare',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_WARE(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
 
 
 

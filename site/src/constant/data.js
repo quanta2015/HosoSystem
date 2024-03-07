@@ -45,27 +45,6 @@ export const json_part = [{
       width: 100,
       req: false,
     },
-    // {
-    //   dataIndex: 'brand',
-    //   type: 'string',
-    //   title: '製品品牌',
-    //   width: 100,
-    //   req: true,
-    // },
-    // {
-    //   dataIndex: 'type',
-    //   type: 'string',
-    //   title: '製品型番',
-    //   width: 100,
-    //   req: true,
-    // },
-    // {
-    //   dataIndex: 'fre',
-    //   type: 'string',
-    //   title: '頻度',
-    //   width: 100,
-    //   req: true,
-    // },
     {
       dataIndex: 'sup_name',
       type: 'string',
@@ -143,5 +122,42 @@ export const json_supply = [{
       type: 'string',
       title: '供應商地址',
       width: 200,
+    }
+  ]
+
+
+
+
+
+export const json_ware = [{
+      dataIndex: 'id',
+      type: 'string',
+      title: '編號',
+      width: 60,
+      fixed: 'left',
+      align: 'center',
+    },{
+      dataIndex: 'code',
+      type: 'string',
+      title: '倉庫編碼',
+      width: 60,
+      fixed: 'left',
+      align: 'center',
+    },{
+      dataIndex: 'name',
+      type: 'string',
+      title: '倉庫名稱',
+      width: 200,
+    },{
+      dataIndex: 'addr',
+      type: 'string',
+      title: '倉庫地址',
+      width: 200,
+    },{
+      dataIndex: 'manager',
+      type: 'string',
+      title: '負責人',
+      width: 100,
+      align: 'center',
     }
   ]

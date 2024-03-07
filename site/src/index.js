@@ -21,7 +21,7 @@ const Login = lazy(() => import('./app/login'));
 const Part = lazy(() => import('./app/part'));
 const Model = lazy(() => import('./app/model'));
 const Supply = lazy(() => import('./app/supply'));
-
+const Ware = lazy(() => import('./app/ware'));
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -37,7 +37,7 @@ root.render(
               <Route path="/part" element={<Part />} />
               <Route path="/model" element={<Model />} />
               <Route path="/supply" element={<Supply />} />
-
+              <Route path="/ware" element={<Ware />} />
 
 
             </Route>
