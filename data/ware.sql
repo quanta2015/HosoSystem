@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 07/03/2024 15:04:01
+ Date: 07/03/2024 17:56:10
 */
 
 SET NAMES utf8mb4;
@@ -1074,16 +1074,42 @@ COMMIT;
 DROP TABLE IF EXISTS `tab_stock`;
 CREATE TABLE `tab_stock` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pid` int DEFAULT NULL,
   `wid` int DEFAULT NULL,
+  `pid` int DEFAULT NULL,
   `num` int DEFAULT NULL,
+  `status` int DEFAULT NULL COMMENT '0 正常 1 待核查',
+  `create_name` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+-- ----------------------------
+-- Records of tab_stock
+-- ----------------------------
+BEGIN;
+INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 1, 1001, 24, 0, NULL, NULL);
+INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (2, 1, 1002, 30, 0, NULL, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tab_stock_io
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_stock_io`;
+CREATE TABLE `tab_stock_io` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `recept_code` varchar(50) DEFAULT NULL,
+  `type` int DEFAULT NULL,
+  `wid` int DEFAULT NULL,
+  `pid` int DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `status` int DEFAULT NULL,
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
--- Records of tab_stock
+-- Records of tab_stock_io
 -- ----------------------------
 BEGIN;
 COMMIT;
@@ -1162,29 +1188,9 @@ CREATE TABLE `tab_ware` (
 -- Records of tab_ware
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 'code-001', '新宿倉庫1', '新宿', '織田信長', NULL, 0, 'tom', NULL);
-INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 'code-002', '新宿倉庫2', '新宿', '福田艾', NULL, 0, NULL, NULL);
+INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 'code-001', '新宿倉庫1', '新宿', '織田信長', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'tom', NULL);
+INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 'code-002', '新宿倉庫2', '新宿', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, NULL, NULL);
 INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'admin', '2024-03-07 13:51:08');
-COMMIT;
-
--- ----------------------------
--- Table structure for tab_ware_io
--- ----------------------------
-DROP TABLE IF EXISTS `tab_ware_io`;
-CREATE TABLE `tab_ware_io` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `pid` int DEFAULT NULL,
-  `wid` int DEFAULT NULL,
-  `num` int DEFAULT NULL,
-  `create_name` varchar(50) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- ----------------------------
--- Records of tab_ware_io
--- ----------------------------
-BEGIN;
 COMMIT;
 
 -- ----------------------------
@@ -1204,6 +1210,12 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part` AS select `w`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_part_export`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part_export` AS select `w`.`id` AS `id`,`w`.`code` AS `code`,`w`.`name` AS `name`,`w`.`img` AS `img`,`w`.`info` AS `info`,`s`.`name` AS `sup_name`,`s`.`phone` AS `sup_phone`,`s`.`addr` AS `sup_addr`,`s`.`info` AS `sup_info`,`m`.`name` AS `mod_name`,`w`.`create_name` AS `create_name`,date_format(`w`.`create_time`,'%Y-%m-%d %H:%i:%s') AS `create_time`,(case `w`.`status` when 0 then '正常' when 1 then '刪除' else '未知' end) AS `status_text` from ((`tab_part` `w` join `tab_supply` `s`) join `tab_model` `m`) where ((`w`.`sid` = `s`.`id`) and (`w`.`mid` = `m`.`id`) and (`w`.`status` = 0));
+
+-- ----------------------------
+-- View structure for view_stock
+-- ----------------------------
+DROP VIEW IF EXISTS `view_stock`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_stock` AS select `s`.`id` AS `key`,`s`.`id` AS `id`,`w`.`code` AS `ware_code`,`w`.`name` AS `ware_name`,`p`.`code` AS `part_code`,`p`.`name` AS `part_name`,`p`.`img` AS `part_img`,`m`.`name` AS `model_name`,`su`.`name` AS `supply_name`,`s`.`num` AS `num`,`s`.`status` AS `status` from ((((`tab_stock` `s` left join `tab_part` `p` on((`s`.`pid` = `p`.`id`))) left join `tab_ware` `w` on((`s`.`wid` = `w`.`id`))) left join `tab_model` `m` on((`p`.`mid` = `m`.`id`))) left join `tab_supply` `su` on((`p`.`sid` = `su`.`id`)));
 
 -- ----------------------------
 -- View structure for view_supply
@@ -1235,6 +1247,20 @@ BEGIN
 	DECLARE cnt BIGINT UNSIGNED;
 	select count(*) into cnt from tab_sys where code=_code and dt=_dt;
 	return cnt;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_CHECK_STOCK
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_CHECK_STOCK`;
+delimiter ;;
+CREATE PROCEDURE `PROC_CHECK_STOCK`(IN `data` varchar(20000))
+BEGIN
+	UPDATE tab_stock SET status = 1;
+	select * from view_stock;
+	
 END
 ;;
 delimiter ;
@@ -1356,6 +1382,34 @@ CREATE PROCEDURE `PROC_QUERY_PART`(IN `data` varchar(20000))
 BEGIN
 	
 	select * from view_part_export;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_QUERY_STOCK
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_STOCK`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_STOCK`(IN `data` varchar(20000))
+BEGIN
+	
+	select * from view_stock;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_QUERY_STOCK_IO
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_STOCK_IO`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_STOCK_IO`(IN `data` varchar(20000))
+BEGIN
+-- 	select * from view_stock_io;
+	
+		select * from tab_stock_io;
+	
 END
 ;;
 delimiter ;

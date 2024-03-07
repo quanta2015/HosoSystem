@@ -4,7 +4,7 @@ import rcamera from '@/img/menu/rcamera.svg'
 import person from '@/img/menu/person.svg'
 // import config   from '@/img/menu/config.svg'
 import {API_SERVER} from '@/constant/apis'
-
+import {Tag} from 'antd'
 
 export const json_part = [{
       dataIndex: 'qrcode',
@@ -129,7 +129,45 @@ export const json_supply = [{
 
 
 
-export const json_ware = [{
+export const json_ware = [
+  {
+    dataIndex: 'id',
+    type: 'string',
+    title: '編號',
+    width: 60,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'code',
+    type: 'string',
+    title: '倉庫編碼',
+    width: 60,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'name',
+    type: 'string',
+    title: '倉庫名稱',
+    width: 200,
+  },{
+    dataIndex: 'addr',
+    type: 'string',
+    title: '倉庫地址',
+    width: 200,
+  },{
+    dataIndex: 'manager',
+    type: 'string',
+    title: '負責人',
+    width: 100,
+    align: 'center',
+  }
+]
+
+
+
+
+
+export const json_stock = [{
       dataIndex: 'id',
       type: 'string',
       title: '編號',
@@ -137,26 +175,124 @@ export const json_ware = [{
       fixed: 'left',
       align: 'center',
     },{
-      dataIndex: 'code',
+      dataIndex: 'ware_code',
       type: 'string',
       title: '倉庫編碼',
-      width: 60,
+      width: 120,
       fixed: 'left',
       align: 'center',
     },{
-      dataIndex: 'name',
+      dataIndex: 'ware_name',
       type: 'string',
       title: '倉庫名稱',
       width: 200,
     },{
-      dataIndex: 'addr',
+      dataIndex: 'part_img',
       type: 'string',
-      title: '倉庫地址',
+      title: '部品圖標',
+      width: 200,
+      align: 'center',
+      render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
+    },{
+      dataIndex: 'part_code',
+      type: 'string',
+      title: '部品編碼',
       width: 200,
     },{
-      dataIndex: 'manager',
+      dataIndex: 'part_name',
       type: 'string',
-      title: '負責人',
+      title: '部品名稱',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'model_name',
+      type: 'string',
+      title: '部品類型',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'supply_name',
+      type: 'string',
+      title: '供應商',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'num',
+      type: 'string',
+      title: '數量',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'status',
+      type: 'string',
+      title: '狀態',
+      width: 100,
+      align: 'center',
+      render:(text,r)=> 
+        text===0?<Tag color="blue">正常</Tag>:<Tag color="red">待盤點</Tag>
+      
+    }
+  ]
+
+
+
+
+
+
+
+export const json_stock_io = [{
+      dataIndex: 'id',
+      type: 'string',
+      title: '編號',
+      width: 60,
+      fixed: 'left',
+      align: 'center',
+    },{
+      dataIndex: 'recept_code',
+      type: 'string',
+      title: '出入庫單號',
+      width: 120,
+      fixed: 'left',
+      align: 'center',
+    },{
+      dataIndex: 'ware_name',
+      type: 'string',
+      title: '倉庫名稱',
+      width: 200,
+    },{
+      dataIndex: 'part_img',
+      type: 'string',
+      title: '部品圖標',
+      width: 200,
+      align: 'center',
+      render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
+    },{
+      dataIndex: 'part_code',
+      type: 'string',
+      title: '部品編碼',
+      width: 200,
+    },{
+      dataIndex: 'part_name',
+      type: 'string',
+      title: '部品名稱',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'model_name',
+      type: 'string',
+      title: '部品類型',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'supply_name',
+      type: 'string',
+      title: '供應商',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'num',
+      type: 'string',
+      title: '數量',
       width: 100,
       align: 'center',
     }

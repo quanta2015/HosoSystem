@@ -31,3 +31,15 @@ export const API_QUERY_WARE = API_SERVER + '/queryWare'
 export const API_DEL_WARE = API_SERVER + '/delWare'
 export const API_SAVE_WARE = API_SERVER + '/saveWare'
 
+
+// 在庫接口
+export const API_QUERY_STOCK = API_SERVER + '/queryStock'
+export const API_CHECK_STOCK = API_SERVER + '/checkStock'
+export const API_SAVE_STOCK = API_SERVER + '/saveStock'
+
+
+// 出入庫接口
+export const API_QUERY_STOCK_IO = API_SERVER + '/queryStockIO'
+export const API_DEL_STOCK_IO = API_SERVER + '/delStockIO'
+export const API_SAVE_STOCK_IO = API_SERVER + '/saveStockIO'
+

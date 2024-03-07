@@ -24,6 +24,10 @@ const Supply = lazy(() => import('./app/supply'));
 const Ware = lazy(() => import('./app/ware'));
 
 
+const Stock = lazy(() => import('./app/stock'));
+const StockIO = lazy(() => import('./app/stockio'));
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider {...injects}>
@@ -38,6 +42,9 @@ root.render(
               <Route path="/model" element={<Model />} />
               <Route path="/supply" element={<Supply />} />
               <Route path="/ware" element={<Ware />} />
+
+              <Route path="/stock" element={<Stock />} />
+              <Route path="/stockio" element={<StockIO />} />
 
 
             </Route>

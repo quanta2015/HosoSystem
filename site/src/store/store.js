@@ -39,6 +39,9 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// ---------------  系統模塊API ----------------- //
+///////////////////////////////////////////////////
 
 
   async login(params) {
@@ -66,6 +69,10 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// ---------------  部品模塊API ----------------- //
+///////////////////////////////////////////////////
+
   // 查詢表
   async queryTable(params) {
     return await this.post(urls.API_QUERY_TABLE, params)
@@ -92,6 +99,10 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// -----------------  總類API ------------------ //
+///////////////////////////////////////////////////
+
   // 查詢總類
   async queryModel(params) {
     return await this.post(urls.API_QUERY_MODEL, params)
@@ -108,6 +119,10 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// -----------------  供應商API ----------------- //
+///////////////////////////////////////////////////
+
   // 查詢供應商
   async querySupply(params) {
     return await this.post(urls.API_QUERY_SUPPLY, params)
@@ -122,6 +137,10 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// ------------------  倉庫API ----------------- //
+///////////////////////////////////////////////////
+
   // 查詢倉庫
   async queryWare(params) {
     return await this.post(urls.API_QUERY_WARE, params)
@@ -133,6 +152,44 @@ class Store {
   // 保存倉庫
   async saveWare(params) {
     return await this.post(urls.API_SAVE_WARE, params)
+  }
+
+
+
+///////////////////////////////////////////////////
+// ------------------  庫存API ----------------- //
+///////////////////////////////////////////////////
+
+  // 查詢在庫
+  async queryStock(params) {
+    return await this.post(urls.API_QUERY_STOCK, params)
+  }
+  // 盤點在庫
+  async checkStock(params) {
+    return await this.post(urls.API_CHECK_STOCK, params)
+  }
+  // 保存在庫
+  async saveStock(params) {
+    return await this.post(urls.API_SAVE_STOCK, params)
+  }
+
+
+
+///////////////////////////////////////////////////
+// ------------------  出入庫API ----------------- //
+///////////////////////////////////////////////////
+
+  // 查詢在庫
+  async queryStockIO(params) {
+    return await this.post(urls.API_QUERY_STOCK_IO, params)
+  }
+  // 刪除在庫
+  async delStockIO(params) {
+    return await this.post(urls.API_DEL_STOCK_IO, params)
+  }
+  // 保存在庫
+  async saveStockIO(params) {
+    return await this.post(urls.API_SAVE_STOCK_IO, params)
   }
 
 

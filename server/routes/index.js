@@ -148,7 +148,7 @@ router.post('/delById', async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ---------------  總類API ----------------- //
+// -----------------  總類API ------------------ //
 ///////////////////////////////////////////////////
 
 
@@ -184,7 +184,7 @@ router.post('/saveModel', auth, async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ---------------  供應商API --------------- //
+// -----------------  供應商API ----------------- //
 ///////////////////////////////////////////////////
 
 // 查詢供應商
@@ -223,7 +223,7 @@ router.post('/saveSupply',auth, async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ---------------  倉庫API --------------- //
+// ------------------  倉庫API ----------------- //
 ///////////////////////////////////////////////////
 
 // 查詢供應商
@@ -259,6 +259,73 @@ router.post('/saveWare',auth, async (req, res, next) => {
 
 
 
+
+///////////////////////////////////////////////////
+// ------------------  在庫API ----------------- //
+///////////////////////////////////////////////////
+
+// 查詢在庫
+router.post('/queryStock', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除在庫
+router.post('/checkStock', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_CHECK_STOCK(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存在庫
+router.post('/saveStock',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_STOCK(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
+
+///////////////////////////////////////////////////
+// ------------------  出入庫API ----------------- //
+///////////////////////////////////////////////////
+
+// 查詢出入庫
+router.post('/queryStockIO', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除出入庫
+router.post('/delStockIO', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存出入庫
+router.post('/saveStockIO',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
 
 
 

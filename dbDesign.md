@@ -70,7 +70,7 @@ create_time 作成時間
 
 
 
-# 库存表【STOCK_TABLE】
+# 库存表 【STOCK_TABLE】
 ```
 id  庫存ID
 wid  倉庫id (【WARE_TABLE】)
@@ -85,15 +85,17 @@ create_time 作成時間
 
 
 
-# 出入庫表 【WARE_IO_TABLE】
+# 出入庫表 【STOCK_IO_TABLE】
 ```
 id 記錄id
+recept_code 出入庫單號
+type 出入庫類型 (1出庫  2入庫)
 pid 製品id
 wid 倉庫id
 num 零件數量
 create_name 作成者
 create_time 作成時間
-status  （0:出庫、1:入庫）
+status  （出庫 10:出庫待審核 11:待出庫 12:出庫錯誤 13:出庫完成 入庫 20:入庫待審核 21:待入庫 22: 入庫完成 23: 入庫出錯 24:部分入庫  ）
 ```
 
 - 展示/検索
