@@ -20,6 +20,9 @@ const Layout = lazy(() => import('./app/layout'));
 const Login = lazy(() => import('./app/login'));
 const Part = lazy(() => import('./app/part'));
 const Model = lazy(() => import('./app/model'));
+const Supply = lazy(() => import('./app/supply'));
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,6 +36,9 @@ root.render(
               <Route path="/" element={<Index />} />
               <Route path="/part" element={<Part />} />
               <Route path="/model" element={<Model />} />
+              <Route path="/supply" element={<Supply />} />
+
+
 
             </Route>
           </Routes>

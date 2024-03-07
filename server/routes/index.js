@@ -35,6 +35,13 @@ const auth =(req, res, next)=> {
 }
 
 
+
+///////////////////////////////////////////////////
+// ---------------  系統模塊API ----------------- //
+///////////////////////////////////////////////////
+
+
+// 用戶登錄
 router.post('/login',async (req, res, next) =>{
   let params = req.body
   let sql = `CALL PROC_LOGIN(?)`
@@ -48,6 +55,7 @@ router.post('/login',async (req, res, next) =>{
   }
 })
 
+// 上傳文件
 router.post('/upload', function(req, res,next) {
   const form = formidable({ uploadDir: `${__dirname}/../upload` });
 
@@ -77,6 +85,12 @@ router.post('/upload', function(req, res,next) {
 
 
 
+///////////////////////////////////////////////////
+// ---------------  部品模塊API ----------------- //
+///////////////////////////////////////////////////
+
+
+// 查詢部品
 router.post('/queryTable', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -87,7 +101,7 @@ router.post('/queryTable', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-
+// 查詢選擇框
 router.post('/querySelInfo', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -98,20 +112,19 @@ router.post('/querySelInfo', async (req, res, next) => {
   res.status(200).json({ code: 0, model: r1, supply:r2 })
 })
 
-
+// 保存部品
 router.post('/savePart', auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
   params.create_name = usr
-
   // console.log(params)
   let sql = `CALL PROC_SAVE_PART(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data:r })
 })
 
-
-router.post('/exportPart', auth, async (req, res, next) => {
+// 
+router.post('/exportPart', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_PART(?)`
   let data = await callP(sql, null, res)
 
@@ -126,7 +139,6 @@ router.post('/delById', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_DEL_BY_ID(?)`
   let r = await callP(sql, params, res)
-
   // console.log(r)
   r = formatJSON(r,'info')
   r = formatJSON(r,'sup_info')
@@ -135,6 +147,12 @@ router.post('/delById', async (req, res, next) => {
 
 
 
+///////////////////////////////////////////////////
+// ---------------  總類模塊API ----------------- //
+///////////////////////////////////////////////////
+
+
+// 查詢總類
 router.post('/queryModel', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -143,20 +161,73 @@ router.post('/queryModel', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
+// 刪除總類
 router.post('/delModel', async (req, res, next) => {
   let params = req.body
   // console.log(params)
   let sql = `CALL PROC_DEL_MODEL(?)`
   let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
   res.status(200).json({ code: 0, data: r })
 })
 
-router.post('/saveModel', async (req, res, next) => {
+// 保存總類
+router.post('/saveModel', auth, async (req, res, next) => {
   let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
   let sql = `CALL PROC_SAVE_MODEL(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
+
+
+
+///////////////////////////////////////////////////
+// ---------------  總類供應商API --------------- //
+///////////////////////////////////////////////////
+
+// 查詢供應商
+router.post('/querySupply', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_SUPPLY(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除供應商
+router.post('/delSupply', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_SUPPLY(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存供應商
+router.post('/saveSupply',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_SUPPLY(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

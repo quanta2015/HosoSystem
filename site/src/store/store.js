@@ -97,7 +97,6 @@ class Store {
     return await this.post(urls.API_QUERY_MODEL, params)
   }
 
-
   // 刪除總量
   async delModel(params) {
     return await this.post(urls.API_DEL_MODEL, params)
@@ -109,7 +108,18 @@ class Store {
   }
 
 
-
+  // 查詢供應商
+  async querySupply(params) {
+    return await this.post(urls.API_QUERY_SUPPLY, params)
+  }
+  // 刪除供應商
+  async delSupply(params) {
+    return await this.post(urls.API_DEL_SUPPLY, params)
+  }
+  // 保存供應商
+  async saveSupply(params) {
+    return await this.post(urls.API_SAVE_SUPPLY, params)
+  }
 
 
 

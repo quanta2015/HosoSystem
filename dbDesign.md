@@ -40,6 +40,7 @@ create_time 作成時間
 # 供应商表 【SUPPLY_TABLE】
 ```
 id  供應商id
+img  供應商圖標
 name 供應商名稱
 phone 聯繫方式
 addr 地址

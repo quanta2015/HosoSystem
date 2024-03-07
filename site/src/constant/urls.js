@@ -12,4 +12,7 @@ export const API_QUERY_MODEL = API_SERVER + '/queryModel'
 export const API_DEL_MODEL = API_SERVER + '/delModel'
 export const API_SAVE_MODEL = API_SERVER + '/saveModel'
 
+export const API_QUERY_SUPPLY = API_SERVER + '/querySupply'
+export const API_DEL_SUPPLY = API_SERVER + '/delSupply'
+export const API_SAVE_SUPPLY = API_SERVER + '/saveSupply'
 

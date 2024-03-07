@@ -1,3 +1,6 @@
+import QRCode from 'qrcode';
+
+
 export const clone=(obj)=> {
     let copy = Array.isArray(obj) ? [] : {};
     for (let key in obj) {
@@ -5,6 +8,15 @@ export const clone=(obj)=> {
         copy[key] = (typeof value === 'object' && value !== null) ? clone(value) : value;
     }
     return copy;
+}
+
+
+export const genQR = async (text) => {
+  try {
+    return await QRCode.toDataURL(text);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 

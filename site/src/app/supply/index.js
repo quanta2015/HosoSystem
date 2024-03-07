@@ -7,8 +7,8 @@ import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
 import { observer,MobXProviderContext } from 'mobx-react'
 import {API_SERVER} from '@/constant/apis'
-import {json_part} from '@/constant/data'
-import {filterData,getKeyField,clone,getBase64, genQR} from '@/util/fn'
+import {json_supply} from '@/constant/data'
+import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
@@ -19,7 +19,7 @@ const { confirm } = Modal;
 
 
 
-const Part = () => {
+const Supply = () => {
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -50,7 +50,7 @@ const Part = () => {
   };
 
   // 添加功能操作
-  const col = json_part.concat({
+  const col = json_supply.concat({
     title: '機能',
     width: 200,
     align: 'center',
@@ -63,8 +63,8 @@ const Part = () => {
     ),
   })
   // 數據查詢過濾
-  col[2] = {...col[2],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  // col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  // col[3] = {...col[3],...getColumnSearchProps('phone',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 
   const showDelConfirm = (e) => {
@@ -80,18 +80,28 @@ const Part = () => {
     });
   };
 
+  
+
+  // 加載數據
+  useEffect(() => {
+    setLoading(true)
+    store.querySupply(null).then(r=>{
+      setLoading(false)
+      setDs(r.data)
+      setRefresh(false)
+      console.log(r.data)
+    })
+  }, [refresh]);
+
+
   // 刪除數據
   const doDel = (e)=>{
-    // console.log(e)
     let params = { 
-      id: e.id,
-      tab: 'tab_part',
-      view: 'view_part',
+      id: e.id
     }
     setLoading(true)
-    store.delById(params).then(r=>{
+    store.delSupply(params).then(r=>{
       setLoading(false)
-      r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
       // console.log(r.data)
     })
@@ -102,19 +112,6 @@ const Part = () => {
     setMethod('update')
     setShowForm(true)
   }
-
-  // 加載part數據
-  useEffect(() => {
-    let params = { tab: 'view_part' }
-    setLoading(true)
-    store.queryTable(params).then(r=>{
-      setLoading(false)
-      r.data.map(async o=> o.qrcode = await genQR(o.code))
-      setDs(r.data)
-      setRefresh(false)
-      // console.log(r.data)
-    })
-  }, [refresh]);
 
 
   const doAdd =()=>{
@@ -139,7 +136,6 @@ const Part = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
               <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
             </Space>
           </div>
@@ -155,4 +151,4 @@ const Part = () => {
 
 }
 
-export default  observer(Part)
+export default  observer(Supply)

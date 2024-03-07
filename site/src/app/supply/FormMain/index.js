@@ -18,13 +18,6 @@ const formItemLayout = {
 };
 
 
-const toList=(obj)=> {
-  return Object.entries(obj).map(([key, value]) => ({
-    key: key,
-    val: value,
-  }));
-}
-
 
 const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
@@ -43,8 +36,6 @@ console.log(initImgs)
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [info, setInfo] = useState(initJson);
-  const [optModel, setOptModel] = useState([]);
-  const [optSupply, setOptSupply] = useState([]);
 
 
   // 打開預覽窗口
@@ -72,31 +63,18 @@ console.log(initImgs)
   }
 
 
-  // 加載選擇數據
-  useEffect(() => {
-    setLoading(true)
-    store.querySelInfo().then(r=>{
-      setLoading(false)
-      
-      let model = r.model.map(o=>({value:o.id, label:o.name}))
-      let supply = r.supply.map(o=>({value:o.id, label:o.name}))
-      setOptModel(model)
-      setOptSupply(supply)
-    })
-  }, []);
-
   // 保存修改數據
   const onFinish = (values) => {
     values.img = img
     values.info = JSON.stringify(info)
     const params = {
-      id: item.id,
+      id: item?.id,
       method,
       ...values
     }
 
     setLoading(true)
-    store.savePart(params).then(r=>{
+    store.saveSupply(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
@@ -137,7 +115,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>製品圖像</h1>
+                <h1>供應商圖標</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -155,23 +133,24 @@ console.log(initImgs)
             <div className={s.rt}>
               <div className={s.head}>
                 <h1>基本信息</h1>
+                <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
               </div>
 
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
-                    name="code"
-                    label="製品編號"
-                    labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                  >
-                    <Input />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item
                     name="name"
-                    label="製品名称"
+                    label="供應商名稱"
+                    labelCol={{ span: 6 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="phone"
+                    label="聯繫方式"
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -179,29 +158,15 @@ console.log(initImgs)
                   </Form.Item>
                 </Col>
               </Row>
-
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item
-                    name="sid"
-                    label="サプライヤー"
-                    labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                  >
-                    <Select options={optSupply}/>
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item
-                    name="mid"
-                    label="製品種類"
-                    labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                  >
-                    <Select options={optModel}/>
-                  </Form.Item>
-                </Col>
-              </Row>
+              
+              <Form.Item
+                name="addr"
+                label="供應商地址"
+                labelCol={{ span: 3 }}
+                wrapperCol={{ span: 21 }}
+              >
+                <Input />
+              </Form.Item>
             </div>
           </div>
 

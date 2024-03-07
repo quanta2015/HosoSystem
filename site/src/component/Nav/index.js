@@ -21,8 +21,8 @@ const items = [
   getItem('基本信息管理', '1', <MailOutlined />, [
     getItem('製品管理', '/part'), 
     getItem('種類設定', '/model'),
-    getItem('サプライヤー管理', '13'),
-    getItem('倉庫管理', '14'),
+    getItem('サプライヤー管理', '/supply'),
+    getItem('倉庫管理', '/ware'),
   ]),
  getItem('部品管理', '2', <AppstoreOutlined />, [
     getItem('在庫管理', '21'),

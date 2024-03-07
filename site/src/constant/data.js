@@ -108,3 +108,40 @@ export const json_model = [{
       req: false,
     }
   ]
+
+
+
+export const json_supply = [{
+      dataIndex: 'id',
+      type: 'string',
+      title: '編號',
+      width: 60,
+      fixed: 'left',
+      align: 'center',
+    },{
+      dataIndex: 'img',
+      type: 'string',
+      title: '圖標',
+      width: 80,
+      fixed: 'left',
+      align: 'center',
+      render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} alt={r.name}/> 
+    },{
+      dataIndex: 'name',
+      type: 'string',
+      title: '供應商',
+      width: 100,
+      align: 'center',
+    },{
+      dataIndex: 'phone',
+      type: 'string',
+      title: '供應商電話',
+      width: 200,
+      align: 'center',
+    },{
+      dataIndex: 'addr',
+      type: 'string',
+      title: '供應商地址',
+      width: 200,
+    }
+  ]
