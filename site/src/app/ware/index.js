@@ -63,10 +63,11 @@ const Ware = () => {
     ),
   })
   // 數據查詢過濾
-  col[1] = {...col[1],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[4] = {...col[4],...getColumnSearchProps('manager',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[1] = {...col[1],...getColumnSearchProps('dep_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[2] = {...col[2],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[5] = {...col[5],...getColumnSearchProps('manager',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 
   const showDelConfirm = (e) => {

@@ -26,10 +26,13 @@ const Layout = () => {
 
   useEffect(() => {
 
-    let localUser = loadLocalUser()
-    if (!window.token) {
+    let {usr, token } = loadLocalUser()
+
+    if (!token) {
       navigate("/login");
-    } 
+    } else{
+      window.token = token
+    }
   }, []);
 
 

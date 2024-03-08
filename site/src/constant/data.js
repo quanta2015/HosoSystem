@@ -138,10 +138,17 @@ export const json_ware = [
     fixed: 'left',
     align: 'center',
   },{
+    dataIndex: 'dep_name',
+    type: 'string',
+    title: '所屬營業所',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
     dataIndex: 'code',
     type: 'string',
     title: '倉庫編碼',
-    width: 60,
+    width: 100,
     fixed: 'left',
     align: 'center',
   },{

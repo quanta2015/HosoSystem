@@ -19,6 +19,9 @@ const getItem =(label, key, icon, children, type)=> {
 
 const items = [
   getItem('基本信息管理', '1', <MailOutlined />, [
+    getItem('部門管理', 'dep'), 
+    getItem('現場管理', 'site'), 
+    getItem('用戶管理', 'user'), 
     getItem('製品管理', 'part'), 
     getItem('種類設定', 'model'),
     getItem('サプライヤー管理', 'supply'),

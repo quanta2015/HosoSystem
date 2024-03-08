@@ -82,6 +82,15 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <h1>基本信息</h1>
             </div>
 
+            <Form.Item
+              name="dep_name"
+              label="所屬營業所"
+              labelCol={{ span: 2 }}
+              wrapperCol={{ span: 22 }}
+            >
+              <Select />
+            </Form.Item>
+
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item

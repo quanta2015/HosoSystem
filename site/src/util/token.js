@@ -1,13 +1,6 @@
 const TOKEN_KEY = 'HOSO_SYS_TOKEN'
 const USER_KEY  = 'HOSO_SYS_USER'
 
-export const loadToken = () => {
-  return window.localStorage.getItem(TOKEN_KEY)
-}
-
-export const saveToken = (token) => {
-  return window.localStorage.setItem(TOKEN_KEY,token)
-}
 
 
 export const removeLocalUser = () => {
@@ -15,9 +8,12 @@ export const removeLocalUser = () => {
 }
 
 export const loadLocalUser = () => {
-  return JSON.parse(window.localStorage.getItem(USER_KEY))
+  let usr = JSON.parse(window.localStorage.getItem(USER_KEY))
+  let token = window.localStorage.getItem(TOKEN_KEY)
+  return { usr, token }
 }
 
-export const saveLocalUser = (data) => {
+export const saveLocalUser = (data,token) => {
+  window.localStorage.setItem(TOKEN_KEY,token)
   window.localStorage.setItem(USER_KEY, JSON.stringify(data))
 }

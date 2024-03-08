@@ -5,7 +5,7 @@ import {saveUser} from '@/util/token'
 import { UserOutlined,LockOutlined } from '@ant-design/icons';
 import * as urls from '@/constant/urls'
 import { useNavigate } from 'react-router-dom'
-import { saveLocalUser } from '@/util/token'
+import { saveLocalUser,saveToken } from '@/util/token'
 
 import style from './index.module.less'
 
@@ -26,18 +26,13 @@ const Login = () => {
       
       message.info(r.msg)
       if (r.code===0) {
-        saveLocalUser(r.data)
+        saveLocalUser(r.data,r.token)
         store.saveUser(r.data)
-        // saveLocalUser(r.data)
-        // saveToken(r.token)
-        window.token = r.token
         navigate('/')
       }
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
     }
-
-    
   }
 
   return (

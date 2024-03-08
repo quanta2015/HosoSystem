@@ -26,7 +26,35 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
   const [info, setInfo] = useState(initJson);
+  // const [ware, setWare] = useState([]);
+  const [optWare, setOptWare] = useState([]);
+  const [optType, setOptType] = useState([
+    {label:'采购入库',value:'采购入库'},
+    {label:'退货入库',value:'退货入库'},
+    {label:'寄託',value:'寄託'},
+  ]);
 
+
+  useEffect(() => {
+    setLoading(true)
+    store.queryWare(null).then(r=>{
+      setLoading(false)
+      // console.log(r.data)
+      let ware = r.data.map(o=>({label: o.name, value:o.name}))
+      setOptWare(ware)
+    })
+  }, []);
+
+  useEffect(() => {
+    setLoading(true)
+    store.queryWare(null).then(r=>{
+      setLoading(false)
+      // setWare(r.data)
+      console.log(r.data)
+      let ware = r.data.map(o=>({label: o.name, value:o.name}))
+      setOptWare(ware)
+    })
+  }, []);
 
 
   // 保存修改數據
@@ -86,11 +114,11 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <Col span={8}>
                 <Form.Item
                   name="code"
-                  label="倉庫編碼"
+                  label="入庫類型"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
-                  <Input />
+                  <Select options={optType}/>
                 </Form.Item>
               </Col>
               <Col span={16}>
@@ -100,34 +128,12 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Input />
+                  <Select options={optWare}/>
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="manager"
-                  label="負責人"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="addr"
-                  label="倉庫地址"
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              
-            </Row>
+
             
           </div>
 
