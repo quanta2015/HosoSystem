@@ -100,7 +100,7 @@ console.log(initImgs)
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info('保存しました')
     })
   };
 
@@ -137,7 +137,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>製品圖像</h1>
+                <h1>製品画像</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -154,14 +154,14 @@ console.log(initImgs)
 
             <div className={s.rt}>
               <div className={s.head}>
-                <h1>基本信息</h1>
+                <h1>基本情報</h1>
               </div>
 
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
                     name="code"
-                    label="製品編號"
+                    label="製品番号"
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -171,7 +171,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label="製品名称"
+                    label="製品名前"
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -206,7 +206,7 @@ console.log(initImgs)
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>他の情報</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
           
@@ -221,8 +221,8 @@ console.log(initImgs)
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >キャンセル</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存する</Button>
           </div>
         </Form>
       </div>
