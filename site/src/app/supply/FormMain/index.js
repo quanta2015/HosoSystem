@@ -115,7 +115,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>供應商圖標</h1>
+                <h1>アイコン</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -132,7 +132,7 @@ console.log(initImgs)
 
             <div className={s.rt}>
               <div className={s.head}>
-                <h1>基本信息</h1>
+                <h1>基本情報</h1>
                 <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
               </div>
 
@@ -140,7 +140,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label="供應商名稱"
+                    label="サプライヤー名"
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -150,7 +150,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="phone"
-                    label="聯繫方式"
+                    label="連絡先"
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -161,7 +161,7 @@ console.log(initImgs)
               
               <Form.Item
                 name="addr"
-                label="供應商地址"
+                label="サプライヤーアドレース"
                 labelCol={{ span: 3 }}
                 wrapperCol={{ span: 21 }}
               >
@@ -171,7 +171,7 @@ console.log(initImgs)
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>その他</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
           
@@ -186,8 +186,8 @@ console.log(initImgs)
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >キャンセル</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >セーブ</Button>
           </div>
         </Form>
       </div>
