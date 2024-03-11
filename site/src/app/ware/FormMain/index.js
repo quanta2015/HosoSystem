@@ -34,6 +34,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     store.queryDep().then(r=>{
       let dep = r.data.map(o=>({value:o.id, label:o.name}))
       setOptDep(dep)
+      setLoading(false)
     })
   }, []);
 

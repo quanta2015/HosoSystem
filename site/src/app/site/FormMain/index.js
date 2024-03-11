@@ -19,7 +19,7 @@ const formItemLayout = {
 
 
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
@@ -34,6 +34,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     store.queryDep().then(r=>{
       let dep = r.data.map(o=>({value:o.id, label:o.name}))
       setOptDep(dep)
+      setLoading(false)
     })
   }, []);
 
@@ -50,7 +51,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     console.log(values)
 
     setLoading(true)
-    store.saveWare(params).then(r=>{
+    store.saveSite(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
@@ -98,28 +99,28 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               labelCol={{ span: 2 }}
               wrapperCol={{ span: 22 }}
             >
-              <Select options={optDep}/>
+              <Select options={optDep}  disabled={detail}/> 
             </Form.Item>
 
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="code"
-                  label="倉庫編碼"
+                  name="name"
+                  label="現場名稱"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
               <Col span={16}>
                 <Form.Item
-                  name="name"
-                  label="倉庫名稱"
+                  name="manager"
+                  label="負責人"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
             </Row>
@@ -127,47 +128,48 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="manager"
-                  label="負責人"
+                  name="phone"
+                  label="聯繫方式"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
               <Col span={16}>
                 <Form.Item
                   name="addr"
-                  label="倉庫地址"
+                  label="營業所地址"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
-              
             </Row>
-            
+
           </div>
 
           <div className={s.head}>
             <h1>其他信息</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
+            {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
           <div className={s.info}>
             {info.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')} disabled={detail}/>
+                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')} disabled={detail}/>
+                  {!detail && <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />}
                 </div>
               )}
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >關閉</Button>  
+
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button> }
           </div>
         </Form>
       </div>

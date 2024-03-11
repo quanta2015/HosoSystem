@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 11/03/2024 13:30:53
+ Date: 11/03/2024 15:42:50
 */
 
 SET NAMES utf8mb4;
@@ -31,14 +31,17 @@ CREATE TABLE `tab_dep` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_dep
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '東京營業所', '東京港區xxxx', '188783748', '{}', 0, NULL, NULL);
-INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '大阪營業所', '大阪語言', '23223444', '{}', 0, NULL, NULL);
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '東京營業所', '東京港區xxxx', '188783748', '[{\"key\":\"aa\",\"val\":\"afff\"}]', 0, 'keboda', '2024-03-11 14:11:03');
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '大阪營業所', '大阪語言', '23223444', '[]', 0, NULL, NULL);
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (3, '名古屋營業所', '富久町1番5号富久町第5服部', '565656', '[{\"key\":\"負責人\",\"val\":\"為額范文芳\"}]', 0, 'keboda', '2024-03-11 14:11:23');
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (4, '大難現場', '6215 NE 92nd Dr C/O XEK076', '232323', '[{\"key\":\"a\'a\'a\",\"val\":\"444\"}]', 0, 'keboda', '2024-03-11 14:45:51');
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (5, '東沙現場', '囧發文件哦哦我', '343434', '[{\"key\":\"44\",\"val\":\"444\"}]', 0, 'keboda', '2024-03-11 14:58:50');
 COMMIT;
 
 -- ----------------------------
@@ -1098,6 +1101,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tab_site`;
 CREATE TABLE `tab_site` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `dep_id` int DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `manager` varchar(50) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
@@ -1107,12 +1111,14 @@ CREATE TABLE `tab_site` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_site
 -- ----------------------------
 BEGIN;
+INSERT INTO `tab_site` (`id`, `dep_id`, `name`, `manager`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 1, '大島營業所', '山田杰', '3943849', '未接誒佛奧灣', '[{\"key\":\"ee\",\"val\":\"444\"},{\"key\":\"EE\",\"val\":\"2323\"}]', 0, 'keboda', '2024-03-11 15:42:01');
+INSERT INTO `tab_site` (`id`, `dep_id`, `name`, `manager`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, '較為現場', '未接', '3434394', '77777', '[{\"key\":\"55\",\"val\":\"66\"}]', 0, 'keboda', '2024-03-11 15:00:48');
 COMMIT;
 
 -- ----------------------------
@@ -1184,7 +1190,6 @@ CREATE TABLE `tab_supply` (
 BEGIN;
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '本田', 'upload/20240306024835.png', '080928183', '東京星宿', '[{\"key\":\"負責人\",\"val\":\"3293\"}]', 0, 'admin', '2024-03-07 12:02:49');
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '松下', 'upload/20240307115718.svg', '2932838238', '大阪', '[{\"key\":\"負責人\",\"val\":\"3293\"}]', 0, NULL, '2024-03-07 11:57:19');
-INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 'aa', NULL, 'aa', 'aa', NULL, 1, NULL, NULL);
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (4, '本田001', 'upload/20240307114912.png', '123456', '經緯紡機傲嬌發違法', '[{\"key\":\"芙蓉鎮\",\"val\":\"濰坊\"},{\"key\":\"負責人\",\"val\":\"你問問\"}]', 0, NULL, '2024-03-07 11:56:59');
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (5, '特斯拉', 'upload/20240307115817.png', '2322232323', '富久町1番5号富久町第5服部', '[{\"key\":\"零件\",\"val\":\"忘記忘記發\"},{\"key\":\"測試\",\"val\":\"wjeiawe\"}]', 0, NULL, '2024-03-07 11:58:35');
 COMMIT;
@@ -1238,8 +1243,8 @@ CREATE TABLE `tab_ware` (
 -- Records of tab_ware
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 2, NULL, '管理员', NULL, NULL, NULL, 0, 'keboda', '2024-03-11 11:30:18');
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, 'code-002', '新宿倉庫2', '新宿', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:08:12');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 2, 'code-001', '新宿倉庫1', '新宿bb', '慰問費', '[{\"key\":\"11\",\"val\":\"22\"}]', 0, 'keboda', '2024-03-11 14:54:09');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, 'code-002', '新宿倉庫2', '新宿www', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:08:12');
 INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 1, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:06:54');
 INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (4, 1, 'sdsd', 'sdsd', 'sdsd', 'sd', '[]', 1, 'admin', '2024-03-08 15:26:48');
 COMMIT;
@@ -1261,6 +1266,12 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part` AS select `w`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_part_export`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_part_export` AS select `w`.`id` AS `id`,`w`.`code` AS `code`,`w`.`name` AS `name`,`w`.`img` AS `img`,`w`.`info` AS `info`,`s`.`name` AS `sup_name`,`s`.`phone` AS `sup_phone`,`s`.`addr` AS `sup_addr`,`s`.`info` AS `sup_info`,`m`.`name` AS `mod_name`,`w`.`create_name` AS `create_name`,date_format(`w`.`create_time`,'%Y-%m-%d %H:%i:%s') AS `create_time`,(case `w`.`status` when 0 then '正常' when 1 then '刪除' else '未知' end) AS `status_text` from ((`tab_part` `w` join `tab_supply` `s`) join `tab_model` `m`) where ((`w`.`sid` = `s`.`id`) and (`w`.`mid` = `m`.`id`) and (`w`.`status` = 0));
+
+-- ----------------------------
+-- View structure for view_site
+-- ----------------------------
+DROP VIEW IF EXISTS `view_site`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_site` AS select `w`.`id` AS `key`,`w`.`id` AS `id`,`w`.`dep_id` AS `dep_id`,`w`.`name` AS `name`,`w`.`manager` AS `manager`,`w`.`phone` AS `phone`,`w`.`addr` AS `addr`,`w`.`info` AS `info`,`w`.`status` AS `status`,`w`.`create_name` AS `create_name`,`w`.`create_time` AS `create_time`,`d`.`name` AS `dep_name` from (`tab_site` `w` join `tab_dep` `d`) where ((`w`.`dep_id` = `d`.`id`) and (`w`.`status` = 0));
 
 -- ----------------------------
 -- View structure for view_stock
@@ -1347,6 +1358,21 @@ BEGIN
 	PREPARE stmt FROM @query2;
 	EXECUTE stmt;
 	DEALLOCATE PREPARE stmt;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_DEL_DEP
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_DEL_DEP`;
+delimiter ;;
+CREATE PROCEDURE `PROC_DEL_DEP`(IN `data` varchar(20000))
+BEGIN
+	SET @id = JSON_UNQUOTE(JSON_EXTRACT(data, '$.id'));
+	
+	UPDATE tab_dep set status = 1 where id = @id;
+	SELECT id as `key`,t.* FROM tab_dep t where status = 0;
 END
 ;;
 delimiter ;
@@ -1468,6 +1494,19 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_QUERY_SITE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_SITE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_SITE`(IN `data` varchar(20000))
+BEGIN
+	
+	select * from view_site;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_QUERY_STOCK
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_QUERY_STOCK`;
@@ -1548,6 +1587,43 @@ CREATE PROCEDURE `PROC_QUERY_WARE`(IN `data` varchar(20000))
 BEGIN
 	
 	select * from view_ware;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_DEP
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_DEP`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_DEP`(IN jsonData TEXT)
+BEGIN
+    -- 解析JSON数据
+		SET @id = JSON_EXTRACT(jsonData, '$.id');
+    SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+    SET @name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+		SET @addr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.addr'));
+		SET @phone = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.phone'));
+		SET @create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+		SET @info = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.info'));
+    
+    -- 判断是更新还是插入
+    IF @method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_dep
+        SET
+            name = @name,
+            addr = @addr,
+            phone = @phone,
+            info = @info,
+						create_name = @create_name,
+            create_time = NOW()
+        WHERE id = @id;
+    ELSEIF @method = 'insert' THEN
+        INSERT INTO tab_dep (name, addr, phone, info, status, create_name, create_time)
+        VALUES (@name,@addr, @phone, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
 END
 ;;
 delimiter ;
@@ -1635,6 +1711,47 @@ BEGIN
     ELSEIF v_method = 'insert' THEN
         INSERT INTO tab_part (code, name, img, sid, mid, info, status, create_name, create_time)
         VALUES (v_code, v_name, v_img, v_sid, v_mid, v_info, 0, v_create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_SITE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_SITE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_SITE`(IN jsonData TEXT)
+BEGIN
+    -- 解析JSON数据
+		SET @id = JSON_EXTRACT(jsonData, '$.id');
+    SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+		SET @dep_id = JSON_EXTRACT(jsonData, '$.dep_id');
+    SET @name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+		SET @phone = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.phone'));
+		SET @addr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.addr'));
+		SET @manager = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.manager'));
+		SET @create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+		SET @info = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.info'));
+    
+    -- 判断是更新还是插入
+    IF @method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_site
+        SET
+					  dep_id = @dep_id,
+            name = @name,
+						phone = @phone,
+            manager = @manager,
+            addr = @addr,
+            info = @info,
+						create_name = @create_name,
+            create_time = NOW()
+        WHERE id = @id;
+    ELSEIF @method = 'insert' THEN
+        INSERT INTO tab_site (dep_id, phone, name, addr, manager, info, status, create_name, create_time)
+        VALUES (@dep_id, @phone, @name,@addr, @manager, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
     END IF;
     
 END

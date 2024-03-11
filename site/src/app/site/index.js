@@ -7,19 +7,18 @@ import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
 import { observer,MobXProviderContext } from 'mobx-react'
 import {API_SERVER} from '@/constant/apis'
-import {json_ware} from '@/constant/data'
+import {json_site} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
 
-
 const { confirm } = Modal;
 
 
 
-const Ware = () => {
+const Site = () => {
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -33,6 +32,7 @@ const Ware = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -50,25 +50,25 @@ const Ware = () => {
   };
 
   // 添加功能操作
-  const col = json_ware.concat({
+  const col = json_site.concat({
     title: '機能',
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>詳情</Button>
+        <Button type="primary" onClick={()=>doEdit(o,false)}>編集</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
       </Space>
     ),
   })
   // 數據查詢過濾
   col[1] = {...col[1],...getColumnSearchProps('dep_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[2] = {...col[2],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[4] = {...col[4],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[5] = {...col[5],...getColumnSearchProps('manager',doSearch,doReset,inputRef,searchedColumn,searchText)}
-
+  col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('phone',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  
 
   const showDelConfirm = (e) => {
     confirm({
@@ -88,7 +88,7 @@ const Ware = () => {
   // 加載數據
   useEffect(() => {
     setLoading(true)
-    store.queryWare(null).then(r=>{
+    store.querySite(null).then(r=>{
       setLoading(false)
       setDs(r.data)
       setRefresh(false)
@@ -103,23 +103,26 @@ const Ware = () => {
       id: e.id
     }
     setLoading(true)
-    store.delWare(params).then(r=>{
+    store.delSite(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
     setItem(e)
     setMethod('update')
     setShowForm(true)
+    setDetail(readonly)
   }
+
 
 
   const doAdd =()=>{
     setMethod('insert')
     setShowForm(true)
+    setDetail(false)
   }
 
 
@@ -139,14 +142,14 @@ const Ware = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>追加</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, detail, method, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>
@@ -154,4 +157,4 @@ const Ware = () => {
 
 }
 
-export default  observer(Ware)
+export default  observer(Site)

@@ -11,11 +11,16 @@ import {json_dep} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
-
 import FormMain from './FormMain'
 
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG } = jp
 const { confirm } = Modal;
+
+
+
 
 
 
@@ -33,6 +38,7 @@ const Dep = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -51,14 +57,15 @@ const Dep = () => {
 
   // 添加功能操作
   const col = json_dep.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
   })
@@ -70,11 +77,11 @@ const Dep = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: FN.OK,
+      cancelText: FN.NO,
       onOk() {
         doDel(e)
       },
@@ -101,18 +108,20 @@ const Dep = () => {
       id: e.id
     }
     setLoading(true)
-    store.delWare(params).then(r=>{
+    store.delDep(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
     setItem(e)
     setMethod('update')
     setShowForm(true)
+    setDetail(readonly)
   }
+
 
 
   const doAdd =()=>{
@@ -126,7 +135,7 @@ const Dep = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -137,14 +146,14 @@ const Dep = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, detail, method, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>

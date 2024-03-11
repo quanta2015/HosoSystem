@@ -233,6 +233,23 @@ class Store {
   }
 
 
+///////////////////////////////////////////////////
+// ------------------  現場API ----------------- //
+///////////////////////////////////////////////////
+
+  // 查詢現場
+  async querySite(params) {
+    return await this.post(urls.API_QUERY_SITE, params)
+  }
+  // 刪除現場
+  async delSite(params) {
+    return await this.post(urls.API_DEL_SITE, params)
+  }
+  // 保存現場
+  async saveSite(params) {
+    return await this.post(urls.API_SAVE_SITE, params)
+  }
+
 }
 
 export default new Store()

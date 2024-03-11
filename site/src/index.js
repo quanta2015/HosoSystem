@@ -12,6 +12,9 @@ import '@/less/var.less'
 import '@/less/com.less'
 
 
+
+
+
 configure({ enforceActions: 'observed' })
 
 
@@ -23,12 +26,14 @@ const Model = lazy(() => import('./app/model'));
 const Supply = lazy(() => import('./app/supply'));
 const Ware = lazy(() => import('./app/ware'));
 const Dep = lazy(() => import('./app/dep'));
+const Site = lazy(() => import('./app/site'));
+const User = lazy(() => import('./app/user'));
 
 const Stock = lazy(() => import('./app/stock'));
 const StockIO = lazy(() => import('./app/stockio'));
 
 
-const User = lazy(() => import('./app/user'));
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -45,6 +50,7 @@ root.render(
               <Route path="/supply" element={<Supply />} />
               <Route path="/ware" element={<Ware />} />
               <Route path="/dep" element={<Dep />} />
+              <Route path="/site" element={<Site />} />
               <Route path="/user" element={<User />} />
 
               <Route path="/stock" element={<Stock />} />

@@ -55,3 +55,9 @@ export const API_QUERY_DEP = API_SERVER + '/queryDep'
 export const API_DEL_DEP = API_SERVER + '/delDep'
 export const API_SAVE_DEP = API_SERVER + '/saveDep'
 
+
+// 現場接口
+export const API_QUERY_SITE = API_SERVER + '/querySite'
+export const API_DEL_SITE = API_SERVER + '/delSite'
+export const API_SAVE_SITE = API_SERVER + '/saveSite'
+
