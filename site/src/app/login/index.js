@@ -48,21 +48,21 @@ const Login = () => {
           <div className={style.title}>
             <img src={logo} className={style.bg} />
             <p>
-              <span>IMS库存管理システム</span>
+              <span>IMS倉庫管理システム</span>
               <label>IMS Inventory Management System</label>
             </p>
           </div>
                  
           <Form form={form} className={style.login_frm}>
-            <Form.Item name="usr" rules={[{ required: true, message: '请输入账号'}]}>
-              <Input size="large" style={{height: '45px'}} placeholder="请输入账号" allowClear prefix={<UserOutlined />} />
+            <Form.Item name="usr" rules={[{ required: true, message: 'ユーザー名を入力してください'}]}>
+              <Input size="large" style={{height: '45px'}} placeholder="ユーザー名を入力してください" allowClear prefix={<UserOutlined />} />
             </Form.Item>
-            <Form.Item name="pwd" rules={[{ required: true, message: '请输入账号'}]}>
-              <Input.Password size="large" style={{height: '45px'}} placeholder="请输入密码" prefix={<LockOutlined />}/>
+            <Form.Item name="pwd" rules={[{ required: true, message: 'パスワードを入力してください'}]}>
+              <Input.Password size="large" style={{height: '45px'}} placeholder="パスワードを入力してください" prefix={<LockOutlined />}/>
             </Form.Item>
             <p></p>
             <Form.Item>
-              <Button type="primary" size="large" className="input-btn" block onClick={doLogin}>登 录</Button>
+              <Button type="primary" size="large" className="input-btn" block onClick={doLogin}>ログイン</Button>
             </Form.Item>
           </Form>
 

@@ -58,7 +58,7 @@ const Supply = () => {
     render: o => (
       <Space>
         <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>削除</Button>
       </Space>
     ),
   })
@@ -69,11 +69,11 @@ const Supply = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: 'レコードを削除してもよろしいですか?',
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: 'は い',
+      cancelText: 'いいえ',
       onOk() {
         doDel(e)
       },
@@ -125,7 +125,7 @@ const Supply = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info("エクスポート成功")
     })
   }
 
@@ -136,7 +136,7 @@ const Supply = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>サプライヤー追加</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
