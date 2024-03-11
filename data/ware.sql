@@ -11,11 +11,35 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 07/03/2024 17:56:10
+ Date: 11/03/2024 13:30:53
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tab_dep
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_dep`;
+CREATE TABLE `tab_dep` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `addr` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `info` text,
+  `status` int DEFAULT NULL,
+  `create_name` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+-- ----------------------------
+-- Records of tab_dep
+-- ----------------------------
+BEGIN;
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (1, '東京營業所', '東京港區xxxx', '188783748', '{}', 0, NULL, NULL);
+INSERT INTO `tab_dep` (`id`, `name`, `addr`, `phone`, `info`, `status`, `create_name`, `create_time`) VALUES (2, '大阪營業所', '大阪語言', '23223444', '{}', 0, NULL, NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tab_model
@@ -34,7 +58,7 @@ CREATE TABLE `tab_model` (
 -- Records of tab_model
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (1, '發動機aa', 0, 'admin', '2024-03-07 12:03:06');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (1, '發動機', 0, 'keboda', '2024-03-09 16:40:03');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (2, '電池', 0, 'admin', '2024-03-07 12:03:09');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (3, '吊車', 0, 'admin', '2024-03-07 12:03:10');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (4, 'ewefaf', 0, 'admin', '2024-03-07 12:03:12');
@@ -63,7 +87,7 @@ CREATE TABLE `tab_part` (
 -- Records of tab_part
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1001, 'CODE-1ppppp', 'Rhyzio', 'upload/20240307123531.png', 1, 3, '[{\"key\":\"總量\",\"val\":\"677\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"廠商\",\"val\":\"特斯拉\"},{\"key\":\"erer\",\"val\":\"erer\"},{\"key\":\"erer\",\"val\":\"erwwww\"},{\"key\":\"玩法\",\"val\":\"萬豐奧威分\"},{\"key\":\"\",\"val\":\"\"}]', 0, 'admin', '2024-03-07 12:35:41');
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1001, 'CODE-66666', 'Rhyzio', 'upload/20240309043907.png', 1, 3, '[{\"key\":\"總量\",\"val\":\"677\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"erer\",\"val\":\"erer\"},{\"key\":\"erer\",\"val\":\"erwwww\"},{\"key\":\"玩法\",\"val\":\"萬豐奧威分\"},{\"key\":\"啊啊啊\",\"val\":\"啊啊啊\"},{\"key\":\"鵝鵝鵝\",\"val\":\"4444\"}]', 0, 'keboda', '2024-03-09 16:39:09');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1002, 'CODE-973532', 'Avamm', 'upload/20240306024835.png', 1, 2, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"number\",\"val\":20}]', 1, 'Dell', '2024-03-06 14:51:20');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1003, 'CODE-940823', 'Zoonoodle', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 1, 'Aggy', NULL);
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `create_name`, `create_time`) VALUES (1004, 'CODE-783519', 'Tavu', 'upload/20240306024835.png', 1, 1, '[{\"key\":\"brand\",\"val\":\"aaa\"},{\"key\":\"type\",\"val\":\"bbb\"},{\"key\":\"fre\",\"val\":\"ccc\"},{\"key\":\"number\",\"val\":20}]', 1, 'Karolina', NULL);
@@ -1069,6 +1093,29 @@ INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `stat
 COMMIT;
 
 -- ----------------------------
+-- Table structure for tab_site
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_site`;
+CREATE TABLE `tab_site` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `manager` varchar(50) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `addr` varchar(200) DEFAULT NULL,
+  `info` text,
+  `status` int DEFAULT NULL,
+  `create_name` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- ----------------------------
+-- Records of tab_site
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for tab_stock
 -- ----------------------------
 DROP TABLE IF EXISTS `tab_stock`;
@@ -1087,8 +1134,8 @@ CREATE TABLE `tab_stock` (
 -- Records of tab_stock
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 1, 1001, 24, 0, NULL, NULL);
-INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (2, 1, 1002, 30, 0, NULL, NULL);
+INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 1, 1001, 24, 1, NULL, NULL);
+INSERT INTO `tab_stock` (`id`, `wid`, `pid`, `num`, `status`, `create_name`, `create_time`) VALUES (2, 1, 1002, 30, 1, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1148,10 +1195,14 @@ COMMIT;
 DROP TABLE IF EXISTS `tab_user`;
 CREATE TABLE `tab_user` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `dep_id` int DEFAULT NULL,
   `usr` varchar(20) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
   `pwd` varchar(20) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `create_name` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
@@ -1159,12 +1210,10 @@ CREATE TABLE `tab_user` (
 -- Records of tab_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (1, 'admin', '管理员', 'ans-system-2022', '1|1|1|1');
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (2, 'xzq', '谢增钱', 'xie2022', '1|1|1|0');
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (3, 'wf', '王芬', 'wang2022', '1|1|0|0');
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (4, 'sys', 'sys', 'ans123456', '1|0|0|0');
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (5, 'liyang', '李阳', '123456', '1|0|1|0');
-INSERT INTO `tab_user` (`id`, `usr`, `name`, `pwd`, `role`) VALUES (6, 'keboda', 'keboda', 'keboda', '1|0|1|1');
+INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (1, 2, 'admin', '管理员', 'a', '系統', 0, 'keboda', '2024-03-11 12:00:37');
+INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (4, 2, 'ware', '張三', '6666', '倉庫', 0, 'keboda', '2024-03-11 12:00:47');
+INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (5, 1, 'liyang', '李陽', '123456', '審核', 0, NULL, NULL);
+INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (6, 1, 'keboda', '科普', 'a', '採購', 0, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1173,6 +1222,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tab_ware`;
 CREATE TABLE `tab_ware` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `dep_id` int DEFAULT NULL,
   `code` varchar(50) DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
@@ -1182,15 +1232,16 @@ CREATE TABLE `tab_ware` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_ware
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 'code-001', '新宿倉庫1', '新宿', '織田信長', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'tom', NULL);
-INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 'code-002', '新宿倉庫2', '新宿', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, NULL, NULL);
-INSERT INTO `tab_ware` (`id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'admin', '2024-03-07 13:51:08');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 2, NULL, '管理员', NULL, NULL, NULL, 0, 'keboda', '2024-03-11 11:30:18');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, 'code-002', '新宿倉庫2', '新宿', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:08:12');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 1, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:06:54');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (4, 1, 'sdsd', 'sdsd', 'sdsd', 'sd', '[]', 1, 'admin', '2024-03-08 15:26:48');
 COMMIT;
 
 -- ----------------------------
@@ -1222,6 +1273,18 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_stock` AS select `s
 -- ----------------------------
 DROP VIEW IF EXISTS `view_supply`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_supply` AS select `tab_supply`.`id` AS `id`,`tab_supply`.`name` AS `name`,`tab_supply`.`img` AS `img`,`tab_supply`.`phone` AS `phone`,`tab_supply`.`addr` AS `addr`,`tab_supply`.`info` AS `info`,`tab_supply`.`status` AS `status`,`tab_supply`.`create_name` AS `create_name`,`tab_supply`.`create_time` AS `create_time` from `tab_supply` where (`tab_supply`.`status` = 0);
+
+-- ----------------------------
+-- View structure for view_user
+-- ----------------------------
+DROP VIEW IF EXISTS `view_user`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_user` AS select `t`.`id` AS `key`,`t`.`id` AS `id`,`t`.`dep_id` AS `dep_id`,`t`.`usr` AS `usr`,`t`.`name` AS `name`,`t`.`pwd` AS `pwd`,`t`.`role` AS `role`,`t`.`status` AS `status`,`t`.`create_name` AS `create_name`,`t`.`create_time` AS `create_time`,`d`.`name` AS `dep_name` from (`tab_user` `t` join `tab_dep` `d`) where ((`t`.`dep_id` = `d`.`id`) and (`t`.`status` = 0));
+
+-- ----------------------------
+-- View structure for view_ware
+-- ----------------------------
+DROP VIEW IF EXISTS `view_ware`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_ware` AS select `w`.`id` AS `id`,`w`.`id` AS `key`,`w`.`dep_id` AS `dep_id`,`w`.`code` AS `code`,`w`.`name` AS `name`,`w`.`addr` AS `addr`,`w`.`manager` AS `manager`,`w`.`info` AS `info`,`w`.`status` AS `status`,`w`.`create_name` AS `create_name`,`w`.`create_time` AS `create_time`,`d`.`name` AS `dep_name` from (`tab_ware` `w` join `tab_dep` `d`) where ((`w`.`dep_id` = `d`.`id`) and (`w`.`status` = 0));
 
 -- ----------------------------
 -- Procedure structure for DEBUG_MSG
@@ -1355,7 +1418,25 @@ BEGIN
 	SET _usr = JSON_UNQUOTE(JSON_EXTRACT(data,'$.usr'));
 	SET _pwd = JSON_UNQUOTE(JSON_EXTRACT(data,'$.pwd'));
 	
-	SELECT * FROM tab_user WHERE usr = _usr AND pwd = _pwd;
+	SELECT 
+		u.usr,u.name,u.role,d.name as dep_name 
+	FROM 
+		tab_user u,tab_dep d
+	where  
+		u.usr = _usr AND u.pwd = _pwd and u.dep_id = d.id;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_QUERY_DEP
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_DEP`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_DEP`(IN `data` varchar(20000))
+BEGIN
+	
+	select u.id as `key`, u.* from tab_dep u where status = 0;
 END
 ;;
 delimiter ;
@@ -1446,6 +1527,19 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_QUERY_USER
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_USER`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_USER`(IN `data` varchar(20000))
+BEGIN
+	
+	select * from view_user;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_QUERY_WARE
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_QUERY_WARE`;
@@ -1453,7 +1547,7 @@ delimiter ;;
 CREATE PROCEDURE `PROC_QUERY_WARE`(IN `data` varchar(20000))
 BEGIN
 	
-	select * from tab_ware where status = 0;
+	select * from view_ware;
 END
 ;;
 delimiter ;
@@ -1597,6 +1691,45 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_SAVE_USER
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_USER`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_USER`(IN jsonData TEXT)
+BEGIN
+    -- 解析JSON数据
+		SET @id = JSON_EXTRACT(jsonData, '$.id');
+    SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+		SET @dep_id = JSON_EXTRACT(jsonData, '$.dep_id');
+		SET @usr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.usr'));
+    SET @name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
+		SET @pwd = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.pwd'));
+		SET @role = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.role'));
+		SET @create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+    
+    -- 判断是更新还是插入
+    IF @method = 'update' THEN
+        -- 更新数据
+        UPDATE tab_user
+        SET
+					  dep_id = @dep_id,
+            usr = @usr,
+            name = @name,
+            pwd = @pwd,
+            role = @role,
+						create_name = @create_name,
+            create_time = NOW()
+        WHERE id = @id;
+    ELSEIF @method = 'insert' THEN
+        INSERT INTO tab_user (dep_id, usr, name, pwd, role, status, create_name, create_time)
+        VALUES (@dep_id, @usr, @name,@pwd, @role, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+    END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_SAVE_WARE
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_SAVE_WARE`;
@@ -1606,6 +1739,7 @@ BEGIN
     -- 解析JSON数据
 		SET @id = JSON_EXTRACT(jsonData, '$.id');
     SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+		SET @dep_id = JSON_EXTRACT(jsonData, '$.dep_id');
 		SET @code = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.code'));
     SET @name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.name'));
 		SET @addr = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.addr'));
@@ -1618,6 +1752,7 @@ BEGIN
         -- 更新数据
         UPDATE tab_ware
         SET
+					  dep_id = @dep_id,
             name = @name,
             code = @code,
             manager = @manager,
@@ -1627,8 +1762,8 @@ BEGIN
             create_time = NOW()
         WHERE id = @id;
     ELSEIF @method = 'insert' THEN
-        INSERT INTO tab_ware (code, name, addr, manager, info, status, create_name, create_time)
-        VALUES (@code, @name,@addr, @manager, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
+        INSERT INTO tab_ware (dep_id, code, name, addr, manager, info, status, create_name, create_time)
+        VALUES (@dep_id, @code, @name,@addr, @manager, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
     END IF;
     
 END
