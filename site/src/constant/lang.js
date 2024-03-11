@@ -16,31 +16,34 @@ export const JP = {
   },
 
   TXT: {
-    BAS_INFO: '基本信息',
-    OTH_INFO: '其他信息',
+    BAS_INFO: '基本情報',
+    OTH_INFO: 'その他',
     DEP_NAME: '營業所名稱',
     DEP_ADDR: "營業所地址",
     DEP_PHONE: "營業所電話",
-
+    SUP_IMG:'アイコン',
+    SUP_NAME:'サプライヤー名',
+    SUP_PHONE:'連絡先',
+    SUP_ADDR:'サプライヤーアドレース',
   },
 
   FN: {
     ACT: '機能',
-    DTL: '詳情',
+    DTL: '詳細',
     ADD: '追加',
-    DEL: '刪除',
+    DEL: '削除',
     EDIT: '編集',
-    OK: '确定',
-    NO: '取消',
-    CLS: '關閉',
-    SAV: '保存',
+    OK: 'はい',
+    NO: 'いいえ',
+    CLS: 'キャンセル',
+    SAV: 'セーブ',
     
   },
 
   MSG: {
-    CFM: '确认要删除记录?',
-    EXPT_SUC: '导出成功！',
-    SAVE_SUC: '保存成功',
+    CFM: 'レコードを削除してもよろしいですか?',
+    EXPT_SUC: 'エクスポート成功！',
+    SAVE_SUC: 'セーブ成功！',
 
   },
 
