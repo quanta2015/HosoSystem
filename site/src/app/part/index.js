@@ -58,7 +58,7 @@ const Part = () => {
     render: o => (
       <Space>
         <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>削除</Button>
       </Space>
     ),
   })
@@ -69,11 +69,11 @@ const Part = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: '削除しますか？',
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: 'は　い',
+      cancelText: 'いいえ',
       onOk() {
         doDel(e)
       },
@@ -128,7 +128,7 @@ const Part = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info("ダウンロードしました")
     })
   }
 

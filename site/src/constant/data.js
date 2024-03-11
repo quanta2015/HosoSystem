@@ -13,7 +13,7 @@ export const json_part = [
   {
       dataIndex: 'qrcode',
       type: 'string',
-      title: '二維碼',
+      title: 'QRコード',
       width: 100,
       req: true,
       fixed: 'left',
@@ -21,7 +21,7 @@ export const json_part = [
     },{
       dataIndex: 'img',
       type: 'string',
-      title: '製品圖像',
+      title: '製品画像',
       width: 100,
       req: true,
       fixed: 'left',
@@ -38,7 +38,7 @@ export const json_part = [
     },{
       dataIndex: 'name',
       type: 'string',
-      title: '製品名称',
+      title: '製品名前',
       width: 200,
       req: true,
     },
@@ -52,19 +52,19 @@ export const json_part = [
     {
       dataIndex: 'sup_name',
       type: 'string',
-      title: '供應商名稱',
+      title: 'サプライヤー',
       width: 200,
       req: true,
     },{
       dataIndex: 'sup_phone',
       type: 'string',
-      title: '供應商電話',
+      title: 'サプライヤー電話番号',
       width: 120,
       req: true,
     },{
       dataIndex: 'sup_addr',
       type: 'string',
-      title: '供應商地址',
+      title: 'サプライヤーアドレス',
       width: 200,
       req: true,
     }, 
