@@ -12,6 +12,9 @@ import '@/less/var.less'
 import '@/less/com.less'
 
 
+
+
+
 configure({ enforceActions: 'observed' })
 
 
@@ -47,6 +50,7 @@ root.render(
               <Route path="/supply" element={<Supply />} />
               <Route path="/ware" element={<Ware />} />
               <Route path="/dep" element={<Dep />} />
+              <Route path="/site" element={<Site />} />
               <Route path="/user" element={<User />} />
 
               <Route path="/stock" element={<Stock />} />

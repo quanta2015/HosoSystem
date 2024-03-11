@@ -6,7 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -27,13 +30,9 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
   const initJson = method==='insert'?[]:item.info
   const [info, setInfo] = useState(initJson);
 
-  // const [info, setInfo] = useState([]);
-
-  console.log(initJson,'initJson')
 
   // 保存修改數據
   const onFinish = (values) => {
-    
     values.info = JSON.stringify(info)
     const params = {
       id: item?.id,
@@ -48,7 +47,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -83,12 +82,12 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
 
           <div className={s.basic}>
             <div className={s.head}>
-              <h1>基本信息</h1>
+              <h1>{TXT.BAS_INFO}</h1>
             </div>
 
             <Form.Item
               name="name"
-              label="營業所名稱"
+              label={TXT.DEP_NAME}
               labelCol={{ span: 2 }}
               wrapperCol={{ span: 22 }}
             >
@@ -99,7 +98,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               <Col span={8}>
                 <Form.Item
                   name="addr"
-                  label="營業所地址"
+                  label={TXT.DEP_ADDR}
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -109,7 +108,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               <Col span={16}>
                 <Form.Item
                   name="phone"
-                  label="營業所電話"
+                  label={TXT.PHONE}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -122,7 +121,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>{TXT.OTH_INFO}</h1>
             {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
@@ -137,10 +136,9 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
           </div>
 
           <div className={s.fun}>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
 
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >關閉</Button>  
-
-            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button> }
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button> }
           </div>
         </Form>
       </div>

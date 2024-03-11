@@ -399,4 +399,43 @@ router.post('/saveDep',auth, async (req, res, next) => {
 })
 
 
+
+
+///////////////////////////////////////////////////
+// ------------------  現場API ----------------- //
+///////////////////////////////////////////////////
+
+// 查詢現場
+router.post('/querySite', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_SITE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除現場
+router.post('/delSite', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_SITE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存現場
+router.post('/saveSite',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_SITE(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
+
 module.exports = router

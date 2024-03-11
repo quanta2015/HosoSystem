@@ -26,10 +26,17 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
   const [info, setInfo] = useState(initJson);
+  const [optDep, setOptDep] = useState([]);
 
-  // const [info, setInfo] = useState([]);
-
-  console.log(initJson,'initJson')
+  // 加載數據
+  useEffect(() => {
+    setLoading(true)
+    store.queryDep().then(r=>{
+      let dep = r.data.map(o=>({value:o.id, label:o.name}))
+      setOptDep(dep)
+      setLoading(false)
+    })
+  }, []);
 
   // 保存修改數據
   const onFinish = (values) => {
@@ -44,7 +51,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
     console.log(values)
 
     setLoading(true)
-    store.saveDep(params).then(r=>{
+    store.saveSite(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
@@ -87,19 +94,19 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
             </div>
 
             <Form.Item
-              name="name"
-              label="營業所名稱"
+              name="dep_id"
+              label="所屬營業所"
               labelCol={{ span: 2 }}
               wrapperCol={{ span: 22 }}
             >
-              <Input disabled={detail}/>
+              <Select options={optDep}  disabled={detail}/> 
             </Form.Item>
 
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="addr"
-                  label="營業所地址"
+                  name="name"
+                  label="現場名稱"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -108,8 +115,8 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               </Col>
               <Col span={16}>
                 <Form.Item
-                  name="phone"
-                  label="營業所電話"
+                  name="manager"
+                  label="負責人"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -118,6 +125,28 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               </Col>
             </Row>
 
+            <Row gutter={16}>
+              <Col span={8}>
+                <Form.Item
+                  name="phone"
+                  label="聯繫方式"
+                  labelCol={{ span: 6 }}
+                  wrapperCol={{ span: 18 }}
+                >
+                  <Input disabled={detail}/>
+                </Form.Item>
+              </Col>
+              <Col span={16}>
+                <Form.Item
+                  name="addr"
+                  label="營業所地址"
+                  labelCol={{ span: 4 }}
+                  wrapperCol={{ span: 20 }}
+                >
+                  <Input disabled={detail}/>
+                </Form.Item>
+              </Col>
+            </Row>
 
           </div>
 

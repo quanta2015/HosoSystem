@@ -64,9 +64,10 @@ const Site = () => {
     ),
   })
   // 數據查詢過濾
-  col[1] = {...col[1],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[2] = {...col[2],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('phone',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[1] = {...col[1],...getColumnSearchProps('dep_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('addr',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('phone',doSearch,doReset,inputRef,searchedColumn,searchText)}
   
 
   const showDelConfirm = (e) => {
@@ -87,7 +88,7 @@ const Site = () => {
   // 加載數據
   useEffect(() => {
     setLoading(true)
-    store.queryDep(null).then(r=>{
+    store.querySite(null).then(r=>{
       setLoading(false)
       setDs(r.data)
       setRefresh(false)
@@ -102,7 +103,7 @@ const Site = () => {
       id: e.id
     }
     setLoading(true)
-    store.delDep(params).then(r=>{
+    store.delSite(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
@@ -121,6 +122,7 @@ const Site = () => {
   const doAdd =()=>{
     setMethod('insert')
     setShowForm(true)
+    setDetail(false)
   }
 
 
@@ -140,7 +142,7 @@ const Site = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>追加</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
