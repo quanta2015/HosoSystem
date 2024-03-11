@@ -374,6 +374,7 @@ router.post('/queryDep', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_DEP(?)`
   let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -383,6 +384,7 @@ router.post('/delDep', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_DEL_DEP(?)`
   let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
   res.status(200).json({ code: 0, data: r })
 })
 

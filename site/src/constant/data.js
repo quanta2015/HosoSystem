@@ -383,3 +383,38 @@ export const json_dep = [
     align: 'center',
   }
 ]
+
+
+
+
+export const json_site = [
+  {
+    dataIndex: 'id',
+    type: 'string',
+    title: '編號',
+    width: 60,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'name',
+    type: 'string',
+    title: '營業所',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'addr',
+    type: 'string',
+    title: '地址',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'phone',
+    type: 'string',
+    title: '聯繫方式',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  }
+]

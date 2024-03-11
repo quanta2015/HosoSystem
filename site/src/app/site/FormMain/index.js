@@ -19,23 +19,17 @@ const formItemLayout = {
 
 
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
   const [info, setInfo] = useState(initJson);
-  const [optDep, setOptDep] = useState([]);
 
-  // 加載數據
-  useEffect(() => {
-    setLoading(true)
-    store.queryDep().then(r=>{
-      let dep = r.data.map(o=>({value:o.id, label:o.name}))
-      setOptDep(dep)
-    })
-  }, []);
+  // const [info, setInfo] = useState([]);
+
+  console.log(initJson,'initJson')
 
   // 保存修改數據
   const onFinish = (values) => {
@@ -50,7 +44,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     console.log(values)
 
     setLoading(true)
-    store.saveWare(params).then(r=>{
+    store.saveDep(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
@@ -93,81 +87,60 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             </div>
 
             <Form.Item
-              name="dep_id"
-              label="所屬營業所"
+              name="name"
+              label="營業所名稱"
               labelCol={{ span: 2 }}
               wrapperCol={{ span: 22 }}
             >
-              <Select options={optDep}/>
+              <Input disabled={detail}/>
             </Form.Item>
 
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="code"
-                  label="倉庫編碼"
+                  name="addr"
+                  label="營業所地址"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
               <Col span={16}>
                 <Form.Item
-                  name="name"
-                  label="倉庫名稱"
+                  name="phone"
+                  label="營業所電話"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Input />
+                  <Input disabled={detail}/>
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="manager"
-                  label="負責人"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="addr"
-                  label="倉庫地址"
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              
-            </Row>
-            
+
           </div>
 
           <div className={s.head}>
             <h1>其他信息</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
+            {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
           <div className={s.info}>
             {info.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')} disabled={detail}/>
+                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')} disabled={detail}/>
+                  {!detail && <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />}
                 </div>
               )}
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >關閉</Button>  
+
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button> }
           </div>
         </Form>
       </div>

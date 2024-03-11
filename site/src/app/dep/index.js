@@ -14,7 +14,6 @@ import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
 
-
 const { confirm } = Modal;
 
 
@@ -33,6 +32,7 @@ const Dep = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -57,7 +57,8 @@ const Dep = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>詳情</Button>
+        <Button type="primary" onClick={()=>doEdit(o,false)}>編集</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
       </Space>
     ),
@@ -101,18 +102,20 @@ const Dep = () => {
       id: e.id
     }
     setLoading(true)
-    store.delWare(params).then(r=>{
+    store.delDep(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
     setItem(e)
     setMethod('update')
     setShowForm(true)
+    setDetail(readonly)
   }
+
 
 
   const doAdd =()=>{
@@ -144,7 +147,7 @@ const Dep = () => {
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, detail, method, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>
