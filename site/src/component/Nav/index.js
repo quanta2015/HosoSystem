@@ -6,6 +6,8 @@ import {Menu} from 'antd'
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 import s from './index.module.less';
+import {jp} from '@/constant/lang'
+const {NAV} = jp
 
 const getItem =(label, key, icon, children, type)=> {
   return {
@@ -17,20 +19,21 @@ const getItem =(label, key, icon, children, type)=> {
   };
 }
 
+
 const items = [
-  getItem('基本信息管理', '1', <MailOutlined />, [
-    getItem('營業所管理', 'dep'), 
-    getItem('現場管理', 'site'), 
-    getItem('用戶管理', 'user'), 
-    getItem('製品管理', 'part'), 
-    getItem('種類設定', 'model'),
-    getItem('サプライヤー管理', 'supply'),
-    getItem('倉庫管理', 'ware'),
+  getItem(NAV.MENU_L1, '1', <MailOutlined />, [
+    getItem(NAV.MENU_L1_1, 'dep'), 
+    getItem(NAV.MENU_L1_2, 'site'), 
+    getItem(NAV.MENU_L1_3, 'user'), 
+    getItem(NAV.MENU_L1_4, 'part'), 
+    getItem(NAV.MENU_L1_5, 'model'),
+    getItem(NAV.MENU_L1_6, 'supply'),
+    getItem(NAV.MENU_L1_7, 'ware'),
   ]),
- getItem('部品管理', '2', <AppstoreOutlined />, [
-    getItem('在庫管理', 'stock'),
-    getItem('出入庫管理', 'stockio'),
-    getItem('出入庫審核', 'audit'),
+  getItem(NAV.MENU_L2, '2', <AppstoreOutlined />, [
+    getItem(NAV.MENU_L2_1, 'stock'),
+    getItem(NAV.MENU_L2_2, 'stockio'),
+    getItem(NAV.MENU_L2_3, 'audit'),
   ]),
 ]
 
@@ -59,7 +62,6 @@ const Nav = () => {
   return (
     <div className={s.nav}>
       <Menu
-        // onClick={onClick}
         openKeys={openKeys}
         mode="inline"
         items={items}

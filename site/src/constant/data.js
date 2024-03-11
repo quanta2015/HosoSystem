@@ -5,6 +5,9 @@ import person from '@/img/menu/person.svg'
 // import config   from '@/img/menu/config.svg'
 import {API_SERVER} from '@/constant/apis'
 import {Tag} from 'antd'
+import {jp} from '@constant/lang'
+const { DB } = jp
+
 
 export const json_part = [
   {
@@ -199,7 +202,7 @@ export const json_stock = [
     dataIndex: 'part_img',
     type: 'string',
     title: '部品圖標',
-    width: 200,
+    width: 100,
     align: 'center',
     render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
   },{
@@ -211,19 +214,19 @@ export const json_stock = [
     dataIndex: 'part_name',
     type: 'string',
     title: '部品名稱',
-    width: 100,
+    width: 200,
     align: 'center',
   },{
     dataIndex: 'model_name',
     type: 'string',
     title: '部品類型',
-    width: 100,
+    width: 200,
     align: 'center',
   },{
     dataIndex: 'supply_name',
     type: 'string',
     title: '供應商',
-    width: 100,
+    width: 200,
     align: 'center',
   },{
     dataIndex: 'num',
@@ -356,14 +359,56 @@ export const json_dep = [
   {
     dataIndex: 'id',
     type: 'string',
-    title: '編號',
+    title: DB.DEP.ID,
     width: 60,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '營業所',
+    title: DB.DEP.DEP_NAME,
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'addr',
+    type: 'string',
+    title: DB.DEP.DEP_ADDR,
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'phone',
+    type: 'string',
+    title: DB.DEP.DEP_PHONE,
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  }
+]
+
+
+
+
+export const json_site = [
+  {
+    dataIndex: 'id',
+    type: 'string',
+    title: '編號',
+    width: 60,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'dep_name',
+    type: 'string',
+    title: '所屬營業所',
+    width: 120,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'name',
+    type: 'string',
+    title: '現場名稱',
     width: 100,
     fixed: 'left',
     align: 'center',
@@ -378,6 +423,13 @@ export const json_dep = [
     dataIndex: 'phone',
     type: 'string',
     title: '聯繫方式',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+  },{
+    dataIndex: 'manager',
+    type: 'string',
+    title: '負責人',
     width: 100,
     fixed: 'left',
     align: 'center',
