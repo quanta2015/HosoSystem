@@ -6,6 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
+
+
+const { MSG,TXT,DB,FN } = jp
 
 
 const formItemLayout = {
@@ -19,14 +23,45 @@ const formItemLayout = {
 
 
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col,detail, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
   const initBasic = method==='insert'?{}:{...item}
   const initJson = method==='insert'?[]:item.info
-  const [info, setInfo] = useState(initJson);
+  const initImgs = method==='insert'?[]:[{url:`${API_SERVER}/${item?.part_img}`}]
+  const initImg  = method==='insert'?null:item?.part_img
 
+  const [info, setInfo] = useState(initJson);
+  const [img, setImg] = useState(initImg)
+  const [imgs, setImgs] = useState(initImgs)
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+
+ // 打開預覽窗口
+ const doOpenPrev = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  }
+  // 關閉預覽窗口
+  const doClosePrev = () => setPreviewOpen(false);
+
+   // 修改圖片邏輯
+   const doChangeImg = ({ fileList: newFileList }) => {
+      console.log(newFileList)
+
+      if (newFileList.length>0) {
+        if ((newFileList)&&(newFileList[0].status ==='done')) {
+          setImg(newFileList[0].response?.data)
+        }
+      }
+      setImgs(newFileList);
+    }
 
 
   // 保存修改數據
@@ -44,7 +79,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -76,79 +111,113 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
           initialValues={initBasic}
           onFinish={onFinish}
           >
-
           <div className={s.basic}>
-            <div className={s.head}>
-              <h1>基本信息</h1>
+            <div className={s.lt}>
+              <div className={s.head}>
+                <h1>{DB.PART.IMG}</h1>
+              </div>
+              <Upload
+                action = {`${API_SERVER}/upload`}
+                listType = "picture-card"
+                className = "upload-list-inline" 
+                maxCount={1}
+                fileList={imgs}
+                onPreview={doOpenPrev}
+                onChange={doChangeImg}
+                disabled={detail}
+                >
+                {imgs.length >= 1 ? null : <Button icon={<CloudUploadOutlined />} /> }
+              </Upload>
             </div>
-
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="code"
-                  label="倉庫編碼"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="name"
-                  label="倉庫名稱"
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="manager"
-                  label="負責人"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="addr"
-                  label="倉庫地址"
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              
-            </Row>
-            
+            <div className={s.rt}>            
+              <div className={s.head}>
+                <h1>{TXT.PART_INFO}</h1>
+              </div>
+              <Row gutter={16}>
+                <Col span={8}>
+                  <Form.Item
+                    name="part_code"
+                    label={DB.STOCK.PART_CODE}
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input  disabled={detail}/>
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="part_name"
+                    label={DB.STOCK.PART_NAME}
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input  disabled={detail}/>
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="model_name"
+                    label={DB.STOCK.MODEL_NAME}
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input  disabled={detail}/>
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="supply_name"
+                    label={DB.STOCK.SUPPLY_NAME}
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input  disabled={detail}/>
+                  </Form.Item>
+                </Col>
+              </Row>      
+            </div>    
           </div>
-
-          <div className={s.head}>
-            <h1>其他信息</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
-          </div>     
+          <div className={s.basic}>            
+            <div className={s.head}>
+              <h1>{TXT.WARE_INFO}</h1>
+            </div>
+            <Row gutter={16}>
+              <Col span={8}>
+                <Form.Item
+                  name="ware_code"
+                  label={DB.STOCK.WARE_CODE}
+                  labelCol={{ span: 9 }}
+                  wrapperCol={{ span: 18 }}
+                >
+                  <Input  disabled={detail}/>
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name="ware_name"
+                  label={DB.STOCK.WARE_NAME}
+                  labelCol={{ span: 9 }}
+                  wrapperCol={{ span: 18 }}
+                >
+                  <Input  disabled={detail}/>
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name="num"
+                  label={DB.STOCK.NUM}
+                  labelCol={{ span: 9 }}
+                  wrapperCol={{ span: 18 }}
+                >
+                  <Input  disabled={detail}/>
+                </Form.Item>
+              </Col>                
+            </Row>    
           
-          <div className={s.info}>
-            {info.map((o,i)=>
-                <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
-                </div>
-              )}
           </div>
-
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{detail?FN.DIS:FN.CLS}</Button>  
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button> }            
           </div>
         </Form>
       </div>

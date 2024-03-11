@@ -18,6 +18,8 @@ export const jp = {
   TXT: {
     BAS_INFO: '基本情報',
     OTH_INFO: 'その他',
+    PART_INFO:'製品情報',
+    WARE_INFO: '倉庫情報',
     DEP_NAME: '營業所名稱',
     DEP_ADDR: "營業所地址",
     DEP_PHONE: "營業所電話",
@@ -39,6 +41,7 @@ export const jp = {
     DIS: '閉じる',
     SAV: 'セーブ',
     DL:'情報ダウンロード',
+    STK:'棚卸',
   },
 
   MSG: {

@@ -13,6 +13,10 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
+import {jp} from '@constant/lang'
+
+
+const { MSG,TXT,DB,FN } = jp
 
 
 const { confirm } = Modal;
@@ -33,6 +37,7 @@ const Stock = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -51,13 +56,13 @@ const Stock = () => {
 
   // 添加功能操作
   const col = json_stock.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o)}>詳情</Button>
+        <Button type="primary"  onClick={()=>showDetail(o,true)}>{FN.DTL}</Button>
       </Space>
     ),
   })
@@ -82,8 +87,10 @@ const Stock = () => {
   }, [refresh]);
 
 
-  const showDetail =()=>{
-    
+  const showDetail =(e,detail)=>{
+    setItem(e)
+    setDetail(detail)
+    setShowForm(true)
   }
 
 
@@ -105,7 +112,7 @@ const Stock = () => {
     store.exportStock().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -116,8 +123,8 @@ const Stock = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
-              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>製品在庫盤點</Button>
+              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>{FN.DL}</Button>
+              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>{FN.STK}</Button>
 
               {/*<Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品入庫伝票</Button>
               <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品出庫伝票</Button>*/}
@@ -127,7 +134,7 @@ const Stock = () => {
         </div>
 
 
-
+        {showForm && <FormMain {...{col,detail, item, method, setRefresh, setShowForm, setLoading}}  />}
       </Spin >
     </div>
   )
