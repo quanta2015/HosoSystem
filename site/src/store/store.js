@@ -160,15 +160,15 @@ class Store {
 // ------------------  庫存API ----------------- //
 ///////////////////////////////////////////////////
 
-  // 查詢在庫
+  // 查詢庫存
   async queryStock(params) {
     return await this.post(urls.API_QUERY_STOCK, params)
   }
-  // 盤點在庫
+  // 盤點庫存
   async checkStock(params) {
     return await this.post(urls.API_CHECK_STOCK, params)
   }
-  // 保存在庫
+  // 保存庫存
   async saveStock(params) {
     return await this.post(urls.API_SAVE_STOCK, params)
   }
@@ -179,19 +179,58 @@ class Store {
 // ------------------  出入庫API ----------------- //
 ///////////////////////////////////////////////////
 
-  // 查詢在庫
+  // 查詢出入庫
   async queryStockIO(params) {
     return await this.post(urls.API_QUERY_STOCK_IO, params)
   }
-  // 刪除在庫
+  // 刪除出入庫
   async delStockIO(params) {
     return await this.post(urls.API_DEL_STOCK_IO, params)
   }
-  // 保存在庫
+  // 保存出入庫
   async saveStockIO(params) {
     return await this.post(urls.API_SAVE_STOCK_IO, params)
   }
 
+
+
+
+///////////////////////////////////////////////////
+// ------------------  用戶API ----------------- //
+///////////////////////////////////////////////////
+
+  // 查詢用戶
+  async queryUsr(params) {
+    return await this.post(urls.API_QUERY_USER, params)
+  }
+  // 刪除用戶
+  async delUsr(params) {
+    return await this.post(urls.API_DEL_USER, params)
+  }
+  // 保存用戶
+  async saveUsr(params) {
+    return await this.post(urls.API_SAVE_USER, params)
+  }
+
+
+
+
+///////////////////////////////////////////////////
+// ------------------  營業所API ----------------- //
+///////////////////////////////////////////////////
+
+  // 查詢營業所
+  async queryDep(params) {
+    return await this.post(urls.API_QUERY_DEP, params)
+  }
+  // 刪除營業所
+  async delDep(params) {
+    return await this.post(urls.API_DEL_DEP, params)
+  }
+  // 保存營業所
+  async saveDep(params) {
+    return await this.post(urls.API_SAVE_DEP, params)
+  }
 
 
 }

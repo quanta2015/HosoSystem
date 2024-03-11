@@ -330,5 +330,71 @@ router.post('/saveStockIO',auth, async (req, res, next) => {
 
 
 
+///////////////////////////////////////////////////
+// ------------------  出入庫API ----------------- //
+///////////////////////////////////////////////////
+
+// 查詢出入庫
+router.post('/queryUser', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_USER(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除出入庫
+router.post('/delUser', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_USER(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存出入庫
+router.post('/saveUser',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_USER(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
+///////////////////////////////////////////////////
+// ------------------  營業所API ----------------- //
+///////////////////////////////////////////////////
+
+// 查詢出入庫
+router.post('/queryDep', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_DEP(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 刪除出入庫
+router.post('/delDep', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_DEP(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 保存出入庫
+router.post('/saveDep',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_DEP(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
 
 module.exports = router

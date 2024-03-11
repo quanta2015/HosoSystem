@@ -17,16 +17,19 @@ const formItemLayout = {
   },
 };
 
+// const ROLE =[{id:1,name:'系統'},{id:2,name:'倉庫'},{id:3,name:'採購'},{id:4,name:'審核'}]
+const ROLE =['系統','倉庫','採購','審核']
 
+
+const initOpt =(list)=> list.map(o=>({value:o, label:o}))
 
 const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
   const initBasic = method==='insert'?{}:{...item}
-  const initJson = method==='insert'?[]:item.info
-  const [info, setInfo] = useState(initJson);
   const [optDep, setOptDep] = useState([]);
+  const [optRole, setOptRole] = useState(initOpt(ROLE));
 
   // 加載數據
   useEffect(() => {
@@ -34,23 +37,28 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     store.queryDep().then(r=>{
       let dep = r.data.map(o=>({value:o.id, label:o.name}))
       setOptDep(dep)
+      setLoading(false)
     })
   }, []);
+
+
+  console.log(optDep)
 
   // 保存修改數據
   const onFinish = (values) => {
     
-    values.info = JSON.stringify(info)
+
+
     const params = {
       id: item?.id,
       method,
       ...values
     }
+    
 
-    console.log(values)
 
     setLoading(true)
-    store.saveWare(params).then(r=>{
+    store.saveUsr(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
@@ -58,25 +66,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     })
   };
 
-  // 添加json數據
-  const doAddItem =()=>{
-    info.push({key:'',val:''})
-    setInfo([...info])
-  }
 
-  // 刪除json數據
-  const doDelItem=(id)=>{
-    info.splice(id,1)
-    setInfo([...info])
-  }
-
-  // 修改數據
-  const chgVal =(id,e,key)=>{
-    const val = e.currentTarget.value
-    info[id][key]= val
-    setInfo([...info])
-  }
-
+  console.log(optDep)
 
   return (
     <div className={s.form}>
@@ -104,8 +95,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="code"
-                  label="倉庫編碼"
+                  name="usr"
+                  label="用戶賬號"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -115,7 +106,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <Col span={16}>
                 <Form.Item
                   name="name"
-                  label="倉庫名稱"
+                  label="用戶名"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -127,8 +118,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
-                  name="manager"
-                  label="負責人"
+                  name="pwd"
+                  label="密碼"
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -137,12 +128,12 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               </Col>
               <Col span={16}>
                 <Form.Item
-                  name="addr"
-                  label="倉庫地址"
+                  name="role"
+                  label="角色"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Input />
+                  <Select options={optRole} />
                 </Form.Item>
               </Col>
               
@@ -150,20 +141,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             
           </div>
 
-          <div className={s.head}>
-            <h1>其他信息</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
-          </div>     
-          
-          <div className={s.info}>
-            {info.map((o,i)=>
-                <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
-                </div>
-              )}
-          </div>
+
 
           <div className={s.fun}>
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  

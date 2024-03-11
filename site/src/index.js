@@ -22,11 +22,13 @@ const Part = lazy(() => import('./app/part'));
 const Model = lazy(() => import('./app/model'));
 const Supply = lazy(() => import('./app/supply'));
 const Ware = lazy(() => import('./app/ware'));
-
+const Dep = lazy(() => import('./app/dep'));
 
 const Stock = lazy(() => import('./app/stock'));
 const StockIO = lazy(() => import('./app/stockio'));
 
+
+const User = lazy(() => import('./app/user'));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -42,10 +44,13 @@ root.render(
               <Route path="/model" element={<Model />} />
               <Route path="/supply" element={<Supply />} />
               <Route path="/ware" element={<Ware />} />
+              <Route path="/dep" element={<Dep />} />
+              <Route path="/user" element={<User />} />
 
               <Route path="/stock" element={<Stock />} />
               <Route path="/stockio" element={<StockIO />} />
 
+              
 
             </Route>
           </Routes>

@@ -43,3 +43,15 @@ export const API_QUERY_STOCK_IO = API_SERVER + '/queryStockIO'
 export const API_DEL_STOCK_IO = API_SERVER + '/delStockIO'
 export const API_SAVE_STOCK_IO = API_SERVER + '/saveStockIO'
 
+
+// 用戶接口
+export const API_QUERY_USER = API_SERVER + '/queryUser'
+export const API_DEL_USER = API_SERVER + '/delUser'
+export const API_SAVE_USER = API_SERVER + '/saveUser'
+
+
+// 營業所接口
+export const API_QUERY_DEP = API_SERVER + '/queryDep'
+export const API_DEL_DEP = API_SERVER + '/delDep'
+export const API_SAVE_DEP = API_SERVER + '/saveDep'
+
