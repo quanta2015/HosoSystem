@@ -13,7 +13,10 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
+import {jp} from '@constant/lang'
 
+
+const { MSG,TXT,DB,FN } = jp
 
 const { confirm } = Modal;
 
@@ -51,14 +54,14 @@ const Part = () => {
 
   // 添加功能操作
   const col = json_part.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>削除</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
   })
@@ -69,11 +72,11 @@ const Part = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '削除しますか？',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: 'は　い',
-      cancelText: 'いいえ',
+      okText: FN.OK,
+      cancelText: FN.NO,
       onOk() {
         doDel(e)
       },
@@ -128,7 +131,7 @@ const Part = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("ダウンロードしました")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -139,8 +142,8 @@ const Part = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>製品の追加</Button>
+              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>{FN.DL}</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
