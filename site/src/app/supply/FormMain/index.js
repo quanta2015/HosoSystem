@@ -6,7 +6,11 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+
+const { FN,MSG,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -78,7 +82,7 @@ console.log(initImgs)
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -115,7 +119,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>アイコン</h1>
+                <h1>{TXT.SUP_IMG}</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -132,7 +136,7 @@ console.log(initImgs)
 
             <div className={s.rt}>
               <div className={s.head}>
-                <h1>基本情報</h1>
+                <h1>{TXT.BAS_INFO}</h1>
                 <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
               </div>
 
@@ -140,7 +144,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label="サプライヤー名"
+                    label={TXT.SUP_NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -150,7 +154,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="phone"
-                    label="連絡先"
+                    label={TXT.SUP_PHONE}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -161,7 +165,7 @@ console.log(initImgs)
               
               <Form.Item
                 name="addr"
-                label="サプライヤーアドレース"
+                label={TXT.SUP_ADDR}
                 labelCol={{ span: 3 }}
                 wrapperCol={{ span: 21 }}
               >
@@ -171,7 +175,7 @@ console.log(initImgs)
           </div>
 
           <div className={s.head}>
-            <h1>その他</h1>
+            <h1>{TXT.OTH_INFO}</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
           
@@ -186,8 +190,8 @@ console.log(initImgs)
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >キャンセル</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >セーブ</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
           </div>
         </Form>
       </div>

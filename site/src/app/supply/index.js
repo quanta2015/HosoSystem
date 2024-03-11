@@ -14,7 +14,10 @@ import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
 
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG } = jp
 const { confirm } = Modal;
 
 
@@ -51,14 +54,14 @@ const Supply = () => {
 
   // 添加功能操作
   const col = json_supply.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>削除</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
   })
@@ -69,11 +72,11 @@ const Supply = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: 'レコードを削除してもよろしいですか?',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: 'は い',
-      cancelText: 'いいえ',
+      okText: FN.OK,
+      cancelText: FN.NO,
       onOk() {
         doDel(e)
       },
@@ -125,7 +128,7 @@ const Supply = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("エクスポート成功")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -136,7 +139,7 @@ const Supply = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>サプライヤー追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>

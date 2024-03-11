@@ -99,14 +99,14 @@ export const json_supply = [
   {
     dataIndex: 'id',
     type: 'string',
-    title: '番号',
+    title: DB.SUP.ID,
     width: 60,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'img',
     type: 'string',
-    title: 'アイコン',
+    title: DB.SUP.SUP_IMG,
     width: 80,
     fixed: 'left',
     align: 'center',
@@ -114,19 +114,19 @@ export const json_supply = [
   },{
     dataIndex: 'name',
     type: 'string',
-    title: 'サプライヤー名',
+    title: DB.SUP.SUP_NAME,
     width: 100,
     align: 'center',
   },{
     dataIndex: 'phone',
     type: 'string',
-    title: '連絡先',
+    title: DB.SUP.SUP_PHONE,
     width: 200,
     align: 'center',
   },{
     dataIndex: 'addr',
     type: 'string',
-    title: 'サプライヤーアドレース',
+    title: DB.SUP.SUP_ADDR,
     width: 200,
   }
 ]
