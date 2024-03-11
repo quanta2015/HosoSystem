@@ -1,7 +1,7 @@
 # 0. 初期化
 
 # 1. 登録
-![[login.png]]
+![login.png](./img/login.png)
 ## 機能
 
 | id  |    説明    |
@@ -78,7 +78,7 @@
 
 #### 機能一覧
 
-![[supplier_01.png]]
+![supplier_01.png](./img/supplier/supplier_01.png)
 
 | id  |     説明      |
 | :-- | :---------: |
@@ -96,7 +96,7 @@
 
 *2.6.1の⑧をクリックして、サプライヤー追加ダイアログを開く*
 
-![[supplier_02.png]]
+![supplier_02.png](./img/supplier/supplier_02.png)
 
 | id  |          説明           |
 | :-- | :-------------------: |
@@ -111,7 +111,7 @@
 
 ### 2.6.3. データ編集
 *2.6.1の⑥をクリックして、データ編集ダイアログを開く*
-![[supplier_03.png]]
+![supplier_03.png](./img/supplier/supplier_03.png)
 
 | id  |            説明             |
 | :-- | :-----------------------: |
@@ -129,7 +129,7 @@
 
 ### 2.6.4. データ削除
 *2.6.1の⑦をクリックして、データ削除ダイアログを開く*
-![[supplier_04.png]]
+![supplier_04.png](./img/supplier/supplier_04.png)
 
 | id  |            説明             |
 | :-- | :-----------------------: |
