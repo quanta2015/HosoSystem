@@ -136,7 +136,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{detail?FN.DIS:FN.CLS}</Button>  
 
             {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button> }
           </div>
