@@ -1,5 +1,5 @@
 
-export const jp = {
+export const JP = {
   NAV: {
     MENU_L1:'基本信息管理',
     MENU_L1_1:'營業所管理',
@@ -45,13 +45,79 @@ export const jp = {
   },
 
   DB: {
+    PART:{
+      QRCODE:'QRコード',
+      IMG:'製品画像',
+      CODE:'製品ID',
+      NAME:'製品名前',
+      MOD_NAME:'製品種類',
+      SUP_NAME:'サプライヤー',
+      SUP_PHONE:'サプライヤー電話番号',
+      SUP_ADDR:'サプライヤーアドレス',
+    },
+    MODEL:{
+      ID:'サプライヤーアドレス',
+      NAME:'類型',
+    },
+    SUPPLY:{
+      ID:'番号',
+      IMG:'アイコン',
+      NAME:'サプライヤー名',
+      PHONE:'連絡先',
+      ADDR:'サプライヤーアドレス',
+    },
+    WARE:{
+      ID:'番号',
+      DEP_NAME:'所屬營業所',
+      CODE:'倉庫編碼',      
+      NAME:'倉庫名稱',
+      ADDR:'倉庫地址',
+      MANAGER:'負責人',
+    },
+    STOCK:{
+      ID:'番号',
+      WARE_CODE:'倉庫編碼',
+      WARE_NAME:'倉庫名稱',      
+      PART_IMG:'部品圖標',
+      PART_CODE:'部品編碼',
+      PART_NAME:'部品名稱',
+      MODEL_NAME:'部品類型',
+      SUPPLY_NAME:'供應商',
+      NUM:'數量',
+      STATUS:'狀態',
+    },
+    STOCK_IO:{
+      ID:'番号',
+      RECEPT_CODE:'出入庫單號',
+      WARE_NAME:'倉庫名稱',      
+      PART_IMG:'部品圖標',
+      PART_CODE:'部品編碼',
+      PART_NAME:'部品名稱',
+      MODEL_NAME:'部品類型',
+      SUPPLY_NAME:'供應商',
+      NUM:'數量',      
+    },
+    USER:{
+      ID:'編號',
+      DEP_NAME:'所屬部門',
+      USR:'賬號',
+      NAME:'用戶名',
+      PWD:'密碼',
+      ROLE:'角色'
+    },
     DEP: {
       ID: '編號',
       DEP_NAME: '營業所',
       DEP_ADDR: '地址',
-      DEP_PHONE:'聯繫方式',
-      
-
+      DEP_PHONE:'聯繫方式'
+    },
+    SITE:{
+      ID: '編號',
+      DEP_NAME: '所屬營業所',
+      NAME: '現場名稱',
+      ADDR: '地址',
+      PHONE: '聯繫方式',
+      MANAGER: '負責人',
     }
   }
 
