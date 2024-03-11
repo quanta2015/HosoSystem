@@ -1,5 +1,5 @@
 
-export const JP = {
+export const jp = {
   NAV: {
     MENU_L1: '基本信息管理',
     MENU_L1_1: '營業所管理',
@@ -74,7 +74,7 @@ export const JP = {
       DEP_NAME: '所属営業所',
       CODE: '倉庫コード',
       NAME: '倉庫名',
-      ADDR: '倉庫住所',
+      ADDR: '倉庫アドレース',
       MANAGER: '責任者'
     },
     STOCK: {
