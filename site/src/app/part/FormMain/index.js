@@ -6,7 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { MSG,TXT,DB,FN } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -100,7 +103,7 @@ console.log(initImgs)
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -137,7 +140,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>製品圖像</h1>
+                <h1>{DB.PART.IMG}</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -154,14 +157,14 @@ console.log(initImgs)
 
             <div className={s.rt}>
               <div className={s.head}>
-                <h1>基本信息</h1>
+                <h1>{TXT.BAS_INFO}</h1>
               </div>
 
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
                     name="code"
-                    label="製品編號"
+                    label={DB.PART.CODE}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -171,7 +174,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label="製品名称"
+                    label={DB.PART.NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -184,7 +187,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="sid"
-                    label="サプライヤー"
+                    label={DB.PART.SUP_NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -194,7 +197,7 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="mid"
-                    label="製品種類"
+                    label={DB.PART.MOD_NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
@@ -206,7 +209,7 @@ console.log(initImgs)
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>{TXT.OTH_INFO}</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
           
@@ -221,8 +224,8 @@ console.log(initImgs)
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
           </div>
         </Form>
       </div>

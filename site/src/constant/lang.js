@@ -1,5 +1,5 @@
 
-export const JP = {
+export const jp = {
   NAV: {
     MENU_L1:'基本信息管理',
     MENU_L1_1:'營業所管理',
@@ -30,11 +30,11 @@ export const JP = {
     ADD: '追加',
     DEL: '刪除',
     EDIT: '編集',
-    OK: '确定',
-    NO: '取消',
-    CLS: '關閉',
-    SAV: '保存',
-    
+    OK: 'はい',
+    NO: 'いいえ',
+    CLS: 'キャンセル',
+    SAV: 'セーブ',
+    DL:'情報ダウンロード',
   },
 
   MSG: {
