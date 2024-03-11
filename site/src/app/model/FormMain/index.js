@@ -9,7 +9,7 @@ import s from './index.module.less';
 import {jp} from '@constant/lang'
 
 
-const { MSG,TXT,DB } = jp
+const { MSG,TXT,DB,FN } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -64,8 +64,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             <Input />
           </Form.Item>
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
           </div>
         </Form>
       </div>
