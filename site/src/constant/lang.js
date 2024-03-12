@@ -20,9 +20,9 @@ export const jp = {
     OTH_INFO: 'その他',
     PART_INFO:'製品情報',
     WARE_INFO: '倉庫情報',
-    DEP_NAME: '営業所名稱',
-    DEP_ADDR: "営業所地址",
-    DEP_PHONE: "営業所電話",
+    DEP_NAME: '営業所名',
+    DEP_ADDR: "営業所アドレス",
+    DEP_PHONE: "営業所連絡先",
     SUP_IMG: 'アイコン',
     SUP_NAME: 'サプライヤー名',
     SUP_PHONE: '連絡先',
@@ -31,9 +31,9 @@ export const jp = {
 
   FN: {
     ACT: '機能',
-    DTL: '詳情',
+    DTL: '詳細',
     ADD: '追加',
-    DEL: '刪除',
+    DEL: '削除',
     EDIT: '編集',
     OK: 'はい',
     NO: 'いいえ',
@@ -47,13 +47,19 @@ export const jp = {
   },
 
   MSG: {
-    CFM: '确认要删除记录?',
-    EXPT_SUC: '导出成功！',
-    SAVE_SUC: '保存成功',
+    CFM: 'レコードを削除してもよろしいですか?',
+    EXPT_SUC: 'エクスポート成功！',
+    SAVE_SUC: 'セーブ成功！',
 
   },
 
   DB: {
+    ROLE:{
+      SYS:"システム",
+      WARE:"倉庫",
+      PURCHASE:"仕入れ",
+      REVIEW:"レビュー",
+    },
     PART: {
       QRCODE: 'QRコード',
       IMG: '製品画像',
@@ -80,7 +86,7 @@ export const jp = {
       DEP_NAME: '所属営業所',
       CODE: '倉庫コード',
       NAME: '倉庫名',
-      ADDR: '倉庫住所',
+      ADDR: '倉庫アドレース',
       MANAGER: '責任者'
     },
     STOCK: {
@@ -108,7 +114,7 @@ export const jp = {
     },
     USER: {
       ID: '番号',
-      DEP_NAME: '所属部門',
+      DEP_NAME: '所属営業所',
       USR: 'アカウント',
       NAME: 'ユーザー名',
       PWD: 'パスワード',
