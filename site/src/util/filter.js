@@ -1,6 +1,8 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
+import {jp} from '@constant/lang'
+const { MSG,TXT,DB,FN } = jp
 
 export const getColumnSearchProps = (dataIndex,doSearch,doReset,inputRef,searchedColumn,searchText) => ({
   filterDropdown: ({
@@ -39,7 +41,7 @@ export const getColumnSearchProps = (dataIndex,doSearch,doReset,inputRef,searche
             width: 90,
           }}
         >
-          查询
+          {FN.SRH}
         </Button>
         <Button
           onClick={() =>
@@ -50,7 +52,7 @@ export const getColumnSearchProps = (dataIndex,doSearch,doReset,inputRef,searche
             width: 90,
           }}
         >
-          重置
+          {FN.RST}
         </Button>
       </Space>
     </div>
