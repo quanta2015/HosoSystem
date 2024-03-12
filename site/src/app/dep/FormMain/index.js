@@ -95,7 +95,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
             </Form.Item>
 
             <Row gutter={16}>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   name="addr"
                   label={TXT.DEP_ADDR}
@@ -105,12 +105,12 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
                   <Input disabled={detail}/>
                 </Form.Item>
               </Col>
-              <Col span={16}>
+              <Col span={12}>
                 <Form.Item
                   name="phone"
                   label={TXT.DEP_PHONE}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
+                  labelCol={{ span: 6 }}
+                  wrapperCol={{ span: 18 }}
                 >
                   <Input disabled={detail}/>
                 </Form.Item>
