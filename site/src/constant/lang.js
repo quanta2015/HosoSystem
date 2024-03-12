@@ -52,6 +52,12 @@ export const jp = {
   },
 
   DB: {
+    ROLE:{
+      SYS:"システム",
+      WARE:"倉庫",
+      PURCHASE:"仕入れ",
+      REVIEW:"レビュー",
+    },
     PART: {
       QRCODE: 'QRコード',
       IMG: '製品画像',
@@ -106,7 +112,7 @@ export const jp = {
     },
     USER: {
       ID: '番号',
-      DEP_NAME: '所属部門',
+      DEP_NAME: '所属営業所',
       USR: 'アカウント',
       NAME: 'ユーザー名',
       PWD: 'パスワード',
