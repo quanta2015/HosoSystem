@@ -2,7 +2,7 @@
 export const jp = {
   NAV: {
     MENU_L1: '基本信息管理',
-    MENU_L1_1: '營業所管理',
+    MENU_L1_1: '営業所管理',
     MENU_L1_2: '現場管理',
     MENU_L1_3: '用戶管理',
     MENU_L1_4: '製品管理',
@@ -20,9 +20,9 @@ export const jp = {
     OTH_INFO: 'その他',
     PART_INFO:'製品情報',
     WARE_INFO: '倉庫情報',
-    DEP_NAME: '營業所名稱',
-    DEP_ADDR: "營業所地址",
-    DEP_PHONE: "營業所電話",
+    DEP_NAME: '営業所名稱',
+    DEP_ADDR: "営業所地址",
+    DEP_PHONE: "営業所電話",
     SUP_IMG: 'アイコン',
     SUP_NAME: 'サプライヤー名',
     SUP_PHONE: '連絡先',
