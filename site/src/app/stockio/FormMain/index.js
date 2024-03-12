@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Modal, message} from 'antd'
+import { AutoComplete } from 'antd';
+import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
@@ -8,145 +9,184 @@ import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
 
 
-const formItemLayout = {
-  labelCol: {
-    md: { span: 6 },
-  },
-  wrapperCol: {
-    md: { span: 6 },
-  },
-};
-
-
+const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
+const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
+const getPart = (list,id, stockio_id)=> {
+  let r = (list.filter(o=> o.id === id))[0]
+  return `${stockio_id} ${r.id} ${r.code} ${r.name}`
+}
 
 const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
+  console.log(item,'up')
+
+  const initType = method==='insert'?null:item.type
+  const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
+  // const initList = method==='insert'?[]:[]
 
 
-  const initBasic = method==='insert'?{}:{...item}
-  const initJson = method==='insert'?[]:item.info
-  const [info, setInfo] = useState(initJson);
-  // const [ware, setWare] = useState([]);
+  const [list, setList] = useState([]);
+  const [type, setType] = useState(initType);
+  const [inWare, setInWare] = useState(initInWare);
   const [optWare, setOptWare] = useState([]);
   const [optType, setOptType] = useState([
     {label:'采购入库',value:'采购入库'},
     {label:'退货入库',value:'退货入库'},
     {label:'寄託',value:'寄託'},
   ]);
+  const [part,setPart] = useState([])
+  const [partFil,setPartFil] = useState([])
 
 
   useEffect(() => {
     setLoading(true)
-    store.queryWare(null).then(r=>{
+    store.queryWareCas(null).then(r=>{
       setLoading(false)
       // console.log(r.data)
-      let ware = r.data.map(o=>({label: o.name, value:o.name}))
-      setOptWare(ware)
+      setOptWare(r.data)
     })
   }, []);
 
   useEffect(() => {
     setLoading(true)
-    store.queryWare(null).then(r=>{
+    store.queryPartSel(null).then(r=>{
       setLoading(false)
-      // setWare(r.data)
-      console.log(r.data)
-      let ware = r.data.map(o=>({label: o.name, value:o.name}))
-      setOptWare(ware)
+      let part = r.data.map(o=> partFormat(o))
+      setPart(r.data)
+      setPartFil(part)
     })
   }, []);
 
 
-  // 保存修改數據
-  const onFinish = (values) => {
-    
-    values.info = JSON.stringify(info)
-    const params = {
-      id: item?.id,
+  useEffect(() => {
+    if (part.length>0) {
+      const params = {recept_code: item?.recept_code}
+      setLoading(true)
+      store.queryStockIOByCode(params).then(r=>{
+        setLoading(false)
+        console.log(r.data)
+        let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num}))
+        setList(_list)
+      })
+    }
+  }, [part]);
+
+  console.log(list,'list')
+
+
+  // 添加json數據
+  const doAddItem =()=>{
+    list.push({key:'',val:''})
+    setList([...list])
+  }
+
+  // 刪除json數據
+  const doDelItem=(id)=>{
+    list.splice(id,1)
+    setList([...list])
+  }
+
+  // 修改數量
+  const chgVal =(e,i)=>{
+    const val = e.currentTarget.value
+    list[i].val= parseInt(val)
+    setList([...list])
+  }
+
+  // 選擇零件
+  const doSelPart = (val,i) => {
+    console.log(`Selected: ${val} ${i}`);
+    // const val = e.currentTarget.value
+    list[i].key= val  //parseInt(val.split(' ')[0])
+    setList([...list])
+  }
+
+
+  const doSearch = (value) => {
+    const filteredData = part.filter(o => 
+     o.code.toLowerCase().includes(value.toLowerCase()) || o.name.toLowerCase().includes(value.toLowerCase())
+    )
+    setPartFil(filteredData.map(o=> partFormat(o)))
+  }
+
+
+
+
+  const doSave =()=>{
+
+    const _list = list.map(o=>{
+      let data = o.key.split(' ')
+
+      return {
+        id: o.id,
+        key: parseInt(data[1]),
+        val: o.val,
+      }
+    })
+    const params ={
+      recept_code: item?.recept_code,
       method,
-      ...values
+      type,
+      list: _list,
+      in_dep_id: inWare[0],
+      in_ware_id: inWare[1],
     }
 
+    if (type === null) {
+      message.info('請選擇入庫類型')
+      return
+    }
+    if ((inWare[0] === null)||(inWare[1] === null)) {
+      message.info('請選擇倉庫')
+      return
+    }
+    if (list.length === 0) {
+      message.info('請添加部品')
+      return 
+    }
+    // console.log(params)
+
     setLoading(true)
-    store.saveWare(params).then(r=>{
+    store.saveStockIO(params).then(r=>{
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
       message.info('保存成功')
     })
-  };
-
-  // 添加json數據
-  const doAddItem =()=>{
-    info.push({key:'',val:''})
-    setInfo([...info])
   }
 
-  // 刪除json數據
-  const doDelItem=(id)=>{
-    info.splice(id,1)
-    setInfo([...info])
-  }
 
-  // 修改數據
-  const chgVal =(id,e,key)=>{
-    const val = e.currentTarget.value
-    info[id][key]= val
-    setInfo([...info])
-  }
+
 
 
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-        <Form 
-          {...formItemLayout}
-          initialValues={initBasic}
-          onFinish={onFinish}
-          >
-
+        
           <div className={s.basic}>
             <div className={s.head}>
               <h1>基本信息</h1>
             </div>
-
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="code"
-                  label="入庫類型"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Select options={optType}/>
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="name"
-                  label="倉庫名稱"
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Select options={optWare}/>
-                </Form.Item>
-              </Col>
-            </Row>
-
-
-            
+            <div className={s.row}>
+              <span>入庫類型</span>
+              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
+              <span>入庫倉庫</span>
+              <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare}/>
+            </div>
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>入庫部品</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
+
           
+
           <div className={s.info}>
-            {info.map((o,i)=>
+            {list.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
+                  <AutoComplete options={partFil} value={o.key} onSearch={doSearch} onChange={(val)=>doSelPart(val,i)} style={{'width':'600px','marginRight':'20px'}} />
+                  <Input onChange={(e)=>chgVal(e,i)} value={o.val}/>
                   <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
                 </div>
               )}
@@ -154,9 +194,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
 
           <div className={s.fun}>
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >保存</Button>
           </div>
-        </Form>
       </div>
 
     </div>

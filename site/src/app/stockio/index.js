@@ -50,13 +50,24 @@ const Stock = () => {
   };
 
   // 添加功能操作
-  const col = json_stock_io
+  const col = json_stock_io.concat({
+    title: '機能',
+    width: 200,
+    align: 'center',
+    fixed: 'right',
+    render: o => (
+      <Space>
+        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+      </Space>
+    ),
+  })
 
   // 數據查詢過濾
-  col[1] = {...col[1],...getColumnSearchProps('ware_code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[2] = {...col[2],...getColumnSearchProps('ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[4] = {...col[4],...getColumnSearchProps('part_code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[5] = {...col[5],...getColumnSearchProps('part_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[1] = {...col[1],...getColumnSearchProps('recept_code',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[2] = {...col[2],...getColumnSearchProps('type',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('out_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('in_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 
   const showDelConfirm = (e) => {
@@ -89,10 +100,10 @@ const Stock = () => {
   // 刪除數據
   const doDel = (e)=>{
     let params = { 
-      id: e.id
+      recept_code: e.recept_code
     }
     setLoading(true)
-    store.delWare(params).then(r=>{
+    store.delStockIO(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
@@ -107,6 +118,7 @@ const Stock = () => {
 
 
   const doAdd =()=>{
+    setItem(null)
     setMethod('insert')
     setShowForm(true)
   }

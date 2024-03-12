@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 11/03/2024 15:42:50
+ Date: 12/03/2024 17:44:26
 */
 
 SET NAMES utf8mb4;
@@ -1151,20 +1151,39 @@ DROP TABLE IF EXISTS `tab_stock_io`;
 CREATE TABLE `tab_stock_io` (
   `id` int NOT NULL AUTO_INCREMENT,
   `recept_code` varchar(50) DEFAULT NULL,
-  `type` int DEFAULT NULL,
-  `wid` int DEFAULT NULL,
-  `pid` int DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `out_dep_id` int DEFAULT NULL,
+  `out_ware_id` int DEFAULT NULL,
+  `in_dep_id` int DEFAULT NULL,
+  `in_ware_id` int DEFAULT NULL,
+  `part_id` int DEFAULT NULL,
   `num` int DEFAULT NULL,
   `status` int DEFAULT NULL,
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_stock_io
 -- ----------------------------
 BEGIN;
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 'HOSO-204934', '采购入库', NULL, NULL, 1, 3, 1002, 16, 1, NULL, NULL);
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (2, 'HOSO-204934', '采购入库', NULL, NULL, 1, 3, 1001, 23, 1, NULL, NULL);
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (3, 'HOSO-444444', '銷售出庫', 1, 3, 2, 1, 1001, 10, 0, NULL, NULL);
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (4, 'HOSO-444444', '銷售出庫', 1, 3, 2, 1, 1005, 60, 0, NULL, NULL);
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (5, 'HOSO-498888', '社內調動', 1, 3, 2, 1, 1005, 5, 0, NULL, NULL);
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (6, 'HOSO-20240312155206', '采购入库', NULL, NULL, 2, 1, 1001, 60, 1, 'keboda', '2024-03-12 17:29:47');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (7, 'HOSO-20240312155206', '采购入库', NULL, NULL, 2, 1, 1006, 12, 1, 'keboda', '2024-03-12 17:25:45');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (8, 'HOSO-20240312172800', '退货入库', NULL, NULL, 2, 2, 1003, 24, 0, 'keboda', '2024-03-12 17:28:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (9, 'HOSO-20240312172800', '退货入库', NULL, NULL, 2, 2, 1006, 8, 0, 'keboda', '2024-03-12 17:28:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (10, 'HOSO-20240312172800', '退货入库', NULL, NULL, 2, 2, 1042, 12, 0, 'keboda', '2024-03-12 17:28:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (11, 'HOSO-20240312172858', '采购入库', NULL, NULL, 1, 4, 1004, 16, 0, 'keboda', '2024-03-12 17:28:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (12, 'HOSO-20240312172858', '采购入库', NULL, NULL, 1, 4, 1030, 21, 0, 'keboda', '2024-03-12 17:28:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (13, 'HOSO-20240312172858', '采购入库', NULL, NULL, 1, 4, 1040, 56, 0, 'keboda', '2024-03-12 17:28:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (18, 'HOSO-20240312174356', '采购入库', NULL, NULL, 1, 3, 1006, 24, 0, 'keboda', '2024-03-12 17:43:56');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (19, 'HOSO-20240312174356', '采购入库', NULL, NULL, 1, 3, 1166, 12, 0, 'keboda', '2024-03-12 17:43:56');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (20, 'HOSO-20240312174356', '采购入库', NULL, NULL, 1, 3, 1022, 88, 0, 'keboda', '2024-03-12 17:43:56');
 COMMIT;
 
 -- ----------------------------
@@ -1243,10 +1262,10 @@ CREATE TABLE `tab_ware` (
 -- Records of tab_ware
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 2, 'code-001', '新宿倉庫1', '新宿bb', '慰問費', '[{\"key\":\"11\",\"val\":\"22\"}]', 0, 'keboda', '2024-03-11 14:54:09');
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, 'code-002', '新宿倉庫2', '新宿www', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:08:12');
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 1, '123456', 'wefawfe', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:06:54');
-INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (4, 1, 'sdsd', 'sdsd', 'sdsd', 'sd', '[]', 1, 'admin', '2024-03-08 15:26:48');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (1, 2, 'code-001', '梅田倉庫1', '新宿bb', '慰問費', '[{\"key\":\"11\",\"val\":\"22\"}]', 0, 'keboda', '2024-03-11 14:54:09');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (2, 2, 'code-002', '梅田倉庫2', '新宿www', '福田艾', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:08:12');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 1, 'code-003', '新宿倉庫1', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:06:54');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (4, 1, 'code-004', '新宿倉庫2', 'sdsd', 'sd', '[]', 0, 'admin', '2024-03-08 15:26:48');
 COMMIT;
 
 -- ----------------------------
@@ -1278,6 +1297,12 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_site` AS select `w`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_stock`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_stock` AS select `s`.`id` AS `key`,`s`.`id` AS `id`,`w`.`code` AS `ware_code`,`w`.`name` AS `ware_name`,`p`.`code` AS `part_code`,`p`.`name` AS `part_name`,`p`.`img` AS `part_img`,`m`.`name` AS `model_name`,`su`.`name` AS `supply_name`,`s`.`num` AS `num`,`s`.`status` AS `status` from ((((`tab_stock` `s` left join `tab_part` `p` on((`s`.`pid` = `p`.`id`))) left join `tab_ware` `w` on((`s`.`wid` = `w`.`id`))) left join `tab_model` `m` on((`p`.`mid` = `m`.`id`))) left join `tab_supply` `su` on((`p`.`sid` = `su`.`id`)));
+
+-- ----------------------------
+-- View structure for view_stock_io
+-- ----------------------------
+DROP VIEW IF EXISTS `view_stock_io`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_stock_io` AS select row_number() OVER (ORDER BY `t`.`recept_code` )  AS `key`,`t`.`recept_code` AS `recept_code`,`t`.`type` AS `type`,`t`.`out_dep_id` AS `out_dep_id`,`t`.`out_ware_id` AS `out_ware_id`,`w1`.`name` AS `out_ware_name`,`t`.`in_dep_id` AS `in_dep_id`,`t`.`in_ware_id` AS `in_ware_id`,`w2`.`name` AS `in_ware_name` from (((select `s`.`recept_code` AS `recept_code`,`s`.`type` AS `type`,`s`.`out_dep_id` AS `out_dep_id`,`s`.`out_ware_id` AS `out_ware_id`,`s`.`in_dep_id` AS `in_dep_id`,`s`.`in_ware_id` AS `in_ware_id` from `tab_stock_io` `s` where (`s`.`status` = 0) group by `s`.`recept_code`,`s`.`type`,`s`.`out_dep_id`,`s`.`out_ware_id`,`s`.`in_dep_id`,`s`.`in_ware_id`) `t` left join `tab_ware` `w1` on((`t`.`out_ware_id` = `w1`.`id`))) left join `tab_ware` `w2` on((`t`.`in_ware_id` = `w2`.`id`)));
 
 -- ----------------------------
 -- View structure for view_supply
@@ -1401,6 +1426,22 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_DEL_STOCK_IO
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_DEL_STOCK_IO`;
+delimiter ;;
+CREATE PROCEDURE `PROC_DEL_STOCK_IO`(IN `data` varchar(20000))
+BEGIN
+	
+	SET @recept_code = JSON_UNQUOTE(JSON_EXTRACT(data, '$.recept_code'));
+	
+	UPDATE tab_stock_io set status = 1 where recept_code = @recept_code;
+	SELECT * from view_stock_io;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_DEL_SUPPLY
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_DEL_SUPPLY`;
@@ -1494,6 +1535,19 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for PROC_QUERY_PART_SEL
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_PART_SEL`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_PART_SEL`(IN `data` varchar(20000))
+BEGIN
+	
+	select id,code,name from tab_part;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for PROC_QUERY_SITE
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_QUERY_SITE`;
@@ -1526,9 +1580,31 @@ DROP PROCEDURE IF EXISTS `PROC_QUERY_STOCK_IO`;
 delimiter ;;
 CREATE PROCEDURE `PROC_QUERY_STOCK_IO`(IN `data` varchar(20000))
 BEGIN
--- 	select * from view_stock_io;
+	select * from view_stock_io;
 	
-		select * from tab_stock_io;
+-- 		select * from tab_stock_io;
+	
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_QUERY_STOCK_IO_BY_CODE
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_QUERY_STOCK_IO_BY_CODE`;
+delimiter ;;
+CREATE PROCEDURE `PROC_QUERY_STOCK_IO_BY_CODE`(IN `data` varchar(20000))
+BEGIN
+	SET @recept_code = JSON_UNQUOTE(JSON_EXTRACT(data, '$.recept_code'));
+	
+	SELECT 
+		t.*, 
+		w1.name as out_ware_name,
+		w2.name as in_ware_name 
+	from  tab_stock_io t
+	LEFT JOIN tab_ware w1 ON t.out_ware_id = w1.id
+	LEFT JOIN tab_ware w2 ON t.in_ware_id = w2.id
+	where t.recept_code = @recept_code;
 	
 END
 ;;
@@ -1753,6 +1829,86 @@ BEGIN
         INSERT INTO tab_site (dep_id, phone, name, addr, manager, info, status, create_name, create_time)
         VALUES (@dep_id, @phone, @name,@addr, @manager, @info, 0, @create_name, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'));
     END IF;
+    
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_SAVE_STOCK_IO
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_SAVE_STOCK_IO`;
+delimiter ;;
+CREATE PROCEDURE `PROC_SAVE_STOCK_IO`(IN jsonData TEXT)
+BEGIN
+	DECLARE i INT DEFAULT 0;
+	
+	
+	SET @method = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.method'));
+	SET @type = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.type'));
+	SET @create_name = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.create_name'));
+	SET @create_time = DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s');
+	SET @list = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.list'));
+	SET @len  = JSON_LENGTH(@list);
+	
+	
+	IF @type = '采购入库' or @type = '退货入库' THEN
+		SET @in_dep_id = JSON_EXTRACT(jsonData, '$.in_dep_id');
+    SET @in_ware_id = JSON_EXTRACT(jsonData, '$.in_ware_id');
+		
+		WHILE i < @len DO
+			SET @id = (JSON_EXTRACT(@list, CONCAT('$[', i, '].id')));
+			SET @part_id = (JSON_EXTRACT(@list, CONCAT('$[', i, '].key')));
+			SET @num = JSON_EXTRACT(@list, CONCAT('$[', i, '].val'));
+			SET @recept_code = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.recept_code'));
+		
+			IF @method = 'update' THEN
+				DELETE FROM tab_stock_io WHERE recept_code = @recept_code;
+			END IF;
+	
+			SET @recept_code = CONCAT('HOSO-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
+			INSERT INTO tab_stock_io (recept_code,type,in_dep_id, in_ware_id, part_id, num, status, create_name, create_time)
+			VALUES (@recept_code,@type,@in_dep_id, @in_ware_id, @part_id, @num, 0, @create_name, @create_time);
+	
+			SET i = i + 1;
+		END WHILE;
+	END IF;
+	
+	
+	
+-- 	IF @type = '采购入库' or @type = '退货入库' THEN
+-- 		SET @in_dep_id = JSON_EXTRACT(jsonData, '$.in_dep_id');
+--     SET @in_ware_id = JSON_EXTRACT(jsonData, '$.in_ware_id');
+-- 		
+-- 		WHILE i < @len DO
+-- 			SET @id = (JSON_EXTRACT(@list, CONCAT('$[', i, '].id')));
+-- 			SET @part_id = (JSON_EXTRACT(@list, CONCAT('$[', i, '].key')));
+-- 			SET @num = JSON_EXTRACT(@list, CONCAT('$[', i, '].val'));
+-- 			
+-- 			IF @method = 'insert' THEN
+-- 				SET @recept_code = CONCAT('HOSO-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
+-- 				INSERT INTO tab_stock_io (recept_code,type,in_dep_id, in_ware_id, part_id, num, status, create_name, create_time)
+-- 				VALUES (@recept_code,@type,@in_dep_id, @in_ware_id, @part_id, @num, 0, @create_name, @create_time);
+-- 			ELSE
+-- 				SET @recept_code = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.recept_code'));
+-- -- 				call DEBUG_MSG(@recept_code);
+-- 				UPDATE tab_stock_io
+--         SET
+--             type = @type,
+--             in_ware_id = @in_ware_id,
+--             in_dep_id = @in_dep_id,
+--             part_id = @part_id,
+--             num = @num,
+-- 						create_name = @create_name,
+--             create_time = @create_time
+--         WHERE id = @id;
+-- 			END IF;
+-- 	
+-- 	
+-- 			SET i = i + 1;
+-- 		END WHILE;
+-- 	END IF;
+	
     
 END
 ;;

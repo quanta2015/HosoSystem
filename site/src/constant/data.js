@@ -249,7 +249,7 @@ export const json_stock = [
 
 export const json_stock_io = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.STOCK_IO.ID,
     width: 60,
@@ -259,11 +259,11 @@ export const json_stock_io = [
     dataIndex: 'recept_code',
     type: 'string',
     title: DB.STOCK_IO.RECEPT_CODE,
-    width: 120,
+    width: 300,
     fixed: 'left',
     align: 'center',
   },{
-    dataIndex: 'ware_name',
+    dataIndex: 'type',
     type: 'string',
     title: DB.STOCK_IO.WARE_NAME,
     width: 200,
@@ -286,13 +286,13 @@ export const json_stock_io = [
     width: 100,
     align: 'center',
   },{
-    dataIndex: 'model_name',
+    dataIndex: 'out_ware_name',
     type: 'string',
     title: DB.STOCK_IO.MODEL_NAME,
     width: 100,
     align: 'center',
   },{
-    dataIndex: 'supply_name',
+    dataIndex: 'in_ware_name',
     type: 'string',
     title: DB.STOCK_IO.SUPPLY_NAME,
     width: 100,

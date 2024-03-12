@@ -89,6 +89,15 @@ router.post('/upload', function(req, res,next) {
 // ---------------  部品模塊API ----------------- //
 ///////////////////////////////////////////////////
 
+// 查詢部品
+router.post('/queryPartSel', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_PART_SEL(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
 
 // 查詢部品
 router.post('/queryTable', async (req, res, next) => {
@@ -322,7 +331,39 @@ router.post('/saveStockIO',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
   params.create_name = usr
+
+  console.log(params)
   let sql = `CALL PROC_SAVE_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+// 查詢出入庫
+router.post('/queryWareCas', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql1 = `CALL PROC_QUERY_DEP(?)`
+  let sql2 = `CALL PROC_QUERY_WARE(?)`
+  let r1 = await callP(sql1, params, res)
+  let r2 = await callP(sql2, params, res)
+  let ret = []
+
+  r1.map(o=>{
+    let item = {label:o.name, value:o.id, children:[] }
+    let ware = r2.filter(p => p.dep_id === o.id)
+    ware.map(p=>{
+      item.children.push({label:p.name, value:p.id })
+    })
+    ret.push(item)
+  })
+  res.status(200).json({ code: 0, data: ret })
+})
+
+// 查詢出入庫
+router.post('/queryStockIOByCode', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK_IO_BY_CODE(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
