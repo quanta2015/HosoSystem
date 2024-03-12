@@ -39,6 +39,8 @@ export const jp = {
     SAV: 'セーブ',
     DL:'情報ダウンロード',
     STK:'棚卸',
+    SRH:'検索',
+    RST:'リセット',
   },
 
   MSG: {
