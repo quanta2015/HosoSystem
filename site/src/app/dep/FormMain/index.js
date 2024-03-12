@@ -108,7 +108,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               <Col span={16}>
                 <Form.Item
                   name="phone"
-                  label={TXT.PHONE}
+                  label={TXT.DEP_PHONE}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
