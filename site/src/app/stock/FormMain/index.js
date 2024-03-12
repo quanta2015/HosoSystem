@@ -221,7 +221,9 @@ const FormMain = ({col,detail, item, method,setRefresh, setShowForm,setLoading})
           </div>
         </Form>
       </div>
-
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={doClosePrev}>
+        <img alt="" style={{ width: '100%', }} src={previewImage} />
+      </Modal>
     </div>
     
   )

@@ -19,4 +19,4 @@
 
 secret.md
 data/ware.sql
-server/db/conf.js
+/server/db/conf.js
