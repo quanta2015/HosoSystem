@@ -74,6 +74,12 @@ class Store {
 ///////////////////////////////////////////////////
 
   // 查詢表
+  async queryPartSel(params) {
+    return await this.post(urls.API_QUERY_PART_SEL, params)
+  }
+
+
+  // 查詢表
   async queryTable(params) {
     return await this.post(urls.API_QUERY_TABLE, params)
   }
@@ -191,6 +197,18 @@ class Store {
   async saveStockIO(params) {
     return await this.post(urls.API_SAVE_STOCK_IO, params)
   }
+
+  // 查詢倉庫級聯
+  async queryWareCas(params) {
+    return await this.post(urls.API_QUERY_WARE_CAS, params)
+  }
+
+  // 查詢倉庫級聯
+  async queryStockIOByCode(params) {
+    return await this.post(urls.API_QUERY_STOCK_IO_BY_CODE, params)
+  }
+
+
 
 
 

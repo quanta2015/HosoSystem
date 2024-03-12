@@ -249,7 +249,7 @@ export const json_stock = [
 
 export const json_stock_io = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: '編號',
     width: 60,
@@ -259,50 +259,26 @@ export const json_stock_io = [
     dataIndex: 'recept_code',
     type: 'string',
     title: '出入庫單號',
-    width: 120,
+    width: 300,
     fixed: 'left',
     align: 'center',
   },{
-    dataIndex: 'ware_name',
+    dataIndex: 'type',
     type: 'string',
-    title: '倉庫名稱',
+    title: '類型',
     width: 200,
-  },{
-    dataIndex: 'part_img',
-    type: 'string',
-    title: '部品圖標',
-    width: 200,
-    align: 'center',
-    render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
-  },{
-    dataIndex: 'part_code',
-    type: 'string',
-    title: '部品編碼',
-    width: 200,
-  },{
-    dataIndex: 'part_name',
-    type: 'string',
-    title: '部品名稱',
-    width: 100,
+    fixed: 'left',
     align: 'center',
   },{
-    dataIndex: 'model_name',
+    dataIndex: 'out_ware_name',
     type: 'string',
-    title: '部品類型',
-    width: 100,
-    align: 'center',
+    title: '出庫倉庫名稱',
+    width: 300,
   },{
-    dataIndex: 'supply_name',
+    dataIndex: 'in_ware_name',
     type: 'string',
-    title: '供應商',
-    width: 100,
-    align: 'center',
-  },{
-    dataIndex: 'num',
-    type: 'string',
-    title: '數量',
-    width: 100,
-    align: 'center',
+    title: '入庫倉庫名稱',
+    width: 300,
   }
 ]
 

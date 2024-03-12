@@ -12,6 +12,8 @@
 
 
   .wrap {
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: var(--pop-width);
     background: #fff;
@@ -23,21 +25,22 @@
     display: flex;
     flex-direction: column;
 
-    .lt {
+    .row {
       display: flex;
-      flex-direction: column;
-      width: 200px;
+      align-items: center;
 
-      img {
-        width: 160px;
-        height: 160px;
+      &>span {
+        margin-right: 10px;
+        font-size: 14px;
       }
     }
 
-    .rt {
+    .select {
       flex: 1;
-      display: flex;
-      flex-direction: column;
+
+      &+span {
+        margin-left: 20px;
+      }
     }
   }
 
@@ -62,17 +65,22 @@
       display: flex;
       margin-bottom: 10px;
 
-      input:first-child {
-        width: 200px;
-        text-align: center;
-      }
+      // input:nth-child(2) {
+      //   border-radius: 0;
+      //   border: none;
+      //   border-bottom: 1px solid #ccc;
+      // }
+
+      // input:first-child {
+      //   width: 700px;
+      //   text-align: center;
+      // }
 
       input {
-        border: none;
-        border-bottom: 1px solid #ccc;
-        border-radius: 0;
+        flex: 1;
         margin-right: 10px;
       }
+
     }
   }
 
