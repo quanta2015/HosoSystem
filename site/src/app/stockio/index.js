@@ -12,7 +12,7 @@ import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
-import FormMain from './FormMain'
+import InFormMain from './InFormMain'
 
 
 const { confirm } = Modal;
@@ -140,17 +140,17 @@ const Stock = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
+              {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品出庫伝票</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>入庫伝票</Button>
+              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>出庫伝票</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <InFormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>
