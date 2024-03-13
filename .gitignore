@@ -20,3 +20,8 @@
 secret.md
 data/ware.sql
 /server/db/conf.js
+server/db/conf.js
+server/app.js
+site/package.json
+site/src/constant/apis.js
+site/src/util/request.js
