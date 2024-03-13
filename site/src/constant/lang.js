@@ -27,7 +27,13 @@ export const jp = {
     SUP_NAME: 'サプライヤー名',
     SUP_PHONE: '連絡先',
     SUP_ADDR: 'サプライヤーアドレース',
+    STOCK_IO_TYPE:{
+      BUY:'仕入',
+      RETURN:'返却',
+      TMP:'一時保管'
+    },
   },
+  
 
   FN: {
     ACT: '機能',
@@ -71,7 +77,7 @@ export const jp = {
       SUP_ADDR: 'サプライヤーアドレス',
     },
     MODEL: {
-      ID: 'サプライヤーアドレス',
+      ID: '番号',
       NAME: '類型',
     },
     SUPPLY: {
@@ -104,7 +110,10 @@ export const jp = {
     STOCK_IO: {
       ID: '番号',
       RECEPT_CODE: '入出庫番号',
+      TYPE:'種類',
       WARE_NAME: '倉庫名',
+      IN_WARE_NAME: '元倉庫',
+      OUT_WARE_NAME:'目的地倉庫',
       PART_IMG: '部品画像',
       PART_CODE: '部品コード',
       PART_NAME: '部品名',
