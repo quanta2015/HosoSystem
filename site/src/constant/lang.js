@@ -12,7 +12,7 @@ export const jp = {
     MENU_L2: '部品管理',
     MENU_L2_1: '在庫管理',
     MENU_L2_2: '入出庫管理',
-    MENU_L2_3: '入出庫審査',
+    MENU_L2_3: '入出庫レビュー',
   },
 
   TXT: {
