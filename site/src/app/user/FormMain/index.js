@@ -54,18 +54,13 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   console.log(optDep)
 
   // 保存修改數據
-  const onFinish = (values) => {
-    
-
-
+  const onFinish = (values) => { 
     const params = {
       id: item?.id,
       method,
       ...values
     }
-    
-
-
+    console.log(params)
     setLoading(true)
     store.saveUsr(params).then(r=>{
       setLoading(false)
@@ -74,6 +69,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       message.info(MSG.SAVE_SUC)
     })
   };
+
+  const onChange=(values)=> console.log(values);
 
 
   console.log(optDep)
@@ -93,12 +90,12 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
             </div>
 
             <Form.Item
-              name="dep_name"
+              name="dep_id"
               label={DB.USER.DEP_NAME}
               labelCol={{ span: 2 }}
               wrapperCol={{ span: 22 }}
             >
-              <Select options={optDep}/>
+              <Select options={optDep}　onChange={onChange}/>
             </Form.Item>
 
             <Row gutter={16}>

@@ -1,18 +1,18 @@
 
 export const jp = {
   NAV: {
-    MENU_L1: '基本信息管理',
+    MENU_L1: '基本情報管理',
     MENU_L1_1: '営業所管理',
     MENU_L1_2: '現場管理',
-    MENU_L1_3: '用戶管理',
+    MENU_L1_3: 'ユーザー管理',
     MENU_L1_4: '製品管理',
     MENU_L1_5: '種類設定',
     MENU_L1_6: 'サプライヤー管理',
     MENU_L1_7: '倉庫管理',
     MENU_L2: '部品管理',
     MENU_L2_1: '在庫管理',
-    MENU_L2_2: '出入庫管理',
-    MENU_L2_3: '出入庫審核',
+    MENU_L2_2: '入出庫管理',
+    MENU_L2_3: '入出庫審査',
   },
 
   TXT: {
@@ -116,7 +116,7 @@ export const jp = {
       ID: '番号',
       DEP_NAME: '所属営業所',
       USR: 'アカウント',
-      NAME: 'ユーザー名',
+      NAME: '氏名',
       PWD: 'パスワード',
       ROLE: '役割'
     },
