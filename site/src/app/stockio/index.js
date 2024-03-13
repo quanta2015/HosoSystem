@@ -13,7 +13,7 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import InFormMain from './InFormMain'
-
+import OutFormMain from './OutFormMain'
 
 const { confirm } = Modal;
 
@@ -28,11 +28,13 @@ const Stock = () => {
   const inputRef = useRef(null);
 
   const [refresh,setRefresh] = useState(false)
-  const [showForm,setShowForm] = useState(false)
+  const [showInForm,setShowInForm] = useState(false)
+  const [showOutForm,setShowOutForm] = useState(false)
   const [method, setMethod] = useState('Insert')
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [move,setMove]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -111,16 +113,39 @@ const Stock = () => {
   }
 
   const doEdit=(e)=>{
+
+    // console.log(e)
     setItem(e)
     setMethod('update')
-    setShowForm(true)
+
+    if (e.type ==='采购入库'||e.type==='退货入库'||e.type==='寄託') {
+      setShowInForm(true)
+    }else {
+      setShowOutForm(true)
+      setMove((e.type === '社內移動')?true:false)
+    } 
   }
 
 
-  const doAdd =()=>{
+  const doAddIn =()=>{
     setItem(null)
     setMethod('insert')
-    setShowForm(true)
+    setShowInForm(true)
+  }
+
+
+  const doAddOut =()=>{
+    setItem(null)
+    setMethod('insert')
+    setShowOutForm(true)
+    setMove(false)
+  }
+
+  const doAddMove =()=>{
+    setItem(null)
+    setMethod('insert')
+    setShowOutForm(true)
+    setMove(true)
   }
 
 
@@ -142,15 +167,17 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>出庫伝票</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAddIn()}>入庫伝票</Button>
+              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddOut()}>出庫伝票</Button>
+              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddMove()}>社內移動</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
 
-       {showForm && <InFormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showInForm && <InFormMain {...{col, item, method, setRefresh, setShowInForm, setLoading}}  />}
+       {showOutForm && <OutFormMain {...{col, item, method, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>
