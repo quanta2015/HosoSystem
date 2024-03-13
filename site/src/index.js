@@ -31,7 +31,7 @@ const User = lazy(() => import('./app/user'));
 
 const Stock = lazy(() => import('./app/stock'));
 const StockIO = lazy(() => import('./app/stockio'));
-
+const Audit = lazy(() => import('./app/audit'));
 
 
 
@@ -55,6 +55,7 @@ root.render(
 
               <Route path="/stock" element={<Stock />} />
               <Route path="/stockio" element={<StockIO />} />
+              <Route path="/audit" element={<Audit />} />
 
               
 
