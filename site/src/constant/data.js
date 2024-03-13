@@ -265,7 +265,7 @@ export const json_stock_io = [
   },{
     dataIndex: 'type',
     type: 'string',
-    title: DB.STOCK_IO.WARE_NAME,
+    title: DB.STOCK_IO.TYPE,
     width: 200,
   },{
     dataIndex: 'part_img',
@@ -288,13 +288,13 @@ export const json_stock_io = [
   },{
     dataIndex: 'out_ware_name',
     type: 'string',
-    title: DB.STOCK_IO.MODEL_NAME,
+    title: DB.STOCK_IO.OUT_WARE_NAME,
     width: 100,
     align: 'center',
   },{
     dataIndex: 'in_ware_name',
     type: 'string',
-    title: DB.STOCK_IO.SUPPLY_NAME,
+    title: DB.STOCK_IO.IN_WARE_NAME,
     width: 100,
     align: 'center',
   },{

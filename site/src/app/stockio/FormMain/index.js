@@ -7,7 +7,7 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
-
+import {jp} from '@constant/lang'
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
