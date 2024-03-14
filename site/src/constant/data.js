@@ -256,6 +256,14 @@ export const json_stock_io = [
     fixed: 'left',
     align: 'center',
   },{
+    dataIndex: 'state',
+    type: 'string',
+    title: '狀態',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+    render:(text,r)=> <Tag color="blue">{text}</Tag>
+  },{
     dataIndex: 'recept_code',
     type: 'string',
     title: DB.STOCK_IO.RECEPT_CODE,

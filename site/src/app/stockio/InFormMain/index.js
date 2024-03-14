@@ -16,7 +16,7 @@ const getPart = (list,id, stockio_id)=> {
   return `${stockio_id} ${r.id} ${r.code} ${r.name}`
 }
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
   console.log(item,'up')
 
@@ -60,7 +60,10 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
 
   useEffect(() => {
     if (part.length>0) {
-      const params = {recept_code: item?.recept_code}
+      const params = {
+        recept_code: item?.recept_code,
+        io: 'in',
+      }
       setLoading(true)
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
@@ -71,7 +74,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     }
   }, [part]);
 
-  console.log(list,'list')
+  // console.log(list,'list')
 
 
   // 添加json數據
@@ -149,7 +152,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     setLoading(true)
     store.saveStockIO(params).then(r=>{
       setLoading(false)
-      setShowForm(false)
+      setShowInForm(false)
       setRefresh(true)
       message.info('保存成功')
     })
@@ -162,7 +165,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-        
+          <div className={s.tl}>入庫信息</div>
           <div className={s.basic}>
             <div className={s.head}>
               <h1>基本信息</h1>
@@ -193,7 +196,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >取消</Button>  
             <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >保存</Button>
           </div>
       </div>

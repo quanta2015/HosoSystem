@@ -1,4 +1,3 @@
-
 export const jp = {
   NAV: {
     MENU_L1: '基本情報管理',

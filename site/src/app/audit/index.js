@@ -12,8 +12,7 @@ import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
-import InFormMain from './InFormMain'
-import OutFormMain from './OutFormMain'
+
 
 const { confirm } = Modal;
 
@@ -59,8 +58,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>審核</Button>
       </Space>
     ),
   })
@@ -167,17 +165,12 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAddIn()}>入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddOut()}>出庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddMove()}>社內移動</Button>
+
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
-
-       {showInForm && <InFormMain {...{col, item, method, setRefresh, setShowInForm, setLoading}}  />}
-       {showOutForm && <OutFormMain {...{col, item, method, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>
