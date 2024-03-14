@@ -45,6 +45,8 @@ export const jp = {
     RST:'リセット',
     AUDIT: 'レビュー',
     CHK: '在庫状況',
+    PASS: '批准',
+    REJECT: '断る',
     
   },
 

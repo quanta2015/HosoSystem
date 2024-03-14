@@ -11,12 +11,13 @@ import {json_stock_io} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
+
+import InFormMain from './InFormMain'
+import OutFormMain from './OutFormMain'
 import {jp} from '@constant/lang'
 
 
 const { FN,MSG,DB,TXT } = jp
-
-
 const { confirm } = Modal;
 
 // console.log('stock')
@@ -37,6 +38,7 @@ const Stock = () => {
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
   const [move,setMove]  = useState(false);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -61,7 +63,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>{FN.AUDIT}</Button>
+        <Button type="primary" onClick={()=>doAudit(o)}>{FN.AUDIT}</Button>
       </Space>
     ),
   })
@@ -72,21 +74,6 @@ const Stock = () => {
   col[3] = {...col[3],...getColumnSearchProps('out_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
   col[4] = {...col[4],...getColumnSearchProps('in_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
-
-  const showDelConfirm = (e) => {
-    confirm({
-      title: MSG.CFM,
-      icon: <ExclamationCircleFilled />,
-      okType: 'danger',
-      okText: FN.OK,
-      cancelText: FN.NO,
-      onOk() {
-        doDel(e)
-      },
-    });
-  };
-
-  
 
   // 加載數據
   useEffect(() => {
@@ -100,25 +87,11 @@ const Stock = () => {
   }, [refresh]);
 
 
-  // 刪除數據
-  const doDel = (e)=>{
-    let params = { 
-      recept_code: e.recept_code
-    }
-    setLoading(true)
-    store.delStockIO(params).then(r=>{
-      setLoading(false)
-      setDs(r.data)
-      // console.log(r.data)
-    })
-  }
 
-  const doEdit=(e)=>{
-
-    // console.log(e)
+  const doAudit=(e)=>{
+    setDetail(true)
     setItem(e)
     setMethod('update')
-
     if (e.type ==='采购入库'||e.type==='退货入库'||e.type==='寄託') {
       setShowInForm(true)
     }else {
@@ -128,36 +101,6 @@ const Stock = () => {
   }
 
 
-  const doAddIn =()=>{
-    setItem(null)
-    setMethod('insert')
-    setShowInForm(true)
-  }
-
-
-  const doAddOut =()=>{
-    setItem(null)
-    setMethod('insert')
-    setShowOutForm(true)
-    setMove(false)
-  }
-
-  const doAddMove =()=>{
-    setItem(null)
-    setMethod('insert')
-    setShowOutForm(true)
-    setMove(true)
-  }
-
-
-  const doExport =()=>{
-    setLoading(true)
-    store.exportStock().then(r => {
-      setLoading(false)
-      window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info(MSG.EXPT_SUC)
-    })
-  }
 
   return (
     
@@ -168,12 +111,14 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
+
+       {showInForm && <InFormMain {...{col, item, method,detail, setRefresh, setShowInForm, setLoading}}  />}
+       {showOutForm && <OutFormMain {...{col, item, method, detail, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>
