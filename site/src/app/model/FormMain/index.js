@@ -6,7 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -38,7 +41,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -54,15 +57,15 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
           >
           <Form.Item
             name="name"
-            label="製品類型"
+            label={DB.MODEL.NAME}
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 20 }}
           >
             <Input />
           </Form.Item>
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
           </div>
         </Form>
       </div>

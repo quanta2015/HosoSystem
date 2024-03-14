@@ -13,7 +13,10 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
 
@@ -51,13 +54,13 @@ const Stock = () => {
 
   // 添加功能操作
   const col = json_stock.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o)}>詳情</Button>
+        <Button type="primary"  onClick={()=>showDetail(o)}>{FN.DTL}</Button>
       </Space>
     ),
   })
@@ -77,7 +80,7 @@ const Stock = () => {
       setLoading(false)
       setDs(r.data)
       setRefresh(false)
-      console.log(r.data)
+      // console.log(r.data)
     })
   }, [refresh]);
 
@@ -105,7 +108,7 @@ const Stock = () => {
     store.exportStock().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -116,11 +119,8 @@ const Stock = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>
-              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>製品在庫盤點</Button>
-
-              {/*<Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品出庫伝票</Button>*/}
+              <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>{FN.DL}</Button>
+              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>{FN.CHK}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>

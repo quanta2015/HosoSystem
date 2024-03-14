@@ -11,7 +11,10 @@ import {json_stock_io} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 
 const { confirm } = Modal;
@@ -52,13 +55,13 @@ const Stock = () => {
 
   // 添加功能操作
   const col = json_stock_io.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>審核</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>{FN.AUDIT}</Button>
       </Space>
     ),
   })
@@ -72,11 +75,11 @@ const Stock = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: FN.OK,
+      cancelText: FN.NO,
       onOk() {
         doDel(e)
       },
@@ -152,7 +155,7 @@ const Stock = () => {
     store.exportStock().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 

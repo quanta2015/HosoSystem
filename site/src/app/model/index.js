@@ -13,7 +13,10 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 import QRCode from 'qrcode';
 import FormMain from './FormMain'
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
 
@@ -59,14 +62,14 @@ const Model = () => {
 
   // 添加功能操作
   const col = json_model.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
+        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
   })
@@ -76,11 +79,11 @@ const Model = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: FN.OK,
+      cancelText: FN.NO,
       onOk() {
         doDel(e)
       },
@@ -132,7 +135,7 @@ const Model = () => {
     store.exportPart().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -143,7 +146,7 @@ const Model = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>類型の追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>

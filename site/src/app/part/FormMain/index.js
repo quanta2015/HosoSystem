@@ -6,7 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -26,7 +29,7 @@ const toList=(obj)=> {
 }
 
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
@@ -100,7 +103,7 @@ console.log(initImgs)
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -137,7 +140,7 @@ console.log(initImgs)
             
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>製品圖像</h1>
+                <h1>{DB.PART.IMG}</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -147,6 +150,7 @@ console.log(initImgs)
                 fileList={imgs}
                 onPreview={doOpenPrev}
                 onChange={doChangeImg}
+                disabled={detail}
                 >
                 {imgs.length >= 1 ? null : <Button icon={<CloudUploadOutlined />} /> }
               </Upload>
@@ -154,28 +158,28 @@ console.log(initImgs)
 
             <div className={s.rt}>
               <div className={s.head}>
-                <h1>基本信息</h1>
+                <h1>{TXT.BAS_INFO}</h1>
               </div>
 
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
                     name="code"
-                    label="製品編號"
+                    label={DB.PART.CODE}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Input />
+                    <Input disabled={detail} />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label="製品名称"
+                    label={DB.PART.NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Input />
+                    <Input disabled={detail} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -184,21 +188,21 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="sid"
-                    label="サプライヤー"
+                    label={DB.PART.SUP_NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Select options={optSupply}/>
+                    <Select options={optSupply} disabled={detail}/>
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item
                     name="mid"
-                    label="製品種類"
+                    label={DB.PART.MOD_NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Select options={optModel}/>
+                    <Select options={optModel} disabled={detail}/>
                   </Form.Item>
                 </Col>
               </Row>
@@ -206,23 +210,26 @@ console.log(initImgs)
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
+            <h1>{TXT.OTH_INFO}</h1>
+            {/*<Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />*/}
+
+            {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
           <div className={s.info}>
             {info.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')} disabled={detail}/>
+                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')} disabled={detail}/>
+                  
+                  {!detail && <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />}
                 </div>
               )}
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.DIS}</Button>  
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button> }
           </div>
         </Form>
       </div>

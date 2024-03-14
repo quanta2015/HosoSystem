@@ -7,7 +7,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
@@ -255,7 +258,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
           <div className={s.tl}>{move?`社內移動`:`出庫信息`}</div>
           <div className={s.basic}>
             <div className={s.head}>
-              <h1>基本信息</h1>
+              <h1>{TXT.BAS_INFO}</h1>
             </div>
 
             {!move && 
@@ -299,8 +302,8 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
           </div>}
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >取消</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
           </div>
       </div>
 

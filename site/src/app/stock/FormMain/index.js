@@ -6,7 +6,10 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import {jp} from '@constant/lang'
 
+
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -44,7 +47,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       setLoading(false)
       setShowForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   };
 
@@ -79,14 +82,14 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
 
           <div className={s.basic}>
             <div className={s.head}>
-              <h1>基本信息</h1>
+              <h1>{TXT.BAS_INFO}</h1>
             </div>
 
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
                   name="code"
-                  label="倉庫編碼"
+                  label={DB.WARE.CODE}
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -96,7 +99,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <Col span={16}>
                 <Form.Item
                   name="name"
-                  label="倉庫名稱"
+                  label={DB.WARE.NAME}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -109,7 +112,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <Col span={8}>
                 <Form.Item
                   name="manager"
-                  label="負責人"
+                  label={DB.WARE.MANAGER}
                   labelCol={{ span: 6 }}
                   wrapperCol={{ span: 18 }}
                 >
@@ -119,7 +122,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
               <Col span={16}>
                 <Form.Item
                   name="addr"
-                  label="倉庫地址"
+                  label={DB.WARE.ADDR}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -132,7 +135,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>{TXT.OTH_INFO}</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
           
@@ -147,8 +150,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >取消</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
           </div>
         </Form>
       </div>
