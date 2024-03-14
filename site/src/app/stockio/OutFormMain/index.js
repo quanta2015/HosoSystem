@@ -7,7 +7,8 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
-
+import {jp} from '@constant/lang'
+const { FN,MSG,TXT } = jp
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
@@ -22,7 +23,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
 
 
 
-  const initType = method==='insert'?(move?'社內移動':null):item.type
+  const initType = method==='insert'?(move?TXT.STOCK_IO_TYPE.MOVE:null):item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
   const initOutWare = method==='insert'?[null,null]:[item.out_dep_id,item.out_ware_id]
  
@@ -36,8 +37,8 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
   const [outWare, setOutWare] = useState(initOutWare);
   const [optWare, setOptWare] = useState([]);
   const [optType, setOptType] = useState([
-    {label:'銷售出庫',value:'銷售出庫'},
-    {label:'領用出庫',value:'領用出庫'},
+    {label:TXT.STOCK_IO_TYPE.SEL,value:TXT.STOCK_IO_TYPE.SEL},
+    {label:TXT.STOCK_IO_TYPE.USE,value:TXT.STOCK_IO_TYPE.USE},
   ]);
 
 
@@ -88,7 +89,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
 
         // 沒有數據提示
         if (r.data.length === 0 ) {
-          message.info('該倉庫沒有部品')
+          message.info(MSG.NO_PART_IN_MSG)
           return
         }
        
@@ -118,7 +119,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
 
       // 沒有數據提示
       if (r.data.length === 0 ) {
-        message.info('該倉庫沒有部品')
+        message.info(MSG.NO_PART_IN_MSG)
         return
       }
       // console.log(r.data)
@@ -158,7 +159,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
     const val = parseInt(e.currentTarget.value)
     // console.log(val, )
     if (val> list[i].num) {
-      message.info('超過庫存數量')
+      message.info(MSG.OVER_STOCK)
     }else{
       list[i].val= val
       setList([...list])
@@ -176,7 +177,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
 
       console.log(filtered,'filtered')
       if (filtered.length > 0) {
-        message.info('該項目已經選擇')
+        message.info(MSG.CHOOSED)
         return
       }
 
@@ -223,15 +224,15 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
 
 
     if (type === null) {
-      message.info('請選擇入庫類型')
+      message.info(MSG.CHOOSE_OUT_MSG)
       return
     }
     if ((outWare[0] === null)||(outWare[1] === null)) {
-      message.info('請選擇倉庫')
+      message.info(MSG.CHOOSE_WARE)
       return
     }
     if (list.length === 0) {
-      message.info('請添加部品')
+      message.info(MSG.CHOOSE_PART)
       return 
     }
     console.log(params)
@@ -241,7 +242,7 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
       setLoading(false)
       setShowOutForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAV_SUC)
     })
   }
 
@@ -252,40 +253,40 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>{move?`社內移動`:`出庫信息`}</div>
+          <div className={s.tl}>{move?TXT.STOCK_IO_TYPE.MOVE:TXT.STOCK_IO_TYPE.STOCK_OUT_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
-              <h1>基本信息</h1>
+              <h1>{TXT.BAS_INFO}</h1>
             </div>
 
             {!move && 
             <div className={s.row}>
-              <span>出庫類型</span>
+              <span>{TXT.STOCK_OUT_TYPE}</span>
               <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
-              <span>出庫倉庫</span>
+              <span>{TXT.STOCK_OUT_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
             </div>}
 
             {move && 
             <div className={s.row}>
-              <span>出庫倉庫</span>
+              <span>{TXT.STOCK_OUT_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
-              <span>入庫倉庫</span>
+              <span>{TXT.STOCK_IN_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare}/>
             </div>}
           </div>
 
           <div className={s.head}>
-            <h1>出庫部品</h1>
+            <h1>{TXT.STOCK_OUT_PART}</h1>
             {part.length >0 &&  <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>
 
           {list.length>0 &&
           <div className={s.info}>  
             <div className={s.th}>
-              <span>部品信息</span>
-              <span>在庫數量</span>
-              <span>出庫數量</span>
+              <span>{TXT.PART_INFO}</span>
+              <span>{TXT.STOCK_IN_NUM}</span>
+              <span>{TXT.STOCK_OUT_NUM}</span>
               <span></span>
             </div>
             {list.map((o,i)=>
@@ -299,8 +300,8 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
           </div>}
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >取消</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
           </div>
       </div>
 

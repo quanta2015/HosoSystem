@@ -8,7 +8,7 @@ import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
-
+const { FN,MSG,TXT } = jp
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
 const getPart = (list,id, stockio_id)=> {
@@ -30,9 +30,9 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
   const [inWare, setInWare] = useState(initInWare);
   const [optWare, setOptWare] = useState([]);
   const [optType, setOptType] = useState([
-    {label:'采购入库',value:'采购入库'},
-    {label:'退货入库',value:'退货入库'},
-    {label:'寄託',value:'寄託'},
+    {label:TXT.STOCK_IO_TYPE.BUY,value:TXT.STOCK_IO_TYPE.BUY},
+    {label:TXT.STOCK_IO_TYPE.RETURN,value:TXT.STOCK_IO_TYPE.RETURN},
+    {label:TXT.STOCK_IO_TYPE.TMP,value:TXT.STOCK_IO_TYPE.TMP},
   ]);
   const [part,setPart] = useState([])
   const [partFil,setPartFil] = useState([])
@@ -136,15 +136,15 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
     }
 
     if (type === null) {
-      message.info('請選擇入庫類型')
+      message.info(MSG.CHOOSE_IN_TYPE)
       return
     }
     if ((inWare[0] === null)||(inWare[1] === null)) {
-      message.info('請選擇倉庫')
+      message.info(MSG.CHOOSE_WARE)
       return
     }
     if (list.length === 0) {
-      message.info('請添加部品')
+      message.info(MSG.CHOOSE_WARE)
       return 
     }
     // console.log(params)
@@ -154,7 +154,7 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
       setLoading(false)
       setShowInForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   }
 
@@ -165,21 +165,21 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>入庫信息</div>
+          <div className={s.tl}>{TXT.STOCK_IN_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
-              <h1>基本信息</h1>
+              <h1>{TXT.BAS_INFO}</h1>
             </div>
             <div className={s.row}>
-              <span>入庫類型</span>
+              <span>{TXT.STOCK_IN_TYPE}</span>
               <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
-              <span>入庫倉庫</span>
+              <span>{TXT.STOCK_IN_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare}/>
             </div>
           </div>
 
           <div className={s.head}>
-            <h1>入庫部品</h1>
+            <h1>{TXT.STOCK_IN_PART}</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
           </div>     
 
@@ -196,8 +196,8 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
           </div>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >取消</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >保存</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.CLS}</Button>  
+            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
           </div>
       </div>
 

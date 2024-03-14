@@ -29,8 +29,21 @@ export const jp = {
     STOCK_IO_TYPE:{
       BUY:'仕入',
       RETURN:'返却',
-      TMP:'一時保管'
+      TMP:'一時保管',
+      MOVE:'社内移動',
+      SEL:'販売',
+      USE:'社内使用'
     },
+    STOCK_IN_INFO:'入庫情報',
+    STOCK_IN_TYPE:'入庫タイプ',
+    STOCK_IN_WARE:'入庫倉庫',
+    STOCK_IN_PART:'入庫部品',
+    STOCK_IN_NUM:'在庫数',
+    STOCK_OUT_INFO:'出庫情報',
+    STOCK_OUT_TYPE:'出庫タイプ',
+    STOCK_OUT_WARE:'出庫倉庫',
+    STOCK_OUT_PART:'出庫部品',    
+
   },
   
   TAG:{
@@ -59,7 +72,13 @@ export const jp = {
     CFM: 'レコードを削除してもよろしいですか?',
     EXPT_SUC: 'エクスポート成功！',
     SAVE_SUC: 'セーブ成功！',
-
+    CHOOSE_IN_TYPE:'入庫タイプを選んでください',
+    CHOOSE_OUT_TYPE:'出庫タイプを選んでください',
+    CHOOSE_WARE:'倉庫を選んでください',
+    CHOOSE_PART:'部品を選んでください',
+    NO_PART_IN_WARE:'倉庫内に部品はありません',
+    OVER_STOCK:'入力した数は在庫数を超えました',
+    CHOOSED:'該当項目はすでに入力されました',
   },
 
   DB: {
