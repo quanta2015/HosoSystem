@@ -66,6 +66,7 @@ export const jp = {
     STK:'棚卸',
     SRH:'検索',
     RST:'リセット',
+    REV:'レビュー'
   },
 
   MSG: {
