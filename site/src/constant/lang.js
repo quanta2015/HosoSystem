@@ -33,6 +33,10 @@ export const jp = {
     },
   },
   
+  TAG:{
+    NORMAL:'正常',
+    WAIT_STOCK_TAKE:'棚卸待ち'
+  },
 
   FN: {
     ACT: '機能',

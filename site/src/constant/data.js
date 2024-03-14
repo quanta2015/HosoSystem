@@ -6,7 +6,7 @@ import person from '@/img/menu/person.svg'
 import {API_SERVER} from '@/constant/apis'
 import {Tag} from 'antd'
 import {jp} from '@constant/lang'
-const { DB } = jp
+const { DB,TAG } = jp
 
 
 export const json_part = [
@@ -241,7 +241,7 @@ export const json_stock = [
     width: 100,
     align: 'center',
     render:(text,r)=> 
-      text===0?<Tag color="blue">正常</Tag>:<Tag color="red">待盤點</Tag>
+      text===0?<Tag color="blue">{TAG.NORMAL}</Tag>:<Tag color="red">{TAG.WAIT_STOCK_TAKE}</Tag>
     
   }
 ]
