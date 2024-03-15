@@ -7,7 +7,7 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
-
+import { ST } from '@/constant/data'
 import {jp} from '@constant/lang'
 
 
@@ -34,7 +34,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
   const [list, setList] = useState([]);
   const [type, setType] = useState(initType);
-
+  const [remark, setRemark] = useState('');
 
   
   const [inWare, setInWare] = useState(initInWare);
@@ -107,10 +107,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
   // 選擇倉庫查詢庫存
   const doSelInWare =(e)=>{
-    
-
       setInWare(e)
-    
   }
 
 
@@ -251,7 +248,22 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   }
 
 
+  const doAudit =(pass)=>{
+    const state = move ? (pass ? ST.MOV_READY : ST.MOV_NOPAS) : (pass ? ST.OUT_READY : ST.OUT_NOPAS);
 
+    const params ={
+      recept_code: item?.recept_code,
+      state,
+      remark,
+    }
+    setLoading(true)
+    store.auditStockIO(params).then(r=>{
+      setLoading(false)
+      setRefresh(true)
+      setShowOutForm(false)
+      message.info('审核成功')
+    })
+  }
 
 
   return (
@@ -311,12 +323,12 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
           <div className={s.head}>
             <h1>审核意见</h1>
           </div>
-          <TextArea />
+          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark}/>
 
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.PASS}</Button>  
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.REJECT}</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>  
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
           </div>
       </div>

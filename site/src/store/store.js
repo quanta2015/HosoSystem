@@ -213,6 +213,12 @@ class Store {
     return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
   }
 
+  // 审核出入库
+  async auditStockIO(params) {
+    return await this.post(urls.API_AUDIT_STOCK_IO, params)
+  }
+
+
 
 
 

@@ -9,6 +9,27 @@ import {jp} from '@constant/lang'
 const { DB } = jp
 
 
+export const ST = {
+  OUT_AUDIT: 10,  //出庫待審核
+  OUT_READY: 11,  //待出庫
+  OUT_SUCC:  12,  //出庫完成
+  OUT_ERROR: 13,  //出庫錯誤
+  OUT_NOPAS: 14,  //出庫审核未通过
+
+  IN_AUDIT:  20,  //入庫待審核
+  IN_READY:  21,  //待入庫
+  IN_SUCC:   22,  //入庫完成
+  IN_ERROR:  23,  //入庫出錯
+  IN_PART:   24,  //部分入庫
+  IN_NOPAS:  25,   //入庫审核未通过
+
+  MOV_AUDIT: 30,  //移动待審核
+  MOV_READY: 31,  //待移动
+  MOV_SUCC:  32,  //移动完成
+  MOV_ERROR: 33,  //移动錯誤
+  MOV_NOPAS: 34,  //移动审核未通过
+}  
+
 export const json_part = [
   {
       dataIndex: 'qrcode',
@@ -256,10 +277,10 @@ export const json_stock_io = [
     fixed: 'left',
     align: 'center',
   },{
-    dataIndex: 'state',
+    dataIndex: 'state_text',
     type: 'string',
     title: '狀態',
-    width: 100,
+    width: 150,
     fixed: 'left',
     align: 'center',
     render:(text,r)=> <Tag color="blue">{text}</Tag>
@@ -267,25 +288,30 @@ export const json_stock_io = [
     dataIndex: 'recept_code',
     type: 'string',
     title: '出入庫單號',
-    width: 300,
+    width: 200,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'type',
     type: 'string',
     title: '類型',
-    width: 200,
+    width: 150,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'out_ware_name',
     type: 'string',
     title: '出庫倉庫名稱',
-    width: 300,
+    width: 200,
   },{
     dataIndex: 'in_ware_name',
     type: 'string',
     title: '入庫倉庫名稱',
+    width: 200,
+  },{
+    dataIndex: 'remark',
+    type: 'string',
+    title: '备注',
     width: 300,
   }
 ]

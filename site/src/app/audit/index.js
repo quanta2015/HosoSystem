@@ -7,11 +7,10 @@ import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
 import { observer,MobXProviderContext } from 'mobx-react'
 import {API_SERVER} from '@/constant/apis'
-import {json_stock_io} from '@/constant/data'
+import {json_stock_io,ST} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
-
 import InFormMain from './InFormMain'
 import OutFormMain from './OutFormMain'
 import {jp} from '@constant/lang'
@@ -61,11 +60,13 @@ const Stock = () => {
     width: 200,
     align: 'center',
     fixed: 'right',
-    render: o => (
+    render: o =>  (
       <Space>
-        <Button type="primary" onClick={()=>doAudit(o)}>{FN.AUDIT}</Button>
+        { ( o.state === ST.OUT_AUDIT || 
+            o.state === ST.IN_AUDIT ||
+            o.state === ST.MOV_AUDIT )  && <Button type="primary" onClick={()=>doAudit(o)}>{FN.AUDIT}</Button>}
       </Space>
-    ),
+    )
   })
 
   // 數據查詢過濾

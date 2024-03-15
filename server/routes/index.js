@@ -369,7 +369,7 @@ router.post('/queryStockIOByCode', async (req, res, next) => {
 })
 
 
-// 查詢出入庫
+// 根据仓库查詢出入庫
 router.post('/queryStockByWare', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -377,6 +377,17 @@ router.post('/queryStockByWare', async (req, res, next) => {
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
+
+
+// 根据仓库查詢出入庫
+router.post('/auditStockIO', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_AUDIT_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
 
 
 

@@ -7,6 +7,7 @@ import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
+import { ST } from '@/constant/data'
 import {jp} from '@constant/lang'
 
 
@@ -22,7 +23,7 @@ const getPart = (list,id, stockio_id)=> {
 
 const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
-  console.log(item,'up')
+  // console.log(item,'up')
 
   const initType = method==='insert'?null:item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
@@ -40,6 +41,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   ]);
   const [part,setPart] = useState([])
   const [partFil,setPartFil] = useState([])
+  const [remark, setRemark] = useState('');
 
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       setLoading(true)
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
-        console.log(r.data)
+        // console.log(r.data)
         let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num}))
         setList(_list)
       })
@@ -163,6 +165,22 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   }
 
 
+  const doAudit =(pass)=>{
+
+    
+    const params ={
+      recept_code: item?.recept_code,
+      state: pass?ST.IN_READY:ST.IN_NOPAS,
+      remark,
+    }
+    setLoading(true)
+    store.auditStockIO(params).then(r=>{
+      setLoading(false)
+      setRefresh(true)
+      setShowInForm(false)
+      message.info('审核成功')
+    })
+  }
 
 
 
@@ -208,8 +226,8 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           <TextArea />
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.PASS}</Button>  
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.REJECT}</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
+            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>  
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.CLS}</Button>  
           </div>
       </div>
