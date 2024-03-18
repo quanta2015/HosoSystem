@@ -332,7 +332,7 @@ router.post('/saveStockIO',auth, async (req, res, next) => {
   let {usr} = req.usr
   params.create_name = usr
 
-  console.log(params)
+  // console.log(params)
   let sql = `CALL PROC_SAVE_STOCK_IO(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
@@ -368,6 +368,15 @@ router.post('/queryStockIOByCode', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
+
+// 查詢出入庫
+router.post('/queryStockByWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK_BY_WARE(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
 
 
 

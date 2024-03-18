@@ -11,9 +11,11 @@ import {json_stock_io} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
+import {jp} from '@constant/lang'
 
-import InFormMain from './InFormMain'
-import OutFormMain from './OutFormMain'
+
+const { FN,MSG,TXT } = jp
+
 
 const { confirm } = Modal;
 
@@ -53,14 +55,13 @@ const Stock = () => {
 
   // 添加功能操作
   const col = json_stock_io.concat({
-    title: '機能',
+    title: FN.ACT,
     width: 200,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>編集</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>刪除</Button>
+        <Button type="primary" onClick={()=>doEdit(o)}>{FN.REV}</Button>
       </Space>
     ),
   })
@@ -74,11 +75,11 @@ const Stock = () => {
 
   const showDelConfirm = (e) => {
     confirm({
-      title: '确认要删除记录?',
+      title: MSG.CFM,
       icon: <ExclamationCircleFilled />,
       okType: 'danger',
-      okText: '确 定',
-      cancelText: '取 消',
+      okText: FN.OK,
+      cancelText: FN.CLS,
       onOk() {
         doDel(e)
       },
@@ -118,11 +119,11 @@ const Stock = () => {
     setItem(e)
     setMethod('update')
 
-    if (e.type ==='采购入库'||e.type==='退货入库'||e.type==='寄託') {
+    if (e.type === TXT.STOCK_IO_TYPE.BUY||e.type===TXT.STOCK_IO_TYPE.RETURN||e.type===TXT.STOCK_IO_TYPE.TMP) {
       setShowInForm(true)
     }else {
       setShowOutForm(true)
-      setMove((e.type === '社內移動')?true:false)
+      setMove((e.type === TXT.STOCK_IO_TYPE.MOVE)?true:false)
     } 
   }
 
@@ -154,7 +155,7 @@ const Stock = () => {
     store.exportStock().then(r => {
       setLoading(false)
       window.open(`${API_SERVER}/${r.file}`, '_blank');
-      message.info("导出成功！")
+      message.info(MSG.EXPT_SUC)
     })
   }
 
@@ -167,17 +168,12 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAddIn()}>入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddOut()}>出庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddMove()}>社內移動</Button>
+
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
-
-       {showInForm && <InFormMain {...{col, item, method, setRefresh, setShowInForm, setLoading}}  />}
-       {showOutForm && <OutFormMain {...{col, item, method, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>

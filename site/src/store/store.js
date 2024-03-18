@@ -208,7 +208,10 @@ class Store {
     return await this.post(urls.API_QUERY_STOCK_IO_BY_CODE, params)
   }
 
-
+  // 查詢某個倉庫的庫存
+  async queryStockByWare(params) {
+    return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
+  }
 
 
 
