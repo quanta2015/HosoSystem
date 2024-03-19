@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
 import { observer,MobXProviderContext } from 'mobx-react'
 import {API_SERVER} from '@/constant/apis'
-import {json_stock_io} from '@/constant/data'
+import {json_stock_io,ST} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
@@ -38,6 +38,7 @@ const Stock = () => {
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
   const [move,setMove]  = useState(false);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -57,22 +58,27 @@ const Stock = () => {
   // 添加功能操作
   const col = json_stock_io.concat({
     title: FN.ACT,
-    width: 200,
+    width: 240,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
-        <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>詳情</Button>
+
+        {(o.state === ST.OUT_AUDIT || o.state === ST.IN_AUDIT || o.state === ST.MOV_AUDIT )  && 
+        <>
+          <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
+          <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
+        </>}
       </Space>
     ),
   })
 
   // 數據查詢過濾
   // col[1] = {...col[1],...getColumnSearchProps('state',doSearch,doReset,inputRef,searchedColumn,searchText,true)}
-  col[2] = {...col[2],...getColumnSearchProps('type',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('out_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[4] = {...col[4],...getColumnSearchProps('in_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('type',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('out_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[5] = {...col[5],...getColumnSearchProps('in_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 
   const showDelConfirm = (e) => {
@@ -95,6 +101,9 @@ const Stock = () => {
     setLoading(true)
     store.queryStockIO(null).then(r=>{
       setLoading(false)
+      r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
+
+      
       setDs(r.data)
       setRefresh(false)
       console.log(r.data)
@@ -115,11 +124,12 @@ const Stock = () => {
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
 
     // console.log(e)
     setItem(e)
     setMethod('update')
+    setDetail(readonly)
 
     if (e.type ==='采购入库'||e.type==='退货入库'||e.type==='寄託') {
       setShowInForm(true)
@@ -179,8 +189,8 @@ const Stock = () => {
         </div>
 
 
-       {showInForm && <InFormMain {...{col, item, method, setRefresh, setShowInForm, setLoading}}  />}
-       {showOutForm && <OutFormMain {...{col, item, method, setRefresh, setShowOutForm, setLoading, move}}  />}
+       {showInForm && <InFormMain {...{col, item, method, detail, setRefresh, setShowInForm, setLoading}}  />}
+       {showOutForm && <OutFormMain {...{col, item, method, detail, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>

@@ -19,7 +19,7 @@ const getPart = (list,id, stockio_id)=> {
   return `${stockio_id} ${r.id} ${r.code} ${r.name}`
 }
 
-const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}) => {
+const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoading,move}) => {
   const { store } = React.useContext(MobXProviderContext)
   // console.log(item,'up')
 
@@ -264,23 +264,23 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
             {!move && 
             <div className={s.row}>
               <span>出庫類型</span>
-              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
+              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
               <span>出庫倉庫</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
             </div>}
 
             {move && 
             <div className={s.row}>
               <span>出庫倉庫</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
               <span>入庫倉庫</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare} disabled={detail}/>
             </div>}
           </div>
 
           <div className={s.head}>
             <h1>出庫部品</h1>
-            {part.length >0 &&  <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
+            {part.length >0 &&  <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} disabled={detail} />}
           </div>
 
           {list.length>0 &&
@@ -293,17 +293,26 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
             </div>
             {list.map((o,i)=>
               <div key={i} className={s.row}>
-                <AutoComplete options={partFil} value={o.key} onSearch={doSearch} onSelect={(val)=>doSelPart(val,i)} style={{'width':'600px'}} />
+                <AutoComplete 
+                  options={partFil} 
+                  value={o.key} 
+                  onSearch={doSearch} 
+                  onSelect={(val)=>doSelPart(val,i)} 
+                  style={{'width':'600px'}} 
+                  disabled={detail}
+                  />
                 <span className={s.num}>{list[i].num}</span>
-                <Input onChange={(e)=>chgVal(e,i)} value={o.val}/>
-                <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail} />
+                <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} disabled={detail} />
               </div>
             )}
           </div>}
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
+
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button> 
+
+            {!detail && <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>} 
           </div>
       </div>
 

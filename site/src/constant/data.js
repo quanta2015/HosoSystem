@@ -30,6 +30,26 @@ export const ST = {
   MOV_NOPAS: 34,  //移动审核未通过
 }  
 
+
+export const ST_TXT = {
+  10:'出庫待審核',
+  11:'待出庫',
+  12:'出庫完成',
+  13:'出庫錯誤',
+  14:'出庫审核未通过',
+  20:'入庫待審核',
+  21:'待入庫',
+  22:'入庫完成',
+  23:'入庫出錯',
+  24:'部分入庫',
+  25:'入庫审核未通过',
+  30:'移动待審核',
+  31:'待移动',
+  32:'移动完成',
+  33:'移动錯誤',
+  34:'移动审核未通过' 
+}
+
 export const json_part = [
   {
       dataIndex: 'qrcode',
@@ -276,6 +296,14 @@ export const json_stock_io = [
     width: 60,
     fixed: 'left',
     align: 'center',
+  },{
+    dataIndex: 'qrcode',
+    type: 'string',
+    title: '二维码',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+    render: (text, r) => <img src={text} alt={r.name}/> 
   },{
     dataIndex: 'state_text',
     type: 'string',

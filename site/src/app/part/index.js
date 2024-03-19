@@ -56,7 +56,7 @@ const Part = () => {
   // 添加功能操作
   const col = json_part.concat({
     title: FN.ACT,
-    width: 200,
+    width: 240,
     align: 'center',
     fixed: 'right',
     render: o => (

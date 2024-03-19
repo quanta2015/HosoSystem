@@ -307,6 +307,51 @@ router.post('/saveStock',auth, async (req, res, next) => {
 ///////////////////////////////////////////////////
 // ------------------  出入庫API ----------------- //
 ///////////////////////////////////////////////////
+const STATE = {
+  10:'出庫待審核',
+  11:'待出庫',
+  12:'出庫完成',
+  13:'出庫錯誤',
+  14:'出庫审核未通过',
+  20:'入庫待審核',
+  21:'待入庫',
+  22:'入庫完成',
+  23:'入庫出錯',
+  24:'部分入庫',
+  25:'入庫审核未通过',
+  30:'移动待審核',
+  31:'待移动',
+  32:'移动完成',
+  33:'移动錯誤',
+  34:'移动审核未通过' 
+}
+      
+     
+
+const isSame=(arr)=> {
+  let uniqueElements = new Set(arr);
+  return uniqueElements.size === 1;
+}
+
+const caluState = (list,el)=>{
+  const _list = list.map(o=>Number(o))
+  let same = isSame(_list)
+
+  if (same) {
+    let state = parseInt(list[0])
+    el.state = state
+    el.state_text = STATE[state]
+  }else{
+    if (_list.includes(21) ) {
+      el.state = 24
+      el.state_text = STATE[24]
+    }else{
+      el.state = 22
+      el.state_text = STATE[22]
+    }
+  }
+}
+
 
 // 查詢出入庫
 router.post('/queryStockIO', async (req, res, next) => {
@@ -314,6 +359,14 @@ router.post('/queryStockIO', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_STOCK_IO(?)`
   let r = await callP(sql, params, res)
+
+
+  r.map(o=>{
+    let {state_list} = o
+    let list = o.state_list.split(',')
+    caluState(list, o)
+  })
+  console.log(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -369,6 +422,17 @@ router.post('/queryStockIOByCode', async (req, res, next) => {
 })
 
 
+// 查詢出入庫
+router.post('/queryStockIOByRC', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK_IO_BY_RC(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
 // 根据仓库查詢出入庫
 router.post('/queryStockByWare', async (req, res, next) => {
   let params = req.body
@@ -387,6 +451,21 @@ router.post('/auditStockIO', async (req, res, next) => {
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
+
+
+// 根据出入庫逻辑处理
+router.post('/procStockIO', auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+
+  
+  console.log(params)
+  let sql = `CALL PROC_PROC_STOCK_IO(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
 
 
 
