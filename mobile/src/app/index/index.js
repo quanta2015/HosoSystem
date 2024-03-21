@@ -11,8 +11,8 @@ import s from './index.module.less'
 
 import * as ZXing from '@zxing/library';
 
-
-import InFormMain from './InFormMain'
+import FormCheck from './FormCheck'
+import FormMain from './FormMain'
 
 const Nav = () => {
   const { store } = React.useContext(MobXProviderContext);
@@ -20,12 +20,12 @@ const Nav = () => {
   const videoRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [ds,setDs] = useState([])
-  const [showInForm,setShowInForm] = useState(false)
+  const [showForm,setShowForm] = useState(false)
+  const [showCheck,setShowCheck] = useState(false)
 
 
   const [selectedDeviceId, setSelectedDeviceId] = useState('');
   const [codeReader, setCodeReader] = useState(null);
-  const [decodingStyle, setDecodingStyle] = useState('Continuous');
   const [qrCodeText, setQRCodeText] = useState('');
   const [showScan, setShowScan] = useState(false)
 
@@ -61,31 +61,23 @@ const Nav = () => {
 
 
   const decodeOnce = () => {
-
-    console.log(videoRef)
     if (codeReader  && videoRef.current) {
       codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video')
       .then(result => {
         let recept_code = result.text
         setQRCodeText(recept_code)
 
-        console.log(recept_code,'recept_code')
         let params ={
           recept_code,
         }
         setLoading(true)
         store.getStockIOByRC(params).then(r=>{
+          // console.log(r.data)
           setLoading(false)
 
-          r.data.map(o=>{
-            o.num_real = o.num
-          })
+          r.data.map(o=>{ o.num_real = o.num })
           setDs(r.data)
-
-
-          console.log(r.data)
-
-          setShowInForm(true)
+          setShowForm(true)
           setShowScan(false)
         })
       })
@@ -116,24 +108,14 @@ const Nav = () => {
     }
   };
 
-  const handleStartClick = () => {
-    if (decodingStyle === 'once') {
-      decodeOnce();
-    } else {
-      decodeContinuously();
-    }
-  };
 
   const doScan =()=>{
-
     decodeOnce();
+  }
 
-    // if (showScan) {
-    //   setShowScan(false)
-    // }else{
-    //   setShowScan(true)
-    //   decodeOnce();
-    // }
+
+  const doCheckWare =()=>{
+    setShowCheck(true)
   }
 
 
@@ -151,13 +133,12 @@ const Nav = () => {
       </div>
       <div className={s.ft}>
         
-        <Button type="primary" block style={{height: '45px'}}>库存盘点</Button>
+        <Button type="primary" block style={{height: '45px'}} onClick={doCheckWare}>库存盘点</Button>
       </div>
 
+      {showForm && <FormMain {...{ds, setShowForm, setLoading, setShowScan }}  />}
 
-
-      {showInForm && <InFormMain {...{ds, setShowInForm, setLoading, setShowScan }}  />}
-      
+      {showCheck && <FormCheck {...{ds, setShowCheck, setLoading, setShowScan }}  />}
       
     </div>
   )

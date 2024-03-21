@@ -81,8 +81,20 @@ class Store {
   }
 
 
+  // 查詢倉庫級聯
+  async queryWareCas(params) {
+    return await this.post(urls.API_QUERY_WARE_CAS, params)
+  }
+
+
   async procStockIO(params) {
     return await this.post(urls.API_PROC_STOCK_IO, params)
+  }
+
+
+  // 查詢某個倉庫的庫存
+  async queryStockByWare(params) {
+    return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
   }
 
 

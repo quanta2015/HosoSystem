@@ -235,7 +235,7 @@ router.post('/saveSupply',auth, async (req, res, next) => {
 // ------------------  倉庫API ----------------- //
 ///////////////////////////////////////////////////
 
-// 查詢供應商
+// 查詢倉庫
 router.post('/queryWare', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -245,7 +245,7 @@ router.post('/queryWare', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 刪除供應商
+// 刪除倉庫
 router.post('/delWare', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -255,7 +255,7 @@ router.post('/delWare', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 保存供應商
+// 保存倉庫
 router.post('/saveWare',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
@@ -275,6 +275,16 @@ router.post('/saveWare',auth, async (req, res, next) => {
 
 // 查詢在庫
 router.post('/queryStock', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+// 查詢在庫
+router.post('/queryStockByWare', async (req, res, next) => {
   let params = req.body
   // console.log(params)
   let sql = `CALL PROC_QUERY_STOCK(?)`
@@ -333,21 +343,35 @@ const isSame=(arr)=> {
   return uniqueElements.size === 1;
 }
 
+const caluMode = (list) => {
+  const sum = list.reduce((acc, curr) => acc + curr, 0);
+  const avg = sum / list.length;
+  const ret = avg < 20 ? 'out' : avg < 30 ? 'in' : 'mov';
+  return ret;
+};
+
 const caluState = (list,el)=>{
   const _list = list.map(o=>Number(o))
-  let same = isSame(_list)
+  const same = isSame(_list)
+  const mode = caluMode(_list)
 
   if (same) {
     let state = parseInt(list[0])
     el.state = state
     el.state_text = STATE[state]
   }else{
-    if (_list.includes(21) ) {
+    if (_list.includes(21)) {
       el.state = 24
       el.state_text = STATE[24]
-    }else{
+    }else if (mode==='in') {
       el.state = 22
       el.state_text = STATE[22]
+    }else if (mode==='out') {
+      el.state = 12
+      el.state_text = STATE[12]
+    }else if (mode==='mov') {
+      el.state = 32
+      el.state_text = STATE[32]
     }
   }
 }
@@ -366,7 +390,7 @@ router.post('/queryStockIO', async (req, res, next) => {
     let list = o.state_list.split(',')
     caluState(list, o)
   })
-  console.log(r)
+  // console.log(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -391,7 +415,7 @@ router.post('/saveStockIO',auth, async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 查詢出入庫
+// 查詢仓库列表
 router.post('/queryWareCas', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -412,7 +436,7 @@ router.post('/queryWareCas', async (req, res, next) => {
   res.status(200).json({ code: 0, data: ret })
 })
 
-// 查詢出入庫
+// 根据订单号 查詢出入庫PC
 router.post('/queryStockIOByCode', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -422,7 +446,7 @@ router.post('/queryStockIOByCode', async (req, res, next) => {
 })
 
 
-// 查詢出入庫
+// 根据订单号 查詢出入庫MOBILE
 router.post('/queryStockIOByRC', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -430,7 +454,6 @@ router.post('/queryStockIOByRC', async (req, res, next) => {
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
-
 
 
 // 根据仓库查詢出入庫
@@ -443,7 +466,7 @@ router.post('/queryStockByWare', async (req, res, next) => {
 })
 
 
-// 根据仓库查詢出入庫
+// 审核出入库订单
 router.post('/auditStockIO', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -453,7 +476,7 @@ router.post('/auditStockIO', async (req, res, next) => {
 })
 
 
-// 根据出入庫逻辑处理
+// 出入庫逻辑处理
 router.post('/procStockIO', auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
@@ -471,10 +494,10 @@ router.post('/procStockIO', auth, async (req, res, next) => {
 
 
 ///////////////////////////////////////////////////
-// ------------------  出入庫API ----------------- //
+// ------------------  用户API ----------------- //
 ///////////////////////////////////////////////////
 
-// 查詢出入庫
+// 查詢用户
 router.post('/queryUser', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -483,7 +506,7 @@ router.post('/queryUser', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 刪除出入庫
+// 刪除用户
 router.post('/delUser', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -492,7 +515,7 @@ router.post('/delUser', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 保存出入庫
+// 保存用户
 router.post('/saveUser',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
@@ -508,7 +531,7 @@ router.post('/saveUser',auth, async (req, res, next) => {
 // ------------------  營業所API ----------------- //
 ///////////////////////////////////////////////////
 
-// 查詢出入庫
+// 查詢營業所
 router.post('/queryDep', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -518,7 +541,7 @@ router.post('/queryDep', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 刪除出入庫
+// 刪除營業所
 router.post('/delDep', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -528,7 +551,7 @@ router.post('/delDep', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
-// 保存出入庫
+// 保存營業所
 router.post('/saveDep',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr

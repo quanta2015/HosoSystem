@@ -2,13 +2,24 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 60px;
+  top: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+
+  :global {
+    .ant-input-number {
+      border: none;
+      // border-bottom: 1px solid #eee;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      // text-align: right;
+    }
+  }
 
 
   .wrap {
@@ -24,24 +35,52 @@
   }
 
   .hd {
-    font-size: 20px;
-    // background: #eee;
-    border-bottom: 5px solid #d9d9d9;
-    padding: 10px 15px;
     display: flex;
+    align-items: center;
+    height: 60px;
 
-    &>span {
+    .select {
       flex: 1;
+      height: 45px;
+      margin: 5px 10px 5px 0;
     }
+
+    button {
+      width: 60px;
+      height: 100%;
+      margin: 0 10px;
+    }
+
+    .close {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 28px;
+        height: 28px;
+        color: #999;
+      }
+    }
+  }
+
+
+  .emptyWarp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
   }
 
   .item {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 15px 10px 0 10px;
+    margin: 10px 10px 0 10px;
     box-shadow: var(--shadow);
-    padding: 10px;
+    padding: 15px;
     border-radius: 6px;
 
     .state {
@@ -66,25 +105,30 @@
       margin-top: 10px;
 
 
+      &+.row {
+        margin-top: 10px;
+      }
+
       .row+.row {
         margin: 0 0 0 10px;
       }
 
       .row {
 
-
         span {
+          flex: 1;
           display: block;
           text-align: center;
-          font-size: 32px;
+          font-size: 24px;
           width: 100%;
           font-family: sans-serif;
           font-weight: bold;
+          color: #dd0000;
         }
 
         input {
           color: #dd0000;
-          font-size: 32px;
+          font-size: 24px;
           text-align: center;
           width: 100%;
           border: none;
@@ -143,7 +187,6 @@
         input {
           color: #dd0000;
           font-size: 32px;
-          text-align: center;
           width: 80px;
           border: none;
           border-bottom: 1px solid #eee;
@@ -172,18 +215,29 @@
     .row {
       flex: 1;
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
+
 
       &+.row {
         margin-top: 10px;
       }
 
       &>label {
-        font-size: 12px;
+        font-size: 13px;
+        /* font-weight: bold; */
+        color: #666;
+        margin: 0 0 5px;
+        min-width: 70px;
+        align-items: center;
+        display: flex;
       }
 
       &>span {
         font-size: 15px;
+        color: #333;
+        flex: 1 1;
+        padding: 0 20px 0 0;
+        font-weight: bold;
       }
 
 
