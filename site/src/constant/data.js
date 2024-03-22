@@ -52,6 +52,16 @@ export const ST_TXT = {
 
 export const json_part = [
   {
+      dataIndex: 'key',
+      type: 'string',
+      title: '编号',
+      width: 80,
+      align: 'center',
+      req: true,
+      fixed: 'left',
+      render: (text, record, index) => `${index + 1}`,
+  },
+  {
       dataIndex: 'qrcode',
       type: 'string',
       title: DB.PART.QRCODE,
@@ -116,12 +126,14 @@ export const json_part = [
 
 export const json_model = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.MODEL.ID,
     width: 100,
+    align: 'center',
     req: true,
     fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'name',
     type: 'string',
@@ -138,12 +150,14 @@ export const json_model = [
 
 export const json_supply = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.SUPPLY.ID,
     width: 60,
-    fixed: 'left',
     align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'img',
     type: 'string',
@@ -178,12 +192,14 @@ export const json_supply = [
 
 export const json_ware = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.WARE.ID,
     width: 60,
-    fixed: 'left',
     align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'dep_name',
     type: 'string',
@@ -221,12 +237,14 @@ export const json_ware = [
 
 export const json_stock = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.STOCK.ID,
     width: 60,
-    fixed: 'left',
     align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'ware_code',
     type: 'string',
@@ -294,8 +312,10 @@ export const json_stock_io = [
     type: 'string',
     title: DB.STOCK_IO.ID,
     width: 60,
-    fixed: 'left',
     align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'qrcode',
     type: 'string',
@@ -371,12 +391,14 @@ export const json_stock_io = [
 
 export const json_user = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.USER.ID,
     width: 60,
-    fixed: 'left',
     align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'dep_name',
     type: 'string',
@@ -454,10 +476,19 @@ export const json_dep = [
 
 export const json_site = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.SITE.ID,
-    width: 60,
+    width: 100,
+    align: 'center',
+    req: true,
+    fixed: 'left',
+    render: (text, record, index) => `${index + 1}`,
+  },{
+    dataIndex: 'name',
+    type: 'string',
+    title: DB.SITE.NAME,
+    width: 100,
     fixed: 'left',
     align: 'center',
   },{
@@ -465,13 +496,6 @@ export const json_site = [
     type: 'string',
     title: DB.SITE.DEP_NAME,
     width: 120,
-    fixed: 'left',
-    align: 'center',
-  },{
-    dataIndex: 'name',
-    type: 'string',
-    title: DB.SITE.NAME,
-    width: 100,
     fixed: 'left',
     align: 'center',
   },{

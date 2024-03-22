@@ -6,6 +6,7 @@ import { MinusCircleOutlined, PlusOutlined ,ExclamationCircleFilled,LeftOutlined
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
+import {loadLocalUser} from '@/util/token'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
 import {ST_TXT,ST} from '@/constant/data'
@@ -28,25 +29,27 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
   const [ds,setDs] = useState([])
   const [optWare, setOptWare] = useState([]);
-  const [ware, setWare] = useState(null);
+  const [wareId, setWareId] = useState(null);
 
 
   useEffect(() => {
+    const { usr } = loadLocalUser()
+    console.log(usr)
+    const params = {
+      dep_id: usr.dep_id,
+    }
     setLoading(true)
-    store.queryWareCas(null).then(r=>{
+    store.queryWareByDep(params).then(r=>{
       setLoading(false)
-      // console.log(r.data)
-      setOptWare(r.data)
+      const ret = r.data.map(o=> ({label:o.name, value:o.id}))
+      setOptWare(ret)
     })
   }, []);
 
 
 
 
-
-
-
-  const showConfirm = (o,i,mode) => {
+  const showConfirm = (e,i) => {
     confirm({
       title: MSG.WARE_CFM,
       icon: <ExclamationCircleFilled />,
@@ -54,7 +57,7 @@ const FormCheck = ({setShowCheck,setLoading}) => {
       okText: FN.OK,
       cancelText: FN.NO,
       onOk() {
-        // doWare(o,i,mode)
+        doSave(e,i)
       },
     });
   };
@@ -66,8 +69,22 @@ const FormCheck = ({setShowCheck,setLoading}) => {
   }
 
 
-  const doSave =()=>{
+  const doSave =(e,i)=>{
+    
+    const params = {
+      id: e.id,
+      num: e.num_real,
+      ware_id: wareId,
+    }
 
+    console.log(params)
+    setLoading(true)
+    store.saveStockNum(params).then(r=>{
+      setLoading(false)
+      r.data.map(o=> o.num_real = o.num)
+      setDs(r.data)
+      message.info('信息保存成功')
+    })
   }
 
   const doClose =()=>{
@@ -76,11 +93,11 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
 
   const doSelWare =(e)=>{
-    setWare(e[1])
+    setWareId(e)
     setDs([])
 
     let params = {
-      ware_id: e[1]
+      ware_id: e
     }
     store.queryStockByWare(params).then(r=>{
       setLoading(false)
@@ -90,7 +107,7 @@ const FormCheck = ({setShowCheck,setLoading}) => {
         message.info('該倉庫沒有部品')
         return
       }
-
+      r.data.map(o=> o.num_real = o.num)
       console.log(r.data)
       setDs(r.data)
     })
@@ -99,36 +116,17 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
   
 
-  const doLoadStock =()=>{
-    let params = {
-      ware_id: ware
-    }
-    store.queryStockByWare(params).then(r=>{
-      setLoading(false)
-
-      // 沒有數據
-      if (r.data.length === 0 ) {
-        message.info('該倉庫沒有部品')
-        return
-      }
-
-      console.log(r.data)
-      setDs(r.data)
-    })
-  }
-
   return (
     <div className={s.form}>
       <div className={s.wrap}>
         <div className={s.hd}>
           <div className={s.close} onClick={doClose}><LeftOutlined /></div>
-          <Cascader 
+          <Select 
             options={optWare} 
             className={s.select} 
             onChange={doSelWare} 
-            value={ware} 
+            value={wareId} 
             />
-          {/*<Button onClick={doLoadStock}><SearchOutlined /></Button>*/}
         </div>
 
         
@@ -160,9 +158,10 @@ const FormCheck = ({setShowCheck,setLoading}) => {
               </div>
             </div>
 
+            {o.status === 1 && 
             <div className={s.fun}>
-              <Button type="primary" size="large" onClick={()=>doSave(o,i)} block>保存</Button>
-            </div>
+              <Button type="primary" size="large" onClick={()=>showConfirm(o,i)} block>保存核对信息</Button>
+            </div>}
           </div>
           )}
 

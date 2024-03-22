@@ -93,7 +93,7 @@ console.log(initImgs)
     values.img = img
     values.info = JSON.stringify(info)
     const params = {
-      id: item.id,
+      id: item?.id,
       method,
       ...values
     }

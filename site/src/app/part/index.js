@@ -68,8 +68,10 @@ const Part = () => {
     ),
   })
   // 數據查詢過濾
-  col[2] = {...col[2],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
-  col[3] = {...col[3],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[3] = {...col[3],...getColumnSearchProps('code',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[4] = {...col[4],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[5] = {...col[5],...getColumnSearchProps('mod_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[6] = {...col[6],...getColumnSearchProps('sup_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 
   const showDelConfirm = (e) => {
