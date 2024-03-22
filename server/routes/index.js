@@ -245,6 +245,19 @@ router.post('/queryWare', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
+
+// 根据部门查詢倉庫
+router.post('/queryWareByDep', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_WARE_BY_DEP(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
 // 刪除倉庫
 router.post('/delWare', async (req, res, next) => {
   let params = req.body
@@ -283,14 +296,6 @@ router.post('/queryStock', async (req, res, next) => {
 })
 
 
-// 查詢在庫
-router.post('/queryStockByWare', async (req, res, next) => {
-  let params = req.body
-  // console.log(params)
-  let sql = `CALL PROC_QUERY_STOCK(?)`
-  let r = await callP(sql, params, res)
-  res.status(200).json({ code: 0, data: r })
-})
 
 // 刪除在庫
 router.post('/checkStock', async (req, res, next) => {
@@ -301,12 +306,34 @@ router.post('/checkStock', async (req, res, next) => {
   res.status(200).json({ code: 0, data: r })
 })
 
+
 // 保存在庫
 router.post('/saveStock',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
   params.create_name = usr
   let sql = `CALL PROC_SAVE_STOCK(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+// 根据仓库查詢出入庫
+router.post('/queryStockByWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_QUERY_STOCK_BY_WARE(?)`
+  let r = await callP(sql, params, res)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+// 更新仓库库存数量
+router.post('/saveStockNum',auth, async (req, res, next) => {
+  let params = req.body
+  let {usr} = req.usr
+  params.create_name = usr
+  let sql = `CALL PROC_SAVE_STOCK_NUM(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
 })
@@ -456,16 +483,6 @@ router.post('/queryStockIOByRC', async (req, res, next) => {
 })
 
 
-// 根据仓库查詢出入庫
-router.post('/queryStockByWare', async (req, res, next) => {
-  let params = req.body
-  // console.log(params)
-  let sql = `CALL PROC_QUERY_STOCK_BY_WARE(?)`
-  let r = await callP(sql, params, res)
-  res.status(200).json({ code: 0, data: r })
-})
-
-
 // 审核出入库订单
 router.post('/auditStockIO', async (req, res, next) => {
   let params = req.body
@@ -483,7 +500,7 @@ router.post('/procStockIO', auth, async (req, res, next) => {
   params.create_name = usr
 
   
-  console.log(params)
+  // console.log(params)
   let sql = `CALL PROC_PROC_STOCK_IO(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })

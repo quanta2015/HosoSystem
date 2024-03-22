@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
+import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal,Tag, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
+import {ST_TXT} from '@/constant/data'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
@@ -293,6 +294,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
             </div>
             {list.map((o,i)=>
               <div key={i} className={s.row}>
+                <i><Tag>{ST_TXT[o.state]}</Tag></i>
                 <AutoComplete 
                   options={partFil} 
                   value={o.key} 

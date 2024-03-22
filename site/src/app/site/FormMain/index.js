@@ -142,7 +142,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
               <Col span={16}>
                 <Form.Item
                   name="addr"
-                  label="營業所地址"
+                  label="现场地址"
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
@@ -154,7 +154,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
           </div>
 
           <div className={s.head}>
-            <h1>其他信息</h1>
+            <h1>その他</h1>
             {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
