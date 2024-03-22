@@ -13,8 +13,8 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 import InFormMain from './InFormMain'
 import OutFormMain from './OutFormMain'
-import {jp} from '@constant/lang'
 
+import {jp} from '@constant/lang'
 
 const { FN,MSG,DB,TXT } = jp
 const { confirm } = Modal;
@@ -75,21 +75,6 @@ const Stock = () => {
   col[3] = {...col[3],...getColumnSearchProps('out_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
   col[4] = {...col[4],...getColumnSearchProps('in_ware_name',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
-
-  const showDelConfirm = (e) => {
-    confirm({
-      title: MSG.CFM,
-      icon: <ExclamationCircleFilled />,
-      okType: 'danger',
-      okText: FN.OK,
-      cancelText: FN.CLS,
-      onOk() {
-        doDel(e)
-      },
-    });
-  };
-
-  
 
   // 加載數據
   useEffect(() => {

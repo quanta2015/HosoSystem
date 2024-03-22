@@ -387,7 +387,7 @@ router.post('/queryStockIO', async (req, res, next) => {
 
   r.map(o=>{
     let {state_list} = o
-    let list = o.state_list.split(',')
+    let list = state_list?state_list.split(','):[]
     caluState(list, o)
   })
   // console.log(r)

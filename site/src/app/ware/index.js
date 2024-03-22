@@ -15,8 +15,6 @@ import {getColumnSearchProps} from '@/util/filter'
 import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
-import {jp} from '@constant/lang'
-
 const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
