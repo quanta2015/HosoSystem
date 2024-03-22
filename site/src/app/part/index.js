@@ -98,7 +98,7 @@ const Part = () => {
     setLoading(true)
     store.delById(params).then(r=>{
       setLoading(false)
-      r.data.map(async o=> o.qrcode = await genQR(o.code))
+      // r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
       // console.log(r.data)
     })
@@ -117,10 +117,10 @@ const Part = () => {
     setLoading(true)
     store.queryTable(params).then(r=>{
       setLoading(false)
-      r.data.map(async o=> o.qrcode = await genQR(o.code))
+      // r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
       setRefresh(false)
-      // console.log(r.data)
+      console.log(r.data)
     })
   }, [refresh]);
 
