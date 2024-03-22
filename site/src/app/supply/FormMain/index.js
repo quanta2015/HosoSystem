@@ -9,8 +9,7 @@ import s from './index.module.less';
 import {jp} from '@constant/lang'
 
 
-
-const { FN,MSG,TXT } = jp
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -23,7 +22,7 @@ const formItemLayout = {
 
 
 
-const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
+const FormMain = ({col, item, method, detail, setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
 
 
@@ -116,10 +115,9 @@ console.log(initImgs)
           >
 
           <div className={s.basic}>
-            
             <div className={s.lt}>
               <div className={s.head}>
-                <h1>{TXT.SUP_IMG}</h1>
+                <h1>{DB.SUPPLY.IMG}</h1>
               </div>
               <Upload
                 action = {`${API_SERVER}/upload`}
@@ -129,6 +127,7 @@ console.log(initImgs)
                 fileList={imgs}
                 onPreview={doOpenPrev}
                 onChange={doChangeImg}
+                disabled={detail}
                 >
                 {imgs.length >= 1 ? null : <Button icon={<CloudUploadOutlined />} /> }
               </Upload>
@@ -144,54 +143,56 @@ console.log(initImgs)
                 <Col span={12}>
                   <Form.Item
                     name="name"
-                    label={TXT.SUP_NAME}
+                    label={DB.SUPPLY.NAME}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Input />
+                    <Input disabled={detail}/>
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item
                     name="phone"
-                    label={TXT.SUP_PHONE}
+                    label={DB.SUPPLY.PHONE}
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                   >
-                    <Input />
+                    <Input disabled={detail}/>
                   </Form.Item>
                 </Col>
               </Row>
               
               <Form.Item
                 name="addr"
-                label={TXT.SUP_ADDR}
+                label={DB.SUPPLY.ADDR}
                 labelCol={{ span: 3 }}
                 wrapperCol={{ span: 21 }}
               >
-                <Input />
+                <Input disabled={detail}/>
               </Form.Item>
             </div>
           </div>
 
           <div className={s.head}>
             <h1>{TXT.OTH_INFO}</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
+            {/*<Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />*/}
+            {!detail && <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
           </div>     
           
           <div className={s.info}>
             {info.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')}/>
-                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                  <Input value={o.key} onChange={(e)=>chgVal(i,e,'key')} disabled={detail}/>
+                  <Input value={o.val} onChange={(e)=>chgVal(i,e,'val')} disabled={detail}/>
+                  {!detail && <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />}
                 </div>
               )}
           </div>
 
           <div className={s.fun}>
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
+            {/*<Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>*/}
+            {!detail && <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button> }
           </div>
         </Form>
       </div>

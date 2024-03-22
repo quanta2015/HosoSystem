@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
+import {Input,  Space,  Form, Button, Row, Col, Tag, Select, Upload, Cascader, Modal, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
+import {ST_TXT} from '@/constant/data'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
-const { FN,MSG,TXT } = jp
+
+const { FN,MSG,DB,TXT } = jp
+
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
 const getPart = (list,id, stockio_id)=> {
@@ -16,7 +19,7 @@ const getPart = (list,id, stockio_id)=> {
   return `${stockio_id} ${r.id} ${r.code} ${r.name}`
 }
 
-const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
+const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
   console.log(item,'up')
 
@@ -68,8 +71,10 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
         console.log(r.data)
-        let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num}))
+        let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num, state:o.state}))
         setList(_list)
+
+
       })
     }
   }, [part]);
@@ -172,15 +177,15 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
             </div>
             <div className={s.row}>
               <span>{TXT.STOCK_IN_TYPE}</span>
-              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
+              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
               <span>{TXT.STOCK_IN_WARE}</span>
-              <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare}/>
+              <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare} disabled={detail}/>
             </div>
           </div>
 
           <div className={s.head}>
             <h1>{TXT.STOCK_IN_PART}</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
+            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} disabled={detail} />
           </div>     
 
           
@@ -188,16 +193,25 @@ const FormMain = ({col, item, method,setRefresh, setShowInForm,setLoading}) => {
           <div className={s.info}>
             {list.map((o,i)=>
                 <div key={i} className={s.row}>
-                  <AutoComplete options={partFil} value={o.key} onSearch={doSearch} onChange={(val)=>doSelPart(val,i)} style={{'width':'600px','marginRight':'20px'}} />
-                  <Input onChange={(e)=>chgVal(e,i)} value={o.val}/>
-                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                  <i><Tag>{ST_TXT[o.state]}</Tag></i>
+                  <AutoComplete 
+                    options={partFil} 
+                    value={o.key} 
+                    onSearch={doSearch} 
+                    onChange={(val)=>doSelPart(val,i)} 
+                    style={{'width':'600px','marginRight':'20px'}} 
+                    disabled={detail}
+                    />
+                  <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail} />
+                  <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} disabled={detail} />
                 </div>
               )}
           </div>
 
           <div className={s.fun}>
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.CLS}</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
+
+            {!detail && <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>} 
           </div>
       </div>
 

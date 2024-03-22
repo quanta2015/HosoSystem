@@ -8,7 +8,8 @@ import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
-const { FN,MSG,TXT } = jp
+
+const { FN,MSG,DB,TXT } = jp
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
 const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
@@ -17,7 +18,7 @@ const getPart = (list,id, stockio_id)=> {
   return `${stockio_id} ${r.id} ${r.code} ${r.name}`
 }
 
-const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}) => {
+const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoading,move}) => {
   const { store } = React.useContext(MobXProviderContext)
   // console.log(item,'up')
 
@@ -270,15 +271,15 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
             {move && 
             <div className={s.row}>
               <span>{TXT.STOCK_OUT_WARE}</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
               <span>{TXT.STOCK_IN_WARE}</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare} disabled={detail}/>
             </div>}
           </div>
 
           <div className={s.head}>
             <h1>{TXT.STOCK_OUT_PART}</h1>
-            {part.length >0 &&  <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />}
+            {part.length >0 &&  <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} disabled={detail} />}
           </div>
 
           {list.length>0 &&
@@ -291,17 +292,26 @@ const FormMain = ({col, item, method,setRefresh, setShowOutForm,setLoading,move}
             </div>
             {list.map((o,i)=>
               <div key={i} className={s.row}>
-                <AutoComplete options={partFil} value={o.key} onSearch={doSearch} onSelect={(val)=>doSelPart(val,i)} style={{'width':'600px'}} />
+                <AutoComplete 
+                  options={partFil} 
+                  value={o.key} 
+                  onSearch={doSearch} 
+                  onSelect={(val)=>doSelPart(val,i)} 
+                  style={{'width':'600px'}} 
+                  disabled={detail}
+                  />
                 <span className={s.num}>{list[i].num}</span>
-                <Input onChange={(e)=>chgVal(e,i)} value={o.val}/>
-                <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} />
+                <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail} />
+                <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} disabled={detail} />
               </div>
             )}
           </div>}
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
-            <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>
+
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button> 
+
+            {!detail && <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>} 
           </div>
       </div>
 

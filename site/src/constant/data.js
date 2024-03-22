@@ -9,6 +9,47 @@ import {jp} from '@constant/lang'
 const { DB,TAG } = jp
 
 
+export const ST = {
+  OUT_AUDIT: 10,  //出庫待審核
+  OUT_READY: 11,  //待出庫
+  OUT_SUCC:  12,  //出庫完成
+  OUT_ERROR: 13,  //出庫錯誤
+  OUT_NOPAS: 14,  //出庫审核未通过
+
+  IN_AUDIT:  20,  //入庫待審核
+  IN_READY:  21,  //待入庫
+  IN_SUCC:   22,  //入庫完成
+  IN_ERROR:  23,  //入庫出錯
+  IN_PART:   24,  //部分入庫
+  IN_NOPAS:  25,   //入庫审核未通过
+
+  MOV_AUDIT: 30,  //移动待審核
+  MOV_READY: 31,  //待移动
+  MOV_SUCC:  32,  //移动完成
+  MOV_ERROR: 33,  //移动錯誤
+  MOV_NOPAS: 34,  //移动审核未通过
+}  
+
+
+export const ST_TXT = {
+  10:'出庫待審核',
+  11:'待出庫',
+  12:'出庫完成',
+  13:'出庫錯誤',
+  14:'出庫审核未通过',
+  20:'入庫待審核',
+  21:'待入庫',
+  22:'入庫完成',
+  23:'入庫出錯',
+  24:'部分入庫',
+  25:'入庫审核未通过',
+  30:'移动待審核',
+  31:'待移动',
+  32:'移动完成',
+  33:'移动錯誤',
+  34:'移动审核未通过' 
+}
+
 export const json_part = [
   {
       dataIndex: 'qrcode',
@@ -256,10 +297,18 @@ export const json_stock_io = [
     fixed: 'left',
     align: 'center',
   },{
-    dataIndex: 'state',
+    dataIndex: 'qrcode',
+    type: 'string',
+    title: '二维码',
+    width: 100,
+    fixed: 'left',
+    align: 'center',
+    render: (text, r) => <img src={text} alt={r.name}/> 
+  },{
+    dataIndex: 'state_text',
     type: 'string',
     title: '狀態',
-    width: 100,
+    width: 150,
     fixed: 'left',
     align: 'center',
     render:(text,r)=> <Tag color="blue">{text}</Tag>
@@ -267,14 +316,14 @@ export const json_stock_io = [
     dataIndex: 'recept_code',
     type: 'string',
     title: DB.STOCK_IO.RECEPT_CODE,
-    width: 300,
+    width: 200,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'type',
     type: 'string',
     title: DB.STOCK_IO.TYPE,
-    width: 200,
+    width: 150,
   },{
     dataIndex: 'part_img',
     type: 'string',
@@ -311,6 +360,11 @@ export const json_stock_io = [
     title: DB.STOCK_IO.NUM,
     width: 100,
     align: 'center',
+  },{
+    dataIndex: 'remark',
+    type: 'string',
+    title: DB.STOCK_IO.REMARK,
+    width: 300
   }
 ]
 

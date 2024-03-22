@@ -10,7 +10,10 @@
 /site/*.lock
 /site/package-lock.json
 
-
+/mobile/build
+/mobile/node_modules
+/mobile/*.lock
+/mobile/package-lock.json
 
 # misc
 .DS_Store

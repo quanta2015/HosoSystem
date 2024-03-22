@@ -36,6 +36,7 @@ const Part = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -55,12 +56,13 @@ const Part = () => {
   // 添加功能操作
   const col = json_part.concat({
     title: FN.ACT,
-    width: 200,
+    width: 240,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
@@ -100,10 +102,11 @@ const Part = () => {
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
     setItem(e)
     setMethod('update')
     setShowForm(true)
+    setDetail(readonly)
   }
 
   // 加載part數據
@@ -150,7 +153,7 @@ const Part = () => {
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, method, detail, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>

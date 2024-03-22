@@ -16,7 +16,8 @@ import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
 
-const { FN,MSG } = jp
+const { FN,MSG,DB,TXT } = jp
+
 const { confirm } = Modal;
 
 

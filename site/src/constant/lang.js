@@ -66,7 +66,11 @@ export const jp = {
     STK:'棚卸',
     SRH:'検索',
     RST:'リセット',
-    REV:'レビュー'
+    AUDIT: 'レビュー',
+    CHK: '在庫状況',
+    PASS: '批准',
+    REJECT: '断る',
+    
   },
 
   MSG: {
@@ -142,7 +146,8 @@ export const jp = {
       PART_NAME: '部品名',
       MODEL_NAME: '部品タイプ',
       SUPPLY_NAME: 'サプライヤー',
-      NUM: '数量'
+      NUM: '数量',
+      REMARK:'備考'
     },
     USER: {
       ID: '番号',

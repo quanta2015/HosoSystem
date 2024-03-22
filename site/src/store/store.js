@@ -179,6 +179,11 @@ class Store {
     return await this.post(urls.API_SAVE_STOCK, params)
   }
 
+  // 查詢某個倉庫的庫存
+  async queryStockByWare(params) {
+    return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
+  }
+
 
 
 ///////////////////////////////////////////////////
@@ -208,10 +213,13 @@ class Store {
     return await this.post(urls.API_QUERY_STOCK_IO_BY_CODE, params)
   }
 
-  // 查詢某個倉庫的庫存
-  async queryStockByWare(params) {
-    return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
+
+
+  // 审核出入库
+  async auditStockIO(params) {
+    return await this.post(urls.API_AUDIT_STOCK_IO, params)
   }
+
 
 
 

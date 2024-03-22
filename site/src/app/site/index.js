@@ -16,8 +16,7 @@ import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
 
-const { MSG,TXT,DB,FN } = jp
-
+const { FN,MSG,DB,TXT } = jp
 const { confirm } = Modal;
 
 
@@ -61,7 +60,7 @@ const Site = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>       
         <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>

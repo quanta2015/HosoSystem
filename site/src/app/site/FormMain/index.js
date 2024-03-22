@@ -9,7 +9,7 @@ import s from './index.module.less';
 import {jp} from '@constant/lang'
 
 
-const { MSG,TXT,DB,FN } = jp
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {

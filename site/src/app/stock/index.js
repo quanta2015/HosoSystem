@@ -15,9 +15,7 @@ import {getColumnSearchProps} from '@/util/filter'
 import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
-
-const { MSG,TXT,DB,FN } = jp
-
+const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
 
@@ -62,7 +60,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o,true)}>{FN.DTL}</Button>
+        <Button type="primary"  onClick={()=>showDetail(o)}>{FN.DTL}</Button>
       </Space>
     ),
   })
@@ -82,7 +80,7 @@ const Stock = () => {
       setLoading(false)
       setDs(r.data)
       setRefresh(false)
-      console.log(r.data)
+      // console.log(r.data)
     })
   }, [refresh]);
 
@@ -124,10 +122,7 @@ const Stock = () => {
           <div className={s.fun}>
             <Space>
               <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>{FN.DL}</Button>
-              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>{FN.STK}</Button>
-
-              {/*<Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAdd()}>申請製品出庫伝票</Button>*/}
+              <Button type="primary" icon={<SearchOutlined/>}  onClick={()=>doCheck() }>{FN.CHK}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>

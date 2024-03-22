@@ -7,16 +7,16 @@ import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
 import { observer,MobXProviderContext } from 'mobx-react'
 import {API_SERVER} from '@/constant/apis'
-import {json_stock_io} from '@/constant/data'
+import {json_stock_io,ST} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
+import InFormMain from './InFormMain'
+import OutFormMain from './OutFormMain'
 import {jp} from '@constant/lang'
 
 
-const { FN,MSG,TXT } = jp
-
-
+const { FN,MSG,DB,TXT } = jp
 const { confirm } = Modal;
 
 // console.log('stock')
@@ -37,6 +37,7 @@ const Stock = () => {
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
   const [move,setMove]  = useState(false);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -59,11 +60,13 @@ const Stock = () => {
     width: 200,
     align: 'center',
     fixed: 'right',
-    render: o => (
+    render: o =>  (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>{FN.REV}</Button>
+        { ( o.state === ST.OUT_AUDIT || 
+            o.state === ST.IN_AUDIT ||
+            o.state === ST.MOV_AUDIT )  && <Button type="primary" onClick={()=>doAudit(o)}>{FN.AUDIT}</Button>}
       </Space>
-    ),
+    )
   })
 
   // 數據查詢過濾
@@ -100,22 +103,9 @@ const Stock = () => {
   }, [refresh]);
 
 
-  // 刪除數據
-  const doDel = (e)=>{
-    let params = { 
-      recept_code: e.recept_code
-    }
-    setLoading(true)
-    store.delStockIO(params).then(r=>{
-      setLoading(false)
-      setDs(r.data)
-      // console.log(r.data)
-    })
-  }
 
-  const doEdit=(e)=>{
-
-    // console.log(e)
+  const doAudit=(e)=>{
+    setDetail(true)
     setItem(e)
     setMethod('update')
 
@@ -168,12 +158,14 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
         </div>
 
+
+       {showInForm && <InFormMain {...{col, item, method,detail, setRefresh, setShowInForm, setLoading}}  />}
+       {showOutForm && <OutFormMain {...{col, item, method, detail, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
     </div>

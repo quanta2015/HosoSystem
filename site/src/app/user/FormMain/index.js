@@ -9,8 +9,7 @@ import s from './index.module.less';
 import {jp} from '@constant/lang'
 
 
-
-const { FN,MSG,TXT,DB } = jp
+const { FN,MSG,DB,TXT } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -51,10 +50,8 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   }, []);
 
 
-  console.log(optDep)
-
   // 保存修改數據
-  const onFinish = (values) => { 
+  const onFinish = (values) => {
     const params = {
       id: item?.id,
       method,

@@ -13,11 +13,12 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 
 import FormMain from './FormMain'
+import {jp} from '@constant/lang'
 
 import {jp} from '@constant/lang'
 
+const { FN,MSG,DB,TXT } = jp
 
-const { FN,MSG } = jp
 const { confirm } = Modal;
 
 
@@ -36,6 +37,7 @@ const Supply = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -60,7 +62,8 @@ const Supply = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o)}>{FN.EDIT}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
+        <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
     ),
@@ -110,10 +113,11 @@ const Supply = () => {
     })
   }
 
-  const doEdit=(e)=>{
+  const doEdit=(e,readonly)=>{
     setItem(e)
     setMethod('update')
     setShowForm(true)
+    setDetail(readonly)
   }
 
 
@@ -146,7 +150,7 @@ const Supply = () => {
         </div>
 
 
-       {showForm && <FormMain {...{col, item, method, setRefresh, setShowForm, setLoading}}  />}
+       {showForm && <FormMain {...{col, item, method, detail, setRefresh, setShowForm, setLoading}}  />}
 
       </Spin >
     </div>
