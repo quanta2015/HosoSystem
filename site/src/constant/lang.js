@@ -94,6 +94,7 @@ export const jp = {
       REVIEW:"レビュー",
     },
     PART: {
+      ID: '番号',
       QRCODE: 'QRコード',
       IMG: '製品画像',
       CODE: '製品ID',
