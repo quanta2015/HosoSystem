@@ -21,7 +21,6 @@ configure({ enforceActions: 'observed' })
 const Index = lazy(() => import('./app/index'));
 const Layout = lazy(() => import('./app/layout'));
 const Login = lazy(() => import('./app/login'));
-const Ware = lazy(() => import('./app/ware'));
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,7 +33,6 @@ root.render(
             <Route path="/login" element={<Login />} />
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
-              <Route path="/ware" element={<Ware />} />
 
             </Route>
           </Routes>

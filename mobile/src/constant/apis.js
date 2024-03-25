@@ -4,8 +4,8 @@ let API_SERVER = 'http://localhost'
 
 
 if (mode === 'development') {
-  API_SERVER = 'http://10.177.1.95'
-  // API_SERVER = 'http://localhost'
+  // API_SERVER = 'http://10.177.1.95'
+  API_SERVER = 'http://localhost'
 
 
 }
