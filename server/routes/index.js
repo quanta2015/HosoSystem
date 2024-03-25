@@ -6,10 +6,11 @@ var dotenv = require('dotenv')
 var express = require('express')
 var jwt = require('jsonwebtoken')
 var formidable = require('formidable')
+var Excel = require('exceljs');
 
 var router = express.Router()
 var {callP} = require("../db/db")
-var {clone,isN,formatJSON,arrayToExcel} = require("../util/util")
+var {clone,isN,formatJSON,arrayToExcel,formatKey} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
@@ -103,6 +104,7 @@ router.post('/queryPartSel', async (req, res, next) => {
 })
 
 
+
 // 查詢部品
 router.post('/queryTable', async (req, res, next) => {
   let params = req.body
@@ -111,6 +113,9 @@ router.post('/queryTable', async (req, res, next) => {
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
   r = formatJSON(r,'sup_info')
+  formatKey(r)
+  
+
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -136,7 +141,7 @@ router.post('/savePart', auth, async (req, res, next) => {
   res.status(200).json({ code: 0, data:r })
 })
 
-// 
+// 导出部品
 router.post('/exportPart', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_PART(?)`
   let data = await callP(sql, null, res)
@@ -155,8 +160,147 @@ router.post('/delById', async (req, res, next) => {
   // console.log(r)
   r = formatJSON(r,'info')
   r = formatJSON(r,'sup_info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
+
+
+
+// 导入零件
+router.post('/importPart', async (req, res, next) => {
+  
+  let filename 
+  let filepath 
+
+  const form = formidable({ uploadDir: `${root}/upload` });
+
+  form.on('fileBegin', function(name, file) {
+    const fileext = file.originalFilename.slice(((file.originalFilename.lastIndexOf(".") - 1) >>> 0) + 2);
+    filename = `import_${dayjs().format('YYYYMMDDhhmmss')}.${fileext}`
+    filepath = `${root}/upload/${filename}`
+
+    file.filepath = `upload/${filename}`
+  })
+
+  form.parse(req, async(err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    const workbook = new Excel.Workbook();
+    await workbook.xlsx.readFile(filepath);
+    const worksheet = workbook.getWorksheet(1);
+
+    const head = []
+    const data = []
+    let [id_name,id_code,id_sup,id_mod] = [null,null,null,null]
+
+    // 获取数据
+    worksheet.eachRow({ includeEmpty: true }, (row, i) => {
+      if (i===1) {
+        row.eachCell({ includeEmpty: true }, (cell, j) => {
+
+          if (cell.value === 'name') {
+            id_name = j-1
+          }else if (cell.value === 'code') {
+            id_code = j-1
+          }else if (cell.value === 'sup_name') {
+            id_sup = j-1
+          }else if (cell.value === 'mod_name') {
+            id_mod = j-1
+          }
+          head.push(cell.value??'');
+        });
+      }else{
+        const rowData = [];
+        row.eachCell({ includeEmpty: true }, (cell, j) => {
+          rowData.push(cell.value??'');
+        });
+
+        if ((rowData[0]!=='')&&(rowData[1]!=='')) {
+          data.push(rowData);
+        }
+      }
+    })
+
+    // 转化类型和供应商
+    const supList = new Set()
+    const modList = new Set()
+    data.map(o=>{
+      if (o[id_sup]!=='') {
+        supList.add(o[id_sup])
+      }
+      if (o[id_mod]!=='') {
+        modList.add(o[id_mod])
+      }
+    })
+    
+
+    const supJson = [...supList] 
+    const modJson = [...modList] 
+    const sql1 = `CALL PROC_IMPORT_MODEL(?)`
+    const sql2 = `CALL PROC_IMPORT_SUPPLY(?)`
+    const modData = await callP(sql1, modJson, res)
+    const supData = await callP(sql2, supJson, res)
+
+
+    // 重构数据
+    head.splice(id_name,1)
+    head.splice(id_code,1)
+    head.splice(id_sup,1)
+    head.splice(id_mod,1)
+
+    const ret = []
+
+    data.map(o=>{
+      modData.map(item=>{
+        if (item.name === o[id_mod]) {
+          o[id_mod] = item.id
+        }
+      })
+
+      supData.map(item=>{
+        if (item.name === o[id_sup]) {
+          o[id_sup] = item.id
+        }
+      })
+      const code = o[id_code]
+      const name = o[id_name]
+      const sid = o[id_sup]
+      const mid = o[id_mod]
+      let r = {code,name,sid,mid}
+
+      o.splice(id_name,1)
+      o.splice(id_code,1)
+      o.splice(id_sup,1)
+      o.splice(id_mod,1)
+
+      let jsonItem = {}
+      o.map((p,i)=>{
+        jsonItem[head[i]] = p
+      })
+      r.info = jsonItem
+      ret.push(r)
+    })
+
+
+    const sql3 = `CALL PROC_IMPORT_PART(?)`
+    const partList = await callP(sql3, ret, res)
+
+    console.log(partList)
+
+
+    res.status(200).json({
+      status: 200,
+      success: true,
+      // data: r,
+      msg: '数据导入成功',
+    })
+  });
+
+})
+
+
 
 
 
@@ -171,6 +315,7 @@ router.post('/queryModel', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_MODEL(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -180,7 +325,7 @@ router.post('/delModel', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_DEL_MODEL(?)`
   let r = await callP(sql, params, res)
-  r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -207,6 +352,7 @@ router.post('/querySupply', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_SUPPLY(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -217,6 +363,7 @@ router.post('/delSupply', async (req, res, next) => {
   let sql = `CALL PROC_DEL_SUPPLY(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -246,6 +393,7 @@ router.post('/queryWare', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_WARE(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -257,6 +405,7 @@ router.post('/queryWareByDep', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_WARE_BY_DEP(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -269,6 +418,7 @@ router.post('/delWare', async (req, res, next) => {
   let sql = `CALL PROC_DEL_WARE(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -296,12 +446,13 @@ router.post('/queryStock', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_STOCK(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
 
 
-// 刪除在庫
+// 盘查库存
 router.post('/checkStock', async (req, res, next) => {
   let params = req.body
   // console.log(params)
@@ -414,7 +565,7 @@ router.post('/queryStockIO', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_STOCK_IO(?)`
   let r = await callP(sql, params, res)
-
+  formatKey(r)
 
   r.map(o=>{
     let {state_list} = o
@@ -431,6 +582,7 @@ router.post('/delStockIO', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_DEL_STOCK_IO(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -523,6 +675,7 @@ router.post('/queryUser', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_QUERY_USER(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -532,6 +685,7 @@ router.post('/delUser', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_DEL_USER(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -558,6 +712,7 @@ router.post('/queryDep', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_DEP(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -568,6 +723,7 @@ router.post('/delDep', async (req, res, next) => {
   let sql = `CALL PROC_DEL_DEP(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -595,6 +751,7 @@ router.post('/querySite', async (req, res, next) => {
   let sql = `CALL PROC_QUERY_SITE(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 
@@ -605,6 +762,7 @@ router.post('/delSite', async (req, res, next) => {
   let sql = `CALL PROC_DEL_SITE(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
 

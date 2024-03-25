@@ -11,6 +11,14 @@ var ExcelJS = require('exceljs');
 // } 
 
 
+
+
+module.exports.formatKey = (list) => {
+  return list.map((o,i)=>{
+    o.key = i+1
+  })
+}
+
 module.exports.clone = (e) => {
   return JSON.parse(JSON.stringify(e))
 }
