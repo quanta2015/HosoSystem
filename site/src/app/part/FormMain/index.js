@@ -4,7 +4,7 @@ import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Modal, message} 
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
-import {filterData,clone,getBase64} from '@/util/fn'
+import {filterData,clone,getBase64,genQR} from '@/util/fn'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
 
@@ -39,7 +39,6 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
   const initImg  = method==='insert'?null:item?.img
 
 
-console.log(initImgs)
   const [img, setImg] = useState(initImg)
   const [imgs, setImgs] = useState(initImgs)
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -89,15 +88,19 @@ console.log(initImgs)
   }, []);
 
   // 保存修改數據
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
+    const qrcode = await genQR(values.code)
+    
+    // 
     values.img = img
     values.info = JSON.stringify(info)
     const params = {
       id: item?.id,
       method,
+      qrcode,
       ...values
     }
-
+    console.log(params)
     setLoading(true)
     store.savePart(params).then(r=>{
       setLoading(false)
