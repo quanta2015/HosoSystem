@@ -15,7 +15,7 @@ var compression = require('compression')
 
 dotenv.config()
 
-const port = 80
+
 const app = express()
 
 app.use(cors())
@@ -35,13 +35,20 @@ app.get('*', function (request, response){
 })
 
 
-var options = {}
+var options = {
+  key: fs.readFileSync('./key/site.key'),
+  cert: fs.readFileSync('./key/site.pem')
+}
 
-var server = http.createServer(options,app).listen(port)
-
-
+const https_port = 443
+var server = https.createServer(options,app).listen(https_port,'0.0.0.0')
 server.on('error', onError)
-server.on('listening', ()=>{ console.log(`Listening on Port ${port}`) })
+server.on('listening', ()=>{ console.log(`Listening on Port ${https_port}`) })
+
+const http_port = 80
+server = http.createServer(options,app).listen(http_port,'0.0.0.0')
+server.on('error', onError)
+server.on('listening', ()=>{ console.log(`Listening on Port ${http_port}`) })
 
 function onError(error) {
   if (error.syscall !== 'listen') { throw error; }
