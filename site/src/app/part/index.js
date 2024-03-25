@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
-import {Table, Space, Spin, Button, Modal, message, Select, DatePicker, Empty} from 'antd'
-import {  PlusCircleOutlined,ExclamationCircleFilled,FileMarkdownOutlined,CheckOutlined,CloudDownloadOutlined } from '@ant-design/icons';
+import {Table, Space, Spin, Button, Modal, message, Select, DatePicker, Empty, Upload} from 'antd'
+import {  PlusCircleOutlined,ExclamationCircleFilled,FileMarkdownOutlined,CheckOutlined,CloudDownloadOutlined,CloudUploadOutlined } from '@ant-design/icons';
 import cls from 'classnames'
 import dayjs from 'dayjs'
 import { useSearchParams } from 'react-router-dom';
@@ -23,6 +23,7 @@ const { confirm } = Modal;
 
 
 const Part = () => {
+  const uploadRef = useRef(null);
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -140,6 +141,31 @@ const Part = () => {
     })
   }
 
+
+  const importPart =()=>{
+    setLoading(true)
+    store.importPart().then(r => {
+      setLoading(false)
+      
+    })
+  }
+
+
+  const props = {
+    name: 'file',
+    maxCount: 1,
+    action: `${API_SERVER}/importPart`, 
+    onChange(e) {
+      if ((e.file.status === 'done')&&(e.file.response.success)) {
+        message.info(e.file.response.msg)
+        // setDs(e.file.response.data)
+      } else if (e.file.status === 'error') {
+        console.log(`${e.file.name} file upload failed.`);
+      }
+    },
+  };
+  
+
   return (
     
     <div className={s.index}>
@@ -147,6 +173,7 @@ const Part = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
+              <Upload {...props}  ><Button icon={<CloudUploadOutlined />} type="primary" ref={uploadRef}> {FN.UP}</Button> </Upload>
               <Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>{FN.DL}</Button>
               <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>

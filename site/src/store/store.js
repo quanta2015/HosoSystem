@@ -105,6 +105,14 @@ class Store {
   }
 
 
+  // 導出excel
+  async importPart(params) {
+    return await this.post(urls.API_IMPORT_PART, params)
+  }
+
+
+
+
 ///////////////////////////////////////////////////
 // -----------------  總類API ------------------ //
 ///////////////////////////////////////////////////

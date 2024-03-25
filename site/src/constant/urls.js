@@ -7,14 +7,14 @@ export const API_LOGIN = API_SERVER + '/login'
 
 
 // 零件接口
-
-
 export const API_QUERY_PART_SEL = API_SERVER + '/queryPartSel'
 export const API_QUERY_TABLE = API_SERVER + '/queryTable'
 export const API_DEL_BY_ID = API_SERVER + '/delById'
 export const API_QRY_SEL_INFO = API_SERVER + '/querySelInfo'
 export const API_SAVE_PART = API_SERVER + '/savePart'
 export const API_EXPORT_PART = API_SERVER + '/exportPart'
+export const API_IMPORT_PART = API_SERVER + '/importPart'
+
 
 
 // 總類接口
@@ -49,6 +49,7 @@ export const API_QUERY_WARE_CAS = API_SERVER + '/queryWareCas'
 export const API_QUERY_STOCK_IO_BY_CODE = API_SERVER + '/queryStockIOByCode'
 export const API_QUERY_STOCK_BY_WARE = API_SERVER + '/queryStockByWare'
 export const API_AUDIT_STOCK_IO = API_SERVER + '/auditStockIO'
+
 
 
 
