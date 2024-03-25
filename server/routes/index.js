@@ -35,6 +35,10 @@ const auth =(req, res, next)=> {
   })
 }
 
+router.get('/test',async (req, res, next) =>{  
+    res.status(200).json({success:1})  
+})
+
 
 
 ///////////////////////////////////////////////////
@@ -586,8 +590,7 @@ router.post('/delStockIO', async (req, res, next) => {
 router.post('/saveStockIO',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
-  params.create_name = usr
-
+  params.create_name = usr  
   // console.log(params)
   let sql = `CALL PROC_SAVE_STOCK_IO(?)`
   let r = await callP(sql, params, res)
