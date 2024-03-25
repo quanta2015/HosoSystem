@@ -50,6 +50,8 @@ export const ST_TXT = {
   34:'移动审核未通过' 
 }
 
+const pageSize = 6
+
 export const json_part = [
   {
       dataIndex: 'key',
@@ -59,7 +61,9 @@ export const json_part = [
       align: 'center',
       req: true,
       fixed: 'left',
-      render: (text, record, index) => `${index + 1}`,
+      // render: (text, record, index) => `${index + 1 + (pageSize * (pagination.current - 1))}`,
+ 
+      // render: (text, record, index) => `${index + 1}`,
   },
   {
       dataIndex: 'qrcode',
@@ -133,7 +137,6 @@ export const json_model = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'name',
     type: 'string',
@@ -157,7 +160,6 @@ export const json_supply = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'img',
     type: 'string',
@@ -199,7 +201,6 @@ export const json_ware = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'dep_name',
     type: 'string',
@@ -244,7 +245,6 @@ export const json_stock = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'ware_code',
     type: 'string',
@@ -315,7 +315,6 @@ export const json_stock_io = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'qrcode',
     type: 'string',
@@ -398,7 +397,6 @@ export const json_user = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'dep_name',
     type: 'string',
@@ -483,7 +481,6 @@ export const json_site = [
     align: 'center',
     req: true,
     fixed: 'left',
-    render: (text, record, index) => `${index + 1}`,
   },{
     dataIndex: 'name',
     type: 'string',

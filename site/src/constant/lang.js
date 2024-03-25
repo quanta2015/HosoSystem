@@ -63,6 +63,7 @@ export const jp = {
     DIS: '閉じる',
     SAV: 'セーブ',
     DL:'情報ダウンロード',
+    UP:'EXCELアプロード',
     STK:'棚卸',
     SRH:'検索',
     RST:'リセット',
