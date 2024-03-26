@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Modal, message} from 'antd'
+import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Modal, message ,Tag} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
 import {jp} from '@constant/lang'
-const { FN,MSG,DB,TXT } = jp
+const { FN,MSG,DB,TXT,TAG } = jp
 
 const formItemLayout = {
   labelCol: {
@@ -108,67 +108,121 @@ const FormMain = ({col,detail, item, method,setRefresh, setShowForm,setLoading})
           initialValues={initBasic}
           onFinish={onFinish}
           >
-          <div className={s.basic}>
-            <div className={s.head}>
-              <h1>{TXT.BAS_INFO}</h1>
-            </div>
-
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="code"
-                  label={DB.WARE.CODE}
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="name"
-                  label={DB.WARE.NAME}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  name="manager"
-                  label={DB.WARE.MANAGER}
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  name="addr"
-                  label={DB.WARE.ADDR}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              
-            </Row>
+          <div className={s.basic}>        
             
+            <div className={s.lt}>
+              <div className={s.head}>
+                <h1>{DB.PART.IMG}</h1>
+              </div>
+              <Upload
+                action = {`${API_SERVER}/upload`}
+                listType = "picture-card"
+                className = "upload-list-inline" 
+                maxCount={1}
+                fileList={imgs}
+                onPreview={doOpenPrev}
+                onChange={doChangeImg}
+                disabled={detail}
+                >
+                {imgs.length >= 1 ? null : <Button icon={<CloudUploadOutlined />} /> }
+              </Upload>
+            </div>
+            <div className={s.head}>
+              <h1>{TXT.PART_INFO}</h1>
+            </div>
+            <Row gutter={16}>
+                <Col span={8}>
+                  <Form.Item
+                    name="part_code"
+                    label={DB.PART.CODE}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="part_name"
+                    label={DB.PART.NAME}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="model_name"
+                    label={DB.STOCK.MODEL_NAME}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="supply_name"
+                    label={DB.STOCK.SUPPLY_NAME}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+              </Row>           
           </div>
 
-          <div className={s.head}>
-            <h1>{TXT.OTH_INFO}</h1>
-            <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} />
-          </div>  
+          <div className={s.basic}>
+            <div className={s.head}>
+              <h1>{TXT.WARE_INFO}</h1>
+            </div>  
+            <Row gutter={16}>
+                <Col span={8}>
+                  <Form.Item
+                    name="ware_code"
+                    label={DB.WARE.CODE}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="ware_name"
+                    label={DB.WARE.NAME}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="num"
+                    label={DB.STOCK.NUM}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    <Input disabled={detail} />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item
+                    name="status"
+                    label={DB.STOCK.STATUS}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 18 }}
+                  >
+                    {item.status===0? <Tag color="blue">{TAG.NORMAL}</Tag>:<Tag color="red">{TAG.WAIT_STOCK_TAKE}</Tag> }
+                  </Form.Item>
+                </Col>
+              </Row>           
+          </div>
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.CLS}</Button>  
-            <Button type="primary" htmlType="submit" style={{width:'120px'}} >{FN.SAV}</Button>
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowForm(false)} >{FN.DIS}</Button>             
           </div>
         </Form>
       </div>

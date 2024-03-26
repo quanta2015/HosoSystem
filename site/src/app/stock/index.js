@@ -60,7 +60,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o)}>{FN.DTL}</Button>
+        <Button type="primary"  onClick={()=>showDetail(o,true)}>{FN.DTL}</Button>
       </Space>
     ),
   })
@@ -129,7 +129,7 @@ const Stock = () => {
         </div>
 
 
-        {showForm && <FormMain {...{col,detail, item, method, setRefresh, setShowForm, setLoading}}  />}
+        {showForm && <FormMain {...{col,detail, item, method,setRefresh, setShowForm, setLoading}}  />}
       </Spin >
     </div>
   )
