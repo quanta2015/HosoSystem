@@ -28,8 +28,7 @@ const Nav = () => {
   const [codeReader, setCodeReader] = useState(null);
   const [qrCodeText, setQRCodeText] = useState('');
   const [showScan, setShowScan] = useState(false)
-
-  
+  const [devicesList, setDevicesList] = useState(false) 
 
 
   useEffect(() => {
@@ -37,6 +36,8 @@ const Nav = () => {
       try {
         const reader = new ZXing.BrowserQRCodeReader();
         const devices = await reader.getVideoInputDevices();
+        setDevicesList(devices);
+        
         if (devices.length > 0) {
           console.log(reader,devices[0].deviceId,'reader')
           setCodeReader(reader);
@@ -89,11 +90,16 @@ const Nav = () => {
     setShowCheck(true)
   }
 
+  const onChange=(value)=>{   
+    setSelectedDeviceId(value.deviceId);
+  }
+
 
   return (
     <div className={s.index}>
       <div className={s.bd}>
         <div className={s.scan} onClick={doScan}>
+          <Select options={devicesList.map(e=>{return {label:devicesList.deviceId,value:devicesList}})} onChange={onChange}/>
           <img src={icon_scna} alt="" />
           <video  ref={videoRef} id="video" autoPlay></video>
         </div>
