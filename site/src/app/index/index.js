@@ -6,6 +6,8 @@ import * as urls from '@/constant/urls'
 import {loadLocalUser} from '@/util/token'
 import { useNavigate } from 'react-router-dom'
 
+import logo from '../../img/hoso.svg'
+
 import s from './index.module.less'
 
 
@@ -17,8 +19,7 @@ const Nav = () => {
   return (
     <div className={s.nav}>
       <div className={s.wrap}>
-
-       
+        <img className={s.logo} src={logo} />
       </div>
 
       
