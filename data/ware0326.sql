@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 26/03/2024 17:31:30
+ Date: 26/03/2024 17:33:42
 */
 
 SET NAMES utf8mb4;
@@ -1224,18 +1224,18 @@ INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (63, 'HOSO-20240322113426', '采购入库', NULL, NULL, 2, 2, 1004, 40, 0, 22, '还差30个', 'ware', '2024-03-22 11:35:53');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (64, 'HOSO-20240322203251', '采购入库', NULL, NULL, 2, 2, 1017, 90, 0, 22, '拍了拍', 'ware', '2024-03-22 20:38:41');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (65, 'HOSO-20240322203251', '采购入库', NULL, NULL, 2, 2, 1043, 78, 0, 22, '45', 'ware', '2024-03-22 20:38:46');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (71, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1003, 12, 0, 20, NULL, 'ware', '2024-03-26 15:58:42');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (72, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1042, 5, 0, 20, NULL, 'ware', '2024-03-26 15:58:42');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (71, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1003, 12, 0, 10, NULL, 'ware', '2024-03-26 15:58:42');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (72, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1042, 5, 0, 10, NULL, 'ware', '2024-03-26 15:58:42');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (73, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1764, 6, 0, 21, '', 'ware', '2024-03-26 15:58:58');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (74, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1166, 12, 0, 21, '', 'ware', '2024-03-26 15:58:58');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (75, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1022, 88, 0, 21, '', 'ware', '2024-03-26 15:58:58');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (76, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1005, 40, 0, 21, '', 'ware', '2024-03-26 15:58:58');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (77, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1006, 45, 0, 21, '', 'ware', '2024-03-26 15:58:58');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (84, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1006, 5, 0, 20, NULL, 'ware', '2024-03-26 16:02:16');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (85, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1020, 20, 0, 20, NULL, 'ware', '2024-03-26 16:02:16');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (86, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1003, 7, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (87, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1001, 30, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (88, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1017, 12, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (84, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1006, 5, 0, 10, NULL, 'ware', '2024-03-26 16:02:16');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (85, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1020, 20, 0, 10, NULL, 'ware', '2024-03-26 16:02:16');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (86, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1003, 7, 0, 10, NULL, 'ware', '2024-03-26 16:03:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (87, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1001, 30, 0, 10, NULL, 'ware', '2024-03-26 16:03:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (88, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1017, 12, 0, 10, NULL, 'ware', '2024-03-26 16:03:00');
 COMMIT;
 
 -- ----------------------------
@@ -2267,7 +2267,7 @@ BEGIN
 				DELETE FROM tab_stock_io WHERE recept_code = @recept_code;
 			END IF;
 	
-			SET @recept_code = CONCAT('HOSO-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
+			SET @recept_code = CONCAT('HOSO-IN-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
 			INSERT INTO tab_stock_io (recept_code,type,in_dep_id, in_ware_id, part_id, num, status, state, create_name, create_time)
 			VALUES (@recept_code,@type,@in_dep_id, @in_ware_id, @part_id, @num, 0, 20, @create_name, @create_time);
 	
@@ -2286,7 +2286,7 @@ BEGIN
 				DELETE FROM tab_stock_io WHERE recept_code = @recept_code;
 			END IF;
 	
-			SET @recept_code = CONCAT('HOSO-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
+			SET @recept_code = CONCAT('HOSO-OUT-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
 			INSERT INTO tab_stock_io (recept_code,type,out_dep_id, out_ware_id, part_id, num, status, state, create_name, create_time)
 			VALUES (@recept_code,@type,@out_dep_id, @out_ware_id, @part_id, @num, 0, 10, @create_name, @create_time);
 	
@@ -2307,7 +2307,7 @@ BEGIN
 				DELETE FROM tab_stock_io WHERE recept_code = @recept_code;
 			END IF;
 	
-			SET @recept_code = CONCAT('HOSO-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
+			SET @recept_code = CONCAT('HOSO-MOV-', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'));
 			INSERT INTO tab_stock_io (recept_code,type,in_dep_id, in_ware_id,out_dep_id, out_ware_id, part_id, num, status, state, create_name, create_time)
 			VALUES (@recept_code,@type,@in_dep_id, @in_ware_id, @out_dep_id, @out_ware_id, @part_id, @num, 0, 30, @create_name, @create_time);
 	
