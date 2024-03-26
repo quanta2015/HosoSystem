@@ -45,7 +45,8 @@ export const jp = {
     SRH:'検索',
     RST:'リセット',
     AUDIT: 'レビュー',
-    CHK: '在庫状況',
+    CHK: '棚卸し',
+    UNCHK: '棚卸の取消',
     PASS: '批准',
     REJECT: '断る',
     

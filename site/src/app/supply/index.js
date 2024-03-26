@@ -68,7 +68,7 @@ const Supply = () => {
     ),
   })
   // 數據查詢過濾
-  // col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
+  col[2] = {...col[2],...getColumnSearchProps('name',doSearch,doReset,inputRef,searchedColumn,searchText)}
   // col[3] = {...col[3],...getColumnSearchProps('phone',doSearch,doReset,inputRef,searchedColumn,searchText)}
 
 

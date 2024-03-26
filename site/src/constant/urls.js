@@ -38,7 +38,11 @@ export const API_SAVE_WARE = API_SERVER + '/saveWare'
 // 在庫接口
 export const API_QUERY_STOCK = API_SERVER + '/queryStock'
 export const API_CHECK_STOCK = API_SERVER + '/checkStock'
+export const API_CHECK_STOCK_BY_ID = API_SERVER + '/checkStockById'
 export const API_SAVE_STOCK = API_SERVER + '/saveStock'
+
+
+
 
 
 // 出入庫接口

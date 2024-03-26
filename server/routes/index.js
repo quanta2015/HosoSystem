@@ -394,6 +394,19 @@ router.post('/queryWare', async (req, res, next) => {
 })
 
 
+// 刪除倉庫
+router.post('/delWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_WARE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  formatKey(r)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
 // 根据部门查詢倉庫
 router.post('/queryWareByDep', async (req, res, next) => {
   let params = req.body
@@ -407,16 +420,6 @@ router.post('/queryWareByDep', async (req, res, next) => {
 
 
 
-// 刪除倉庫
-router.post('/delWare', async (req, res, next) => {
-  let params = req.body
-  // console.log(params)
-  let sql = `CALL PROC_DEL_WARE(?)`
-  let r = await callP(sql, params, res)
-  r = formatJSON(r,'info')
-  formatKey(r)
-  res.status(200).json({ code: 0, data: r })
-})
 
 // 保存倉庫
 router.post('/saveWare',auth, async (req, res, next) => {
@@ -454,8 +457,23 @@ router.post('/checkStock', async (req, res, next) => {
   // console.log(params)
   let sql = `CALL PROC_CHECK_STOCK(?)`
   let r = await callP(sql, params, res)
+  formatKey(r)
   res.status(200).json({ code: 0, data: r })
 })
+
+
+// 盘查库存
+router.post('/checkStockById', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql1 = `CALL PROC_CHECK_STOCK_BY_ID(?)`
+  let sql2 = `CALL PROC_QUERY_STOCK(?)`
+  let r1 = await callP(sql1, params, res)
+  let r2 = await callP(sql2, params, res)
+  formatKey(r2)
+  res.status(200).json({ code: 0, data: r2 })
+})
+
 
 
 // 保存在庫
@@ -579,6 +597,12 @@ router.post('/delStockIO', async (req, res, next) => {
   let sql = `CALL PROC_DEL_STOCK_IO(?)`
   let r = await callP(sql, params, res)
   formatKey(r)
+
+  r.map(o=>{
+    let {state_list} = o
+    let list = o.state_list.split(',')
+    caluState(list, o)
+  })
   res.status(200).json({ code: 0, data: r })
 })
 
