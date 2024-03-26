@@ -223,7 +223,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           <div className={s.head}>
             <h1>审核意见</h1>
           </div>
-          <TextArea />
+          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark}/>
 
           <div className={s.fun}>
             <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
