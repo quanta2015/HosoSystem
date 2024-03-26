@@ -142,6 +142,7 @@ const Stock = () => {
 
   const doAddIn =()=>{
     setItem(null)
+    setDetail(false)
     setMethod('insert')
     setShowInForm(true)
   }
@@ -149,6 +150,7 @@ const Stock = () => {
 
   const doAddOut =()=>{
     setItem(null)
+    setDetail(false)
     setMethod('insert')
     setShowOutForm(true)
     setMove(false)

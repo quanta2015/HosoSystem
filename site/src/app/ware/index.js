@@ -125,6 +125,7 @@ const Ware = () => {
 
   const doAdd =()=>{
     setMethod('insert')
+    setDetail(false)
     setShowForm(true)
   }
 
