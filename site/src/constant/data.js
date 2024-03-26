@@ -126,7 +126,6 @@ export const json_part = [
 
 
 
-
 export const json_model = [
   {
     dataIndex: 'key',
@@ -186,8 +185,6 @@ export const json_supply = [
     width: 200,
   }
 ]
-
-
 
 
 
@@ -438,7 +435,7 @@ export const json_user = [
 
 export const json_dep = [
   {
-    dataIndex: 'id',
+    dataIndex: 'key',
     type: 'string',
     title: DB.DEP.ID,
     width: 60,
