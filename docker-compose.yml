@@ -1,0 +1,72 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql
+    hostname: mysql
+    volumes: 
+      - ./docker-data/mysql/:/var/lib/mysql
+      - ./docker-data/mysql/etc/my.cnf:/etc/my.cnf
+    ports:
+      - "8888:3306"
+    restart: always
+    # environment:
+    #    MYSQL_ROOT_AUTHENTICATION_PLUGIN: mysql_native_password
+    command: --default_authentication_plugin=mysql_native_password # --MYSQL_ROOT_AUTHENTICATION_PLUGIN=mysql_native_password
+    networks:
+      - shared
+
+  erpserver:
+    build: ./server
+    container_name: erpserver
+    ports:
+      - "25566:25566"
+    restart: always
+    volumes: 
+      - ./docker-data/server/upload/:/usr/src/app/upload/
+      - ./docker-data/server/export/:/usr/src/app/export/
+    # volumes: 
+    #   - ./server/:/usr/src/app/
+    # environment:
+    #   - name=value
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    command: node /usr/src/app/app.js
+    networks:
+      - shared
+
+  erpsite:
+    build: ./site
+    container_name: erpsite
+    ports:
+      - "3000:3000"
+    restart: always
+    # volumes: 
+    #   - ./site/:/usr/src/app/
+    # environment:
+    #   - name=value
+    command: npm run start
+    networks:
+      - shared
+  erpmobile:
+    build: ./mobile
+    container_name: erpmobile
+    ports:
+      - "3001:3000"
+    restart: always
+    # volumes: 
+    #   - ./site/:/usr/src/app/
+    # environment:
+    #   - name=value
+    command: npm run start
+    networks:
+      - shared
+
+
+networks:
+  shared:
+    external: true
+    
+
