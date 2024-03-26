@@ -131,11 +131,11 @@ const Stock = () => {
     setMethod('update')
     setDetail(readonly)
 
-    if (e.type ==='采购入库'||e.type==='退货入库'||e.type==='寄託') {
+    if (e.type ===TXT.STOCK_IO_TYPE.BUY||e.type===TXT.STOCK_IO_TYPE.RETURN||e.type===TXT.STOCK_IO_TYPE.TMP) {
       setShowInForm(true)
     }else {
       setShowOutForm(true)
-      setMove((e.type === '社內移動')?true:false)
+      setMove((e.type === TXT.STOCK_IO_TYPE.MOVE)?true:false)
     } 
   }
 

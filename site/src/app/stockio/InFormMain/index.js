@@ -34,9 +34,9 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   const [inWare, setInWare] = useState(initInWare);
   const [optWare, setOptWare] = useState([]);
   const [optType, setOptType] = useState([
-    {label:'采购入库',value:'采购入库'},
-    {label:'退货入库',value:'退货入库'},
-    {label:'寄託',value:'寄託'},
+    {label:TXT.STOCK_IO_TYPE.BUY,value:TXT.STOCK_IO_TYPE.BUY},
+    {label:TXT.STOCK_IO_TYPE.RETURN,value:TXT.STOCK_IO_TYPE.RETURN},
+    {label:TXT.STOCK_IO_TYPE.TMP,value:TXT.STOCK_IO_TYPE.TMP},
   ]);
   const [part,setPart] = useState([])
   const [partFil,setPartFil] = useState([])
