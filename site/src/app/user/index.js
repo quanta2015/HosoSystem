@@ -105,7 +105,7 @@ const User = () => {
       id: e.id
     }
     setLoading(true)
-    store.delWare(params).then(r=>{
+    store.delUsr(params).then(r=>{
       setLoading(false)
       setDs(r.data)
       // console.log(r.data)
