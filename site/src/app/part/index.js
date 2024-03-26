@@ -128,7 +128,8 @@ const Part = () => {
 
   const doAdd =()=>{
     setMethod('insert')
-    setShowForm(true)
+    setDetail(false)
+    setShowForm(true)    
   }
 
 
