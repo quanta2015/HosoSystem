@@ -11,7 +11,7 @@ export const jp = {
     MENU_L2: '部品管理',
     MENU_L2_1: '在庫管理',
     MENU_L2_2: '入出庫管理',
-    MENU_L2_3: '入出庫審査',
+    MENU_L2_3: '入出庫レビュー',
   },
 
   TXT: {
@@ -26,6 +26,29 @@ export const jp = {
     SUP_NAME: 'サプライヤー名',
     SUP_PHONE: '連絡先',
     SUP_ADDR: 'サプライヤーアドレース',
+    STOCK_IO_TYPE:{
+      BUY:'仕入',
+      RETURN:'返却',
+      TMP:'一時保管',
+      MOVE:'社内移動',
+      SEL:'販売',
+      USE:'社内使用'
+    },
+    STOCK_IN_INFO:'入庫情報',
+    STOCK_IN_TYPE:'入庫タイプ',
+    STOCK_IN_WARE:'入庫倉庫',
+    STOCK_IN_PART:'入庫部品',
+    STOCK_IN_NUM:'在庫数',
+    STOCK_OUT_INFO:'出庫情報',
+    STOCK_OUT_TYPE:'出庫タイプ',
+    STOCK_OUT_WARE:'出庫倉庫',
+    STOCK_OUT_PART:'出庫部品',    
+
+  },
+  
+  TAG:{
+    NORMAL:'正常',
+    WAIT_STOCK_TAKE:'棚卸待ち'
   },
 
   FN: {
@@ -45,7 +68,7 @@ export const jp = {
     SRH:'検索',
     RST:'リセット',
     AUDIT: 'レビュー',
-    CHK: '在庫状況',
+    CHK: '棚卸',
     PASS: '批准',
     REJECT: '断る',
     
@@ -55,7 +78,13 @@ export const jp = {
     CFM: 'レコードを削除してもよろしいですか?',
     EXPT_SUC: 'エクスポート成功！',
     SAVE_SUC: 'セーブ成功！',
-
+    CHOOSE_IN_TYPE:'入庫タイプを選んでください',
+    CHOOSE_OUT_TYPE:'出庫タイプを選んでください',
+    CHOOSE_WARE:'倉庫を選んでください',
+    CHOOSE_PART:'部品を選んでください',
+    NO_PART_IN_WARE:'倉庫内に部品はありません',
+    OVER_STOCK:'入力した数は在庫数を超えました',
+    CHOOSED:'該当項目はすでに入力されました',
   },
 
   DB: {
@@ -66,6 +95,7 @@ export const jp = {
       REVIEW:"レビュー",
     },
     PART: {
+      ID: '番号',
       QRCODE: 'QRコード',
       IMG: '製品画像',
       CODE: '製品ID',
@@ -76,7 +106,7 @@ export const jp = {
       SUP_ADDR: 'サプライヤーアドレス',
     },
     MODEL: {
-      ID: 'サプライヤーアドレス',
+      ID: '番号',
       NAME: '類型',
     },
     SUPPLY: {
@@ -109,13 +139,17 @@ export const jp = {
     STOCK_IO: {
       ID: '番号',
       RECEPT_CODE: '入出庫番号',
+      TYPE:'種類',
       WARE_NAME: '倉庫名',
+      IN_WARE_NAME: '元倉庫',
+      OUT_WARE_NAME:'目的地倉庫',
       PART_IMG: '部品画像',
       PART_CODE: '部品コード',
       PART_NAME: '部品名',
       MODEL_NAME: '部品タイプ',
       SUPPLY_NAME: 'サプライヤー',
-      NUM: '数量'
+      NUM: '数量',
+      REMARK:'備考'
     },
     USER: {
       ID: '番号',
