@@ -10,7 +10,7 @@ var ExcelJS = require('exceljs');
 
 var router = express.Router()
 var {callP} = require("../db/db")
-var {clone,isN,formatJSON,stockToExcel,formatKey,stockToExcel} = require("../util/util")
+var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
@@ -592,6 +592,9 @@ const caluState = (list,el)=>{
 }
 
 
+
+
+
 // 查詢出入庫
 router.post('/queryStockIO', async (req, res, next) => {
   let params = req.body
@@ -604,6 +607,7 @@ router.post('/queryStockIO', async (req, res, next) => {
     let {state_list} = o
     let list = o.state_list.split(',')
     caluState(list, o)
+    o.remark = formatRemark(o.remark)
   })
   // console.log(r)
   res.status(200).json({ code: 0, data: r })
