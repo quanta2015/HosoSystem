@@ -255,7 +255,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>{move?TXT.STOCK_IO_TYPE.MOVE:TXT.STOCK_IO_TYPE.STOCK_OUT_INFO}</div>
+          <div className={s.tl}>{move?TXT.STOCK_IO_TYPE.MOVE:TXT.STOCK_OUT_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
               <h1>{TXT.BAS_INFO}</h1>
@@ -264,9 +264,9 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
             {!move && 
             <div className={s.row}>
               <span>{TXT.STOCK_OUT_TYPE}</span>
-              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type}/>
+              <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
               <span>{TXT.STOCK_OUT_WARE}</span>
-              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare}/>
+              <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
             </div>}
 
             {move && 
