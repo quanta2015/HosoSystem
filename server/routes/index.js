@@ -205,12 +205,12 @@ router.post('/importPart', async (req, res, next) => {
           }else if (cell.value === 'mod_name') {
             id_mod = j-1
           }
-          head.push(cell.value??'');
+          head.push(cell.value||'');
         });
       }else{
         const rowData = [];
         row.eachCell({ includeEmpty: true }, (cell, j) => {
-          rowData.push(cell.value??'');
+          rowData.push(cell.value||'');
         });
 
         if ((rowData[0]!=='')&&(rowData[1]!=='')) {
