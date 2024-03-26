@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 version: '3.7'
+=======
+version: '3.1'
+>>>>>>> Stashed changes
 services:
   mysql:
     image: mysql:8.3.0
@@ -6,15 +10,23 @@ services:
     hostname: mysql
     volumes: 
       - ./docker-data/mysql/:/var/lib/mysql
+<<<<<<< Updated upstream
       - ./docker-data/mysql/etc/my.cnf:/etc/my.cnf
     ports:
       - "8888:3306"
+=======
+    # ports:
+    #   - "3306:3306"
+>>>>>>> Stashed changes
     restart: always
     # environment:
     #    MYSQL_ROOT_AUTHENTICATION_PLUGIN: mysql_native_password
     command: --default_authentication_plugin=mysql_native_password # --MYSQL_ROOT_AUTHENTICATION_PLUGIN=mysql_native_password
+<<<<<<< Updated upstream
     networks:
       - shared
+=======
+>>>>>>> Stashed changes
 
   erpserver:
     build: ./server
