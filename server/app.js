@@ -54,11 +54,11 @@ function onError(error) {
   if (error.syscall !== 'listen') { throw error; }
   switch (error.code) {
     case 'EACCES':
-      console.error(`Port ${port} requires elevated privileges`);
+      console.error(`Port ${http_port} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`Port ${port} is already in use`);
+      console.error(`Port ${http_port} is already in use`);
       process.exit(1);
       break;
     default:
