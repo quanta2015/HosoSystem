@@ -15,7 +15,6 @@ import {getColumnSearchProps} from '@/util/filter'
 import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
-
 const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
@@ -36,6 +35,7 @@ const Stock = () => {
   const [loading, setLoading] = useState(false);
   const [ds, setDs] = useState(false);
   const [item,setItem]  = useState(null);
+  const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -60,7 +60,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o)}>{FN.DTL}</Button>
+        <Button type="primary"  onClick={()=>showDetail(o,true)}>{FN.DTL}</Button>
       </Space>
     ),
   })
@@ -85,8 +85,10 @@ const Stock = () => {
   }, [refresh]);
 
 
-  const showDetail =()=>{
-    
+  const showDetail =(e,detail)=>{
+    setItem(e)
+    setDetail(detail)
+    setShowForm(true)
   }
 
 
@@ -127,7 +129,7 @@ const Stock = () => {
         </div>
 
 
-
+        {showForm && <FormMain {...{col,detail, item, method,setRefresh, setShowForm, setLoading}}  />}
       </Spin >
     </div>
   )
