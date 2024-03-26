@@ -198,6 +198,13 @@ class Store {
     return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
   }
 
+  // 导出庫存
+  async exportStock(params) {
+    return await this.post(urls.API_EXPORT_STOCK, params)
+  }
+
+
+
 
 
 ///////////////////////////////////////////////////

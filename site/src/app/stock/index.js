@@ -120,20 +120,16 @@ const Stock = () => {
     filDs = filDs.map(item => item.id);
     const in_list = `(${filDs.join(',')})`
 
-    
-
     let params = { 
       in_list
     }
 
-    console.log(params)
-
-    
-    // setLoading(true)
-    // store.checkStock(params).then(r=>{
-    //   setLoading(false)
-    //   setDs(r.data)
-    // })
+    // console.log(params)
+    setLoading(true)
+    store.checkStock(params).then(r=>{
+      setLoading(false)
+      setDs(r.data)
+    })
   }
 
 
@@ -148,6 +144,8 @@ const Stock = () => {
       setDs(r.data)
     })
   }
+
+  
 
 
   const doExport =()=>{
