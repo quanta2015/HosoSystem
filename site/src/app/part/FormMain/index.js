@@ -130,6 +130,8 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
   }
 
 
+  console.log(imgs.length)
+
   return (
     <div className={s.form}>
       <div className={s.wrap}>

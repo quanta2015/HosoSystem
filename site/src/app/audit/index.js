@@ -81,6 +81,7 @@ const Stock = () => {
     setLoading(true)
     store.queryStockIO(null).then(r=>{
       setLoading(false)
+      r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
       setDs(r.data)
       setRefresh(false)
       console.log(r.data)

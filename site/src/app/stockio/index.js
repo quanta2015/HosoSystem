@@ -102,8 +102,6 @@ const Stock = () => {
     store.queryStockIO(null).then(r=>{
       setLoading(false)
       r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
-
-      
       setDs(r.data)
       setRefresh(false)
       console.log(r.data)
@@ -119,6 +117,7 @@ const Stock = () => {
     setLoading(true)
     store.delStockIO(params).then(r=>{
       setLoading(false)
+      r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
       setDs(r.data)
       // console.log(r.data)
     })
@@ -141,6 +140,7 @@ const Stock = () => {
 
 
   const doAddIn =()=>{
+    setDetail(false)
     setItem(null)
     setDetail(false)
     setMethod('insert')
@@ -149,6 +149,7 @@ const Stock = () => {
 
 
   const doAddOut =()=>{
+    setDetail(false)
     setItem(null)
     setDetail(false)
     setMethod('insert')
@@ -157,6 +158,7 @@ const Stock = () => {
   }
 
   const doAddMove =()=>{
+    setDetail(false)
     setItem(null)
     setMethod('insert')
     setShowOutForm(true)

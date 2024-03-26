@@ -13,7 +13,18 @@ import {jp} from '@constant/lang'
 const { FN,MSG,DB,TXT } = jp
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
-const partFormat =(o,method,id)=> ({label: code(o), value:code(o)})
+const nc = (o)=> (`# ${o.part_id} ${o.code} ${o.name}`)
+// const partFormat =(o,method)=> ({label: code(o), value:code(o)})
+
+const partFormat =(o,method)=> {
+  if (method === 'insert') {
+    return ({label: nc(o), value:nc(o)})
+  }else{
+    return ({label: code(o), value:code(o)})
+  }
+}
+
+
 const getPart = (list,id, stockio_id)=> {
   let r = (list.filter(o=> o.id === id))[0]
   return `${stockio_id} ${r.id} ${r.code} ${r.name}`
@@ -76,7 +87,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
         num: o.stock_num, 
         val: o.io_num,
       }))
-      // console.log(_list,'_list')
+      console.log(_list,'_list')
       setList(_list)
     })
   }, []);
@@ -96,7 +107,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
         }
        
         // 設置庫存列表
-        let part = r.data.map(o=> partFormat(o))
+        let part = r.data.map(o=> partFormat(o,method))
         setPart(r.data)
         setPartFil(part)
       })
@@ -124,13 +135,13 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
         message.info(MSG.NO_PART_IN_MSG)
         return
       }
-      // console.log(r.data)
+      console.log(r.data)
 
       // 清空原來出庫數據
       setList([])
 
       // 設置庫存列表
-      let part = r.data.map(o=> partFormat(o))
+      let part = r.data.map(o=> partFormat(o,method))
       setPart(r.data)
       setPartFil(part)
 
@@ -146,8 +157,11 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   const doAddItem =()=>{
     list.push({key:'',val:''})
     setList([...list])
-    const _part = part.map(o=> partFormat(o))
+    const _part = part.map(o=> partFormat(o,method))
     setPartFil(_part)
+
+    // console.log(_part)
+    console.log(part)
   }
 
   // 刪除json數據
@@ -172,12 +186,14 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   const doSelPart = (val,i) => {
     const part_id = parseInt(val.split(' ')[1])
     const selPart = part.find(o => o.part_id === part_id);
-    console.log(part_id)
-    console.log(part)
+    // console.log(part_id)
+    // console.log(part)
+    // console.log(selPart)
+
     if (selPart!== undefined) {
       const filtered = list.filter(o=> o.id === part_id)
 
-      console.log(filtered,'filtered')
+      // console.log(filtered,'filtered')
       if (filtered.length > 0) {
         message.info(MSG.CHOOSED)
         return
@@ -196,7 +212,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
     const filteredData = part.filter(o => 
      o.code.toLowerCase().includes(value.toLowerCase()) || o.name.toLowerCase().includes(value.toLowerCase())
     )
-    setPartFil(filteredData.map(o=> partFormat(o)))
+    setPartFil(filteredData.map(o=> partFormat(o,method)))
   }
 
 
@@ -237,7 +253,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       message.info(MSG.CHOOSE_PART)
       return 
     }
-    console.log(params)
+    // console.log(params)
 
     setLoading(true)
     store.saveStockIO(params).then(r=>{

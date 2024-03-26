@@ -1,13 +1,4 @@
-:global {
-
-  .ant-space-item {
-    flex: 1;
-  }
-
-  .ant-space-item:last-child {
-    flex: unset;
-  }
-}
+:global {}
 
 .index {
   width: calc(100vw - var(--nav-width));
@@ -22,9 +13,15 @@
 
   :global {
 
-    .ant-upload-list {
-      display: none;
+    .ant-space-item {
+      flex: 1;
     }
+
+    .ant-space-item:last-child {
+      flex: unset;
+    }
+
+
 
     .ant-space-item>img,
     .ant-space-item>a {
@@ -47,6 +44,13 @@
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
+
+
+    :global {
+      .ant-upload-list {
+        display: none;
+      }
+    }
 
     .fun {
       display: flex;

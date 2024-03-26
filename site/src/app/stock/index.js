@@ -29,6 +29,7 @@ const Stock = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const inputRef = useRef(null);
 
+  const [filter,setFilter] = useState({})
   const [refresh,setRefresh] = useState(false)
   const [showForm,setShowForm] = useState(false)
   const [method, setMethod] = useState('Insert')
@@ -38,10 +39,15 @@ const Stock = () => {
   const [detail,setDetail]  = useState(false);
 
   const doSearch = (selectedKeys, confirm, dataIndex) => {
+    
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
+
+    filter[dataIndex] = selectedKeys[0]
+    setFilter(filter)
   };
+
 
   const doReset = (clearFilters, dataIndex, confirm) => {
     if (clearFilters) {
@@ -49,18 +55,21 @@ const Stock = () => {
       setSearchText('');
       setSearchedColumn(dataIndex);
       confirm();
+      delete filter[dataIndex]
+      setFilter(filter)
     }
   };
 
   // 添加功能操作
   const col = json_stock.concat({
     title: FN.ACT,
-    width: 200,
+    width: 240,
     align: 'center',
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary"  onClick={()=>showDetail(o,true)}>{FN.DTL}</Button>
+        <Button type="primary"  onClick={()=>doCheckById(o,1)}>{FN.CHK}</Button>
+        <Button type="primary"  onClick={()=>doCheckById(o,0)}>{FN.UNCHK}</Button>
       </Space>
     ),
   })
@@ -93,16 +102,52 @@ const Stock = () => {
 
 
   const doCheck = (e)=>{
-    let params = { 
-      // id: e.id
+    let filDs = [...ds]
+
+    if (filter.ware_name !== undefined) {
+      filDs = filDs.filter(o=> o.ware_name.includes(filter.ware_name))
     }
+
+
+    if (filter.ware_code !== undefined) {
+      filDs = filDs.filter(o=> o.ware_code.includes(filter.ware_code))
+    }
+    if (filter.part_name !== undefined) {
+      filDs = filDs.filter(o=> o.part_name.includes(filter.part_name))
+    }
+    if (filter.part_code !== undefined) {
+      filDs = filDs.filter(o=> o.part_code.includes(filter.part_code))
+    }
+
+    filDs = filDs.map(item => item.id);
+    const in_list = `(${filDs.join(',')})`
+
+    let params = { 
+      in_list
+    }
+
+    // console.log(params)
     setLoading(true)
     store.checkStock(params).then(r=>{
       setLoading(false)
       setDs(r.data)
-      // console.log(r.data)
     })
   }
+
+
+  const doCheckById = (e,mode)=>{
+    let params = {
+      id: e.id,
+      mode,
+    }
+    setLoading(true)
+    store.checkStockById(params).then(r=>{
+      setLoading(false)
+      setDs(r.data)
+    })
+  }
+
+  
 
 
   const doExport =()=>{

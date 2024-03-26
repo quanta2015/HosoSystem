@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 26/03/2024 11:22:24
+ Date: 26/03/2024 16:40:59
 */
 
 SET NAMES utf8mb4;
@@ -56,7 +56,7 @@ CREATE TABLE `tab_model` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_model
@@ -66,6 +66,7 @@ INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) V
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (2, '電池', 0, 'admin', '2024-03-07 12:03:09');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (3, '吊車', 0, 'admin', '2024-03-07 12:03:10');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (4, 'ewefaf', 0, 'admin', '2024-03-07 12:03:12');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (56, 'aaa', 0, 'ware', '2024-03-26 16:05:21');
 COMMIT;
 
 -- ----------------------------
@@ -85,7 +86,7 @@ CREATE TABLE `tab_part` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2409 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2410 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_part
@@ -1099,6 +1100,7 @@ INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `stat
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2006, '666666', 'aaaa', 'upload/20240325102909.png', 5, 1, '[]', 1, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABJdJREFUeF7tndFu4zAMBJv//+gecG9xgAwWSzmVMn2lRVE7JGU5Tvr4/f39/fHvGAUeAj2G5f+FCPQsngI9jKdABXqaAoetxz1UoIcpcNhyrFCBHqbAYcuxQgV6mAKHLccKFehhChy2HCtUoIcpcNhy6gp9PB63SnL3x7e7rU+gkI4CXVyvVuh7ga1QK/RZgWtLmq6g1D+1yDS+dP60QU37H6/QVDASIF2wQEsCqeAE8GpP/QtUoG9zLE2o1QlL/pe3XKqYa4DX/CJBWzsKdDlnU3zkj8aX9dW/JJYKOr3gdP5UsNT/9PrI38sW1b5o/ekFp/MLNDynUUuhjKPx03aKJ00Y8pfGT/6+vkJJoFTw1fcIFK9AQSGBfvgu8NMt0QpdXCFUYdTCaDzZp/2Tv+NbLp1r0ydRn+4AAr0oQMeUFJgVGr7RQIKR3QqlFN7sHCrQxUDTPeDuPY6WTy159fpS/8sfzqcBCbT7DROBwo/AWKHDv5JDgqb26T12dQdK/Y9XaBpAej3d5a62p/Gm19OeTv4EOvzokgQnu0BDIG0FE5DWLlCBPuVQ3XLbjGzH06cdbca38d09XqB3K754PoEuFvhu9wK9W/HF89VA24N9uj7aE9N4Un9pvOmDjNa/QMNHf63glECtf4EK9DmH0hbXZiBleBpP6m91/K3/ukIpgOlzYgqM4kvtlACpP1pP7K/9KgRNKND3Cgk0fNRHCZfarVB4SSwViDKaOkIKcPWxg9aTxlvvoWlAdH0LpP00hcZPAyY9BHo5hpBgqV2gFwVaASljqcJau0AF+jYHKcEpga/28T00DSDNeNpj6SaLxlP80/7JH8Uj0PCrGdMJl/oT6OJns1RRaQcgfwIV6Oyb0ZSh03eZaQan87/sUfCkKo3nz90U0YJpz6AFUYKkAgo0VIwApIKSvzC8n3R+Sth2D6SETtdXH1towVboeyR/HmiaUe31JEhrp4Q9vkJbQOn4FhiNF2hKpLyegLR2gZaA0uEtMBr/dUCn70IJKO1ZBKi1p4Cn5yN96rtcgT7/I6L0WETACeBLgrUviQlUoGnSPV1vy4Vz7XSFkuApTWpJaYdo46P5qOXSg5ZUn+UttxWsvekgQdr4BEoKg90KzQQcv8ttK8AKzQDe3nKpRdGe0lYo7WmpvU246YQXaPhVCgKQJhz56+rz57x/xDNd8QRAoJCCaQuklt76Eyh8FYFaSguA/Lf2FnA7P41ffpdLFTTdImnBrV2g4YvNVmiXclZoqJ8V+scqdLoDEOAwX+rLv65CBfrhZ63pOY9SXKACfavA17VcqhiyU4Wm4+l6shNAipfsND/Zl++hFADZWwHSczDFI1BSqGzp5F6gpNDF3lYQTdf6FygpDEDD4fHldJdKDml821Kv87cJSet5mW/6JbE0gPR6AkL+aLxAwydBJDjZCUg7XqACfZtD27Vcqgjt9ypQn0PvDdfZSAGBkkKb2QW6GTAKV6Ck0GZ2gW4GjMIVKCm0mV2gmwGjcAVKCm1mF+hmwChcgZJCm9kFuhkwClegpNBmdoFuBozCFSgptJldoJsBo3D/AfMNMw5TWWb2AAAAAElFTkSuQmCC', 'ware', '2024-03-25 10:29:13');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2007, '888888', 'aaa', 'upload/20240325102939.svg', 5, 1, '[]', 1, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABNJJREFUeF7tndGOqzAMBdv//+iudN8IEnOP7ACJZl9tEueM7QRou9/f7/f7+LeNAl+BbsPy30IEuhdPgW7GU6AC3U2BzdbjHirQzRTYbDlWqEA3U2Cz5VihAt1Mgc2WY4UKdDMFNluOFSrQzRTYbDnlCv1+v7dKMr6+Hecn+xgsvQ5+en2puAKF9/sCTVMq9KcKJLsVCoI/ncG23COg9pZLe1JYkB8CNo6X+lM83eNNj7f6maK3Lbg7nu7xBDqcoqkDdAPoHk+gAqVd4WCfvoemhyY6pZKdTrEUD41PdlKfrqcOROMLdFAoFZwSJE0wgcKTKgJUFVyg0DMIANlTQKl/On91fGqxp0PW7NuWpzOY5qcWR6dcGl+gw7NVEpQymAQX6KAgCU6Czs5gml+gAj3e94WvD2kPpgTDjrTbHlrtGKng1AFmd6DtD0UCLdZ4VcDuDK7GY4XCs9a7W5JAJ1cobeJknw2ou0PQenzbUuwA1EIFGt62pBmbZjC1dIGGBKglhsOd3Gl8gR4la399VgVI11PFzbZTfFV78UhT/9EMqpDqAqt7XFrhlBDd66H1pfNZocVDVyo4+VuhIRCqQLITkKr9caDVBXRfT1sAAasK2r2edLxyy00nnO0v0NVTEu6L6dBBh6bZCdg9vhUafu63G0D3eGWglOFkpwVVWyhVKM0/2tP1kD/Z4/jufsGddniBZkit0Eyv9m/DWaEDALoNseWGGZu6py2UxqcMT+cjf0oQuj7dcmj9pz2+uofGE4ZfXaDxBXpUqLyHkuB0SqSMp/EFKtCDAukeTAm4fctNK4gEJntV8Or11fioI5F9essV6PUPc3UfkgQKKV+tuLtbsEAFOpyqwhfM6R6VtqTuFk97VlrB6Xjk334fmgoo0GtEaQILtNhR0oRMK0ygg2Jpx6i2zOr1lCBpQrQfiuhUly7g6fFSQavre7xC00d71QWTwCRImiA0H9nTeMif5rNCSaGinQDRFpFOL9BUsdB/eaDhesvulOFkLwcQDkAtnxKApmuvUJqw207AyN4dD40nUFCIgJGdAHTbBSrQKKfKLZcyLormP5zpRj6105Rphad6VPfM021j9TNF6QJIQLKnwFIgdF9NAFI9aDzSQ6Dwj3cEGv7WXZpxo78Veq1g+x7a3kImf5no6Zbcrlf3HtoeoECjpmaFFhMmrfDUP6L5+fT/CooV+rtksDzQ6jE+FSD1pwpIx0vXS4c+im/6bQudQilAup46QAqA4knHE+igqECvWzYm4OxTbpqxAhXoIWmpRaZ2qghKwO49kuKZftvytgoVaPPrK8owyvjqoUigAr1UgBLQlhv+qyxq6angBIDmq15PHYg63PJ7KAksUEqBwX73npQCSv2rFVa93goNf1WFKroKpHr964GGBX9ypw5wepYZvnB/WwWX9Zr9pKgcYPh66+0VSBVc1kugx0dtTyeEQOGQRgLZcosCksBkJwB0qEgrkOLptlP8NF/7fShNWLUL9FpBgVYzrPl6K3TyKbiZFw73OFCMUIdbFSi33FujdTJUQKAo0VoOAl2LF0YrUJRoLQeBrsULoxUoSrSWg0DX4oXRChQlWstBoGvxwmgFihKt5SDQtXhhtAJFidZyEOhavDBagaJEazkIdC1eGO0flLg/Did+PiwAAAAASUVORK5CYII=', 'ware', '2024-03-25 10:29:41');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2008, '44444444', 'qqqq', 'upload/20240325103029.svg', 5, 1, '[]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABPRJREFUeF7tnctu4zAQBOP//+gssDfJgAuFHooJ03sdaTjsmgclr53X9/f391f/HaPAq0CPYfl/IwV6Fs8CPYxngRboaQoctp/O0AI9TIHDttMKLdDDFDhsO63QAj1MgcO20wot0MMUOGw7rdACPUyBw7YTV+jr9XpUkqc/vv1t+ytQSMcCXVyvrdDPArdCW6FXBe4tabqCUv/UMinedH1qWNP+xyuUBKIN3u3phgtUKp4KTsul/guUFL7ZU8FpudR/gZLCEigJel/u3rIJKNlpO3S/tdN6dn/k721Epf8vd/eGaX0ShO63dlqvQG9voqYFscBo/QK9KUCCWTsJXKA/fIbSTLaPRRY4JdB0Qh4/Qws0fBOwO4PpFE3bs/FThbVCh2doK5RSWL68fjqDqcJoZlICkH/qEKl/qvjjZyjlJwGghCQ7AaD7KX7yv/zlPAmYZjBVUCuUUuCHP7ZQhlOC2Qoif2nCShz590NthegA5Zsi8p8Co4Sh9aljpP6Xt1y7Qbvh1RWyO2GtfgUqO0BaQTZhCxQUaMuVz6E2o+z100CopdqWbvdDhybrb7zl2gDs9QX6WbEClTPUJqC9Pp3RBVqgNufWXk8zjlr09Axbu1v2HlcoL7H2igK96lugt3xLZ9ja9GXvBVqgtxJ/+FBhK8g+Z9qZyzVzvcLGb/3HFWoFswGmhxYbX4G2QlWOtkLDGdcKVfn29WUFW91CZfgY/93f0/vV+9n93RbbgkhQLQCMjAK9/ZEJ++BPQAr04Zfz9pTYCqUUdvb4scUt9z5z7f1pwlCFk922YLo+PVO8+U9nqAVCLZj8FejilksAbIaSvwIt0IsC1FLJTglKZwLqUHQ/JfzjMzQVxN5vAaFg8rcN045C8WyfoRYIbYiAkZ38U7x0f4HKP5ZIwMhOQApUKpQKTveTXYb79qqQ7v91FUqC0SGAnsPofhJs2m4rlg45pB8lzPgMpYAISIFef0CaEoAAx6fcAv38i94EiPQjgK1Q+YG8BUIdh1o2rUeA4wqlBVbbqaXTDLXxWcFtfDae8QpNA0jvt4LR9RRPgZJCoZ0AtUJDgZ++vUCvisczlASdBkwtz54a6Xran+0AFH+qV4HKUy+dYm0CpADHD0W0gemAKcOp4uxjA+2vFRoSLtDPAo63XBLc8qSKIztVpI2H9pdWNPmneAuUFLrZSfACBUGpAsneCpUZawWV7vGrCnZ9qiCK789XqBWQTo1kt0DShCDAFM+0ffkMLdBpZJtPuQVaoBcFqCWuThg6VLXlQsLSjLR2qg9KmBSo9U/xkv24GWorxgq++noCRvYCHf7Cb1rRBIzsBVqg1xyhFrT60JKun85ku74dCVSRbx0h/X6o3RAFaAVO17fr2ZZK8ZEe1n58y6UOUaC3lKEMJEHvGWgFTte36/35CrUtwwqWXm/jowSlBKEEtvE8PkPjABefQm18BWoVky29FXp76lh9yg154uehBboYaAqQ7qcZRXaaYXTIsglk/dH+yT7+2EILpnYCRvYCBQJ0SEgBpgAoPkoAerNDFUj2aX1aofBjk38O6HSG1V+mQFyh2fK9e1qBAp1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5f4wZbw6dcfN9AAAAAElFTkSuQmCC', 'ware', '2024-03-25 10:30:33');
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2409, 'aa', 'aa', 'upload/20240326031203.svg', 5, 2, '[]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABIJJREFUeF7tncuO20AMBNf//9EOkJvlwIVGU5KXqVw5D7KL5Ixke/N4Pp/PH/+tUeAh0DUs/wYi0F08BbqMp0AFuk2BZfF4hgp0mQLLwrFCBbpMgWXhWKECXabAsnCsUIEuU2BZOFaoQJcpsCycukIfj8elkhw/vqX96ePe4/x0/engyV/aT6CHhBSoFUpFE9mtUEgoEsiWe8g3EiRKz38MpvXbM5T8o/1pPtmn1x8/Q6kiKMCjnQIW6KtiAoUMo4RKEzRN2HR9gQr0UOLD1356bEhbelthNJ9a/jFfpuN7q/j2e7nfHjD5Ry2N5gsUFJzOYAIi0PCx5e4MFiil7JcBbROGwqWEaPen9cm/dWdoKygJRoK3+9P65J9Awx/bkeACHb4UtYJSBQj0UAGt4CRoC6Sdf3d861puC6SdL9DhltsCaecLVKAvCrRHyuUtlyqA7NMB035vAsG76nS9s9f/9Z+2tILS/LMTanp9gQLRacGt0JNbnhUK73JJoNaefhpDFZbaW/9pfvp57+mXInK4tQv0s4LjZ2gLjOYLVKAvCrQJQQnX2m9vuW0A7fz2TU27/7fNr1vu3QEJ9JWAQO/OyOH9BTos6N3L1UDb5zi6pJBA6fz00kHxpW9+6IhI/Tv9ObQVmAI+BtDuRwkj0PAbCykQgV78HJoCSscL9GKgJHh65pw9frqlpv6m++MRMf3bFoEengvDH3N93aVIoAL9+K41bWHp+LTlTY9P1zu95dIGZKeAUnvbIchfslPLpMcymk/71y8WaAOyp8DSWzEJRAKT/9MJRP6SPwId/jtLBIQSiOYLFH6cRAKTgP9dhVJLTS8xNJ4ATLds2u9q++ktV6DXIhVo+aflrsXFuwlUoNmbEDrz6FbXtmzKaTpTW/9S/8lfstcVmjp89XgSQKAHha4GlFaMQEkBgb4oQAlN9lBuHF63XNzh5AHTgtF6ZG/vDK1cAg07jkDblIP5qcDkDq1HdiuUFBZopFDdcqdfbpP37WMGrU/xpPunFU3+kV2gcIYeBRQopVRoTwUNl/+xQoc/ICYAAv2s0HjLpTc5BCy9JdIZRRWX+kPxkT9pfKl/Ag0VE2goWJrBVBFWaAiABA2XextO66f21p//vkLTCmkvPe1+aYe4ejwl5OlnaCswVSAJSgLcXXFpfBSPQMOved6dAAIFBe4GZIWGvxCnV3fUsu8GThX55v/070PpUkMO0nyyp+sL9KAAtYyzL0Xt+gIV6IsClNBtwlDHWd9y05ZM49MzlADQejSf7L/+sYUqhFqyQL+85RIguvVSglALpQqyQsu/ImKFUoqFFRou9zY8rRjabxpwuh5VeFvBp5+hJDDZBUoKvdoFetCLzmCy0xlthQ7/vy1pi6QOka7364BmDSIfnVZIugOdYSlgWi/1j8aPt1zasLUL9LOCAoUzNG2RVMFtQtN8gQqUckT7nQrUFXqn8+79roBAl2WFQAW6TIFl4VihAl2mwLJwrFCBLlNgWThWqECXKbAsHCtUoMsUWBaOFSrQZQosC8cKXQb0Dx9XSw6vh+LHAAAAAElFTkSuQmCC', 'ware', '2024-03-26 15:12:04');
 COMMIT;
 
 -- ----------------------------
@@ -1147,20 +1149,20 @@ CREATE TABLE `tab_stock` (
 -- Records of tab_stock
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 1, 1001, 54, 1, 'ware', '2024-03-21 14:35:40');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (1, 1, 1001, 54, 0, 'ware', '2024-03-21 14:35:40');
 INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (2, 1, 1002, 24, 0, 'keboda', '2024-03-21 14:17:35');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (3, 1, 1006, 20, 1, NULL, NULL);
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (4, 1, 1020, 50, 1, NULL, NULL);
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (3, 1, 1006, 20, 0, NULL, NULL);
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (4, 1, 1020, 50, 0, NULL, NULL);
 INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (9, 2, 1003, 30, 1, 'null', '2024-03-19 17:24:13');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (10, 2, 1006, 8, 1, 'keboda', '2024-03-19 17:24:15');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (11, 2, 1042, 10, 1, 'keboda', '2024-03-19 17:24:22');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (13, 4, 1001, 60, 1, 'null', '2024-03-21 12:00:15');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (10, 2, 1006, 8, 0, 'keboda', '2024-03-19 17:24:15');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (11, 2, 1042, 10, 0, 'keboda', '2024-03-19 17:24:22');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (13, 4, 1001, 60, 0, 'null', '2024-03-21 12:00:15');
 INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (14, 5, 1004, 90, 0, 'ware', '2024-03-22 11:13:17');
 INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (15, 5, 1327, 30, 0, 'ware', '2024-03-22 11:19:47');
 INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (16, 2, 1001, 90, 0, 'ware', '2024-03-22 11:35:24');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (17, 2, 1004, 70, 0, 'ware', '2024-03-22 11:35:53');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (18, 2, 1017, 90, 0, 'ware', '2024-03-22 20:38:41');
-INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (19, 2, 1043, 78, 0, 'ware', '2024-03-22 20:38:46');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (17, 2, 1004, 70, 1, 'ware', '2024-03-22 11:35:53');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (18, 2, 1017, 90, 1, 'ware', '2024-03-22 20:38:41');
+INSERT INTO `tab_stock` (`id`, `ware_id`, `part_id`, `num`, `status`, `create_name`, `create_time`) VALUES (19, 2, 1043, 78, 1, 'ware', '2024-03-22 20:38:46');
 COMMIT;
 
 -- ----------------------------
@@ -1183,7 +1185,7 @@ CREATE TABLE `tab_stock_io` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_stock_io
@@ -1204,14 +1206,10 @@ INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (27, 'HOSO-20240313152540', '銷售出庫', 2, 1, NULL, NULL, 1020, 28, 0, 13, '同意', 'keboda', '2024-03-21 14:19:38');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (34, 'HOSO-20240313163359', '銷售出庫', 2, 1, NULL, NULL, 1006, 4, 0, 10, NULL, 'keboda', '2024-03-13 16:33:59');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (35, 'HOSO-20240313163359', '銷售出庫', 2, 1, NULL, NULL, 1020, 6, 0, 10, NULL, 'keboda', '2024-03-13 16:33:59');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (37, 'HOSO-20240314133139', '采购入库', NULL, NULL, 1, 4, 1947, 90, 0, 20, NULL, 'keboda', '2024-03-14 13:31:39');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (38, 'HOSO-20240314133139', '采购入库', NULL, NULL, 1, 4, 1272, 34, 0, 20, NULL, 'keboda', '2024-03-14 13:31:39');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (37, 'HOSO-20240314133139', '采购入库', NULL, NULL, 1, 4, 1947, 90, 1, 20, NULL, 'keboda', '2024-03-14 13:31:39');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (38, 'HOSO-20240314133139', '采购入库', NULL, NULL, 1, 4, 1272, 34, 1, 20, NULL, 'keboda', '2024-03-14 13:31:39');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (40, 'HOSO-20240314133255', '社內移動', 2, 1, 2, 1, 1002, 12, 0, 31, 'ok', 'keboda', '2024-03-14 13:32:55');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (41, 'HOSO-20240314133255', '社內移動', 2, 1, 2, 1, 1002, 12, 0, 31, 'ok', 'keboda', '2024-03-14 13:32:55');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (44, 'HOSO-20240319135811', '采购入库', NULL, NULL, 1, 3, 1006, 24, 0, 10, NULL, 'keboda', '2024-03-19 13:58:11');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (45, 'HOSO-20240319135811', '采购入库', NULL, NULL, 1, 3, 1166, 12, 0, 10, NULL, 'keboda', '2024-03-19 13:58:11');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (46, 'HOSO-20240319135811', '采购入库', NULL, NULL, 1, 3, 1022, 88, 0, 10, NULL, 'keboda', '2024-03-19 13:58:11');
-INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (47, 'HOSO-20240319135811', '采购入库', NULL, NULL, 1, 3, 1005, 40, 0, 10, NULL, 'keboda', '2024-03-19 13:58:11');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (52, 'HOSO-20240312172800', '退货入库', NULL, NULL, 2, 2, 1042, 10, 0, 22, '', 'keboda', '2024-03-19 17:24:22');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (53, 'HOSO-20240313163448', '社內移動', 2, 1, 1, 4, 1001, 20, 0, 32, 'ok', 'ware', '2024-03-21 14:35:40');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (54, 'HOSO-20240322111050', '退货入库', NULL, NULL, 3, 5, 1004, 90, 0, 22, '没问题', 'ware', '2024-03-22 11:13:17');
@@ -1226,6 +1224,18 @@ INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (63, 'HOSO-20240322113426', '采购入库', NULL, NULL, 2, 2, 1004, 40, 0, 22, '还差30个', 'ware', '2024-03-22 11:35:53');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (64, 'HOSO-20240322203251', '采购入库', NULL, NULL, 2, 2, 1017, 90, 0, 22, '拍了拍', 'ware', '2024-03-22 20:38:41');
 INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (65, 'HOSO-20240322203251', '采购入库', NULL, NULL, 2, 2, 1043, 78, 0, 22, '45', 'ware', '2024-03-22 20:38:46');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (71, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1003, 12, 0, 20, NULL, 'ware', '2024-03-26 15:58:42');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (72, 'HOSO-20240326155842', '銷售出庫', 2, 2, NULL, NULL, 1042, 5, 0, 20, NULL, 'ware', '2024-03-26 15:58:42');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (73, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1764, 6, 0, 10, NULL, 'ware', '2024-03-26 15:58:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (74, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1166, 12, 0, 10, NULL, 'ware', '2024-03-26 15:58:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (75, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1022, 88, 0, 10, NULL, 'ware', '2024-03-26 15:58:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (76, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1005, 40, 0, 10, NULL, 'ware', '2024-03-26 15:58:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (77, 'HOSO-20240326155858', '采购入库', NULL, NULL, 1, 3, 1006, 45, 0, 10, NULL, 'ware', '2024-03-26 15:58:58');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (84, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1006, 5, 0, 20, NULL, 'ware', '2024-03-26 16:02:16');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (85, 'HOSO-20240326160216', '銷售出庫', 2, 1, NULL, NULL, 1020, 20, 0, 20, NULL, 'ware', '2024-03-26 16:02:16');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (86, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1003, 7, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (87, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1001, 30, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
+INSERT INTO `tab_stock_io` (`id`, `recept_code`, `type`, `out_dep_id`, `out_ware_id`, `in_dep_id`, `in_ware_id`, `part_id`, `num`, `status`, `state`, `remark`, `create_name`, `create_time`) VALUES (88, 'HOSO-20240326160300', '銷售出庫', 2, 2, NULL, NULL, 1017, 12, 0, 20, NULL, 'ware', '2024-03-26 16:03:00');
 COMMIT;
 
 -- ----------------------------
@@ -1281,7 +1291,7 @@ INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, 
 INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (4, 2, 'ware', '張三', '6666', '倉庫', 0, 'keboda', '2024-03-11 12:00:47');
 INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (5, 1, 'liyang', '李陽', '123456', '審核', 0, NULL, NULL);
 INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (6, 1, 'keboda', '科普', 'a', '採購', 0, NULL, NULL);
-INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (7, 6, 'aaa', 'aa', 'aaa', 'システム', 1, 'ware', '2024-03-26 11:19:16');
+INSERT INTO `tab_user` (`id`, `dep_id`, `usr`, `name`, `pwd`, `role`, `status`, `create_name`, `create_time`) VALUES (7, 6, 'aaa', 'aa', 'aaa', 'システム', 0, 'ware', '2024-03-26 11:19:16');
 COMMIT;
 
 -- ----------------------------
@@ -1300,7 +1310,7 @@ CREATE TABLE `tab_ware` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_ware
@@ -1311,13 +1321,14 @@ INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info
 INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (3, 1, 'code-003', '新宿倉庫1', 'wfeaf', 'wefawef', '[{\"key\":\"aaaaa\",\"val\":\"22\"},{\"key\":\"33\",\"val\":\"44\"}]', 0, 'keboda', '2024-03-11 11:06:54');
 INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (4, 1, 'code-004', '新宿倉庫2', 'sdsd', 'sd', '[]', 0, 'admin', '2024-03-08 15:26:48');
 INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (5, 3, 'CODE-001', '名古屋001', '富久町1番5号富久町第5服部', '李阳', '[]', 0, 'keboda', '2024-03-22 11:09:52');
+INSERT INTO `tab_ware` (`id`, `dep_id`, `code`, `name`, `addr`, `manager`, `info`, `status`, `create_name`, `create_time`) VALUES (6, 5, 'wfaf', 'awfa', 'wafeaf', 'wafa', '[]', 0, 'ware', '2024-03-26 15:15:19');
 COMMIT;
 
 -- ----------------------------
 -- View structure for view_model
 -- ----------------------------
 DROP VIEW IF EXISTS `view_model`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_model` AS select `tab_model`.`id` AS `id`,`tab_model`.`name` AS `name`,`tab_model`.`status` AS `status`,`tab_model`.`create_name` AS `create_name`,`tab_model`.`create_time` AS `create_time` from `tab_model` where (`tab_model`.`status` = 0);
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_model` AS select `tab_model`.`id` AS `id`,`tab_model`.`name` AS `name`,`tab_model`.`status` AS `status`,`tab_model`.`create_name` AS `create_name`,`tab_model`.`create_time` AS `create_time` from `tab_model` where (`tab_model`.`status` = 0) order by `tab_model`.`id` desc;
 
 -- ----------------------------
 -- View structure for view_part
@@ -1418,9 +1429,33 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PROC_CHECK_STOCK`;
 delimiter ;;
-CREATE PROCEDURE `PROC_CHECK_STOCK`(IN `data` varchar(20000))
+CREATE PROCEDURE `PROC_CHECK_STOCK`(IN `jsonData` text)
 BEGIN
-	UPDATE tab_stock SET status = 1;
+	SET @in_list = JSON_UNQUOTE(JSON_EXTRACT(jsonData, '$.in_list'));
+
+	
+	set @sql = CONCAT( 'UPDATE tab_stock SET status = 1 where id in ',@in_list);
+	call DEBUG_MSG(@sql);
+	
+	PREPARE stmt FROM @sql;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for PROC_CHECK_STOCK_BY_ID
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `PROC_CHECK_STOCK_BY_ID`;
+delimiter ;;
+CREATE PROCEDURE `PROC_CHECK_STOCK_BY_ID`(IN `jsonData` text)
+BEGIN
+	SET @id = JSON_EXTRACT(jsonData, '$.id');
+	SET @mode = JSON_EXTRACT(jsonData, '$.mode');
+	
+	
+	UPDATE tab_stock SET status = @mode where id = @id;
 	select * from view_stock;
 	
 END
@@ -1516,6 +1551,8 @@ BEGIN
 	
 	UPDATE tab_stock_io set status = 1 where recept_code = @recept_code;
 	SELECT * from view_stock_io;
+	
+
 END
 ;;
 delimiter ;
@@ -1562,7 +1599,8 @@ BEGIN
 	SET @id = JSON_UNQUOTE(JSON_EXTRACT(data, '$.id'));
 	
 	UPDATE tab_ware set status = 1 where id = @id;
-	SELECT id as `key`,t.* FROM tab_ware t where status = 0;
+-- 	SELECT id as `key`,t.* FROM tab_ware t where status = 0;
+	select * from view_ware;
 END
 ;;
 delimiter ;
@@ -1790,7 +1828,7 @@ delimiter ;;
 CREATE PROCEDURE `PROC_QUERY_MODEL`(IN `data` varchar(20000))
 BEGIN
 	
-	select * from tab_model where status = 0;
+	select * from view_model ;
 END
 ;;
 delimiter ;

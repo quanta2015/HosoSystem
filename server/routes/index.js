@@ -6,11 +6,11 @@ var dotenv = require('dotenv')
 var express = require('express')
 var jwt = require('jsonwebtoken')
 var formidable = require('formidable')
-var Excel = require('exceljs');
+var ExcelJS = require('exceljs');
 
 var router = express.Router()
 var {callP} = require("../db/db")
-var {clone,isN,formatJSON,arrayToExcel,formatKey} = require("../util/util")
+var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
@@ -147,7 +147,7 @@ router.post('/exportPart', async (req, res, next) => {
   let data = await callP(sql, null, res)
 
   let file = `export/${dayjs().format('YYYYMMDDhhmmss')}.xlsx`
-  await arrayToExcel(data,file)
+  await partToExcel(data,file)
   res.status(200).json({ code: 0, file  })
 })
 
@@ -398,6 +398,19 @@ router.post('/queryWare', async (req, res, next) => {
 })
 
 
+// 刪除倉庫
+router.post('/delWare', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_DEL_WARE(?)`
+  let r = await callP(sql, params, res)
+  r = formatJSON(r,'info')
+  formatKey(r)
+  res.status(200).json({ code: 0, data: r })
+})
+
+
+
 // 根据部门查詢倉庫
 router.post('/queryWareByDep', async (req, res, next) => {
   let params = req.body
@@ -411,16 +424,6 @@ router.post('/queryWareByDep', async (req, res, next) => {
 
 
 
-// 刪除倉庫
-router.post('/delWare', async (req, res, next) => {
-  let params = req.body
-  // console.log(params)
-  let sql = `CALL PROC_DEL_WARE(?)`
-  let r = await callP(sql, params, res)
-  r = formatJSON(r,'info')
-  formatKey(r)
-  res.status(200).json({ code: 0, data: r })
-})
 
 // 保存倉庫
 router.post('/saveWare',auth, async (req, res, next) => {
@@ -456,10 +459,26 @@ router.post('/queryStock', async (req, res, next) => {
 router.post('/checkStock', async (req, res, next) => {
   let params = req.body
   // console.log(params)
-  let sql = `CALL PROC_CHECK_STOCK(?)`
-  let r = await callP(sql, params, res)
-  res.status(200).json({ code: 0, data: r })
+  let sql1 = `CALL PROC_CHECK_STOCK(?)`
+  let sql2 = `CALL PROC_QUERY_STOCK(?)`
+  let r1 = await callP(sql1, params, res)
+  let r2 = await callP(sql2, params, res)
+  formatKey(r2)
+  res.status(200).json({ code: 0, data: r2 })
 })
+
+
+// 盘查库存
+router.post('/checkStockById', async (req, res, next) => {
+  let params = req.body
+  // console.log(params)
+  let sql = `CALL PROC_CHECK_STOCK_BY_ID(?)`
+  
+  let r = await callP(sql, params, res)
+  formatKey(r)
+  res.status(200).json({ code: 0, data: r})
+})
+
 
 
 // 保存在庫
@@ -491,6 +510,24 @@ router.post('/saveStockNum',auth, async (req, res, next) => {
   let sql = `CALL PROC_SAVE_STOCK_NUM(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
+})
+
+
+
+
+
+
+
+// 导出库存
+router.post('/exportStock', async (req, res, next) => {
+  let sql = `CALL PROC_QUERY_STOCK(?)`
+  let data = await callP(sql, null, res)
+
+  let file = `export/${dayjs().format('YYYYMMDDhhmmss')}.xlsx`
+
+  console.log(data)
+  await stockToExcel(data,file)
+  res.status(200).json({ code: 0, file  })
 })
 
 
@@ -559,6 +596,9 @@ const caluState = (list,el)=>{
 }
 
 
+
+
+
 // 查詢出入庫
 router.post('/queryStockIO', async (req, res, next) => {
   let params = req.body
@@ -571,6 +611,7 @@ router.post('/queryStockIO', async (req, res, next) => {
     let {state_list} = o
     let list = o.state_list.split(',')
     caluState(list, o)
+    o.remark = formatRemark(o.remark)
   })
   // console.log(r)
   res.status(200).json({ code: 0, data: r })
@@ -583,6 +624,12 @@ router.post('/delStockIO', async (req, res, next) => {
   let sql = `CALL PROC_DEL_STOCK_IO(?)`
   let r = await callP(sql, params, res)
   formatKey(r)
+
+  r.map(o=>{
+    let {state_list} = o
+    let list = o.state_list.split(',')
+    caluState(list, o)
+  })
   res.status(200).json({ code: 0, data: r })
 })
 

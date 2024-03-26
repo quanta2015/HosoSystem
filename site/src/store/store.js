@@ -182,6 +182,12 @@ class Store {
   async checkStock(params) {
     return await this.post(urls.API_CHECK_STOCK, params)
   }
+
+  // 盤點庫存(id)
+  async checkStockById(params) {
+    return await this.post(urls.API_CHECK_STOCK_BY_ID, params)
+  }
+  
   // 保存庫存
   async saveStock(params) {
     return await this.post(urls.API_SAVE_STOCK, params)
@@ -191,6 +197,13 @@ class Store {
   async queryStockByWare(params) {
     return await this.post(urls.API_QUERY_STOCK_BY_WARE, params)
   }
+
+  // 导出庫存
+  async exportStock(params) {
+    return await this.post(urls.API_EXPORT_STOCK, params)
+  }
+
+
 
 
 
