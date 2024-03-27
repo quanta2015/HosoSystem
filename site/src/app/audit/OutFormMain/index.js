@@ -27,7 +27,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
 
 
-  const initType = method==='insert'?(move?'社內移動':null):item.type
+  const initType = method==='insert'?(move?TXT.STOCK_IO_TYPE.MOVE:null):item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
   const initOutWare = method==='insert'?[null,null]:[item.out_dep_id,item.out_ware_id]
  
@@ -41,14 +41,12 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   const [outWare, setOutWare] = useState(initOutWare);
   const [optWare, setOptWare] = useState([]);
   const [optType, setOptType] = useState([
-    {label:'銷售出庫',value:'銷售出庫'},
-    {label:'領用出庫',value:'領用出庫'},
+    {label:TXT.STOCK_IO_TYPE.SEL,value:TXT.STOCK_IO_TYPE.SEL},
+    {label:TXT.STOCK_IO_TYPE.USE,value:TXT.STOCK_IO_TYPE.USE},
   ]);
-
 
   const [part,setPart] = useState([])
   const [partFil,setPartFil] = useState([])
-
 
   // 查詢倉庫數據
   useEffect(() => {
@@ -93,7 +91,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
         // 沒有數據提示
         if (r.data.length === 0 ) {
-          message.info('該倉庫沒有部品')
+          message.info(MSG.NO_PART_IN_WARE)
           return
         }
        
@@ -120,7 +118,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
       // 沒有數據提示
       if (r.data.length === 0 ) {
-        message.info('該倉庫沒有部品')
+        message.info(MSG.NO_PART_IN_WARE)
         return
       }
       // console.log(r.data)
@@ -160,7 +158,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
     const val = parseInt(e.currentTarget.value)
     // console.log(val, )
     if (val> list[i].num) {
-      message.info('超過庫存數量')
+      message.info(MSG.OVER_STOCK)
     }else{
       list[i].val= val
       setList([...list])
@@ -178,7 +176,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
       console.log(filtered,'filtered')
       if (filtered.length > 0) {
-        message.info('該項目已經選擇')
+        message.info(MSG.CHOOSED)
         return
       }
 
@@ -225,15 +223,15 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
 
     if (type === null) {
-      message.info('請選擇入庫類型')
+      message.info(MSG.CHOOSE_OUT_TYPE)
       return
     }
     if ((outWare[0] === null)||(outWare[1] === null)) {
-      message.info('請選擇倉庫')
+      message.info(MSG.CHOOSE_WARE)
       return
     }
     if (list.length === 0) {
-      message.info('請添加部品')
+      message.info(MSG.CHOOSE_PART)
       return 
     }
     console.log(params)
@@ -243,7 +241,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       setLoading(false)
       setShowOutForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAV_SUC)
     })
   }
 
@@ -261,7 +259,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       setLoading(false)
       setRefresh(true)
       setShowOutForm(false)
-      message.info('审核成功')
+      message.info(MSG.REV_SUC)
     })
   }
 
@@ -269,7 +267,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>{move?`社內移動`:`出庫信息`}</div>
+          <div className={s.tl}>{move?TXT.STOCK_IO_TYPE.MOVE:TXT.STOCK_OUT_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
               <h1>{TXT.BAS_INFO}</h1>
@@ -277,31 +275,31 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
             {!move && 
             <div className={s.row}>
-              <span>出庫類型</span>
+              <span>{TXT.STOCK_OUT_TYPE}</span>
               <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
-              <span>出庫倉庫</span>
+              <span>{TXT.STOCK_OUT_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
             </div>}
 
             {move && 
             <div className={s.row}>
-              <span>出庫倉庫</span>
+              <span>{TXT.STOCK_OUT_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelOutWare} value={outWare} disabled={detail}/>
-              <span>入庫倉庫</span>
+              <span>{TXT.STOCK_IN_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={doSelInWare} value={inWare} disabled={detail}/>
             </div>}
           </div>
 
           <div className={s.head}>
-            <h1>出庫部品</h1>
+            <h1>{TXT.STOCK_OUT_PART}</h1>
           </div>
 
           {list.length>0 &&
           <div className={s.info}>  
             <div className={s.th}>
-              <span>部品信息</span>
-              <span>在庫數量</span>
-              <span>出庫數量</span>
+              <span>{TXT.STOCK_PART_INFO}</span>
+              <span>{TXT.STOCK_CUR_NUM}</span>
+              <span>{TXT.STOCK_OUT_NUM}</span>
               <span></span>
             </div>
             {list.map((o,i)=>
@@ -322,7 +320,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
           </div>}
 
           <div className={s.head}>
-            <h1>审核意见</h1>
+            <h1>{TXT.STOCK_REV_REMARK}</h1>
           </div>
           <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark}/>
 

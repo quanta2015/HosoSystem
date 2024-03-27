@@ -147,15 +147,15 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
     }
 
     if (type === null) {
-      message.info('請選擇入庫類型')
+      message.info(MSG.CHOOSE_IN_TYPE)
       return
     }
     if ((inWare[0] === null)||(inWare[1] === null)) {
-      message.info('請選擇倉庫')
+      message.info(MSG.CHOOSE_WARE)
       return
     }
     if (list.length === 0) {
-      message.info('請添加部品')
+      message.info(MSG.CHOOSE_PART)
       return 
     }
     // console.log(params)
@@ -165,7 +165,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       setLoading(false)
       setShowInForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   }
 
@@ -183,7 +183,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       setLoading(false)
       setRefresh(true)
       setShowInForm(false)
-      message.info('审核成功')
+      message.info(MSG.REV_SUC)
     })
   }
 
@@ -192,28 +192,28 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>入庫信息</div>
+          <div className={s.tl}>{TXT.STOCK_IN_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
               <h1>{TXT.BAS_INFO}</h1>
             </div>
             <div className={s.row}>
-              <span>入庫類型</span>
+              <span>{TXT.STOCK_IN_TYPE}</span>
               <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
-              <span>入庫倉庫</span>
+              <span>{TXT.STOCK_IN_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare} disabled={detail}/>
             </div>
           </div>
 
           <div className={s.head}>
-            <h1>入庫部品</h1>
+            <h1>{TXT.STOCK_IN_PART}</h1>
           </div>  
 
           <div className={s.info}>
             <div className={s.th}>
-              <span>当前状态</span>
-              <span>部品信息</span>
-              <span>入庫數量</span>
+              <span>{TXT.STOCK_CUR_STATE}</span>
+              <span>{TXT.STOCK_PART_INFO}</span>
+              <span>{TXT.STOCK_IN_NUM}</span>
             </div>
             {list.map((o,i)=>
                 <div key={i} className={s.row}>
@@ -232,7 +232,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           </div>
 
           <div className={s.head}>
-            <h1>审核意见</h1>
+            <h1>{TXT.STOCK_REV_REMARK}</h1>
           </div>
           <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
 

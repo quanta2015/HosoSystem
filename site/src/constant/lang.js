@@ -38,12 +38,16 @@ export const jp = {
     STOCK_IN_TYPE:'入庫タイプ',
     STOCK_IN_WARE:'入庫倉庫',
     STOCK_IN_PART:'入庫部品',
-    STOCK_IN_NUM:'在庫数',
+    STOCK_IN_NUM:'入庫数',
     STOCK_OUT_INFO:'出庫情報',
     STOCK_OUT_TYPE:'出庫タイプ',
     STOCK_OUT_WARE:'出庫倉庫',
-    STOCK_OUT_PART:'出庫部品',    
-
+    STOCK_OUT_PART:'出庫部品', 
+    STOCK_OUT_NUM:'出庫数',   
+    STOCK_CUR_STATE:'状態',
+    STOCK_CUR_NUM:'在庫数',
+    STOCK_PART_INFO:'部品情報',
+    STOCK_REV_REMARK:'備考'   
   },
   
   TAG:{
@@ -70,7 +74,7 @@ export const jp = {
     AUDIT: 'レビュー',
     CHK: '棚卸し',
     UNCHK: '棚卸の取消',
-    PASS: '批准',
+    PASS: '承認',
     REJECT: '断る',
     
   },
@@ -79,13 +83,14 @@ export const jp = {
     CFM: 'レコードを削除してもよろしいですか?',
     EXPT_SUC: 'エクスポート成功！',
     SAVE_SUC: 'セーブ成功！',
+    REV_SUC: '承認しました！',
     CHOOSE_IN_TYPE:'入庫タイプを選んでください',
     CHOOSE_OUT_TYPE:'出庫タイプを選んでください',
     CHOOSE_WARE:'倉庫を選んでください',
     CHOOSE_PART:'部品を選んでください',
     NO_PART_IN_WARE:'倉庫内に部品がありません',
     OVER_STOCK:'入力した数は在庫数を超えました',
-    CHOOSED:'該当項目はすでに入力されました',
+    CHOOSED:'選択された部品はすでにリストに入っています',
   },
 
   DB: {
