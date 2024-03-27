@@ -1,5 +1,5 @@
 var ExcelJS = require('exceljs');
-
+var QRCode = require('qrcode');
 
 // module.exports.clone=(obj)=> {
 //   let copy = Array.isArray(obj) ? [] : {};
@@ -9,6 +9,15 @@ var ExcelJS = require('exceljs');
 //   }
 //   return copy;
 // } 
+
+
+module.exports.genQR = async (text) => {
+  try {
+    return await QRCode.toDataURL(text);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 
 module.exports.formatRemark = (s) => {
