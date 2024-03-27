@@ -28,7 +28,6 @@ const Nav = () => {
   const [codeReader, setCodeReader] = useState(null);
   const [qrCodeText, setQRCodeText] = useState('');
   const [showScan, setShowScan] = useState(false)
-  const [devicesList, setDevicesList] = useState(false) 
 
 
   useEffect(() => {
@@ -38,8 +37,7 @@ const Nav = () => {
         const constraints = { video: { facingMode: 'environment' }};
         reader.setConstraints(constraints);
         
-        const devices = await reader.getVideoInputDevices();
-        setDevicesList(devices);
+        const devices = await reader.getVideoInputDevices();      
         
         if (devices.length > 0) {
           console.log(reader,devices[0].deviceId,'reader')
@@ -93,16 +91,13 @@ const Nav = () => {
     setShowCheck(true)
   }
 
-  const onChange=(value)=>{   
-    setSelectedDeviceId(value.deviceId);
-  }
+  
 
 
   return (
     <div className={s.index}>
       <div className={s.bd}>
-        <div className={s.scan} onClick={doScan}>
-          <Select options={devicesList.map(e=>{return {label:devicesList.deviceId,value:devicesList}})} onChange={onChange}/>
+        <div className={s.scan} onClick={doScan}>          
           <img src={icon_scna} alt="" />
           <video  ref={videoRef} id="video" autoPlay></video>
         </div>
