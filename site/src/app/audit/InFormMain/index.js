@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
+import {Input,  Space,  Form, Button, Tag, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
-import { ST } from '@/constant/data'
+import { ST,ST_TXT } from '@/constant/data'
 import {jp} from '@constant/lang'
 
 
@@ -74,7 +74,12 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
         // console.log(r.data)
-        let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num}))
+        let _list = r.data.map(o=>({
+          id:o.id, 
+          key: getPart(part,o.part_id,o.id), 
+          val: o.num, 
+          state:o.state,
+        }))
         setList(_list)
       })
     }
@@ -205,14 +210,20 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           </div>  
 
           <div className={s.info}>
+            <div className={s.th}>
+              <span>当前状态</span>
+              <span>部品信息</span>
+              <span>入庫數量</span>
+            </div>
             {list.map((o,i)=>
                 <div key={i} className={s.row}>
+                  <i><Tag>{ST_TXT[o.state]}</Tag></i>
                   <AutoComplete 
                     options={partFil} 
                     value={o.key} 
                     onSearch={doSearch} 
                     onChange={(val)=>doSelPart(val,i)} 
-                    style={{'width':'600px','marginRight':'20px'}} 
+                    style={{'width':'500px','marginRight':'20px'}} 
                     disabled={detail}
                     />
                   <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail}/>
@@ -223,11 +234,16 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           <div className={s.head}>
             <h1>审核意见</h1>
           </div>
-          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark}/>
+          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
-            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>  
+            {( item.state === ST.OUT_AUDIT || 
+               item.state === ST.IN_AUDIT ||
+               item.state === ST.MOV_AUDIT )  && 
+            <>
+              <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
+              <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>
+            </>} 
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowInForm(false)} >{FN.CLS}</Button>  
           </div>
       </div>

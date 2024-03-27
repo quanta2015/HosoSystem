@@ -36,6 +36,9 @@ const Nav = () => {
     const initCodeReader = async () => {
       try {
         const reader = new ZXing.BrowserQRCodeReader();
+        const constraints = { video: { facingMode: 'user' }};
+        reader.setConstraints(constraints);
+        
         const devices = await reader.getVideoInputDevices();
         if (devices.length > 0) {
           console.log(reader,devices[0].deviceId,'reader')

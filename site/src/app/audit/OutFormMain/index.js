@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
+import {Input,  Space,  Form,Tag, Button, Row, Col, Select, Upload, Cascader, Modal, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
 import {filterData,clone,getBase64} from '@/util/fn'
 import s from './index.module.less';
-import { ST } from '@/constant/data'
+import { ST,ST_TXT } from '@/constant/data'
 import {jp} from '@constant/lang'
 
 
@@ -74,9 +74,9 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       let _list = r.data.map(o=>({
         id:o.id, 
         key: `${o.id} ${o.part_id} ${o.part_code} ${o.part_name}`,
-
         num: o.stock_num, 
         val: o.io_num,
+        state:o.state,
       }))
       // console.log(_list,'_list')
       setList(_list)
@@ -306,6 +306,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
             </div>
             {list.map((o,i)=>
               <div key={i} className={s.row}>
+                <i><Tag>{ST_TXT[o.state]}</Tag></i>
                 <AutoComplete 
                   options={partFil} 
                   value={o.key} 

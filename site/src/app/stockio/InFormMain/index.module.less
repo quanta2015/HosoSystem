@@ -71,13 +71,36 @@
     flex-direction: column;
     flex: 1;
 
+    .th {
+      display: flex;
+
+      span {
+        margin: 0 10px 5px 0;
+      }
+
+      span:nth-child(1) {
+        width: 120px;
+      }
+
+      span:nth-child(2) {
+        width: 500px;
+      }
+
+      span:nth-child(3) {
+        flex: 1;
+      }
+
+    }
+
     .row {
       display: flex;
       margin-bottom: 10px;
       align-items: center;
 
-      i {
+      &>i {
         margin-right: 10px;
+        display: flex;
+        align-items: center;
       }
 
       input {

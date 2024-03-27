@@ -72,20 +72,38 @@
     max-height: 250px;
     flex: 1;
 
+    .th {
+      display: flex;
+
+      span {
+        margin: 0 10px 5px 0;
+      }
+
+      span:nth-child(1) {
+        width: 120px;
+      }
+
+      span:nth-child(2) {
+        width: 500px;
+      }
+
+      span:nth-child(3) {
+        flex: 1;
+      }
+
+    }
+
+
+
     .row {
       display: flex;
       margin-bottom: 10px;
 
-      // input:nth-child(2) {
-      //   border-radius: 0;
-      //   border: none;
-      //   border-bottom: 1px solid #ccc;
-      // }
-
-      // input:first-child {
-      //   width: 700px;
-      //   text-align: center;
-      // }
+      i {
+        width: 120px;
+        display: flex;
+        align-items: center;
+      }
 
       input {
         flex: 1;
