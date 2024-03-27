@@ -83,8 +83,7 @@ export const jp = {
     CHK: '棚卸し',
     UNCHK: '棚卸の取消',
     PASS: '承認',
-    REJECT: '断る',
-    
+    REJECT: '断る',    
   },
 
   MSG: {

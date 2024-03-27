@@ -249,7 +249,7 @@ router.post('/importPart', async (req, res, next) => {
     head.splice(id_code,1)
     head.splice(id_sup,1)
     head.splice(id_mod,1)
-
+    
 
     console.log(data)
 
@@ -268,7 +268,7 @@ router.post('/importPart', async (req, res, next) => {
           o[id_sup] = item.id
         }
       })
-      const code = o[id_code]
+      const code = o[id_code]+""
       const qrcode = await genQR(code)
       const name = o[id_name]
       const sid = o[id_sup]

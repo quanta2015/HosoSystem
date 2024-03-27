@@ -148,15 +148,15 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
     }
 
     if (type === null) {
-      message.info('請選擇入庫類型')
+      message.info(MSG.CHOOSE_IN_TYPE)
       return
     }
     if ((inWare[0] === null)||(inWare[1] === null)) {
-      message.info('請選擇倉庫')
+      message.info(MSG.CHOOSE_WARE)
       return
     }
     if (list.length === 0) {
-      message.info('請添加部品')
+      message.info(MSG.CHOOSE_PART)
       return 
     }
     // console.log(params)
@@ -166,7 +166,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       setLoading(false)
       setShowInForm(false)
       setRefresh(true)
-      message.info('保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   }
 
