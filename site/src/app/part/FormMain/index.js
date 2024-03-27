@@ -34,7 +34,7 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
 
 
   const initBasic = method==='insert'?{}:{...item}
-  const initJson = method==='insert'?[]:item.info
+  const initJson = method==='insert'?[]:item.info?item.info:[]
   const initImgs = method==='insert'?[]:[{url:`${API_SERVER}/${item?.img}`}]
   const initImg  = method==='insert'?null:item?.img
 
