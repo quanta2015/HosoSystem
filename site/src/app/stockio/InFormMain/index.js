@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Tag, Select, Upload, Cascader, Modal, message} from 'antd'
+import {Input,InputNumber,  Space,  Form, Button, Row, Col, Tag, Select, Upload, Cascader, Modal, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import { observer,MobXProviderContext } from 'mobx-react'
@@ -72,7 +72,12 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
         console.log(r.data)
-        let _list = r.data.map(o=>({id:o.id, key: getPart(part,o.part_id,o.id), val: o.num, state:o.state}))
+        let _list = r.data.map(o=>({
+          id:o.id, 
+          key: getPart(part,o.part_id,o.id), 
+          val: o.num, 
+          state:o.state,
+        }))
         setList(_list)
 
 
@@ -97,7 +102,8 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
 
   // 修改數量
   const chgVal =(e,i)=>{
-    const val = e.currentTarget.value
+    // const val = e.currentTarget.value
+    const val = e
     list[i].val= parseInt(val)
     setList([...list])
   }
@@ -192,6 +198,12 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           
 
           <div className={s.info}>
+            <div className={s.th}>
+              <span>当前状态</span>
+              <span>部品信息</span>
+              <span>入庫數量</span>
+              <span>功能</span>
+            </div>
             {list.map((o,i)=>
                 <div key={i} className={s.row}>
                   <i><Tag>{ST_TXT[o.state]}</Tag></i>
@@ -200,10 +212,16 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
                     value={o.key} 
                     onSearch={doSearch} 
                     onChange={(val)=>doSelPart(val,i)} 
-                    style={{'width':'600px','marginRight':'20px'}} 
+                    style={{'width':'500px','marginRight':'20px'}} 
                     disabled={detail}
                     />
-                  <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail} />
+                  <InputNumber 
+                    onChange={(e)=>chgVal(e,i)} 
+                    value={o.val} 
+                    disabled={detail}
+                    min={1} 
+                    style={{flex:1,marginRight:'10px'}}
+                    />
                   <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} disabled={detail} />
                 </div>
               )}

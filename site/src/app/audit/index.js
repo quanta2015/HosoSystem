@@ -62,9 +62,12 @@ const Stock = () => {
     fixed: 'right',
     render: o =>  (
       <Space>
-        { ( o.state === ST.OUT_AUDIT || 
-            o.state === ST.IN_AUDIT ||
-            o.state === ST.MOV_AUDIT )  && <Button type="primary" onClick={()=>doAudit(o)}>{FN.AUDIT}</Button>}
+        {( o.state === ST.OUT_AUDIT || 
+           o.state === ST.IN_AUDIT ||
+           o.state === ST.MOV_AUDIT )  && 
+           <Button type="primary" onClick={()=>doAudit(o,false)}>{FN.AUDIT}</Button>}
+
+        <Button type="primary" onClick={()=>doAudit(o,true)}>{FN.DTL}</Button>
       </Space>
     )
   })
@@ -90,8 +93,8 @@ const Stock = () => {
 
 
 
-  const doAudit=(e)=>{
-    setDetail(true)
+  const doAudit=(e,readonly)=>{
+    setDetail(readonly)
     setItem(e)
     setMethod('update')
     if (e.type === TXT.STOCK_IO_TYPE.BUY||e.type===TXT.STOCK_IO_TYPE.RETURN ||e.type=== TXT.STOCK_IO_TYPE.TMP) {

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useEffect,useState,useRef} from 'react';
 import { AutoComplete } from 'antd';
-import {Input,  Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal,Tag, message} from 'antd'
+import {Input, InputNumber, Space,  Form, Button, Row, Col, Select, Upload, Cascader, Modal,Tag, message} from 'antd'
 import { MinusCircleOutlined, PlusOutlined ,CloudUploadOutlined, DeleteOutlined} from '@ant-design/icons';
 import {API_SERVER} from '@/constant/apis'
 import {ST_TXT} from '@/constant/data'
@@ -83,9 +83,9 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       let _list = r.data.map(o=>({
         id:o.id, 
         key: `${o.id} ${o.part_id} ${o.part_code} ${o.part_name}`,
-
         num: o.stock_num, 
         val: o.io_num,
+        state:o.state,
       }))
       console.log(_list,'_list')
       setList(_list)
@@ -172,7 +172,8 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
   // 修改數量
   const chgVal =(e,i)=>{
-    const val = parseInt(e.currentTarget.value)
+    // const val = parseInt(e.currentTarget.value)
+    const val = e
     // console.log(val, )
     if (val> list[i].num) {
       message.info(MSG.OVER_STOCK)
@@ -305,7 +306,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
               <span>{TXT.PART_INFO}</span>
               <span>{TXT.STOCK_IN_NUM}</span>
               <span>{TXT.STOCK_OUT_NUM}</span>
-              <span></span>
+              <span>{FN.ACT}</span>
             </div>
             {list.map((o,i)=>
               <div key={i} className={s.row}>
@@ -315,11 +316,17 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
                   value={o.key} 
                   onSearch={doSearch} 
                   onSelect={(val)=>doSelPart(val,i)} 
-                  style={{'width':'600px'}} 
+                  style={{'width':'500px'}} 
                   disabled={detail}
                   />
                 <span className={s.num}>{list[i].num}</span>
-                <Input onChange={(e)=>chgVal(e,i)} value={o.val} disabled={detail} />
+                <InputNumber 
+                    onChange={(e)=>chgVal(e,i)} 
+                    value={o.val} 
+                    disabled={detail}
+                    min={1} 
+                    style={{flex:1,marginRight:'10px'}}
+                    />
                 <Button icon={<DeleteOutlined />} onClick={()=>doDelItem(i)} disabled={detail} />
               </div>
             )}
