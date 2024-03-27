@@ -56,7 +56,7 @@ export const json_part = [
   {
       dataIndex: 'key',
       type: 'string',
-      title: '编号',
+      title: '編號',
       width: 80,
       align: 'center',
       req: true,

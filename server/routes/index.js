@@ -183,7 +183,7 @@ router.post('/importPart', async (req, res, next) => {
       next(err);
       return;
     }
-    const workbook = new Excel.Workbook();
+    const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(filepath);
     const worksheet = workbook.getWorksheet(1);
 
