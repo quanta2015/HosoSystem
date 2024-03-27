@@ -1,4 +1,9 @@
 export const jp = {
+  SYS_NAME:
+  {
+    JP:'IMS倉庫管理システム',
+    EM:'IMS Inventory Management System'
+  },
   NAV: {
     MENU_L1: '基本情報管理',
     MENU_L1_1: '営業所管理',
@@ -15,6 +20,8 @@ export const jp = {
   },
 
   TXT: {
+    INPUT_USERNAME:'ユーザー名を入力してください',
+    INPUT_PASSWORD:'パスワードを入力してください',   
     BAS_INFO: '基本情報',
     OTH_INFO: 'その他',
     PART_INFO:'製品情報',
@@ -56,6 +63,7 @@ export const jp = {
   },
 
   FN: {
+    LOGIN:'ログイン',
     ACT: '機能',
     DTL: '詳細',
     ADD: '追加',
