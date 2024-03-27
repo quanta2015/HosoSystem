@@ -187,7 +187,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
     })
   }
 
-
+  console.log(item.state,'status')
 
   return (
     <div className={s.form}>
@@ -237,9 +237,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
           <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
 
           <div className={s.fun}>
-            {( item.state === ST.OUT_AUDIT || 
-               item.state === ST.IN_AUDIT ||
-               item.state === ST.MOV_AUDIT )  && 
+            {!detail  && 
             <>
               <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
               <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>
