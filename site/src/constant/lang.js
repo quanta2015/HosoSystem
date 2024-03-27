@@ -83,7 +83,7 @@ export const jp = {
     CHOOSE_OUT_TYPE:'出庫タイプを選んでください',
     CHOOSE_WARE:'倉庫を選んでください',
     CHOOSE_PART:'部品を選んでください',
-    NO_PART_IN_WARE:'倉庫内に部品はありません',
+    NO_PART_IN_WARE:'倉庫内に部品がありません',
     OVER_STOCK:'入力した数は在庫数を超えました',
     CHOOSED:'該当項目はすでに入力されました',
   },

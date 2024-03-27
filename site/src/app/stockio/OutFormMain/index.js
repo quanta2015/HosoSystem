@@ -102,7 +102,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
         // 沒有數據提示
         if (r.data.length === 0 ) {
-          message.info(MSG.NO_PART_IN_MSG)
+          message.info(MSG.NO_PART_IN_WARE)
           return
         }
        
@@ -132,7 +132,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
       // 沒有數據提示
       if (r.data.length === 0 ) {
-        message.info(MSG.NO_PART_IN_MSG)
+        message.info(MSG.NO_PART_IN_WARE)
         return
       }
       console.log(r.data)
