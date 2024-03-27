@@ -41,7 +41,7 @@ const Nav = () => {
         
         const devices = await reader.getVideoInputDevices();
         if (devices.length > 0) {
-          console.log(reader,devices[0].deviceId,'reader')
+          // console.log(reader,devices[0].deviceId,'reader')
           setCodeReader(reader);
           setSelectedDeviceId(devices[0].deviceId);
         }

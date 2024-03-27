@@ -324,12 +324,16 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
           <div className={s.head}>
             <h1>审核意见</h1>
           </div>
-          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark}/>
+          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
 
 
           <div className={s.fun}>
-            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
-            <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button>  
+            {!detail  && 
+              <>
+                <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(true)} >{FN.PASS}</Button>  
+                <Button type="default" style={{width:'120px'}} onClick={()=>doAudit(false)} >{FN.REJECT}</Button> 
+              </> 
+            }
             <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button>  
           </div>
       </div>
