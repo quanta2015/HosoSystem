@@ -60,7 +60,7 @@ const Site = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o,true)}>詳情</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
         <Button type="primary" onClick={()=>doEdit(o,false)}>{FN.EDIT}</Button>
         <Button type="primary" danger onClick={()=>showDelConfirm(o)}>{FN.DEL}</Button>
       </Space>
@@ -145,7 +145,7 @@ const Site = () => {
         <div className={s.main}>
           <div className={s.fun}>
             <Space>
-              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>追加</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>} danger onClick={()=>doAdd()}>{FN.ADD}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>
