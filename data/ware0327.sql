@@ -11,7 +11,7 @@
  Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 27/03/2024 14:35:34
+ Date: 27/03/2024 17:38:15
 */
 
 SET NAMES utf8mb4;
@@ -56,7 +56,7 @@ CREATE TABLE `tab_model` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_model
@@ -67,6 +67,21 @@ INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) V
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (3, '吊車', 0, 'admin', '2024-03-07 12:03:10');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (4, 'ewefaf', 0, 'admin', '2024-03-07 12:03:12');
 INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (56, 'aaa', 0, 'ware', '2024-03-26 16:05:21');
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (57, 'エンジン部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (58, 'ブレーキ部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (59, 'ステアリング部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (60, 'タイヤ部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (61, 'ホイール部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (62, 'ボディ部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (63, 'ライト部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (64, 'ウインドウ部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (65, 'シート部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (66, '冷却システム部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (67, '電気システム部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (68, 'センサー部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (69, 'エアコン部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (70, 'ワイパー部品', 0, NULL, NULL);
+INSERT INTO `tab_model` (`id`, `name`, `status`, `create_name`, `create_time`) VALUES (71, 'オーディオ部品', 0, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -86,7 +101,7 @@ CREATE TABLE `tab_part` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2410 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2522 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_part
@@ -1101,6 +1116,9 @@ INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `stat
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2007, '888888', 'aaa', 'upload/20240325102939.svg', 5, 1, '[]', 1, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABNJJREFUeF7tndGOqzAMBdv//+iudN8IEnOP7ACJZl9tEueM7QRou9/f7/f7+LeNAl+BbsPy30IEuhdPgW7GU6AC3U2BzdbjHirQzRTYbDlWqEA3U2Cz5VihAt1Mgc2WY4UKdDMFNluOFSrQzRTYbDnlCv1+v7dKMr6+Hecn+xgsvQ5+en2puAKF9/sCTVMq9KcKJLsVCoI/ncG23COg9pZLe1JYkB8CNo6X+lM83eNNj7f6maK3Lbg7nu7xBDqcoqkDdAPoHk+gAqVd4WCfvoemhyY6pZKdTrEUD41PdlKfrqcOROMLdFAoFZwSJE0wgcKTKgJUFVyg0DMIANlTQKl/On91fGqxp0PW7NuWpzOY5qcWR6dcGl+gw7NVEpQymAQX6KAgCU6Czs5gml+gAj3e94WvD2kPpgTDjrTbHlrtGKng1AFmd6DtD0UCLdZ4VcDuDK7GY4XCs9a7W5JAJ1cobeJknw2ou0PQenzbUuwA1EIFGt62pBmbZjC1dIGGBKglhsOd3Gl8gR4la399VgVI11PFzbZTfFV78UhT/9EMqpDqAqt7XFrhlBDd66H1pfNZocVDVyo4+VuhIRCqQLITkKr9caDVBXRfT1sAAasK2r2edLxyy00nnO0v0NVTEu6L6dBBh6bZCdg9vhUafu63G0D3eGWglOFkpwVVWyhVKM0/2tP1kD/Z4/jufsGddniBZkit0Eyv9m/DWaEDALoNseWGGZu6py2UxqcMT+cjf0oQuj7dcmj9pz2+uofGE4ZfXaDxBXpUqLyHkuB0SqSMp/EFKtCDAukeTAm4fctNK4gEJntV8Or11fioI5F9essV6PUPc3UfkgQKKV+tuLtbsEAFOpyqwhfM6R6VtqTuFk97VlrB6Xjk334fmgoo0GtEaQILtNhR0oRMK0ygg2Jpx6i2zOr1lCBpQrQfiuhUly7g6fFSQavre7xC00d71QWTwCRImiA0H9nTeMif5rNCSaGinQDRFpFOL9BUsdB/eaDhesvulOFkLwcQDkAtnxKApmuvUJqw207AyN4dD40nUFCIgJGdAHTbBSrQKKfKLZcyLormP5zpRj6105Rphad6VPfM021j9TNF6QJIQLKnwFIgdF9NAFI9aDzSQ6Dwj3cEGv7WXZpxo78Veq1g+x7a3kImf5no6Zbcrlf3HtoeoECjpmaFFhMmrfDUP6L5+fT/CooV+rtksDzQ6jE+FSD1pwpIx0vXS4c+im/6bQudQilAup46QAqA4knHE+igqECvWzYm4OxTbpqxAhXoIWmpRaZ2qghKwO49kuKZftvytgoVaPPrK8owyvjqoUigAr1UgBLQlhv+qyxq6angBIDmq15PHYg63PJ7KAksUEqBwX73npQCSv2rFVa93goNf1WFKroKpHr964GGBX9ypw5wepYZvnB/WwWX9Zr9pKgcYPh66+0VSBVc1kugx0dtTyeEQOGQRgLZcosCksBkJwB0qEgrkOLptlP8NF/7fShNWLUL9FpBgVYzrPl6K3TyKbiZFw73OFCMUIdbFSi33FujdTJUQKAo0VoOAl2LF0YrUJRoLQeBrsULoxUoSrSWg0DX4oXRChQlWstBoGvxwmgFihKt5SDQtXhhtAJFidZyEOhavDBagaJEazkIdC1eGO0flLg/Did+PiwAAAAASUVORK5CYII=', 'ware', '2024-03-25 10:29:41');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2008, '44444444', 'qqqq', 'upload/20240325103029.svg', 5, 1, '[]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABPRJREFUeF7tnctu4zAQBOP//+gssDfJgAuFHooJ03sdaTjsmgclr53X9/f391f/HaPAq0CPYfl/IwV6Fs8CPYxngRboaQoctp/O0AI9TIHDttMKLdDDFDhsO63QAj1MgcO20wot0MMUOGw7rdACPUyBw7YTV+jr9XpUkqc/vv1t+ytQSMcCXVyvrdDPArdCW6FXBe4tabqCUv/UMinedH1qWNP+xyuUBKIN3u3phgtUKp4KTsul/guUFL7ZU8FpudR/gZLCEigJel/u3rIJKNlpO3S/tdN6dn/k721Epf8vd/eGaX0ShO63dlqvQG9voqYFscBo/QK9KUCCWTsJXKA/fIbSTLaPRRY4JdB0Qh4/Qws0fBOwO4PpFE3bs/FThbVCh2doK5RSWL68fjqDqcJoZlICkH/qEKl/qvjjZyjlJwGghCQ7AaD7KX7yv/zlPAmYZjBVUCuUUuCHP7ZQhlOC2Qoif2nCShz590NthegA5Zsi8p8Co4Sh9aljpP6Xt1y7Qbvh1RWyO2GtfgUqO0BaQTZhCxQUaMuVz6E2o+z100CopdqWbvdDhybrb7zl2gDs9QX6WbEClTPUJqC9Pp3RBVqgNufWXk8zjlr09Axbu1v2HlcoL7H2igK96lugt3xLZ9ja9GXvBVqgtxJ/+FBhK8g+Z9qZyzVzvcLGb/3HFWoFswGmhxYbX4G2QlWOtkLDGdcKVfn29WUFW91CZfgY/93f0/vV+9n93RbbgkhQLQCMjAK9/ZEJ++BPQAr04Zfz9pTYCqUUdvb4scUt9z5z7f1pwlCFk922YLo+PVO8+U9nqAVCLZj8FejilksAbIaSvwIt0IsC1FLJTglKZwLqUHQ/JfzjMzQVxN5vAaFg8rcN045C8WyfoRYIbYiAkZ38U7x0f4HKP5ZIwMhOQApUKpQKTveTXYb79qqQ7v91FUqC0SGAnsPofhJs2m4rlg45pB8lzPgMpYAISIFef0CaEoAAx6fcAv38i94EiPQjgK1Q+YG8BUIdh1o2rUeA4wqlBVbbqaXTDLXxWcFtfDae8QpNA0jvt4LR9RRPgZJCoZ0AtUJDgZ++vUCvisczlASdBkwtz54a6Xran+0AFH+qV4HKUy+dYm0CpADHD0W0gemAKcOp4uxjA+2vFRoSLtDPAo63XBLc8qSKIztVpI2H9pdWNPmneAuUFLrZSfACBUGpAsneCpUZawWV7vGrCnZ9qiCK789XqBWQTo1kt0DShCDAFM+0ffkMLdBpZJtPuQVaoBcFqCWuThg6VLXlQsLSjLR2qg9KmBSo9U/xkv24GWorxgq++noCRvYCHf7Cb1rRBIzsBVqg1xyhFrT60JKun85ku74dCVSRbx0h/X6o3RAFaAVO17fr2ZZK8ZEe1n58y6UOUaC3lKEMJEHvGWgFTte36/35CrUtwwqWXm/jowSlBKEEtvE8PkPjABefQm18BWoVky29FXp76lh9yg154uehBboYaAqQ7qcZRXaaYXTIsglk/dH+yT7+2EILpnYCRvYCBQJ0SEgBpgAoPkoAerNDFUj2aX1aofBjk38O6HSG1V+mQFyh2fK9e1qBAp1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5Ap1WdLO/At0MYHr5f4wZbw6dcfN9AAAAAElFTkSuQmCC', 'ware', '2024-03-25 10:30:33');
 INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2409, 'aa', 'aa', 'upload/20240326031203.svg', 5, 2, '[]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAXNSR0IArs4c6QAABIJJREFUeF7tncuO20AMBNf//9EOkJvlwIVGU5KXqVw5D7KL5Ixke/N4Pp/PH/+tUeAh0DUs/wYi0F08BbqMp0AFuk2BZfF4hgp0mQLLwrFCBbpMgWXhWKECXabAsnCsUIEuU2BZOFaoQJcpsCycukIfj8elkhw/vqX96ePe4/x0/engyV/aT6CHhBSoFUpFE9mtUEgoEsiWe8g3EiRKz38MpvXbM5T8o/1pPtmn1x8/Q6kiKMCjnQIW6KtiAoUMo4RKEzRN2HR9gQr0UOLD1356bEhbelthNJ9a/jFfpuN7q/j2e7nfHjD5Ry2N5gsUFJzOYAIi0PCx5e4MFiil7JcBbROGwqWEaPen9cm/dWdoKygJRoK3+9P65J9Awx/bkeACHb4UtYJSBQj0UAGt4CRoC6Sdf3d861puC6SdL9DhltsCaecLVKAvCrRHyuUtlyqA7NMB035vAsG76nS9s9f/9Z+2tILS/LMTanp9gQLRacGt0JNbnhUK73JJoNaefhpDFZbaW/9pfvp57+mXInK4tQv0s4LjZ2gLjOYLVKAvCrQJQQnX2m9vuW0A7fz2TU27/7fNr1vu3QEJ9JWAQO/OyOH9BTos6N3L1UDb5zi6pJBA6fz00kHxpW9+6IhI/Tv9ObQVmAI+BtDuRwkj0PAbCykQgV78HJoCSscL9GKgJHh65pw9frqlpv6m++MRMf3bFoEengvDH3N93aVIoAL9+K41bWHp+LTlTY9P1zu95dIGZKeAUnvbIchfslPLpMcymk/71y8WaAOyp8DSWzEJRAKT/9MJRP6SPwId/jtLBIQSiOYLFH6cRAKTgP9dhVJLTS8xNJ4ATLds2u9q++ktV6DXIhVo+aflrsXFuwlUoNmbEDrz6FbXtmzKaTpTW/9S/8lfstcVmjp89XgSQKAHha4GlFaMQEkBgb4oQAlN9lBuHF63XNzh5AHTgtF6ZG/vDK1cAg07jkDblIP5qcDkDq1HdiuUFBZopFDdcqdfbpP37WMGrU/xpPunFU3+kV2gcIYeBRQopVRoTwUNl/+xQoc/ICYAAv2s0HjLpTc5BCy9JdIZRRWX+kPxkT9pfKl/Ag0VE2goWJrBVBFWaAiABA2XextO66f21p//vkLTCmkvPe1+aYe4ejwl5OlnaCswVSAJSgLcXXFpfBSPQMOved6dAAIFBe4GZIWGvxCnV3fUsu8GThX55v/070PpUkMO0nyyp+sL9KAAtYyzL0Xt+gIV6IsClNBtwlDHWd9y05ZM49MzlADQejSf7L/+sYUqhFqyQL+85RIguvVSglALpQqyQsu/ImKFUoqFFRou9zY8rRjabxpwuh5VeFvBp5+hJDDZBUoKvdoFetCLzmCy0xlthQ7/vy1pi6QOka7364BmDSIfnVZIugOdYSlgWi/1j8aPt1zasLUL9LOCAoUzNG2RVMFtQtN8gQqUckT7nQrUFXqn8+79roBAl2WFQAW6TIFl4VihAl2mwLJwrFCBLlNgWThWqECXKbAsHCtUoMsUWBaOFSrQZQosC8cKXQb0Dx9XSw6vh+LHAAAAAElFTkSuQmCC', 'ware', '2024-03-26 15:12:04');
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2519, '叫我飞机001', 'エンジン', '/img/image.svg', 308, 3, '[{\"key\":\"sup_name\",\"val\":308},{\"key\":\"mod_name\",\"val\":3},{\"key\":\"air\",\"val\":1998},{\"key\":\"period\",\"val\":36}]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAO4SURBVO3BO45jSQADwWRB979y7hhr0CrgQVLPB4yIvzDzv8NMOcyUw0w5zJTDTDnMlMNMOcyUw0w5zJTDTDnMlMNMOcyUw0x58aYk/CSVdyShqbQkNJWbJDSVloSfpPKOw0w5zJTDTHnxYSqflISbJDSVloSmcqPSkvBJKp+UhE86zJTDTDnMlBdfloQnVJ5QaUl4IglPqLQkvCMJT6h802GmHGbKYaa8+MeotCTcqLQk3CShqfxLDjPlMFMOM+XFXy4JTyShqTSVloSm8i87zJTDTDnMlBdfpvJNKi0JTaUloSXhRuWbVP4kh5lymCmHmfLiw5Lwk5LQVFoSmkpLQlNpSWgqLQlN5SYJf7LDTDnMlMNMefEmld9JpSWhqTyRhE9S+ZscZsphphxmSvyFNyShqbQkNJWWhKbSktBUnkhCU3kiCU+oPJGEpnKThKbySYeZcpgph5ny4sOS0FRaEprKjconJeFG5QmVloQblZskPJGEpvKOw0w5zJTDTHnxJpV3JOEdKi0JTaUloam0JDSVb1JpSWgqP+kwUw4z5TBTXrwpCU3lRuUmCU3lJgk3SXhC5SYJTeUdSWgqLQlNpSWhqbzjMFMOM+UwU+IvfFESmspNEr5JpSWhqTyRhKZyk4QblZskNJVPOsyUw0w5zJQXPywJTeVG5YkkNJWWhJskNJWWhKbyLznMlMNMOcyUF29KQlO5UWlJaCotCU3lRqUl4QmVloSm0pJwo3Kj8oTKNx1mymGmHGbKizeptCQ0lRuVloSm0pJwo3Kj0pLQknCThG9Kwo3KNx1mymGmHGZK/IU3JKGp3CThRqUloam0JNyotCQ0lZsk/CSVloQnVN5xmCmHmXKYKS/epPKEyhMq70jCT1J5IgktCb/TYaYcZsphprx4UxJ+kkpT+aQkNJWbJNwkoancqLQk3Kh80mGmHGbKYaa8+DCVT0rCE0l4QqWp3CThCZUnkvA7HWbKYaYcZsqLL0vCEypPJOFG5SYJTeVGpSWhJeFvdpgph5lymCkv/nIqN0l4IglNpSWhqbQkfJJKS8I3HWbKYaYcZsqLv1wSmso7VFoSmkpLwo3KE0loSWgqLQlN5R2HmXKYKYeZ8uLLVL5J5QmVloSWhCdUWhJaEprKjUpLQktCU/mkw0w5zJTDTHnxYUn4SUloKk2lJaGp3CThJglN5ZNUWhJaEprKOw4z5TBTDjMl/sLM/w4z5TBTDjPlMFMOM+UwUw4z5TBTDjPlMFMOM+UwUw4z5TBTDjPlP0FMuRM5M6hCAAAAAElFTkSuQmCC', NULL, NULL);
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2520, 'CODE-095129', 'シリンダーヘッド', '/img/image.svg', 309, 57, '[{\"key\":\"sup_name\",\"val\":309},{\"key\":\"mod_name\",\"val\":57},{\"key\":\"air\",\"val\":16},{\"key\":\"period\",\"val\":\"\"}]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAK3SURBVO3BQW7sWAwEwUxC979yjZdcPUCQusfmZ4T5wRqjWKMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoFw+pfFMSTlS6JDyh8k1JeKJYoxRrlGKNcvGyJLxJ5USlS8KJSpeEO5LwJpU3FWuUYo1SrFEuPkzljiTckYQTlS4JnUqXhDtU7kjCJxVrlGKNUqxRLoZR6ZLQqUxWrFGKNUqxRrn441S6JPzLijVKsUYp1igXH5aET0rCE0l4Igm/SbFGKdYoxRrl4mUq36TSJaFT6ZLQqXRJOFH5zYo1SrFGKdYo5geDqXRJmKxYoxRrlGKNcvGQSpeETqVLQqfSJaFT6ZJwotIl4USlS8IdKl0STlS6JLypWKMUa5RijXLxUBI6lROVE5UuCZ3KSRJOVLok3KHymxVrlGKNUqxRLh5SuSMJnUqXhE7l/6TSJaFTOVE5UemS8ESxRinWKMUa5eLDkvBEEjqVO1ROVE6ScIfKSRI6lTcVa5RijVKsUS4eSkKncqLSJaFTeVMSOpUuCScqJ0n4TYo1SrFGKdYo5gd/mMpJEp5QuSMJncodSXiiWKMUa5RijWJ+8IDKNyXhTSpdEu5QOUnCNxVrlGKNUqxRLl6WhDepfFISTlROknCi0iXhk4o1SrFGKdYoFx+mckcS7lDpknCHSpeEkyR0Kl0STlROkvBEsUYp1ijFGuXij0vCicpJEjqVLgknSXgiCW8q1ijFGqVYo1z8cSpdEt6kcpKETuUkCZ1Kl4QnijVKsUYp1igXH5aET0rCSRI6lU7lJAmdykkSTlQ+qVijFGuUYo1y8TKVb1LpknBHEjqVTuUJlS4JncqbijVKsUYp1ijmB2uMYo1SrFGKNUqxRinWKMUapVijFGuUYo1SrFGKNUqxRinWKMUapVij/Ac3kQUGJ5/omAAAAABJRU5ErkJggg==', NULL, NULL);
+INSERT INTO `tab_part` (`id`, `code`, `name`, `img`, `sid`, `mid`, `info`, `status`, `qrcode`, `create_name`, `create_time`) VALUES (2521, 'CODE-125088', 'ピストン', '/img/image.svg', 310, 57, '[{\"key\":\"sup_name\",\"val\":310},{\"key\":\"mod_name\",\"val\":57},{\"key\":\"air\",\"val\":\"\"},{\"key\":\"period\",\"val\":\"\"}]', 0, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAKsSURBVO3BQW7kQAwEwSxC//9yro88NSBIM2sTjIg/WGMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoxRrl4qEkfJPKSRLuUDlJwjepPFGsUYo1SrFGuXiZypuScJKEb1J5UxLeVKxRijVKsUa5+LAk3KHyJpWTJHQqdyThDpVPKtYoxRqlWKNcDJeETqVTmaRYoxRrlGKNcvHHqZwkoUvCicpfVqxRijVKsUa5+DCVb0pCp3KShCdUfpNijVKsUYo1ysXLkvBNSehUuiR0Kk8k4Tcr1ijFGqVYo1w8pPKXJOEOlb+kWKMUa5RijXLxUBI6lTcloVM5SUKncpKELgknKidJuEPlTcUapVijFGuUi5cloVPpknCi0qmcqHRJ6JLQqZyodEl4k0qXhE7liWKNUqxRijVK/MEDSehUuiR0Knck4Q6VkyR0KnckoVM5ScKJypuKNUqxRinWKPEHDyShUzlJwh0qXRI6lS4JJyr/UxJOVJ4o1ijFGqVYo1z8ZypdErok3KHSJeGOJNyh0iWhU/mmYo1SrFGKNcrFQyp3qJyo3JGEE5UuCU+oPKHSJeFNxRqlWKMUa5SLh5LwTSqdyh0qXRI6lS4JXRI6ld+kWKMUa5RijXLxMpU3JeGJJNyRhE7lJAl3JOGTijVKsUYp1igXH5aEO1Q+SaVLQqdykoQTlS4JJypvKtYoxRqlWKNcDJOE/ykJnco3FWuUYo1SrFEuhlM5UTlJQqdyRxLuUHmiWKMUa5RijXLxYSp/mcpJEjqVTuUkCW8q1ijFGqVYo1y8LAnflIROpUvCiUqXhE6lS0KncpKETqVTeVOxRinWKMUaJf5gjVGsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5R/E7ID+M6zy10AAAAASUVORK5CYII=', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1263,7 +1281,7 @@ CREATE TABLE `tab_supply` (
   `create_name` varchar(50) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=408 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of tab_supply
@@ -1274,6 +1292,106 @@ INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (4, '本田001', 'upload/20240307114912.png', '123456', '經緯紡機傲嬌發違法', '[{\"key\":\"芙蓉鎮\",\"val\":\"濰坊\"},{\"key\":\"負責人\",\"val\":\"你問問\"}]', 0, NULL, '2024-03-07 11:56:59');
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (5, '特斯拉', 'upload/20240307115817.png', '2322232323', '富久町1番5号富久町第5服部', '[{\"key\":\"零件\",\"val\":\"忘記忘記發\"},{\"key\":\"測試\",\"val\":\"wjeiawe\"}]', 0, NULL, '2024-03-07 11:58:35');
 INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (6, '7777777', 'upload/20240322110106.png', 'wefaf', 'wefwf', '[]', 0, 'keboda', '2024-03-22 11:01:22');
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (308, 'クメ精密工業株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (309, 'ライドプレシジョン株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (310, 'ペックス機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (311, 'ーティザン金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (312, 'ーコン製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (313, 'ントリック工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (314, 'リアウォータープレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (315, 'ースタル機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (316, 'ンパス工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (317, 'クレセント製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (318, 'ダイナモ製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (319, 'イーストサイドプレシジョン機械加工株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (320, 'エレクトロン機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (321, 'エリート工学部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (322, 'エムバーク金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (323, 'エンピリアン製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (324, 'エンデュランスプレシジョンパーツ株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (325, 'エクイノックス製造ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (326, 'ファルコン機械加工グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (327, 'フォルティス工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (328, 'フュージョン製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (329, 'ジェネシスプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (330, 'グレイシャー機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (331, 'グラナイト工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (332, 'ハルシオン製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (333, 'ホライズンプレシジョン部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (334, 'インパルス製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (335, 'インフィニティ機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (336, 'インジェニュイティ工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (337, 'イノベートプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (338, 'インテグレーテッド金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (339, 'イントレピッド工学製品株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (340, 'イオニック製造ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (341, 'ジャナス製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (342, 'キネティックプレシジョンパーツ株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (343, 'ランサー機械加工グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (344, 'ルミナ工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (345, 'ルナープレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (346, 'メリディアン製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (347, 'メテオール機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (348, 'モザイク工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (349, 'ネブラ製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (350, 'ネクサスプレシジョン部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (351, 'ノーススター製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (352, 'オデッセイ工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (353, 'オリンパス機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (354, 'オムニプレシジョンツーリング株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (355, 'パラダイム金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (356, 'パラマウント工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (357, 'パラゴン製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (358, 'ペガサス製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (359, 'フェニックスプレシジョンパーツ株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (360, 'ピナクル機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (361, 'ポラリス工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (362, 'プラクシスプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (363, 'プレシジョン工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (364, 'プリムス製造ソリューション株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (365, 'プロディジー製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (366, 'プロメテウス工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (367, 'クインテッセンス機械加工グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (368, 'ラディウスプレシジョン部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (369, 'レネゲード金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (370, 'レジリエンス工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (371, 'ラプソディ製造ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (372, 'リゲル製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (373, 'ローグプレシジョンパーツ株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (374, 'ルビコン機械加工グループ  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (375, 'サフィア工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (376, 'スコルピオプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (377, 'センチネル製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (378, 'シリウス機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (379, 'ソルスティス工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (380, 'スペアヘッド製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (381, 'スペクトラムプレシジョン部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (382, 'スターバースト製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (383, 'ステラー工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (384, 'ストラトスフェア機械加工ソリューション株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (385, 'スーパーノヴァプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (386, 'サイクロン金属工芸株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (387, 'シンジケート工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (388, 'タロン製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (389, 'タンデム製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (390, 'テンペストプレシジョンパーツ株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (391, 'タイダル機械加工ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (392, 'タイタン工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (393, 'トライデントプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (394, 'トリオンフ製造スペシャリスト株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (395, 'ウルトラバイオレット機械加工グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (396, 'ユニゾン工学製品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (397, 'ヴァンガード製造ソリューション株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (398, 'ヴェロシティプレシジョン部品株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (399, 'ヴァーテックス金属工芸株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (400, 'ヴィラージュ工業部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (401, 'ヴィジョナリー機械加工ソリューション株式会社 ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (402, 'ヴォルテックスプレシジョンツーリング株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (403, 'ヴォイジャー製造サービス株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (404, 'ゼニス工学製品株式会社  ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (405, 'ゼファー製造グループ', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (406, 'ゼータプレシジョン部品株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
+INSERT INTO `tab_supply` (`id`, `name`, `img`, `phone`, `addr`, `info`, `status`, `create_name`, `create_time`) VALUES (407, 'ゾディアック製造スペシャリスト株式会社', NULL, NULL, NULL, '[]', 0, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1653,9 +1771,10 @@ BEGIN
 			SET @sid = JSON_EXTRACT(jsonData, CONCAT('$[', i, '].sid'));
 			SET @mid = JSON_EXTRACT(jsonData, CONCAT('$[', i, '].mid'));
 			SET @info = JSON_UNQUOTE(JSON_EXTRACT(jsonData, CONCAT('$[', i, '].info')));
+			SET @qrcode = JSON_UNQUOTE(JSON_EXTRACT(jsonData, CONCAT('$[', i, '].qrcode')));
 			
 			
-			INSERT INTO tab_part (code,name,sid,mid,status) VALUES (@code,@name,@sid,@mid,0);
+			INSERT INTO tab_part (code,name,img,sid,mid,qrcode,info,status) VALUES (@code,@name,'/img/image.svg',@sid,@mid,@qrcode,@info,0);
 			
 			SET i = i + 1;
 		END WHILE;

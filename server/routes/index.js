@@ -10,7 +10,7 @@ var ExcelJS = require('exceljs');
 
 var router = express.Router()
 var {callP} = require("../db/db")
-var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel} = require("../util/util")
+var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel,genQR} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
@@ -250,9 +250,13 @@ router.post('/importPart', async (req, res, next) => {
     head.splice(id_sup,1)
     head.splice(id_mod,1)
 
+
+    console.log(data)
+
     const ret = []
 
-    data.map(o=>{
+
+    for await (let o of data) {
       modData.map(item=>{
         if (item.name === o[id_mod]) {
           o[id_mod] = item.id
@@ -265,29 +269,33 @@ router.post('/importPart', async (req, res, next) => {
         }
       })
       const code = o[id_code]
+      const qrcode = await genQR(code)
       const name = o[id_name]
       const sid = o[id_sup]
       const mid = o[id_mod]
-      let r = {code,name,sid,mid}
+      let r = {code,name,sid,mid,qrcode}
 
       o.splice(id_name,1)
       o.splice(id_code,1)
       o.splice(id_sup,1)
       o.splice(id_mod,1)
 
-      let jsonItem = {}
+      let jsonItem = []
       o.map((p,i)=>{
-        jsonItem[head[i]] = p
+        jsonItem.push({key:head[i] ,val:p})
+        // jsonItem[head[i]] = p
       })
-      r.info = jsonItem
+      r.info = JSON.stringify(jsonItem)
       ret.push(r)
-    })
+    }
 
+
+    console.log(ret)
 
     const sql3 = `CALL PROC_IMPORT_PART(?)`
     const partList = await callP(sql3, ret, res)
 
-    console.log(partList)
+    // console.log(partList)
 
 
     res.status(200).json({
