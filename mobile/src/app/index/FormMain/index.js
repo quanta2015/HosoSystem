@@ -11,7 +11,7 @@ import {jp} from '@constant/lang'
 import {ST_TXT,ST} from '@/constant/data'
 
 const { confirm } = Modal;
-const { FN,MSG,DB,TXT } = jp
+const { FN,MSG,STOCK_TAKING,DB,STOCK_IO_STATUS } = jp
 const { TextArea } = Input
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
@@ -28,12 +28,6 @@ const caluMode = (list) => {
   const ret = avg < 20 ? 'out' : avg < 30 ? 'in' : 'mov';
   return ret;
 };
-
-const modeTxt = {
-  in:'入库',
-  out: '出库',
-  mov: '移动'
-}
 
 
 const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
@@ -84,7 +78,7 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
       setLoading(false)
       r.data.map(o=>{ o.num_real = o.num })
       setList([...r.data])
-      message.info(`${modeTxt[mode]}信息保存成功`)
+      message.info(`${STOCK_TAKING[mode]}${STOCK_TAKING.SAVE_SUC}`)
     })
 
     console.log(params)
@@ -124,28 +118,28 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
             <div className={s.itemwarp}>
               <div className={s.info}>
                 <div className={s.row}>
-                  <label>零件编号</label>
+                  <label>{DB.STOCK_IO.PART_CODE}</label>
                   <span>{o.part_code}</span>
                 </div>
                 <div className={s.row}>
-                  <label>零件名称</label>
+                  <label>{DB.STOCK_IO.PART_NAME}</label>
                   <span>{o.part_name}</span>
                 </div>
                 <div className={s.row_wrap}>
                   <div className={s.row}>
-                    <label>{`${modeTxt[mode]}`}数量</label>
+                    <label>{`${STOCK_TAKING[mode]}${STOCK_TAKING.NUM}`}</label>
                     <span>{o.num}</span>
                   </div>
 
                   {o.state === ST.IN_READY && 
                   <div className={s.row}>
-                    <label>实际数量</label>
+                    <label>{STOCK_TAKING.REAL_NUM}</label>
                     <InputNumber value={o.num_real} onChange={(e)=>doChgNum(e,i)} max={o.num} min={o.min} />
                   </div>}
                 </div>
 
                 <div className={s.row}>
-                  <label>备注</label>
+                  <label>{STOCK_TAKING.REMARK}</label>
                   <TextArea value={o.remark} onChange={(e)=>doChgRemark(e,i)}  readOnly={isReadOnly(o.state)} />
                 </div>
 
@@ -154,21 +148,21 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
 
             {o.state === ST.IN_READY && 
             <div className={s.fun}>
-              <Button onClick={()=>showConfirm(o,i,'in')}>入库成功</Button>
-              <Button onClick={()=>showConfirm(o,i,'in_err')}>入库错误</Button>
+              <Button onClick={()=>showConfirm(o,i,'in')}>{STOCK_IO_STATUS.IN_DONE}</Button>
+              <Button onClick={()=>showConfirm(o,i,'in_err')}>{STOCK_IO_STATUS.IN_ERR}</Button>
             </div>}
 
             {o.state === ST.OUT_READY && 
             <div className={s.fun}>
-              <Button onClick={()=>showConfirm(o,i,'out')}>出库成功</Button>
-              <Button onClick={()=>showConfirm(o,i,'out_err')}>出库错误</Button>
+              <Button onClick={()=>showConfirm(o,i,'out')}>{STOCK_IO_STATUS.OUT_DONE}</Button>
+              <Button onClick={()=>showConfirm(o,i,'out_err')}>{STOCK_IO_STATUS.OUT_ERR}</Button>
             </div>}
 
 
             {o.state === ST.MOV_READY && 
             <div className={s.fun}>
-              <Button onClick={()=>showConfirm(o,i,'mov')}>移动成功</Button>
-              <Button onClick={()=>showConfirm(o,i,'mov_err')}>移动错误</Button>
+              <Button onClick={()=>showConfirm(o,i,'mov')}>{STOCK_IO_STATUS.MOVE_DONE}</Button>
+              <Button onClick={()=>showConfirm(o,i,'mov_err')}>{STOCK_IO_STATUS.MOVE_ERR}</Button>
             </div>}
             
           </div>

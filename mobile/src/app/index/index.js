@@ -14,6 +14,9 @@ import * as ZXing from '@zxing/library';
 import FormCheck from './FormCheck'
 import FormMain from './FormMain'
 
+import {jp} from '@constant/lang'
+const {FN} = jp
+
 const Nav = () => {
   const { store } = React.useContext(MobXProviderContext);
   const navigate = useNavigate();
@@ -22,27 +25,23 @@ const Nav = () => {
   const [ds,setDs] = useState([])
   const [showForm,setShowForm] = useState(false)
   const [showCheck,setShowCheck] = useState(false)
-
-
+  const [curCam,setCurCam] = useState(0);
   const [selectedDeviceId, setSelectedDeviceId] = useState('');
   const [codeReader, setCodeReader] = useState(null);
   const [qrCodeText, setQRCodeText] = useState('');
   const [showScan, setShowScan] = useState(false)
 
-
   useEffect(() => {
     const initCodeReader = async () => {
       try {
         const reader = new ZXing.BrowserQRCodeReader();
-        // const constraints = { video: { facingMode: 'environment' }};
-        // reader.setConstraints(constraints);
-        
-        const devices = await reader.getVideoInputDevices();      
+        const devices = await reader.getVideoInputDevices();
         
         if (devices.length > 0) {
           // console.log(reader,devices[0].deviceId,'reader')
-          setCodeReader(reader);
-          setSelectedDeviceId(devices[0].deviceId);
+          setCodeReader(reader);        
+          setCurCam(0)
+          setSelectedDeviceId(devices[curCam].deviceId);
         }
       } catch (error) {
         console.error(error);
@@ -58,7 +57,7 @@ const Nav = () => {
   }, []);
 
 
-  const decodeOnce = () => {
+  const decodeOnce = () => {   
     codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video')
     .then(result => {
       console.log(result)
@@ -94,7 +93,13 @@ const Nav = () => {
     }
   }
 
-  
+  const changeCam = async()=>{
+    const devices = await codeReader.getVideoInputDevices();
+    setCurCam( (curCam+1)%devices.length )    
+    setSelectedDeviceId(devices[curCam].deviceId)
+    console.log(`${curCam} / ${devices.length} : ${selectedDeviceId}`)
+    decodeOnce()
+  }
 
 
   return (
@@ -106,12 +111,11 @@ const Nav = () => {
         </div>
       </div>
       <div className={s.ft}>
-        <Button type="primary" block style={{height: '45px'}} onClick={doCheckWare}>库存盘点</Button>
+        <Button type="primary" block style={{height: '45px', marginBottom:'1rem'}} onClick={changeCam}>{FN.CHG_CAM}</Button>
+        <Button type="primary" block style={{height: '45px'}} onClick={doCheckWare}>{FN.STK}</Button>
       </div>
-
       {showForm && <FormMain {...{ds, setShowForm, setLoading, setShowScan }}  />}
-      {showCheck && <FormCheck {...{ds, setShowCheck, setLoading, setShowScan }}  />}
-      
+      {showCheck && <FormCheck {...{ds, setShowCheck, setLoading, setShowScan }}  />}      
     </div>
   )
 

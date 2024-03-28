@@ -2,7 +2,7 @@ export const jp = {
   SYS_NAME:
   {
     JP:'IMS倉庫管理システム',
-    EM:'IMS Inventory Management System'
+    EN:'IMS Inventory Management System'
   },
   NAV: {
     MENU_L1: '基本情報管理',

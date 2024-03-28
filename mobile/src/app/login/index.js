@@ -10,7 +10,8 @@ import { saveLocalUser,saveToken } from '@/util/token'
 import style from './index.module.less'
 
 import logo from '@/img/hoso.webp'
-
+import {jp} from '@constant/lang'
+const {DB,MSG,SYS_NAME} = jp
 
 
 const Login = () => {
@@ -26,8 +27,8 @@ const Login = () => {
       
       // message.info(r.msg)
       if (r.code===0) {
-        if (r.data.role!=='倉庫管理') {
-          message.error('ログインされたアカウントは倉庫管理の権限がありません！')
+        if (r.data.role!==DB.ROLE.WARE) {
+          message.error(MSG.LOGIN_NOT_WARE)
         }else{
           saveLocalUser(r.data,r.token)
           store.saveUser(r.data)
@@ -47,8 +48,8 @@ const Login = () => {
         <div className={style.title}>
           <img src={logo} className={style.bg} />
           <p>
-            <span>IMS库存管理システム</span>
-            <label>IMS Inventory Management System</label>
+            <span>{SYS_NAME.SYS_NAME.JP}</span>
+            <label>{SYS_NAME.SYS_NAME.EN}</label>
           </p>
         </div>
                
