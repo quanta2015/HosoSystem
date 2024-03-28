@@ -62,12 +62,15 @@ const Stock = () => {
     fixed: 'right',
     render: o =>  (
       <Space>
-        {( o.state === ST.OUT_AUDIT || 
-           o.state === ST.IN_AUDIT ||
-           o.state === ST.MOV_AUDIT )  && 
-           <Button type="primary" onClick={()=>doAudit(o,false)}>{FN.AUDIT}</Button>}
-
-        <Button type="primary" onClick={()=>doAudit(o,true)}>{FN.DTL}</Button>
+        {
+          ( 
+            o.state === ST.OUT_AUDIT || 
+            o.state === ST.IN_AUDIT ||
+            o.state === ST.MOV_AUDIT 
+          )? 
+          <Button type="primary" onClick={()=>doAudit(o,false)}>{FN.AUDIT}</Button>:
+          <Button type="primary" onClick={()=>doAudit(o,true)}>{FN.DTL}</Button>
+        }        
       </Space>
     )
   })

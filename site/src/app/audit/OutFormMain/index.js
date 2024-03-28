@@ -30,11 +30,11 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   const initType = method==='insert'?(move?TXT.STOCK_IO_TYPE.MOVE:null):item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
   const initOutWare = method==='insert'?[null,null]:[item.out_dep_id,item.out_ware_id]
- 
+  const initRemark = method==='insert'?'':item.remark[0]
 
   const [list, setList] = useState([]);
   const [type, setType] = useState(initType);
-  const [remark, setRemark] = useState('');
+  const [remark, setRemark] = useState(initRemark);
 
   
   const [inWare, setInWare] = useState(initInWare);
