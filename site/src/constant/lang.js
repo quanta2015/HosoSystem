@@ -60,6 +60,8 @@ export const jp = {
   },
 
   DB: {
+    INDEX: '编号',
+    
     ROLE:{
       SYS:"システム",
       WARE:"倉庫",

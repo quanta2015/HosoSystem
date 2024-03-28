@@ -110,8 +110,6 @@ const FormCheck = ({setShowCheck,setLoading}) => {
     }
     store.queryStockByWare(params).then(r=>{
       setLoading(false)
-
-      // 沒有數據
       if (r.data.length === 0 ) {
         message.info('該倉庫沒有部品')
         return
@@ -124,12 +122,7 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
 
 
-
-  
-
-
   const doQrcode = async (e) => {
-    // console.log(e.code)
     setShowScan(true)
 
     try {
@@ -153,7 +146,6 @@ const FormCheck = ({setShowCheck,setLoading}) => {
   };
 
   const doCloseScan =()=>{
-
     if (reader) {
       reader.reset();
     }

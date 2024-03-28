@@ -23,10 +23,12 @@ const getPart = (list,id, stockio_id)=> {
 
 const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
-  // console.log(item,'up')
+  // console.log(item,'item')
 
   const initType = method==='insert'?null:item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
+
+  const initRemark = method==='insert'?'':item.remark[0]
   // const initList = method==='insert'?[]:[]
 
 
@@ -41,7 +43,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   ]);
   const [part,setPart] = useState([])
   const [partFil,setPartFil] = useState([])
-  const [remark, setRemark] = useState('');
+  const [remark, setRemark] = useState(initRemark);
 
 
   useEffect(() => {
@@ -187,7 +189,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
     })
   }
 
-  console.log(item.state,'status')
+  // console.log(item.state,'status')
 
   return (
     <div className={s.form}>

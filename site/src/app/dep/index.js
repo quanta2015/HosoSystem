@@ -110,7 +110,13 @@ const Dep = () => {
     setLoading(true)
     store.delDep(params).then(r=>{
       setLoading(false)
-      setDs(r.data)
+
+      if (r.data !== undefined) {
+        setDs(r.data)
+      }else{
+        message.error('该部门已经配置仓库和人员，无法删除')
+      }
+      
       // console.log(r.data)
     })
   }

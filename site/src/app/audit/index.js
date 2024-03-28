@@ -122,7 +122,7 @@ const Stock = () => {
         </div>
 
 
-       {showInForm && <InFormMain {...{col, item, method,detail, setRefresh, setShowInForm, setLoading}}  />}
+       {showInForm && <InFormMain {...{col, item, method, detail, setRefresh, setShowInForm, setLoading}}  />}
        {showOutForm && <OutFormMain {...{col, item, method, detail, setRefresh, setShowOutForm, setLoading, move}}  />}
 
       </Spin >
