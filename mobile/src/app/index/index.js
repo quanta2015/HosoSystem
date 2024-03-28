@@ -5,7 +5,7 @@ import { UserOutlined, LockOutlined,ScanOutlined } from '@ant-design/icons';
 import * as urls from '@/constant/urls'
 import {loadLocalUser} from '@/util/token'
 import { useNavigate } from 'react-router-dom'
-import icon_scna from '@/img/icon-scan.svg'
+import icon_scan from '@/img/icon-scan.svg'
 import s from './index.module.less'
 
 
@@ -36,9 +36,9 @@ const Nav = () => {
     const initCodeReader = async () => {
       try {
         const reader = new ZXing.BrowserQRCodeReader();
-        const constraints = { video: { facingMode: 'environment' }};
-        reader.setConstraints(constraints);
-        
+        // const constraints = { video: { facingMode: 'environment' }};
+        // reader.setConstraints(constraints);
+
         const devices = await reader.getVideoInputDevices();
         if (devices.length > 0) {
           // console.log(reader,devices[0].deviceId,'reader')
@@ -90,6 +90,9 @@ const Nav = () => {
 
   const doCheckWare =()=>{
     setShowCheck(true)
+    if (codeReader) {
+      codeReader.reset();
+    }
   }
 
 
@@ -97,7 +100,7 @@ const Nav = () => {
     <div className={s.index}>
       <div className={s.bd}>
         <div className={s.scan} onClick={doScan}>
-          <img src={icon_scna} alt="" />
+          <img src={icon_scan} alt="" />
           <video  ref={videoRef} id="video" autoPlay></video>
         </div>
       </div>
