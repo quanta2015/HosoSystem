@@ -7,7 +7,7 @@ import {API_SERVER} from '@/constant/apis'
 import {Tag} from 'antd'
 import defaultImg from '../img/img404.webp'
 import {jp} from '@constant/lang'
-const { DB } = jp
+const { DB,STOCK_IO_STATUS,TAG } = jp
 
 
 export const ST = {
@@ -30,25 +30,25 @@ export const ST = {
   MOV_ERROR: 33,  //移动錯誤
   MOV_NOPAS: 34,  //移动审核未通过
 }  
-
-
 export const ST_TXT = {
-  10:'出庫待審核',
-  11:'待出庫',
-  12:'出庫完成',
-  13:'出庫錯誤',
-  14:'出庫审核未通过',
-  20:'入庫待審核',
-  21:'待入庫',
-  22:'入庫完成',
-  23:'入庫出錯',
-  24:'部分入庫',
-  25:'入庫审核未通过',
-  30:'移动待審核',
-  31:'待移动',
-  32:'移动完成',
-  33:'移动錯誤',
-  34:'移动审核未通过' 
+  10:STOCK_IO_STATUS.OUT_WAIT_REV,
+  11:STOCK_IO_STATUS.OUT_WAIT,
+  12:STOCK_IO_STATUS.OUT_DONE,
+  13:STOCK_IO_STATUS.OUT_ERR,
+  14:STOCK_IO_STATUS.OUT_REJ,
+
+  20:STOCK_IO_STATUS.IN_WAIT_REV,
+  21:STOCK_IO_STATUS.IN_WAIT,
+  22:STOCK_IO_STATUS.IN_DONE,
+  23:STOCK_IO_STATUS.IN_ERR,
+  24:STOCK_IO_STATUS.IN_SOME,
+  25:STOCK_IO_STATUS.IN_REJ,
+  
+  30:STOCK_IO_STATUS.MOVE_WAIT_REV,
+  31:STOCK_IO_STATUS.MOVE_WAIT,
+  32:STOCK_IO_STATUS.MOVE_DONE,
+  33:STOCK_IO_STATUS.MOVE_ERR,
+  34:STOCK_IO_STATUS.MOVE_REJ
 }
 
 const pageSize = 6
@@ -57,19 +57,18 @@ export const json_part = [
   {
       dataIndex: 'key',
       type: 'string',
-      title: '編號',
+      title: DB.ID,
       width: 80,
       align: 'center',
       req: true,
       fixed: 'left',
-      // render: (text, record, index) => `${index + 1 + (pageSize * (pagination.current - 1))}`,
- 
+      // render: (text, record, index) => `${index + 1 + (pageSize * (pagination.current - 1))}`, 
       // render: (text, record, index) => `${index + 1}`,
   },
   {
       dataIndex: 'qrcode',
       type: 'string',
-      title: '二維碼',
+      title: DB.QRCODE,
       width: 100,
       req: true,
       fixed: 'left',
@@ -77,7 +76,7 @@ export const json_part = [
     },{
       dataIndex: 'img',
       type: 'string',
-      title: '製品圖像',
+      title: DB.PART.IMG,
       width: 100,
       req: true,
       fixed: 'left',
@@ -85,7 +84,7 @@ export const json_part = [
     },{
       dataIndex: 'code',
       type: 'string',
-      title: '製品ID',
+      title: DB.PART.CODE,
       key: true,
       width: 200,
       align: 'center',
@@ -94,33 +93,33 @@ export const json_part = [
     },{
       dataIndex: 'name',
       type: 'string',
-      title: '製品名称',
+      title: DB.PART.NAME,
       width: 200,
       req: true,
     },
     {
       dataIndex: 'mod_name',
       type: 'string',
-      title: '製品種類',
+      title: DB.PART.MODE_NAME,
       width: 120,
       req: false,
     },
     {
       dataIndex: 'sup_name',
       type: 'string',
-      title: '供應商名稱',
+      title: DB.PART.SUP_NAME,
       width: 200,
       req: true,
     },{
       dataIndex: 'sup_phone',
       type: 'string',
-      title: '供應商電話',
+      title: DB.PART.SUP_PHONE,
       width: 120,
       req: true,
     },{
       dataIndex: 'sup_addr',
       type: 'string',
-      title: '供應商地址',
+      title: DB.PART.SUP_ADDR,
       width: 200,
       req: true,
     }, 
@@ -132,7 +131,7 @@ export const json_model = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 100,
     align: 'center',
     req: true,
@@ -140,7 +139,7 @@ export const json_model = [
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '類型',
+    title: DB.MODEL.NAME,
     key: true,
     width: 200,
     align: 'center',
@@ -155,7 +154,7 @@ export const json_supply = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.SUPPLY.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -163,7 +162,7 @@ export const json_supply = [
   },{
     dataIndex: 'img',
     type: 'string',
-    title: '圖標',
+    title: DB.SUPPLY.IMG,
     width: 80,
     fixed: 'left',
     align: 'center',
@@ -171,19 +170,19 @@ export const json_supply = [
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '供應商',
+    title: DB.SUPPLY.NAME,
     width: 100,
     align: 'center',
   },{
     dataIndex: 'phone',
     type: 'string',
-    title: '供應商電話',
+    title: DB.SUPPLY.PHONE,
     width: 200,
     align: 'center',
   },{
     dataIndex: 'addr',
     type: 'string',
-    title: '供應商地址',
+    title: DB.SUPPLY.ADDR,
     width: 200,
   }
 ]
@@ -194,7 +193,7 @@ export const json_ware = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -202,31 +201,31 @@ export const json_ware = [
   },{
     dataIndex: 'dep_name',
     type: 'string',
-    title: '所屬營業所',
+    title: DB.WARE.DEP_NAME,
     width: 100,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'code',
     type: 'string',
-    title: '倉庫編碼',
+    title: DB.WARE.CODE,
     width: 100,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '倉庫名稱',
+    title: DB.WARE.NAME,
     width: 200,
   },{
     dataIndex: 'addr',
     type: 'string',
-    title: '倉庫地址',
+    title: DB.WARE.ADDR,
     width: 200,
   },{
     dataIndex: 'manager',
     type: 'string',
-    title: '負責人',
+    title: DB.WARE.MANAGER,
     width: 100,
     align: 'center',
   }
@@ -238,7 +237,7 @@ export const json_stock = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -246,59 +245,59 @@ export const json_stock = [
   },{
     dataIndex: 'ware_code',
     type: 'string',
-    title: '倉庫編碼',
+    title: DB.STOCK.WARE_CODE,
     width: 120,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'ware_name',
     type: 'string',
-    title: '倉庫名稱',
+    title: DB.STOCK.WARE_NAME,
     width: 150,
   },{
     dataIndex: 'part_img',
     type: 'string',
-    title: '部品圖標',
+    title: DB.STOCK.PART_IMG,
     width: 100,
     align: 'center',
     render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
   },{
     dataIndex: 'part_code',
     type: 'string',
-    title: '部品編碼',
+    title: DB.STOCK.PART_CODE,
     width: 150,
   },{
     dataIndex: 'part_name',
     type: 'string',
-    title: '部品名稱',
+    title: DB.STOCK.PART_NAME,
     width: 150,
     align: 'center',
   },{
     dataIndex: 'model_name',
     type: 'string',
-    title: '部品類型',
+    title: DB.STOCK.MODEL_NAME,
     width: 150,
     align: 'center',
   },{
     dataIndex: 'supply_name',
     type: 'string',
-    title: '供應商',
+    title: DB.STOCK.SUPPLY_NAME,
     width: 200,
     align: 'center',
   },{
     dataIndex: 'num',
     type: 'string',
-    title: '數量',
+    title: DB.STOCK.NUM,
     width: 100,
     align: 'center',
   },{
     dataIndex: 'status',
     type: 'string',
-    title: '狀態',
+    title: DB.STOCK.STATUS,
     width: 100,
     align: 'center',
     render:(text,r)=> 
-      text===0?<Tag color="blue">正常</Tag>:<Tag color="red">待盤點</Tag>
+      text===0?<Tag color="blue">{TAG.NORMAL}</Tag>:<Tag color="red">{TAG.WAIT_STOCK_TAKE}</Tag>
     
   }
 ]
@@ -308,7 +307,7 @@ export const json_stock_io = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -316,7 +315,7 @@ export const json_stock_io = [
   },{
     dataIndex: 'qrcode',
     type: 'string',
-    title: '二维码',
+    title: DB.QRCODE,
     width: 100,
     fixed: 'left',
     align: 'center',
@@ -324,7 +323,7 @@ export const json_stock_io = [
   },{
     dataIndex: 'state_text',
     type: 'string',
-    title: '狀態',
+    title: DB.STOCK_IO.REMARK,
     width: 150,
     fixed: 'left',
     align: 'center',
@@ -332,31 +331,31 @@ export const json_stock_io = [
   },{
     dataIndex: 'recept_code',
     type: 'string',
-    title: '出入庫單號',
+    title: DB.STOCK_IO.RECEPT_CODE,
     width: 200,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'type',
     type: 'string',
-    title: '類型',
+    title: DB.STOCK_IO.TYPE,
     width: 150,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'out_ware_name',
     type: 'string',
-    title: '出庫倉庫名稱',
+    title: DB.STOCK_IO.OUT_WARE_NAME,
     width: 200,
   },{
     dataIndex: 'in_ware_name',
     type: 'string',
-    title: '入庫倉庫名稱',
+    title: DB.STOCK_IO.IN_WARE_NAME,
     width: 200,
   },{
     dataIndex: 'remark',
     type: 'string',
-    title: '备注',
+    title: DB.STOCK_IO.REMARK,
     width: 300,
   }
 ]
@@ -366,7 +365,7 @@ export const json_user = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -374,26 +373,26 @@ export const json_user = [
   },{
     dataIndex: 'dep_name',
     type: 'string',
-    title: '所屬部門',
+    title: DB.USER.DEP_NAME,
     width: 120,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'usr',
     type: 'string',
-    title: '賬號',
+    title: DB.USER.USR,
     width: 200,
      align: 'center',
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '用戶名',
+    title: DB.USER.NAME,
     width: 200,
      align: 'center',
   },{
     dataIndex: 'pwd',
     type: 'string',
-    title: '密碼',
+    title: DB.USER.PWD,
     width: 200,
     align: 'center',
     render: (text, r) => {
@@ -403,7 +402,7 @@ export const json_user = [
   },{
     dataIndex: 'role',
     type: 'string',
-    title: '角色',
+    title: DB.USER.ROLE,
     width: 200,
      align: 'center',
   }
@@ -450,7 +449,7 @@ export const json_site = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: '編號',
+    title: DB.ID,
     width: 100,
     align: 'center',
     req: true,
@@ -458,35 +457,35 @@ export const json_site = [
   },{
     dataIndex: 'name',
     type: 'string',
-    title: '現場名稱',
+    title: DB.SITE.NAME,
     width: 100,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'dep_name',
     type: 'string',
-    title: '所屬營業所',
+    title: DB.SITE.DEP_NAME,
     width: 120,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'addr',
     type: 'string',
-    title: '地址',
+    title: DB.SITE.ADDR,
     width: 100,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'phone',
     type: 'string',
-    title: '聯繫方式',
+    title: DB.SITE.PHONE,
     width: 100,
     fixed: 'left',
     align: 'center',
   },{
     dataIndex: 'manager',
     type: 'string',
-    title: '負責人',
+    title: DB.SITE.MANAGER,
     width: 100,
     fixed: 'left',
     align: 'center',

@@ -101,17 +101,17 @@ export const jp = {
     OVER_STOCK:'入力した数は在庫数を超えました',
     CHOOSED:'選択された部品はすでにリストに入っています',
   },
-
+  ROLE:{
+    SYS:"システム管理",
+    WARE:"倉庫管理",
+    PURCHASE:"仕入担当",
+    REVIEW:"レビュー担当",
+  },
   DB: {
-    ROLE:{
-      SYS:"システム",
-      WARE:"倉庫",
-      PURCHASE:"仕入れ",
-      REVIEW:"レビュー",
-    },
-    PART: {
-      ID: '番号',
-      QRCODE: 'QRコード',
+    ID: '番号',
+    QRCODE: 'QRコード',    
+    PART: {      
+      
       IMG: '製品画像',
       CODE: '製品ID',
       NAME: '製品名前',
@@ -120,27 +120,23 @@ export const jp = {
       SUP_PHONE: 'サプライヤー電話番号',
       SUP_ADDR: 'サプライヤーアドレス',
     },
-    MODEL: {
-      ID: '番号',
+    MODEL: {      
       NAME: '類型',
     },
-    SUPPLY: {
-      ID: '番号',
+    SUPPLY: {     
       IMG: 'アイコン',
       NAME: 'サプライヤー名',
       PHONE: '連絡先',
       ADDR: 'サプライヤーアドレス',
     },
-    WARE: {
-      ID: '番号',
+    WARE: {      
       DEP_NAME: '所属営業所',
       CODE: '倉庫コード',
       NAME: '倉庫名',
       ADDR: '倉庫アドレース',
       MANAGER: '責任者'
     },
-    STOCK: {
-      ID: '番号',
+    STOCK: {      
       WARE_CODE: '倉庫コード',
       WARE_NAME: '倉庫名',
       PART_IMG: '部品画像',
@@ -151,9 +147,8 @@ export const jp = {
       NUM: '数量',
       STATUS: '状態'
     },
-    STOCK_IO: {
-      ID: '番号',
-      RECEPT_CODE: '入出庫番号',
+    STOCK_IO: {      
+      RECEPT_CODE: '伝票番号',
       TYPE:'種類',
       WARE_NAME: '倉庫名',
       IN_WARE_NAME: '元倉庫',
@@ -166,28 +161,46 @@ export const jp = {
       NUM: '数量',
       REMARK:'備考'
     },
-    USER: {
-      ID: '番号',
+    USER: {      
       DEP_NAME: '所属営業所',
       USR: 'アカウント',
       NAME: '氏名',
       PWD: 'パスワード',
       ROLE: '役割'
     },
-    DEP: {
-      ID: '番号',
+    DEP: {      
       DEP_NAME: '営業所',
       DEP_ADDR: 'アドレース',
       DEP_PHONE: '連絡先'
     },
     SITE: {
-      ID: '番号',
       DEP_NAME: '所属営業所',
       NAME: '現場名',
       ADDR: 'アドレース',
       PHONE: '連絡先',
       MANAGER: '責任者'
     }
+  },
+
+  STOCK_IO_STATUS:{
+    OUT_WAIT_REV:'出庫承認待ち',
+    OUT_WAIT:'出庫待ち',
+    OUT_DONE:'出庫完成',
+    OUT_ERR:'出庫エラー',
+    OUT_REJ:'出庫不承認',
+
+    IN_WAIT_REV:'入庫承認待ち',
+    IN_WAIT:'入庫待ち',
+    IN_DONE:'入庫完成',
+    IN_ERR:'入庫エラー',
+    IN_SOME:'一部入庫',
+    IN_REJ:'入庫不承認',
+    
+    MOVE_WAIT_REV:'移动承認待ち',
+    MOVE_WAIT:'移动待ち',
+    MOVE_DONE:'移动完成',
+    MOVE_ERR:'移动エラー',
+    MOVE_REJ:'移动不承認' 
   }
 
 
