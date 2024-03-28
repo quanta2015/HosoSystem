@@ -253,7 +253,7 @@ router.post('/importPart', async (req, res, next) => {
     const ret = []
 
 
-    for await (let o of data) {
+    for (let o of data) {
       modData.map(item=>{
         if (item.name === o[id_mod]) {
           o[id_mod] = item.id
