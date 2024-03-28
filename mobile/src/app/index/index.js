@@ -15,7 +15,7 @@ import FormCheck from './FormCheck'
 import FormMain from './FormMain'
 
 import {jp} from '@constant/lang'
-const {TXT} = jp
+const {FN} = jp
 
 const Nav = () => {
   const { store } = React.useContext(MobXProviderContext);
@@ -111,8 +111,8 @@ const Nav = () => {
         </div>
       </div>
       <div className={s.ft}>
-        <Button type="primary" block style={{height: '45px', marginBottom:'1rem'}} onClick={changeCam}>CHANGE</Button>
-        <Button type="primary" block style={{height: '45px'}} onClick={doCheckWare}>{TXT.STOCK_TAK}</Button>
+        <Button type="primary" block style={{height: '45px', marginBottom:'1rem'}} onClick={changeCam}>{FN.CHG_CAM}</Button>
+        <Button type="primary" block style={{height: '45px'}} onClick={doCheckWare}>{FN.STK}</Button>
       </div>
       {showForm && <FormMain {...{ds, setShowForm, setLoading, setShowScan }}  />}
       {showCheck && <FormCheck {...{ds, setShowCheck, setLoading, setShowScan }}  />}      

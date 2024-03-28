@@ -2,7 +2,7 @@ export const jp = {
     SYS_NAME:
     {
       JP:'IMS倉庫管理システム',
-      EM:'IMS Inventory Management System'
+      EN:'IMS Inventory Management System'
     },
     NAV: {
       MENU_L1: '基本情報管理',
@@ -87,7 +87,8 @@ export const jp = {
       REJECT: '断る',
       ADD_IN_STOCK:'入庫伝票追加',
       ADD_OUT_STOCK:'出庫伝票追加',
-      ADD_STOCK_MOVE:'社內移動伝票追加'
+      ADD_STOCK_MOVE:'社內移動伝票追加',
+      CHG_CAM:'カメラ変更'
     },
     MSG: {
       CFM: 'レコードを削除してもよろしいですか?',
@@ -101,6 +102,7 @@ export const jp = {
       NO_PART_IN_WARE:'倉庫内に部品がありません',
       OVER_STOCK:'入力した数は在庫数を超えました',
       CHOOSED:'選択された部品はすでにリストに入っています',
+      LOGIN_NOT_WARE:'ログインされたアカウントは倉庫管理の権限がありません！'
     },  
     DB: {
       ID: '番号',
@@ -201,8 +203,16 @@ export const jp = {
       MOVE_DONE:'移动完成',
       MOVE_ERR:'移动エラー',
       MOVE_REJ:'移动不承認' 
+    },
+    STOCK_TAKING: {
+      in:'入庫',
+      out: '出庫',
+      mov: '移動',
+      SAVE_SUC: '情報セーブ成功！',
+      NUM:'数',      
+      REAL_NUM:'実際の数',      
+      REMARK:'備考'      
     }
-  
   
   }
   
