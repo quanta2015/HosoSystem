@@ -208,6 +208,8 @@ const callP = async (sql, params, res) => {
 }
 
 
+
+
 exports.callP      = callP;
 exports.select     = select;
 exports.selectSP   = selectSP;

@@ -104,8 +104,7 @@ export const jp = {
   DB: {
     ID: '番号',
     QRCODE: 'QRコード',    
-    PART: {      
-      
+    PART: {   
       IMG: '製品画像',
       CODE: '製品ID',
       NAME: '製品名前',

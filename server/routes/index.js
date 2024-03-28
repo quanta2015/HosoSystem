@@ -9,7 +9,7 @@ var formidable = require('formidable')
 var ExcelJS = require('exceljs');
 
 var router = express.Router()
-var {callP} = require("../db/db")
+var {callP,doProc} = require("../db/db")
 var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel,genQR} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
@@ -249,9 +249,6 @@ router.post('/importPart', async (req, res, next) => {
     head.splice(id_code,1)
     head.splice(id_sup,1)
     head.splice(id_mod,1)
-    
-
-    console.log(data)
 
     const ret = []
 
@@ -289,13 +286,8 @@ router.post('/importPart', async (req, res, next) => {
       ret.push(r)
     }
 
-
-    console.log(ret)
-
     const sql3 = `CALL PROC_IMPORT_PART(?)`
     const partList = await callP(sql3, ret, res)
-
-    // console.log(partList)
 
 
     res.status(200).json({
@@ -533,7 +525,7 @@ router.post('/exportStock', async (req, res, next) => {
 
   let file = `export/${dayjs().format('YYYYMMDDhhmmss')}.xlsx`
 
-  console.log(data)
+  // console.log(data)
   await stockToExcel(data,file)
   res.status(200).json({ code: 0, file  })
 })
@@ -777,6 +769,7 @@ router.post('/queryDep', async (req, res, next) => {
 router.post('/delDep', async (req, res, next) => {
   let params = req.body
   // console.log(params)
+  
   let sql = `CALL PROC_DEL_DEP(?)`
   let r = await callP(sql, params, res)
   r = formatJSON(r,'info')
