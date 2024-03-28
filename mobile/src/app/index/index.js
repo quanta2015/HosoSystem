@@ -5,7 +5,7 @@ import { UserOutlined, LockOutlined,ScanOutlined } from '@ant-design/icons';
 import * as urls from '@/constant/urls'
 import {loadLocalUser} from '@/util/token'
 import { useNavigate } from 'react-router-dom'
-import icon_scna from '@/img/icon-scan.svg'
+import icon_scan from '@/img/icon-scan.svg'
 import s from './index.module.less'
 
 
@@ -89,6 +89,9 @@ const Nav = () => {
 
   const doCheckWare =()=>{
     setShowCheck(true)
+    if (codeReader) {
+      codeReader.reset();
+    }
   }
 
   
@@ -97,8 +100,8 @@ const Nav = () => {
   return (
     <div className={s.index}>
       <div className={s.bd}>
-        <div className={s.scan} onClick={doScan}>          
-          <img src={icon_scna} alt="" />
+        <div className={s.scan} onClick={doScan}>
+          <img src={icon_scan} alt="" />
           <video  ref={videoRef} id="video" autoPlay></video>
         </div>
       </div>
