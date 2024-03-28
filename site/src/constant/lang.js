@@ -100,13 +100,7 @@ export const jp = {
     NO_PART_IN_WARE:'倉庫内に部品がありません',
     OVER_STOCK:'入力した数は在庫数を超えました',
     CHOOSED:'選択された部品はすでにリストに入っています',
-  },
-  ROLE:{
-    SYS:"システム管理",
-    WARE:"倉庫管理",
-    PURCHASE:"仕入担当",
-    REVIEW:"レビュー担当",
-  },
+  },  
   DB: {
     ID: '番号',
     QRCODE: 'QRコード',    
@@ -167,6 +161,12 @@ export const jp = {
       NAME: '氏名',
       PWD: 'パスワード',
       ROLE: '役割'
+    },
+    ROLE:{
+      SYS:"システム管理",
+      WARE:"倉庫管理",
+      PURCHASE:"仕入担当",
+      REVIEW:"レビュー担当",
     },
     DEP: {      
       DEP_NAME: '営業所',

@@ -26,8 +26,8 @@ const Login = () => {
       
       // message.info(r.msg)
       if (r.code===0) {
-        if (r.data.role!=='倉庫') {
-          message.error('请使用仓库管理员用户登录')
+        if (r.data.role!=='倉庫管理') {
+          message.error('ログインされたアカウントは倉庫管理の権限がありません！')
         }else{
           saveLocalUser(r.data,r.token)
           store.saveUser(r.data)
