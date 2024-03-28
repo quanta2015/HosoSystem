@@ -132,6 +132,7 @@ const Dep = () => {
 
   const doAdd =()=>{
     setMethod('insert')
+    setDetail(false)
     setShowForm(true)
   }
 

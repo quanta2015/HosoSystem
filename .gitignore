@@ -21,3 +21,5 @@
 
 
 secret.md
+server/yarn.lock
+*.lock
