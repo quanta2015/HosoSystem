@@ -177,21 +177,21 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   return (
     <div className={s.form}>
       <div className={s.wrap}>
-          <div className={s.tl}>入庫信息</div>
+          <div className={s.tl}>{TXT.STOCK_IN_INFO}</div>
           <div className={s.basic}>
             <div className={s.head}>
               <h1>{TXT.BAS_INFO}</h1>
             </div>
             <div className={s.row}>
-              <span>入庫類型</span>
+              <span>{TXT.STOCK_IN_TYPE}</span>
               <Select options={optType} className={s.select} onChange={(e)=>setType(e)} value={type} disabled={detail}/>
-              <span>入庫倉庫</span>
+              <span>{TXT.STOCK_IN_WARE}</span>
               <Cascader options={optWare} className={s.select} onChange={(e)=>setInWare(e)} value={inWare} disabled={detail}/>
             </div>
           </div>
 
           <div className={s.head}>
-            <h1>入庫部品</h1>
+            <h1>{TXT.STOCK_IN_PART}</h1>
             <Button icon={<PlusOutlined />} onClick={()=>doAddItem()} disabled={detail}/>
           </div>     
 
@@ -199,10 +199,10 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
 
           <div className={s.info}>
             <div className={s.th}>
-              <span>当前状态</span>
-              <span>部品信息</span>
-              <span>入庫數量</span>
-              <span>功能</span>
+              <span>{TXT.STOCK_CUR_STATE}</span>
+              <span>{TXT.STOCK_PART_INFO}</span>
+              <span>{TXT.STOCK_CUR_NUM}</span>
+              <span>{FN.ACT}</span>
             </div>
             {list.map((o,i)=>
                 <div key={i} className={s.row}>

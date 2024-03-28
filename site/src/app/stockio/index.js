@@ -63,7 +63,7 @@ const Stock = () => {
     fixed: 'right',
     render: o => (
       <Space>
-        <Button type="primary" onClick={()=>doEdit(o,true)}>詳情</Button>
+        <Button type="primary" onClick={()=>doEdit(o,true)}>{FN.DTL}</Button>
 
         {(o.state === ST.OUT_AUDIT || o.state === ST.IN_AUDIT || o.state === ST.MOV_AUDIT )  && 
         <>
@@ -184,9 +184,9 @@ const Stock = () => {
             <Space>
               {/*<Button type="primary" icon={<CloudDownloadOutlined />} onClick={()=>doExport()}>情報ダウンロード</Button>*/}
 
-              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAddIn()}>入庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddOut()}>出庫伝票</Button>
-              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddMove()}>社內移動</Button>
+              <Button type="primary" icon={<PlusCircleOutlined/>}  onClick={()=>doAddIn()}>{FN.ADD_IN_STOCK}</Button>
+              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddOut()}>{FN.ADD_OUT_STOCK}</Button>
+              <Button type="primary" icon={<MinusCircleOutlined/>}  onClick={()=>doAddMove()}>{FN.ADD_STOCK_MOVE}</Button>
             </Space>
           </div>
           <Table dataSource={ds} columns={col} scroll={{ x: 1000 }} pagination={{ defaultPageSize: 6 }}/>

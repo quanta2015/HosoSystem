@@ -83,9 +83,11 @@ export const jp = {
     CHK: '棚卸し',
     UNCHK: '棚卸の取消',
     PASS: '承認',
-    REJECT: '断る',    
+    REJECT: '断る',
+    ADD_IN_STOCK:'入庫伝票追加',
+    ADD_OUT_STOCK:'出庫伝票追加',
+    ADD_STOCK_MOVE:'社內移動伝票追加'
   },
-
   MSG: {
     CFM: 'レコードを削除してもよろしいですか?',
     EXPT_SUC: 'エクスポート成功！',
