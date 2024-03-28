@@ -303,9 +303,11 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
           {list.length>0 &&
           <div className={s.info}>  
             <div className={s.th}>
+              <span>{TXT.STOCK_CUR_STATE}</span>
               <span>{TXT.PART_INFO}</span>
-              <span>{TXT.STOCK_IN_NUM}</span>
+              <span>{TXT.STOCK_CUR_NUM}</span>
               <span>{TXT.STOCK_OUT_NUM}</span>
+
               <span>{FN.ACT}</span>
             </div>
             {list.map((o,i)=>
