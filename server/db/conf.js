@@ -1,9 +1,9 @@
 let conf = {
-  host: 'localhost',
-  port: 3306,
-  database: 'hoso',
+  host: '10.177.1.220',
+  port: 8888,
+  database: 'ware',
   user:     'root',
-  password: '123456789',
+  password: 'liyangtom',
   multipleStatements: true,
   secret: 'airtp2021',
 };
