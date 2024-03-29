@@ -48,8 +48,8 @@ const Login = () => {
         <div className={style.title}>
           <img src={logo} className={style.bg} />
           <p>
-            <span>{SYS_NAME.SYS_NAME.JP}</span>
-            <label>{SYS_NAME.SYS_NAME.EN}</label>
+            <span>{SYS_NAME.JP}</span>
+            <label>{SYS_NAME.EN}</label>
           </p>
         </div>
                
