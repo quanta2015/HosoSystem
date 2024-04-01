@@ -90,8 +90,7 @@ const Part = () => {
   };
 
   // 刪除數據
-  const doDel = (e)=>{
-    // console.log(e)
+  const doDel = (e)=>{    
     let params = { 
       id: e.id,
       tab: 'tab_part',
@@ -102,8 +101,7 @@ const Part = () => {
       setLoading(false)
       // r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
-      message.info(MSG.DEL_SUC)
-      // console.log(r.data)
+      message.info(MSG.DEL_SUC)      
     })
   }
 
@@ -124,8 +122,7 @@ const Part = () => {
       // r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
       setRefresh(false)
-      console.log(r.data)
-    })
+         })
   }, [refresh]);
 
 

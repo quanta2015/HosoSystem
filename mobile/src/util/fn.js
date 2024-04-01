@@ -56,8 +56,7 @@ export const optInitN =(list,item,fdb)=> list.map(o=> {
   
   if ((item.fld_db === '')||(item.fld_db=== undefined)) {
     return {value: o, label:o }
-  }else{
-    // console.log(item.fld_db,'item')
+  }else{   
     let name = item.fld_db.substring(0, 2)
     let set = fdb[name]
     return {value: o, label:o, disabled: set.has(o)}

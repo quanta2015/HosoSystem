@@ -21,8 +21,7 @@ const getPart = (list,id, stockio_id)=> {
 }
 
 const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoading}) => {
-  const { store } = React.useContext(MobXProviderContext)
-  console.log(item,'up')
+  const { store } = React.useContext(MobXProviderContext) 
 
   const initType = method==='insert'?null:item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
@@ -45,8 +44,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
   useEffect(() => {
     setLoading(true)
     store.queryWareCas(null).then(r=>{
-      setLoading(false)
-      // console.log(r.data)
+      setLoading(false)      
       setOptWare(r.data)
     })
   }, []);
@@ -71,7 +69,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       setLoading(true)
       store.queryStockIOByCode(params).then(r=>{
         setLoading(false)
-        console.log(r.data)
+        
         let _list = r.data.map(o=>({
           id:o.id, 
           key: getPart(part,o.part_id,o.id), 
@@ -83,9 +81,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
 
       })
     }
-  }, [part]);
-
-  // console.log(list,'list')
+  }, [part]); 
 
 
   // 添加json數據
@@ -110,7 +106,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
 
   // 選擇零件
   const doSelPart = (val,i) => {
-    console.log(`Selected: ${val} ${i}`);
+   
     // const val = e.currentTarget.value
     list[i].key= val  //parseInt(val.split(' ')[0])
     setList([...list])
@@ -159,7 +155,6 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
       message.info(MSG.CHOOSE_PART)
       return 
     }
-    // console.log(params)
 
     setLoading(true)
     store.saveStockIO(params).then(r=>{

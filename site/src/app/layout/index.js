@@ -29,8 +29,7 @@ const Layout = () => {
   
 
   useEffect(() => {
-    let {usr, token } = loadLocalUser()
-    console.log(location.pathname);
+    let {usr, token } = loadLocalUser()  
     if (!token) {
       navigate("/login");
     } else{      

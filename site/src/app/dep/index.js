@@ -99,8 +99,7 @@ const Dep = () => {
     store.queryDep(null).then(r=>{
       setLoading(false)
       setDs(r.data)
-      setRefresh(false)
-      console.log(r.data)
+      setRefresh(false)     
     })
   }, [refresh]);
 
@@ -118,8 +117,8 @@ const Dep = () => {
         message.info(MSG.DEL_SUC)
       }else{
         message.error(MSG.DEP_CANNOT_DEL)
-      }      
-      // console.log(r.data)
+      }     
+     
     })
   }
 

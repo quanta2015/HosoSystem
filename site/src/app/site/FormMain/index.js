@@ -49,9 +49,7 @@ const FormMain = ({col, item, detail, method,setRefresh, setShowForm,setLoading}
       id: item?.id,
       method,
       ...values
-    }
-
-    console.log(values)
+    }    
 
     setLoading(true)
     store.saveSite(params).then(r=>{

@@ -96,8 +96,7 @@ const Site = () => {
     store.querySite(null).then(r=>{
       setLoading(false)
       setDs(r.data)
-      setRefresh(false)
-      console.log(r.data)
+      setRefresh(false)   
     })
   }, [refresh]);
 
@@ -111,8 +110,7 @@ const Site = () => {
     store.delSite(params).then(r=>{
       setLoading(false)
       setDs(r.data)
-      message.info(MSG.DEL_SUC)
-      // console.log(r.data)
+      message.info(MSG.DEL_SUC)   
     })
   }
 

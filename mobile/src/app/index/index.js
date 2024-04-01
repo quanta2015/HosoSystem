@@ -37,8 +37,7 @@ const Nav = () => {
         const reader = new ZXing.BrowserQRCodeReader();
         const devices = await reader.getVideoInputDevices();
         
-        if (devices.length > 0) {
-          // console.log(reader,devices[0].deviceId,'reader')
+        if (devices.length > 0) {         
           setCodeReader(reader);        
           setCurCam(0)
           setSelectedDeviceId(devices[curCam].deviceId);
@@ -60,7 +59,6 @@ const Nav = () => {
   const decodeOnce = () => {   
     codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video')
     .then(result => {
-      console.log(result)
       let recept_code = result.text
       setQRCodeText(recept_code)
 
@@ -69,7 +67,6 @@ const Nav = () => {
       }
       setLoading(true)
       store.getStockIOByRC(params).then(r=>{
-        // console.log(r.data)
         setLoading(false)
 
         r.data.map(o=>{ o.num_real = o.num })
@@ -97,7 +94,6 @@ const Nav = () => {
     const devices = await codeReader.getVideoInputDevices();
     setCurCam( (curCam+1)%devices.length )    
     setSelectedDeviceId(devices[curCam].deviceId)
-    console.log(`${curCam} / ${devices.length} : ${selectedDeviceId}`)
     decodeOnce()
   }
 

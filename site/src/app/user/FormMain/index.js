@@ -70,9 +70,6 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
     })
   };
 
-
-  console.log(optDep)
-
   return (
     <div className={s.form}>
       <div className={s.wrap}>

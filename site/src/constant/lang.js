@@ -200,7 +200,7 @@ export const jp = {
     
     MOVE_WAIT_REV:'移动承認待ち',
     MOVE_WAIT:'移动待ち',
-    MOVE_DONE:'移动完成',
+    MOVE_DONE:'移動完成',
     MOVE_ERR:'移动エラー',
     MOVE_REJ:'移动不承認' 
   }

@@ -51,8 +51,6 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
       ...values
     }
 
-    console.log(values)
-
     setLoading(true)
     store.saveWare(params).then(r=>{
       setLoading(false)

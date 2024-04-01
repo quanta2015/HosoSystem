@@ -34,8 +34,6 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       ...values
     }
 
-    console.log(params)
-
     setLoading(true)
     store.saveModel(params).then(r=>{
       setLoading(false)

@@ -17,7 +17,6 @@ class Store {
 
   hasRoles = (roles)=>{
     let {usr } = loadLocalUser()
-    console.log(roles.includes(usr.role));
     return roles.includes(usr.role)
   }
 
@@ -28,7 +27,6 @@ class Store {
 
   async post(url, params) {
     const r = await post(url, params)
-    // console.log(r,'aaaa')
     if (r.code === 0) {
       return r
     } else {

@@ -19,7 +19,7 @@ const { FN,MSG,DB,TXT } = jp
 
 const { confirm } = Modal;
 
-// console.log('stock')
+
 
 const Stock = () => {
   const navigate = useNavigate();
@@ -91,7 +91,6 @@ const Stock = () => {
       setLoading(false)
       setDs(r.data)
       setRefresh(false)
-      // console.log(r.data)
     })
   }, [refresh]);
 
@@ -127,8 +126,7 @@ const Stock = () => {
     let params = { 
       in_list
     }
-
-    // console.log(params)
+   
     setLoading(true)
     store.checkStock(params).then(r=>{
       setLoading(false)

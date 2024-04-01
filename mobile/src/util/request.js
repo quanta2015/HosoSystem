@@ -23,7 +23,7 @@ const req = (url, options = {}, allRes = false) => {
     if (r && r.status === 200) {
       return r.data
     } else {
-      message.error('网络错误')
+      message.error('ネットワークエラー')
     }
   })
   .catch(e => {
@@ -31,7 +31,7 @@ const req = (url, options = {}, allRes = false) => {
       message.error(e.response.data.msg)
       return e.response.data
     }
-    message.error('网络错误')
+    message.error('ネットワークエラー')
   })
 }
 

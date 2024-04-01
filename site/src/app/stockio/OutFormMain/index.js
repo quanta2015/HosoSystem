@@ -32,9 +32,6 @@ const getPart = (list,id, stockio_id)=> {
 
 const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoading,move}) => {
   const { store } = React.useContext(MobXProviderContext)
-  // console.log(item,'up')
-
-
 
   const initType = method==='insert'?(move?TXT.STOCK_IO_TYPE.MOVE:null):item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
@@ -64,8 +61,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
     setLoading(true)
     store.queryWareCas(null).then(r=>{
       setLoading(false)
-      // console.log(r.data)
-      setOptWare(r.data)
+           setOptWare(r.data)
     })
   }, []);
 
@@ -78,16 +74,14 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
     }
     setLoading(true)
     store.queryStockIOByCode(params).then(r=>{
-      setLoading(false)
-      console.log(r.data)
+      setLoading(false)      
       let _list = r.data.map(o=>({
         id:o.id, 
         key: `${o.id} ${o.part_id} ${o.part_code} ${o.part_name}`,
         num: o.stock_num, 
         val: o.io_num,
         state:o.state,
-      }))
-      console.log(_list,'_list')
+      }))     
       setList(_list)
     })
   }, []);
@@ -134,8 +128,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       if (r.data.length === 0 ) {
         message.info(MSG.NO_PART_IN_WARE)
         return
-      }
-      console.log(r.data)
+      }     
 
       // 清空原來出庫數據
       setList([])
@@ -158,10 +151,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
     list.push({key:'',val:''})
     setList([...list])
     const _part = part.map(o=> partFormat(o,method))
-    setPartFil(_part)
-
-    // console.log(_part)
-    console.log(part)
+    setPartFil(_part)   
   }
 
   // 刪除json數據
@@ -171,10 +161,8 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   }
 
   // 修改數量
-  const chgVal =(e,i)=>{
-    // const val = parseInt(e.currentTarget.value)
+  const chgVal =(e,i)=>{    
     const val = e
-    // console.log(val, )
     if (val> list[i].num) {
       message.info(MSG.OVER_STOCK)
     }else{
@@ -187,14 +175,11 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
   const doSelPart = (val,i) => {
     const part_id = parseInt(val.split(' ')[1])
     const selPart = part.find(o => o.part_id === part_id);
-    // console.log(part_id)
-    // console.log(part)
-    // console.log(selPart)
-
+   
     if (selPart!== undefined) {
       const filtered = list.filter(o=> o.id === part_id)
 
-      // console.log(filtered,'filtered')
+
       if (filtered.length > 0) {
         message.info(MSG.CHOOSED)
         return
@@ -254,7 +239,6 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       message.info(MSG.CHOOSE_PART)
       return 
     }
-    // console.log(params)
 
     setLoading(true)
     store.saveStockIO(params).then(r=>{

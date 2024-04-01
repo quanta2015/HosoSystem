@@ -93,8 +93,7 @@ const Model = () => {
   };
 
   // 刪除數據
-  const doDel = (e)=>{
-    // console.log(e)
+  const doDel = (e)=>{   
     let params = { 
       id: e.id,
       tab: 'tab_model',
@@ -122,8 +121,7 @@ const Model = () => {
     store.queryModel(params).then(r=>{
       setLoading(false)
       setDs(r.data)
-      setRefresh(false)
-      // console.log(r.data)
+      setRefresh(false)  
     })
   }, [refresh]);
 
