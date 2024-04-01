@@ -11,7 +11,7 @@ import {json_stock_io,ST} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
-
+import { useLocation,useNavigate } from 'react-router-dom';
 import InFormMain from './InFormMain'
 import OutFormMain from './OutFormMain'
 import {jp} from '@constant/lang'
@@ -23,6 +23,7 @@ const { confirm } = Modal;
 // console.log('stock')
 
 const Stock = () => {
+  const navigate = useNavigate();
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -98,6 +99,7 @@ const Stock = () => {
 
   // 加載數據
   useEffect(() => {
+    if(!store.hasRoles([DB.ROLE.SYS,DB.ROLE.PURCHASE])) navigate("/");
     setLoading(true)
     store.queryStockIO(null).then(r=>{
       setLoading(false)

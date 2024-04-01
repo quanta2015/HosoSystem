@@ -11,6 +11,9 @@ import Nav from '@/component/Nav'
 import s from './index.module.less';
 import logo from '@/img/logo.svg'
 
+import {jp} from '@/constant/lang'
+const {DB} = jp
+
 
 
 const Layout = () => {
@@ -23,15 +26,24 @@ const Layout = () => {
   const isSmallScreen = window.innerWidth < 768;
 	store.mobile = isMobileDevice || isSmallScreen
 
+ 
 
-  useEffect(() => {
-
+  useEffect(() => {  
+ 
     let {usr, token } = loadLocalUser()
-
+    
     if (!token) {
       navigate("/login");
     } else{
-      window.token = token
+      window.token = token      
+      if(store.hasRole(DB.ROLE.PURCHASE)){
+        //仕入
+        
+      }
+      else if(store.hasRole(DB.ROLE.REVIEW)){
+        //レビュー
+        
+      }
     }
   }, []);
 

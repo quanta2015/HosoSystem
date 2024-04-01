@@ -11,7 +11,7 @@ import {json_ware} from '@/constant/data'
 import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
-
+import { useLocation,useNavigate } from 'react-router-dom';
 import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
@@ -23,6 +23,7 @@ const { confirm } = Modal;
 
 
 const Ware = () => {
+  const navigate = useNavigate();
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -93,6 +94,7 @@ const Ware = () => {
 
   // 加載數據
   useEffect(() => {
+    if(!store.hasRoles([DB.ROLE.SYS])) navigate("/");
     setLoading(true)
     store.queryWare(null).then(r=>{
       setLoading(false)

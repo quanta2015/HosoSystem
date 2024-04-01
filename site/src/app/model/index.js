@@ -13,6 +13,7 @@ import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 import QRCode from 'qrcode';
 import FormMain from './FormMain'
+import { useLocation,useNavigate } from 'react-router-dom';
 import {jp} from '@constant/lang'
 
 
@@ -31,6 +32,7 @@ const genQR = async (text) => {
 
 
 const Model = () => {
+  const navigate = useNavigate();
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -102,7 +104,7 @@ const Model = () => {
     store.delModel(params).then(r=>{
       setLoading(false)
       setDs(r.data)
-      message.error(MSG.DEL_SUC)
+      message.info(MSG.DEL_SUC)
     })
   }
 
@@ -116,6 +118,7 @@ const Model = () => {
   useEffect(() => {
     let params = { tab: 'view_model' }
     setLoading(true)
+    if(!store.hasRoles([DB.ROLE.SYS])) navigate("/");
     store.queryModel(params).then(r=>{
       setLoading(false)
       setDs(r.data)

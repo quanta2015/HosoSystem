@@ -336,7 +336,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
 
           <div className={s.fun}>
 
-            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{FN.CLS}</Button> 
+            <Button type="default" style={{width:'120px'}} onClick={()=>setShowOutForm(false)} >{detail?FN.DIS:FN.CLS}</Button> 
 
             {!detail && <Button type="primary" style={{width:'120px'}} onClick={()=>doSave()} >{FN.SAV}</Button>} 
           </div>

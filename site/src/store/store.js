@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { message } from 'antd'
 import { get, post } from '@/util/net.js'
 import * as urls from '@/constant/urls'
-
+import { loadLocalUser } from '@/util/token'
 
 class Store {
   constructor() {
@@ -13,6 +13,17 @@ class Store {
 
   saveUser = (user) => {
     this.user = user
+  }
+
+  hasRoles = (roles)=>{
+    let {usr } = loadLocalUser()
+    console.log(roles.includes(usr.role));
+    return roles.includes(usr.role)
+  }
+
+  hasRole = (role)=>{
+    let {usr } = loadLocalUser()    
+    return role===usr.role
   }
 
   async post(url, params) {
