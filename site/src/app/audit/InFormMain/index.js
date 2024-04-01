@@ -27,7 +27,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
 
   const initType = method==='insert'?null:item.type
   const initInWare = method==='insert'?[null,null]:[item.in_dep_id,item.in_ware_id]
-
+  console.log(typeof item.remark)
   const initRemark = method==='insert'?'':item.remark[0]
   // const initList = method==='insert'?[]:[]
 
