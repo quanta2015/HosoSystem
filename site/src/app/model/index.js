@@ -102,6 +102,7 @@ const Model = () => {
     store.delModel(params).then(r=>{
       setLoading(false)
       setDs(r.data)
+      message.error(MSG.DEL_SUC)
     })
   }
 

@@ -112,6 +112,7 @@ const Ware = () => {
     store.delWare(params).then(r=>{
       setLoading(false)
       setDs(r.data)
+      message.info(MSG.DEL_SUC)
       // console.log(r.data)
     })
   }

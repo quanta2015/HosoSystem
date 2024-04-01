@@ -101,6 +101,7 @@ const Part = () => {
       setLoading(false)
       // r.data.map(async o=> o.qrcode = await genQR(o.code))
       setDs(r.data)
+      message.info(MSG.DEL_SUC)
       // console.log(r.data)
     })
   }

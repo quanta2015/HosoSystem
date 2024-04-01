@@ -198,17 +198,7 @@ router.post('/importPart', async (req, res, next) => {
     // 获取数据
     worksheet.eachRow({ includeEmpty: true }, (row, i) => {
       if (i===1) {
-        row.eachCell({ includeEmpty: true }, (cell, j) => {
-
-          if (cell.value === 'name') {
-            id_name = j-1
-          }else if (cell.value === 'code') {
-            id_code = j-1
-          }else if (cell.value === 'sup_name') {
-            id_sup = j-1
-          }else if (cell.value === 'mod_name') {
-            id_mod = j-1
-          }
+        row.eachCell({ includeEmpty: true }, (cell, j) => {                  
           head.push(cell.value||'');
         });
       }else{
@@ -222,7 +212,7 @@ router.post('/importPart', async (req, res, next) => {
         }
       }
     })
-
+   
     // 转化类型和供应商
     const supList = new Set()
     const modList = new Set()
@@ -243,16 +233,18 @@ router.post('/importPart', async (req, res, next) => {
     const modData = await callP(sql1, modJson, res)
     const supData = await callP(sql2, supJson, res)
 
-
     // 重构数据
+    const requireDataHeader=['name','code','sup_name','mod_name']
+    for(const header of requireDataHeader){
+      const index = 
+      header
+    }
     head.splice(id_name,1)
     head.splice(id_code,1)
     head.splice(id_sup,1)
     head.splice(id_mod,1)
 
     const ret = []
-
-
     for (let o of data) {
       modData.map(item=>{
         if (item.name === o[id_mod]) {
@@ -265,27 +257,29 @@ router.post('/importPart', async (req, res, next) => {
           o[id_sup] = item.id
         }
       })
-      const code = o[id_code]+""
+      const code = richTextToText(o[id_code])  
       const qrcode = await genQR(code)
       const name = o[id_name]
       const sid = o[id_sup]
       const mid = o[id_mod]
-      let r = {code,name,sid,mid,qrcode}
+      let r = {code,name,sid,mid,qrcode}      
 
       o.splice(id_name,1)
       o.splice(id_code,1)
       o.splice(id_sup,1)
       o.splice(id_mod,1)
 
+      console.log(head)
+      console.log(o)
       let jsonItem = []
       o.map((p,i)=>{
         jsonItem.push({key:head[i] ,val:p})
         // jsonItem[head[i]] = p
       })
-      r.info = JSON.stringify(jsonItem)
+      r.info = JSON.stringify(jsonItem)    
       ret.push(r)
     }
-
+      
     const sql3 = `CALL PROC_IMPORT_PART(?)`
     const partList = await callP(sql3, ret, res)
 
@@ -294,14 +288,22 @@ router.post('/importPart', async (req, res, next) => {
       status: 200,
       success: true,
       // data: r,
-      msg: '数据导入成功',
+      msg: 'データーを導入されました',
     })
   });
 
 })
 
-
-
+const richTextToText= (text)=>{
+  if(typeof text === 'object'){        
+    if(!Array.isArray(text)){      
+      return text.richText.reduce((acc,cur)=>acc.text+cur.text)
+    }else{
+      return 'err'
+    }
+  } 
+  else return text+''
+}
 
 
 ///////////////////////////////////////////////////
