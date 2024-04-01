@@ -54,9 +54,9 @@ router.post('/login',async (req, res, next) =>{
   if (r.length > 0) {
     let ret = clone(r[0])
     let token = jwt.sign(ret, SECRET_KEY)
-    res.status(200).json({code:0, data: ret, token: token, msg: '登录成功'})
+    res.status(200).json({code:0, data: ret, token: token, msg: 'ログインしました'})
   } else {
-    res.status(200).json({code:1, data: null, msg: '用户名或密码错误'})
+    res.status(200).json({code:1, data: null, msg: 'ユーザー名又はパスワードが間違いました'})
   }
 })
 
@@ -81,7 +81,7 @@ router.post('/upload', function(req, res,next) {
     res.status(200).json({
       status: 200,
       success: true,
-      msg: '文件上传成功',
+      msg: 'アプロードできました',
       data: files.file.filepath
     })
   });

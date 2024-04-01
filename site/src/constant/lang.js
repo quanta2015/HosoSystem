@@ -145,9 +145,10 @@ export const jp = {
     STOCK_IO: {      
       RECEPT_CODE: '伝票番号',
       TYPE:'種類',
+      STAT:'状態',
       WARE_NAME: '倉庫名',
-      IN_WARE_NAME: '元倉庫',
-      OUT_WARE_NAME:'目的地倉庫',
+      IN_WARE_NAME: '入庫倉庫',
+      OUT_WARE_NAME:'出庫倉庫',
       PART_IMG: '部品画像',
       PART_CODE: '部品コード',
       PART_NAME: '部品名',

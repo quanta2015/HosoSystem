@@ -11,7 +11,7 @@ import {json_part} from '@/constant/data'
 import {filterData,getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
-
+import { useLocation,useNavigate } from 'react-router-dom';
 import FormMain from './FormMain'
 import {jp} from '@constant/lang'
 
@@ -23,6 +23,7 @@ const { confirm } = Modal;
 
 
 const Part = () => {
+  const navigate = useNavigate();
   const uploadRef = useRef(null);
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
@@ -115,6 +116,7 @@ const Part = () => {
 
   // 加載part數據
   useEffect(() => {
+    if(!store.hasRoles([DB.ROLE.SYS])) navigate("/");
     let params = { tab: 'view_part' }
     setLoading(true)
     store.queryTable(params).then(r=>{

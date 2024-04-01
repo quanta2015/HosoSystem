@@ -12,6 +12,7 @@ import {getKeyField,clone,getBase64, genQR} from '@/util/fn'
 import s from './index.module.less';
 import {getColumnSearchProps} from '@/util/filter'
 import FormMain from './FormMain'
+import { useLocation,useNavigate } from 'react-router-dom';
 
 import {jp} from '@constant/lang'
 
@@ -25,6 +26,7 @@ const { confirm } = Modal;
 
 
 const Dep = () => {
+  const navigate = useNavigate();
   const { store } = React.useContext(MobXProviderContext)
   const [searchParams] = useSearchParams();
 
@@ -92,7 +94,8 @@ const Dep = () => {
 
   // 加載數據
   useEffect(() => {
-    setLoading(true)
+    setLoading(true)    
+    if(!store.hasRoles([DB.ROLE.SYS])) navigate("/");
     store.queryDep(null).then(r=>{
       setLoading(false)
       setDs(r.data)
@@ -112,7 +115,7 @@ const Dep = () => {
       setLoading(false)
       if (r.data !== undefined) {
         setDs(r.data)
-        message.error(MSG.DEL_SUC)
+        message.info(MSG.DEL_SUC)
       }else{
         message.error(MSG.DEP_CANNOT_DEL)
       }      

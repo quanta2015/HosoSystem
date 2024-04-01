@@ -323,7 +323,7 @@ export const json_stock_io = [
   },{
     dataIndex: 'state_text',
     type: 'string',
-    title: DB.STOCK_IO.REMARK,
+    title: DB.STOCK_IO.STAT,
     width: 150,
     fixed: 'left',
     align: 'center',
