@@ -10,7 +10,7 @@ var ExcelJS = require('exceljs');
 
 var router = express.Router()
 var {callP,doProc} = require("../db/db")
-var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,stockToExcel,genQR} = require("../util/util")
+var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,partToExcel,genQR} = require("../util/util")
 
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
