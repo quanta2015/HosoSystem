@@ -774,8 +774,11 @@ router.post('/delDep', async (req, res, next) => {
   
   let sql = `CALL PROC_DEL_DEP(?)`
   let r = await callP(sql, params, res)
-  r = formatJSON(r,'info')
-  formatKey(r)
+  if(r)
+  {
+     r = formatJSON(r,'info')
+    formatKey(r)
+  }
   res.status(200).json({ code: 0, data: r })
 })
 
