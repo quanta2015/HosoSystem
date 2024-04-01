@@ -22,11 +22,11 @@ module.exports.genQR = async (text) => {
 
 module.exports.formatRemark = (s) => {
   const arr = s?s.split(','):[]
-  const isAllSame = arr.every((val, i, arr) => val === arr[0]);
+  //const isAllSame = arr.every((val, i, arr) => val === arr[0]);
 
   const all = arr.filter(o => o !== '');
 
-  return isAllSame?[arr[0]]:all.join(',')
+  return arr
 }
 
 module.exports.formatKey = (list) => {

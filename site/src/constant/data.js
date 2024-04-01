@@ -347,16 +347,19 @@ export const json_stock_io = [
     type: 'string',
     title: DB.STOCK_IO.OUT_WARE_NAME,
     width: 200,
+    render: (text, r) => r.out_ware_name??r.out_dep_name
   },{
     dataIndex: 'in_ware_name',
     type: 'string',
     title: DB.STOCK_IO.IN_WARE_NAME,
     width: 200,
+    render: (text, r) => r.in_ware_name??r.in_dep_name
   },{
     dataIndex: 'remark',
     type: 'string',
     title: DB.STOCK_IO.REMARK,
     width: 300,
+    render: (text, r) => text.join(',')
   }
 ]
 

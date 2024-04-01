@@ -35,15 +35,7 @@ const Layout = () => {
     if (!token) {
       navigate("/login");
     } else{
-      window.token = token      
-      if(store.hasRole(DB.ROLE.PURCHASE)){
-        //仕入
-        
-      }
-      else if(store.hasRole(DB.ROLE.REVIEW)){
-        //レビュー
-        
-      }
+      window.token = token  
     }
   }, []);
 
