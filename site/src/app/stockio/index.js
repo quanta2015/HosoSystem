@@ -119,6 +119,7 @@ const Stock = () => {
       setLoading(false)
       r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
       setDs(r.data)
+      message.info(MSG.DEL_SUC)
       // console.log(r.data)
     })
   }

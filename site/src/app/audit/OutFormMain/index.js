@@ -241,7 +241,7 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowOutForm,setLoad
       setLoading(false)
       setShowOutForm(false)
       setRefresh(true)
-      message.info(MSG.SAV_SUC)
+      message.info(MSG.SAVE_SUC)
     })
   }
 

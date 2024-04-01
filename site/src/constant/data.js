@@ -100,7 +100,7 @@ export const json_part = [
     {
       dataIndex: 'mod_name',
       type: 'string',
-      title: DB.PART.MODE_NAME,
+      title: DB.PART.MOD_NAME,
       width: 120,
       req: false,
     },
@@ -154,7 +154,7 @@ export const json_supply = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: DB.SUPPLY.ID,
+    title: DB.ID,
     width: 60,
     align: 'center',
     req: true,
@@ -414,7 +414,7 @@ export const json_dep = [
   {
     dataIndex: 'key',
     type: 'string',
-    title: DB.DEP.ID,
+    title: DB.ID,
     width: 60,
     fixed: 'left',
     align: 'center',
