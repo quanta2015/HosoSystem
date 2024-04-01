@@ -20,7 +20,7 @@ import {jp} from '@constant/lang'
 const { FN,MSG,DB,TXT } = jp
 const { confirm } = Modal;
 
-// console.log('stock')
+
 
 const Stock = () => {
   const navigate = useNavigate();
@@ -105,8 +105,7 @@ const Stock = () => {
       setLoading(false)
       r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
       setDs(r.data)
-      setRefresh(false)
-      console.log(r.data)
+      setRefresh(false)    
     })
   }, [refresh]);
 
@@ -121,14 +120,11 @@ const Stock = () => {
       setLoading(false)
       r.data.map(async o=> o.qrcode = await genQR(o.recept_code))
       setDs(r.data)
-      message.info(MSG.DEL_SUC)
-      // console.log(r.data)
+      message.info(MSG.DEL_SUC)     
     })
   }
-
   const doEdit=(e,readonly)=>{
-
-    // console.log(e)
+    
     setItem(e)
     setMethod('update')
     setDetail(readonly)

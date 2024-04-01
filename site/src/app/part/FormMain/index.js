@@ -62,8 +62,7 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
   const doClosePrev = () => setPreviewOpen(false);
 
   // 修改圖片邏輯
-  const doChangeImg = ({ fileList: newFileList }) => {
-    console.log(newFileList)
+  const doChangeImg = ({ fileList: newFileList }) => {   
 
     if (newFileList.length>0) {
       if ((newFileList)&&(newFileList[0].status ==='done')) {
@@ -99,8 +98,7 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
       method,
       qrcode,
       ...values
-    }
-    console.log(params)
+    }   
     setLoading(true)
     store.savePart(params).then(r=>{
       setLoading(false)
@@ -128,9 +126,6 @@ const FormMain = ({col, item, method,detail, setRefresh, setShowForm,setLoading}
     info[id][key]= val
     setInfo([...info])
   }
-
-
-  console.log(imgs.length)
 
   return (
     <div className={s.form}>

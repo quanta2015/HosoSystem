@@ -24,8 +24,7 @@ const Login = () => {
   const doLogin =async()=>{
     try {
       const params = await form.validateFields();
-      const r = await store.login(params)
-      // console.log(r)
+      const r = await store.login(params)      
       
       message.info(r.msg)
       if (r.code===0) {

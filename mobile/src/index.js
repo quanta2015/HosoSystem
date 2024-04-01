@@ -6,6 +6,7 @@ import { configure } from 'mobx'
 import { ConfigProvider } from 'antd'
 import Loadable from '@/component/Loadable'
 import zhCN from 'antd/es/locale/zh_CN'
+import jaJP from 'antd/es/locale/ja_JP'
 import injects from '@/store'
 
 import '@/less/var.less'
@@ -26,7 +27,7 @@ const Login = lazy(() => import('./app/login'));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider {...injects}>
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider locale={jaJP}>
       <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>

@@ -32,8 +32,7 @@ const caluMode = (list) => {
 
 const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
   const { store } = React.useContext(MobXProviderContext)
-  console.log(ds,'ds')
-
+  
   const mode = caluMode(ds)
   const [list,setList] = useState(ds)
   
@@ -52,8 +51,7 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
     setList([...list])
   }
 
-  const doChgRemark=(e,i)=>{
-    console.log(e)
+  const doChgRemark=(e,i)=>{    
     const val = e.currentTarget.value
     list[i].remark = val
     setList([...list])
@@ -80,8 +78,6 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
       setList([...r.data])
       message.info(`${STOCK_TAKING[mode]}${STOCK_TAKING.SAVE_SUC}`)
     })
-
-    console.log(params)
   }
 
 

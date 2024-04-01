@@ -23,7 +23,6 @@ const Login = () => {
     try {
       const params = await form.validateFields();
       const r = await store.login(params)
-      console.log(r)
       
       // message.info(r.msg)
       if (r.code===0) {

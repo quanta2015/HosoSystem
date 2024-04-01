@@ -26,7 +26,7 @@ export const ST = {
 
   MOV_AUDIT: 30,  //移动待審核
   MOV_READY: 31,  //待移动
-  MOV_SUCC:  32,  //移动完成
+  MOV_SUCC:  32,  //移動完成
   MOV_ERROR: 33,  //移动錯誤
   MOV_NOPAS: 34,  //移动审核未通过
 }  

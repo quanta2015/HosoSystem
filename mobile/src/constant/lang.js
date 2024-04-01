@@ -17,8 +17,7 @@ export const jp = {
       MENU_L2_1: '在庫管理',
       MENU_L2_2: '入出庫管理',
       MENU_L2_3: '入出庫レビュー',
-    },
-  
+    },    
     TXT: {
       STOCK_TAK:'棚卸',
       INPUT_USERNAME:'ユーザー名を入力してください',
@@ -74,7 +73,7 @@ export const jp = {
       NO: 'いいえ',
       CLS: 'キャンセル',
       DIS: '閉じる',
-      SAV: 'セーブ',
+      SAV: '保存',
       DL:'情報ダウンロード',
       UP:'EXCELアプロード',
       STK:'棚卸',
@@ -93,7 +92,7 @@ export const jp = {
     MSG: {
       CFM: 'レコードを削除してもよろしいですか?',
       EXPT_SUC: 'エクスポート成功！',
-      SAVE_SUC: 'セーブ成功！',
+      SAVE_SUC: '保存成功！',
       REV_SUC: '承認しました！',
       CHOOSE_IN_TYPE:'入庫タイプを選んでください',
       CHOOSE_OUT_TYPE:'出庫タイプを選んでください',
@@ -140,7 +139,7 @@ export const jp = {
         PART_NAME: '部品名',
         MODEL_NAME: '部品タイプ',
         SUPPLY_NAME: 'サプライヤー',
-        NUM: '数量',
+        NUM: '数',
         STATUS: '状態'
       },
       STOCK_IO: {      
@@ -154,7 +153,7 @@ export const jp = {
         PART_NAME: '部品名',
         MODEL_NAME: '部品タイプ',
         SUPPLY_NAME: 'サプライヤー',
-        NUM: '数量',
+        NUM: '数',
         REMARK:'備考'
       },
       USER: {      
@@ -200,7 +199,7 @@ export const jp = {
       
       MOVE_WAIT_REV:'移动承認待ち',
       MOVE_WAIT:'移动待ち',
-      MOVE_DONE:'移动完成',
+      MOVE_DONE:'移動完成',
       MOVE_ERR:'移动エラー',
       MOVE_REJ:'移动不承認' 
     },
@@ -208,10 +207,16 @@ export const jp = {
       in:'入庫',
       out: '出庫',
       mov: '移動',
-      SAVE_SUC: '情報セーブ成功！',
+      SAVE_SUC: '情報保存成功！',
       NUM:'数',      
       REAL_NUM:'実際の数',      
       REMARK:'備考'      
+    },
+    MOBILE:{
+      PART_CODE:'製品ID',
+      PART_NAME:'製品名',
+      STOCK_NUM:'在庫数',
+      REAL_NUM:'実際数',
     }
   
   }

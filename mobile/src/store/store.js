@@ -16,8 +16,7 @@ class Store {
   }
 
   async post(url, params) {
-    const r = await post(url, params)
-    // console.log(r,'aaaa')
+    const r = await post(url, params)  
     if (r.code === 0) {
       return r
     } else {
@@ -28,8 +27,7 @@ class Store {
 
 
   async get(url, params) {
-    const r = await get(url, params)
-    console.log(r)
+    const r = await get(url, params)    
     if (r.code === 0) {
       return r.data
     } else {

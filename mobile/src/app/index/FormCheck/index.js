@@ -16,7 +16,7 @@ import * as ZXing from '@zxing/library';
 
 
 const { confirm } = Modal;
-const { FN,MSG,DB,TXT } = jp
+const { FN,MSG,DB,TXT,MOBILE } = jp
 const { TextArea } = Input
 
 const code = (o)=> (`# ${o.id} ${o.code} ${o.name}`)
@@ -42,8 +42,7 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
 
   useEffect(() => {
-    const { usr } = loadLocalUser()
-    console.log(usr)
+    const { usr } = loadLocalUser()    
     const params = {
       dep_id: usr.dep_id,
     }
@@ -85,14 +84,12 @@ const FormCheck = ({setShowCheck,setLoading}) => {
       num: e.num_real,
       ware_id: wareId,
     }
-
-    console.log(params)
     setLoading(true)
     store.saveStockNum(params).then(r=>{
       setLoading(false)
       r.data.map(o=> o.num_real = o.num)
       setDs(r.data)
-      message.info('信息保存成功')
+      message.info(MSG.SAVE_SUC)
     })
   }
 
@@ -111,11 +108,10 @@ const FormCheck = ({setShowCheck,setLoading}) => {
     store.queryStockByWare(params).then(r=>{
       setLoading(false)
       if (r.data.length === 0 ) {
-        message.info('該倉庫沒有部品')
+        message.info(MSG.NO_PART_IN_WARE)
         return
       }
       r.data.map(o=> o.num_real = o.num)
-      console.log(r.data)
       setDs(r.data)
     })
   }
@@ -178,21 +174,21 @@ const FormCheck = ({setShowCheck,setLoading}) => {
                   <img src={icon_qrcode} alt="" />
                 </div>
                 <div className={s.row}>
-                  <label>零件编号</label>
+                  <label>{DB.PART.CODE}</label>
                   <span>{o.code}</span>
                 </div>
                 <div className={s.row}>
-                  <label>零件名称</label>
+                  <label>{DB.PART.NAME}</label>
                   <span>{o.name}</span>
                 </div>
                 <div className={s.row_wrap}>
                   <div className={s.row}>
-                    <label>库存数量</label>
+                    <label>{MOBILE.STOCK_NUM}</label>
                     <span>{o.num}</span>
                   </div>
 
                   <div className={s.row}>
-                    <label>实际数量</label>
+                    <label>{MOBILE.REAL_NUM}</label>
                     <InputNumber value={o.num_real} onChange={(e)=>doChgNum(e,i)} max={o.num} min={o.min} />
                   </div>
                 </div>
@@ -202,7 +198,7 @@ const FormCheck = ({setShowCheck,setLoading}) => {
 
             {o.status === 1 && 
             <div className={s.fun}>
-              <Button type="primary" size="large" onClick={()=>showConfirm(o,i)} block>保存核对信息</Button>
+              <Button type="primary" size="large" onClick={()=>showConfirm(o,i)} block>{FN.SAV}</Button>
             </div>}
           </div>
           )}
