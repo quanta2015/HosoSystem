@@ -236,38 +236,36 @@ router.post('/importPart', async (req, res, next) => {
     // 重构数据 
     const ret = []
     for (let o of data) { 
-      const code = richTextToText(o[id_code])  
-      const qrcode = await genQR(code)
-      const name = richTextToText(o[id_name])
-      const sid = o[id_sup]
-      const mid = o[id_mod]       
-      
-      let r = {code,name,sid,mid,qrcode,info:[]}   
-       
-      console.log(r.mid);
-      const m = modData.find(m=>m.name===r.mid);
-      const s = supData.find(s=>s.name===r.mid);
-      console.log(m);
-      r.mid=m?m.id:null
-      r.sid=s?s.id:null
+      var r={};
+      for(const index in head){
+        r[head[index]] = o[index] 
+      }
 
-      console.log(r.mid);
-     
+      r.code = richTextToText(r.code)  
+      r.qrcode = await genQR(r.code)
+      r.name = richTextToText(r.name)
+      r.mid = modData.find(m=>m.name===r.mod_name).id || null
+      r.sid = supData.find(s=>s.name===r.sup_name).id || null      
+      delete r.sup_name
+      delete r.mod_name           
 
       //copy and delete key frame for info
-      let info = JSON.parse(JSON.stringify(r));
-      delete r.code;
-      delete r.name;
-      delete r.sid;
-      delete r.mid;       
-      for(const [key, value] of Object.entries(info)){
-        info[key]=richTextToText(value);
+      let infoJson = JSON.parse(JSON.stringify(r));
+      delete infoJson.code;
+      delete infoJson.name;
+      delete infoJson.qrcode;
+      delete infoJson.sid;
+      delete infoJson.mid;    
+      let info=[];  
+      for(const key in infoJson){
+        //format info [{key:temp1,val:temp1},{key:temp2,val:temp2}]
+        if(!infoJson[key] || infoJson[key]=='') continue;
+        else infoJson[key]=richTextToText(infoJson[key]);
+        info.push({key,val:infoJson[key]})
       }
-      r.info = info;    
-      console.log(r);
+      r.info = info;  
       ret.push(r)
     }
-    
     const sql3 = `CALL PROC_IMPORT_PART(?)`
     const partList = await callP(sql3, ret, res)
    
@@ -283,7 +281,6 @@ router.post('/importPart', async (req, res, next) => {
 })
 
 const richTextToText= (text)=>{
-console.log(typeof text, text);
   if(typeof text === 'object'){        
     if(!Array.isArray(text)){      
       return text.richText.reduce((acc,cur)=>acc.text+cur.text)
