@@ -232,12 +232,14 @@ const FormMain = ({col, item, method, detail, setRefresh, setShowInForm,setLoadi
                 </div>
               )}
           </div>
-
-          <div className={s.head}>
-            <h1>{TXT.STOCK_REV_REMARK}</h1>
-          </div>
-          <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
-
+          {!detail  && 
+          <>
+            <div className={s.head}>
+              <h1>{TXT.STOCK_REV_REMARK}</h1>
+            </div>
+            <TextArea onChange={(e)=>setRemark(e.currentTarget.value)} value={remark} disabled={detail}/>
+          </>
+          }
           <div className={s.fun}>
             {!detail  && 
             <>
