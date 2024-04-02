@@ -92,6 +92,7 @@ export const jp = {
     MSG: {
       CFM: 'レコードを削除してもよろしいですか?',
       EXPT_SUC: 'エクスポート成功！',
+      WARE_CFM:'保存してもよろしいでしょうか？',
       SAVE_SUC: '保存成功！',
       REV_SUC: '承認しました！',
       CHOOSE_IN_TYPE:'入庫タイプを選んでください',

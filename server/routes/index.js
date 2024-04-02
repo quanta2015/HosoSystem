@@ -198,7 +198,7 @@ router.post('/importPart', async (req, res, next) => {
     // 获取数据
     worksheet.eachRow({ includeEmpty: true }, (row, i) => {
       if (i===1) {
-        row.eachCell({ includeEmpty: true }, (cell, j) => {                  
+        row.eachCell({ includeEmpty: true }, (cell, j) => {             
           head.push(cell.value||'');
         });
       }else{
@@ -231,58 +231,46 @@ router.post('/importPart', async (req, res, next) => {
     const sql1 = `CALL PROC_IMPORT_MODEL(?)`
     const sql2 = `CALL PROC_IMPORT_SUPPLY(?)`
     const modData = await callP(sql1, modJson, res)
-    const supData = await callP(sql2, supJson, res)
+    const supData = await callP(sql2, supJson, res)   
 
-    // 重构数据
-    const requireDataHeader=['name','code','sup_name','mod_name']
-    for(const header of requireDataHeader){
-      const index = 
-      header
-    }
-    head.splice(id_name,1)
-    head.splice(id_code,1)
-    head.splice(id_sup,1)
-    head.splice(id_mod,1)
-
+    // 重构数据 
     const ret = []
-    for (let o of data) {
-      modData.map(item=>{
-        if (item.name === o[id_mod]) {
-          o[id_mod] = item.id
-        }
-      })
-
-      supData.map(item=>{
-        if (item.name === o[id_sup]) {
-          o[id_sup] = item.id
-        }
-      })
+    for (let o of data) { 
       const code = richTextToText(o[id_code])  
       const qrcode = await genQR(code)
-      const name = o[id_name]
+      const name = richTextToText(o[id_name])
       const sid = o[id_sup]
-      const mid = o[id_mod]
-      let r = {code,name,sid,mid,qrcode}      
+      const mid = o[id_mod]       
+      
+      let r = {code,name,sid,mid,qrcode,info:[]}   
+       
+      console.log(r.mid);
+      const m = modData.find(m=>m.name===r.mid);
+      const s = supData.find(s=>s.name===r.mid);
+      console.log(m);
+      r.mid=m?m.id:null
+      r.sid=s?s.id:null
 
-      o.splice(id_name,1)
-      o.splice(id_code,1)
-      o.splice(id_sup,1)
-      o.splice(id_mod,1)
+      console.log(r.mid);
+     
 
-      console.log(head)
-      console.log(o)
-      let jsonItem = []
-      o.map((p,i)=>{
-        jsonItem.push({key:head[i] ,val:p})
-        // jsonItem[head[i]] = p
-      })
-      r.info = JSON.stringify(jsonItem)    
+      //copy and delete key frame for info
+      let info = JSON.parse(JSON.stringify(r));
+      delete r.code;
+      delete r.name;
+      delete r.sid;
+      delete r.mid;       
+      for(const [key, value] of Object.entries(info)){
+        info[key]=richTextToText(value);
+      }
+      r.info = info;    
+      console.log(r);
       ret.push(r)
     }
-      
+    
     const sql3 = `CALL PROC_IMPORT_PART(?)`
     const partList = await callP(sql3, ret, res)
-
+   
 
     res.status(200).json({
       status: 200,
@@ -295,6 +283,7 @@ router.post('/importPart', async (req, res, next) => {
 })
 
 const richTextToText= (text)=>{
+console.log(typeof text, text);
   if(typeof text === 'object'){        
     if(!Array.isArray(text)){      
       return text.richText.reduce((acc,cur)=>acc.text+cur.text)
@@ -702,6 +691,8 @@ router.post('/auditStockIO', async (req, res, next) => {
 // 出入庫逻辑处理
 router.post('/procStockIO', auth, async (req, res, next) => {
   let params = req.body
+  if(params.remark == null) params.remark='' 
+  
   let {usr} = req.usr
   params.create_name = usr
 

@@ -52,7 +52,7 @@ const FormMain = ({ds, setShowForm,setLoading, setShowScan}) => {
   }
 
   const doChgRemark=(e,i)=>{    
-    const val = e.currentTarget.value
+    var val = e.currentTarget.value   
     list[i].remark = val
     setList([...list])
   }
