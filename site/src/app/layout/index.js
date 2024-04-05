@@ -30,7 +30,9 @@ const Layout = () => {
 
   useEffect(() => {
     let {usr, token } = loadLocalUser()  
+    
     if (!token) {
+      console.log(usr)
       navigate("/login");
     } else{      
       window.token = token      

@@ -10,6 +10,21 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var compression = require('compression')
 
+const  get_formated_time = (
+  _fmt = 'YYYY/MM/DD hh:mm:ss.iii',
+  _dt  = new Date(),
+) => [
+      [ 'YYYY', _dt.getFullYear()  ],
+      [ 'MM',   _dt.getMonth() + 1 ], // なぜ Java と同じ仕様にしたのか？小一時間問いたい
+      [ 'DD',   _dt.getDate()      ],
+      [ 'hh',   _dt.getHours()     ],
+      [ 'mm',   _dt.getMinutes()   ],
+      [ 'ss',   _dt.getSeconds()   ],
+      [ 'iii',  _dt.getMilliseconds() ],
+  ].reduce(
+      (s,a) => s.replace( a[0], `${a[1]}`.padStart(a[0].length,'0') ),
+      _fmt
+  )
 
 
 
@@ -24,15 +39,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+app.all("*", (req, res, next) => {
+  console.log(`${get_formated_time()} : ${req.path}`);
+  next();
+});
 
 
 app.use(express.static(__dirname + '/'));
 var router = require('./routes/index')
 app.use('/', router);
 
-app.get('*', function (request, response){
- response.sendFile(path.resolve(__dirname, 'index.html'))
+app.get('*', function (request, response){  
+  response.sendFile(path.resolve(__dirname, 'index.html'))
 })
+ 
 
 
 var options = {
@@ -40,10 +60,10 @@ var options = {
   cert: fs.readFileSync('./key/site.pem')
 }
 
-const https_port = 25566
-var server = https.createServer(options,app).listen(https_port,'0.0.0.0')
+const port = 25566
+var server = http.createServer(options,app).listen(port,'0.0.0.0')
 server.on('error', onError)
-server.on('listening', ()=>{ console.log(`Listening on Port ${https_port}`) })
+server.on('listening', ()=>{ console.log(`Listening on Port ${port}`) })
 
 function onError(error) {
   if (error.syscall !== 'listen') { throw error; }

@@ -17,11 +17,13 @@ class Store {
 
   hasRoles = (roles)=>{
     let {usr } = loadLocalUser()
+    if(!usr) return false
     return roles.includes(usr.role)
   }
 
   hasRole = (role)=>{
     let {usr } = loadLocalUser()    
+    if(!usr) return false
     return role===usr.role
   }
 

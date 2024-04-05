@@ -53,6 +53,11 @@ export const ST_TXT = {
 
 const pageSize = 6
 
+const onError=({ currentTarget }) => {
+  currentTarget.onerror = null; // prevents looping
+  currentTarget.src=defaultImg;
+}
+
 export const json_part = [
   {
       dataIndex: 'key',
@@ -80,7 +85,7 @@ export const json_part = [
       width: 100,
       req: true,
       fixed: 'left',
-      render: (url, r) => <img src={url?(!url.startsWith('http')?`${API_SERVER}/${url}`:url):defaultImg} alt={r.name}/> 
+      render: (url, r) => <img src={!url.startsWith('http')?`${API_SERVER}/${url}`:url} alt={r.name} onError={onError}/> 
     },{
       dataIndex: 'code',
       type: 'string',
@@ -166,7 +171,7 @@ export const json_supply = [
     width: 80,
     fixed: 'left',
     align: 'center',
-    render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} alt={r.name}/> 
+    render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} alt={r.name} onError={onError}/> 
   },{
     dataIndex: 'name',
     type: 'string',
@@ -260,7 +265,7 @@ export const json_stock = [
     title: DB.STOCK.PART_IMG,
     width: 100,
     align: 'center',
-    render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} /> 
+    render: (url, r) => <img className="icon" src={`${API_SERVER}/${url}`} onError={onError}/> 
   },{
     dataIndex: 'part_code',
     type: 'string',
@@ -319,7 +324,7 @@ export const json_stock_io = [
     width: 100,
     fixed: 'left',
     align: 'center',
-    render: (text, r) => <img src={text} alt={r.name}/> 
+    render: (text, r) => <img src={text} alt={r.name} onError={onError}/> 
   },{
     dataIndex: 'state_text',
     type: 'string',

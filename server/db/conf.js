@@ -1,9 +1,9 @@
 let conf = {
   host: 'mysql',
   port: 3306,
-  database: 'ware',
+  database: process.env.MYSQL_DATABASE || 'root',
   user:     'root',
-  password: 'liyangtom',
+  password: process.env.MYSQL_ROOT_PASSWORD || 'liyangtom',
   multipleStatements: true,
   secret: 'airtp2021',
 };

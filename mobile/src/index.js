@@ -28,7 +28,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider {...injects}>
     <ConfigProvider locale={jaJP}>
-      <HashRouter>
+      <BrowserRouter  basename="/mobile">
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -38,7 +38,7 @@ root.render(
             </Route>
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter >
     </ConfigProvider>
   </Provider>
 );
