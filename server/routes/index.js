@@ -15,6 +15,9 @@ var {clone,isN,formatJSON,stockToExcel,formatRemark,formatKey,partToExcel,genQR}
 const SECRET_KEY = 'HOSO-PLATFORM-2024'
 const UPLOAD_DIR = `${__dirname}/../upload`
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 dotenv.config()
 
@@ -52,9 +55,14 @@ router.post('/login',async (req, res, next) =>{
   let sql = `CALL PROC_LOGIN(?)`
   let r = await callP(sql, params, res)
   if (r.length > 0) {
-    let ret = clone(r[0])
-    let token = jwt.sign(ret, SECRET_KEY)
-    res.status(200).json({code:0, data: ret, token: token, msg: 'ログインしました'})
+    let ret = clone(r[0])  
+    var success = bcrypt.compareSync(params.pwd, ret.pwd);
+    if(success){
+      let token = jwt.sign(ret, SECRET_KEY)
+      res.status(200).json({code:0, data: ret, token: token, msg: 'ログインしました'})
+    }else{
+      res.status(200).json({code:1, data: null, msg: 'ユーザー名又はパスワードが間違いました'})
+    }    
   } else {
     res.status(200).json({code:1, data: null, msg: 'ユーザー名又はパスワードが間違いました'})
   }
@@ -733,6 +741,18 @@ router.post('/saveUser',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
   params.create_name = usr
+  
+  let usql = `CALL PROC_LOGIN(?)`
+  let ur = await callP(usql, params, res)
+  if(ur.length>0){
+    urt=ur[0];
+    if(params.pwd==='')params.pwd = urt.pwd;
+    else if(params.pwd !==  urt.pwt){
+      const salt = bcrypt.genSaltSync(saltRounds);
+      params.pwd = bcrypt.hashSync(params.pwd, salt);
+    }
+  } 
+  console.log(params)
   let sql = `CALL PROC_SAVE_USER(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })
@@ -773,7 +793,7 @@ router.post('/delDep', async (req, res, next) => {
 router.post('/saveDep',auth, async (req, res, next) => {
   let params = req.body
   let {usr} = req.usr
-  params.create_name = usr
+  params.create_name = usr  
   let sql = `CALL PROC_SAVE_DEP(?)`
   let r = await callP(sql, params, res)
   res.status(200).json({ code: 0, data: r })

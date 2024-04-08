@@ -397,7 +397,8 @@ export const json_user = [
     title: DB.USER.NAME,
     width: 200,
      align: 'center',
-  },{
+  },
+  /*{
     dataIndex: 'pwd',
     type: 'string',
     title: DB.USER.PWD,
@@ -407,7 +408,8 @@ export const json_user = [
       var lastChar = text[text.length - 1];
       return <span>{`*****${lastChar}`}</span>
     }
-  },{
+  },*/
+  {
     dataIndex: 'role',
     type: 'string',
     title: DB.USER.ROLE,

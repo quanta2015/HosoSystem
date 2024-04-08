@@ -34,9 +34,10 @@ const initOpt =(list)=> list.map(o=>({value:o, label:o}))
 
 const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
   const { store } = React.useContext(MobXProviderContext)
-
-
-  const initBasic = method==='insert'?{}:{...item}
+  
+  var tmp = JSON.parse(JSON.stringify(item));
+  tmp.pwd='';
+  const initBasic = method==='insert'?{}:{...tmp}
   const [optDep, setOptDep] = useState([]);
   const [optRole, setOptRole] = useState(initOpt(ROLE));
 
@@ -57,10 +58,7 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
       id: item?.id,
       method,
       ...values
-    }
-    
-
-
+    }  
     setLoading(true)
     store.saveUsr(params).then(r=>{
       setLoading(false)
@@ -122,9 +120,9 @@ const FormMain = ({col, item, method,setRefresh, setShowForm,setLoading}) => {
                   name="pwd"
                   label={DB.USER.PWD}
                   labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
+                  wrapperCol={{ span: 18 }} 
                 >
-                  <Input />
+                  <Input placeholder={MSG.PWD_LEFT_BLANK} />
                 </Form.Item>
               </Col>
               <Col span={16}>
